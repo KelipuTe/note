@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 西柊图书馆（重建中）</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on 西柊图书馆（重建中）</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 20 Sep 2022 20:00:00 +0800</lastBuildDate><atom:link href="/post/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Hugo &#43; GitHub Pages 搭建站点</title>
+      <link>/post/computer-science/application/hugo/start/</link>
+      <pubDate>Tue, 20 Sep 2022 20:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/application/hugo/start/</guid>
+      <description>windows 11 cpu amd64 hugo 0.103.1 Hugo 文档 gohugoio/hugo 英文文档 中文文档 安装 Hugo 在 Hugo Releases 页面下载对应操作系统的版本。这里下载的是 hugo_0.103.1_windows-amd64</description>
+    </item>
+    
+    <item>
+      <title>使用 Jekyll 主题</title>
+      <link>/post/4242-04-02-jekyll-theme/</link>
+      <pubDate>Thu, 28 Apr 2022 20:00:00 +0800</pubDate>
+      
+      <guid>/post/4242-04-02-jekyll-theme/</guid>
+      <description>环境 Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2 jekyll-TeXt-theme Github： https://github.com/kitian616/jekyll-TeXt-theme 官方文档： https://tianqi.name/jekyll-TeXt-theme/ 第 1 步，从 Github 上把项目下载下来。 第 2 步，安装 Ruby 依赖包。 &amp;gt; bundle install --path vendor/bundle [DEPRECATED] The `--path` flag is deprecated because it relies on being</description>
+    </item>
+    
+    <item>
+      <title>使用 Jekyll 和 GitHub Pages 制作个人博客</title>
+      <link>/post/4242-04-02-jekyll-github-pages/</link>
+      <pubDate>Wed, 27 Apr 2022 20:00:00 +0800</pubDate>
+      
+      <guid>/post/4242-04-02-jekyll-github-pages/</guid>
+      <description>1234556</description>
+    </item>
+    
+  </channel>
+</rss>

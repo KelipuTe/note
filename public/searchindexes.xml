@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<search>
+  
+  <entry>
+    <title>使用 Hugo + GitHub Pages 搭建站点</title>
+    <url>/post/computer-science/application/hugo/start/</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[ windows 11 cpu amd64 hugo 0.103.1 Hugo 文档 gohugoio/hugo英文文档中文文档安装 Hugo 在 Hugo Releases页面下载对应操作系统的版本。这里下载的是 hugo_0.103.1_windows-amd64.zip。
+下载完成后，解压到想要的位置。这里的目录是 D:\hugo\bin。然后将这个目录添加到 系统变量 path 中（我的电脑 -&gt; 属性 -&gt; 高级系统设置 -&gt; 环境变量 -&gt; 系统变量 -&gt; path）。
+搞定之后，可以打开控制台，输出一下版本信息，验证一下安装是否成功。或者试试 hugo help 命令输出帮助信息。
+&gt; hugo version hugo v0.103.1-b665f1e8f16bf043b9d3c087a60866159d71b48d windows/amd64 BuildDate=2022-09-18T13:19:01Z VendorInfo=gohugoio 如果有需要的话，需要安装 extended 版本的。这里下载的是 hugo_extended_0.103.1_windows-amd64.zip。
+&gt; hugo version hugo v0.103.1-b665f1e8f16bf043b9d3c087a60866159d71b48d+extended windows/amd64 BuildDate=2022-09-18T13:19:01Z VendorInfo=gohugoio 创建站点 使用命令创建一个站点，如果没问题的话，hugo 会在当前目录下创建一个名字是 project-name 的目录。
+&gt; hugo new site {project-name} 新建的站点没有任何内容，可以使用命令创建一个内容页面。新创建的文件会在目录 content/ 里。创建内容页面的时候也可以带上目录。
+&gt; hugo new helloworld.md &gt; hugo new posts/helloworld.md 安装主题 这里就是和别的站点工具不一样的地方了，比如 hexo 和 jekyll，如果没有安装主题的话，是会有一个默认的主题的。
+但是 hugo 没有默认主题，需要去主题库下载一个，然后添加到站点里并配置好，这样才能启动站点。如果没有安装主题就启动的话，会报没有模板的错误。
+可以去 官方的主题库找一个喜欢的。
+next Hugo NexT这个主题是从 Hexo NexT 移植过来的。
+GitHub 项目地址 hugo-next/hugo-theme-next。
+按着 Hexo NexT 主题提供的的文档走，把主题配置到站点中。
+别忘了先 git init，然后使用命令下载主题 git submodule add https://github.com/hugo-next/hugo-theme-next.git themes/hugo-theme-next。
+如果需要升级主题的话，就进入 {path-to-project}/themes/github-style 目录，执行 git pull 命令，拉取最新的代码。
+然后把 {path-to-project}themes/hugo-theme-next/exampleSite/ 目录下所有的文件复制到 {path-to-project}/ 目录下覆盖。
+最后删除原来的配置文件 config.toml，然后就可以使用命令 hugo server 启动服务了。
+另外需要注意的是，这个主题需要 hugo extended 版本，如果用的不是 extended 版本，启动的时候会报下面这样的错，提示去安装 extended 版本。
+&gt; hugo server Start building sites … hugo v0.103.1-b665f1e8f16bf043b9d3c087a60866159d71b48d windows/amd64 BuildDate=2022-09-18T13:19:01Z VendorInfo=gohugoio WARN 2022/09/20 21:12:38 Hugo NexT 主题使用了 SCSS 框架，请到官方地址下载 Hugo Extended 版本：https://github.com/gohugoio/hugo/releases ERROR 2022/09/20 21:12:38 Because that use SCSS framework in Hugo NexT, Please download Hugo extended version on offical site: https://github.com/gohugoio/hugo/releases Error: Error building site: TOCSS: failed to transform &#34;main.scss&#34; (text/x-scss). Check your Hugo installation; you need the extended version to build SCSS/SASS.: this feature is not available in your current Hugo version, see https://goo.gl/YMrWcn for more information github-style（选看） github-style这个主题是 github 的页面风格。
+GitHub 项目地址 MeiK2333/github-style。
+按着 github-style 主题提供的的文档走，把主题配置到站点中。
+别忘了先 git init，然后使用命令下载主题 git submodule add git@github.com:MeiK2333/github-style.git themes/github-style。
+如果需要升级主题的话，就进入 {path-to-project}/themes/github-style 目录，执行 git pull 命令，拉取最新的代码。
+在 content/ 里创建 post/ 目录，后面所有的内容页面都放到这个目录下面，要不然站点里不会展示。
+最后在配置文件 config.toml 里设置主题 theme = &quot;github-style&quot;。然后就可以使用命令 hugo server 启动服务了。
+站点是没有问题的，可以正常地跑起来。但是这个主题貌似没有实现标签分类，也可能是本人没有找到，所以就放弃继续使用了。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>关于 Hugo NexT 组织</title>
+    <url>/about.html</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[Hugo NexT 组织是由众多喜爱 NexT 主题及风格的世界各地友人共同组建而成，为的就是让这个主题继续在 Hugo 引擎中也能得到发扬光大，在此也欢迎你的加入！
+我们的愿景 延续 NexT 经典的黑白调搭配，保持简单的易用性及强大的功能。
+使用反馈 加入 GitHub Discussions或 Gitter在线讨论 :beers: GitHub Issues提交错误报告 :bug: GitHub Feature表新功能的想法 :sparkles: 同时国内用户也可加入 QQ 群交流： 604710815
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>使用 Jekyll 主题</title>
+    <url>/post/4242-04-02-jekyll-theme/</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[环境 Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2 jekyll-TeXt-theme Github：https://github.com/kitian616/jekyll-TeXt-theme官方文档：https://tianqi.name/jekyll-TeXt-theme/第 1 步，从 Github 上把项目下载下来。
+第 2 步，安装 Ruby 依赖包。
+&gt; bundle install --path vendor/bundle [DEPRECATED] The `--path` flag is deprecated because it relies on being remembered across bundler invocations, which bundler will no longer do in future versions. Instead please use `bundle config set --local path &#39;vendor/bundle&#39;`, and stop using this flag Fetching gem metadata from https://rubygems.org/.......... Resolving dependencies... Fetching rake 10.5.0 Installing rake 10.5.0 Using bundler 2.3.7 Using racc 1.6.0 Fetching concurrent-ruby 1.1.10 Fetching minitest 5.15.0 Fetching public_suffix 4.0.7 Fetching eventmachine 1.2.7 Fetching colorator 1.1.0 Fetching http_parser.rb 0.8.0 Fetching ffi 1.15.5 (x64-mingw-ucrt) Fetching forwardable-extended 2.6.0 Fetching gemoji 3.0.1 Fetching rb-fsevent 0.11.1 Fetching rexml 3.2.5 Fetching liquid 4.0.3 Fetching rouge 3.28.0 Fetching mercenary 0.4.0 Fetching safe_yaml 1.0.5 Fetching unicode-display_width 1.8.0 Installing safe_yaml 1.0.5 Fetching jekyll-paginate 1.1.0 Installing unicode-display_width 1.8.0 Fetching nokogiri 1.13.4 (x64-mingw-ucrt) Installing liquid 4.0.3 Installing rexml 3.2.5 Fetching terminal-table 2.0.0 Fetching kramdown 2.4.0 Installing gemoji 3.0.1 Installing rb-fsevent 0.11.1 Installing colorator 1.1.0 Installing mercenary 0.4.0 Installing jekyll-paginate 1.1.0 Installing http_parser.rb 0.8.0 with native extensions Installing terminal-table 2.0.0 Installing kramdown 2.4.0 Installing ffi 1.15.5 (x64-mingw-ucrt) Fetching sassc 2.4.0 Fetching rb-inotify 0.10.1 Installing rb-inotify 0.10.1 Fetching listen 3.7.1 Fetching kramdown-parser-gfm 1.1.0 Installing listen 3.7.1 Installing forwardable-extended 2.6.0 Fetching pathutil 0.16.2 Installing kramdown-parser-gfm 1.1.0 Fetching jekyll-watch 2.2.1 Installing jekyll-watch 2.2.1 Installing concurrent-ruby 1.1.10 Installing pathutil 0.16.2 Fetching i18n 1.10.0 Fetching tzinfo 2.0.4 Installing minitest 5.15.0 Installing eventmachine 1.2.7 with native extensions Installing tzinfo 2.0.4 Installing sassc 2.4.0 with native extensions Installing i18n 1.10.0 Fetching activesupport 7.0.2.4 Installing activesupport 7.0.2.4 Installing public_suffix 4.0.7 Fetching addressable 2.8.0 Installing addressable 2.8.0 Installing rouge 3.28.0 Fetching em-websocket 0.5.3 Installing em-websocket 0.5.3 Installing nokogiri 1.13.4 (x64-mingw-ucrt) Fetching html-pipeline 2.14.1 Installing html-pipeline 2.14.1 Fetching jekyll-sass-converter 2.2.0 Installing jekyll-sass-converter 2.2.0 Fetching jekyll 4.2.2 Installing jekyll 4.2.2 Fetching jekyll-feed 0.16.0 Fetching jekyll-sitemap 1.4.0 Fetching jemoji 0.12.0 Installing jemoji 0.12.0 Installing jekyll-sitemap 1.4.0 Installing jekyll-feed 0.16.0 Using jekyll-text-theme 2.2.6 from source at `.` Bundle complete! 3 Gemfile dependencies, 41 gems now installed. Bundled gems are installed into `./vendor/bundle` Post-install message from html-pipeline: ------------------------------------------------- Thank you for installing html-pipeline! You must bundle Filter gem dependencies. See html-pipeline README.md for more details. https://github.com/jch/html-pipeline#dependencies ------------------------------------------------- 安装完成后，可以使用 Jekyll 集成的那个开发用的服务器，然后使用浏览器在本地进行预览。
+这里同样会遇到 webrick 无法加载的那个异常情况，解决方法是一样的。
+jekyll-theme-chirpy Github：https://github.com/cotes2020/jekyll-theme-chirpy官方文档（同时也是个 Demo）：https://chirpy.cotes.page/个人感觉，这个主题比上面那个正在用的要好看不少。
+但是无奈，按照官方文档走流程的时候，在发布流程的 Github Action 步骤卡住了。而且没有找到解决方案，遂遗憾放弃。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>使用 Jekyll 和 GitHub Pages 制作个人博客</title>
+    <url>/post/4242-04-02-jekyll-github-pages/</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[环境 Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2 安装 Jekyll 在官方文档中有详细的安装 Jekyll 的流程说明。
+Jekyll 官方文档的中文版：http://jekyllcn.com/。
+第 1 步，安装 Ruby。
+Ruby 官方网站的中文版：http://www.ruby-lang.org/zh_cn/。
+进入 Ruby 下载页面：http://www.ruby-lang.org/zh_cn/downloads/下载页面的文档指出，Windows 可以用 RubyInstaller：https://rubyinstaller.org/。
+安装 Ruby 的方法
+每个流行的平台都有多种工具可用于安装 Ruby：
+Linux/UNIX 平台，可以使用第三方工具（如 rbenv 或 RVM）或使用系统中的包管理系统。 macOS 平台，可以使用第三方工具（如 rbenv 或 RVM）。 Windows 平台，可以使用 RubyInstaller。 进入 RubyInstaller 下载页面，页面右侧的说明会告诉你该下哪一个版本的。
+Which version to download?
+If you don’t know what version to install and you’re getting started with Ruby, we recommend that you use the Ruby+Devkit 3.1.X (x64) installer.
+下载 Ruby+Devkit 3.1.2-1 (x64) 完成后，双击运行，启动 Ruby 安装向导，然后一路 next 即可。
+记得勾选 Add Ruby executables to your PATH，把 Ruby 的运行目录添加到 Windows 的环境变量 PATH 里，要不然在命令行窗口（CMD）里不能直接用命令。
+安装过程中，安装向导可能会卡住，等一会就行。RubyInstaller 会把 Ruby 和 RubyGems 一起装了。RubyGems 是一个 Ruby 程序，用来管理 Ruby 包的。
+安装完成后，可以在命令行里使用命令输出一下版本信息，看看安装是否成功。
+&gt; ruby -v ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x64-mingw-ucrt] &gt; gem -v 3.3.7 第 2 步，安装 Jekyll。
+使用 RubyGems 安装 Jekyll。
+&gt; gem install jekyll Fetching unicode-display_width-1.8.0.gem Fetching terminal-table-2.0.0.gem Fetching safe_yaml-1.0.5.gem Fetching rouge-3.28.0.gem Fetching forwardable-extended-2.6.0.gem Fetching pathutil-0.16.2.gem Fetching mercenary-0.4.0.gem Fetching liquid-4.0.3.gem Fetching kramdown-2.4.0.gem Fetching kramdown-parser-gfm-1.1.0.gem Fetching ffi-1.15.5-x64-mingw-ucrt.gem Fetching rb-inotify-0.10.1.gem Fetching rb-fsevent-0.11.1.gem Fetching listen-3.7.1.gem Fetching jekyll-watch-2.2.1.gem Fetching sassc-2.4.0.gem Fetching jekyll-sass-converter-2.2.0.gem Fetching concurrent-ruby-1.1.10.gem Fetching i18n-1.10.0.gem Fetching http_parser.rb-0.8.0.gem Fetching eventmachine-1.2.7.gem Fetching em-websocket-0.5.3.gem Fetching colorator-1.1.0.gem Fetching public_suffix-4.0.7.gem Fetching jekyll-4.2.2.gem Fetching addressable-2.8.0.gem Successfully installed unicode-display_width-1.8.0 Successfully installed terminal-table-2.0.0 Successfully installed safe_yaml-1.0.5 Successfully installed rouge-3.28.0 Successfully installed forwardable-extended-2.6.0 Successfully installed pathutil-0.16.2 Successfully installed mercenary-0.4.0 Successfully installed liquid-4.0.3 Successfully installed kramdown-2.4.0 Successfully installed kramdown-parser-gfm-1.1.0 Successfully installed ffi-1.15.5-x64-mingw-ucrt Successfully installed rb-inotify-0.10.1 Successfully installed rb-fsevent-0.11.1 Successfully installed listen-3.7.1 Successfully installed jekyll-watch-2.2.1 Temporarily enhancing PATH for MSYS/MINGW... Building native extensions. This could take a while... Successfully installed sassc-2.4.0 Successfully installed jekyll-sass-converter-2.2.0 Successfully installed concurrent-ruby-1.1.10 Successfully installed i18n-1.10.0 Building native extensions. This could take a while... Successfully installed http_parser.rb-0.8.0 Building native extensions. This could take a while... Successfully installed eventmachine-1.2.7 Successfully installed em-websocket-0.5.3 Successfully installed colorator-1.1.0 Successfully installed public_suffix-4.0.7 Successfully installed addressable-2.8.0 Successfully installed jekyll-4.2.2 Parsing documentation for unicode-display_width-1.8.0 Installing ri documentation for unicode-display_width-1.8.0 Parsing documentation for terminal-table-2.0.0 Installing ri documentation for terminal-table-2.0.0 Parsing documentation for safe_yaml-1.0.5 Installing ri documentation for safe_yaml-1.0.5 Parsing documentation for rouge-3.28.0 Installing ri documentation for rouge-3.28.0 Parsing documentation for forwardable-extended-2.6.0 Installing ri documentation for forwardable-extended-2.6.0 Parsing documentation for pathutil-0.16.2 Installing ri documentation for pathutil-0.16.2 Parsing documentation for mercenary-0.4.0 Installing ri documentation for mercenary-0.4.0 Parsing documentation for liquid-4.0.3 Installing ri documentation for liquid-4.0.3 Parsing documentation for kramdown-2.4.0 Installing ri documentation for kramdown-2.4.0 Parsing documentation for kramdown-parser-gfm-1.1.0 Installing ri documentation for kramdown-parser-gfm-1.1.0 Parsing documentation for ffi-1.15.5-x64-mingw-ucrt Installing ri documentation for ffi-1.15.5-x64-mingw-ucrt Parsing documentation for rb-inotify-0.10.1 Installing ri documentation for rb-inotify-0.10.1 Parsing documentation for rb-fsevent-0.11.1 Installing ri documentation for rb-fsevent-0.11.1 Parsing documentation for listen-3.7.1 Installing ri documentation for listen-3.7.1 Parsing documentation for jekyll-watch-2.2.1 Installing ri documentation for jekyll-watch-2.2.1 Parsing documentation for sassc-2.4.0 Installing ri documentation for sassc-2.4.0 Parsing documentation for jekyll-sass-converter-2.2.0 Installing ri documentation for jekyll-sass-converter-2.2.0 Parsing documentation for concurrent-ruby-1.1.10 Installing ri documentation for concurrent-ruby-1.1.10 Parsing documentation for i18n-1.10.0 Installing ri documentation for i18n-1.10.0 Parsing documentation for http_parser.rb-0.8.0 unknown encoding name &#34;chunked\r\n\r\n25&#34; for ext/ruby_http_parser/vendor/http-parser-java/tools/parse_tests.rb, skipping Installing ri documentation for http_parser.rb-0.8.0 Parsing documentation for eventmachine-1.2.7 Installing ri documentation for eventmachine-1.2.7 Parsing documentation for em-websocket-0.5.3 Installing ri documentation for em-websocket-0.5.3 Parsing documentation for colorator-1.1.0 Installing ri documentation for colorator-1.1.0 Parsing documentation for public_suffix-4.0.7 Installing ri documentation for public_suffix-4.0.7 Parsing documentation for addressable-2.8.0 Installing ri documentation for addressable-2.8.0 Parsing documentation for jekyll-4.2.2 Installing ri documentation for jekyll-4.2.2 Done installing documentation for unicode-display_width, terminal-table, safe_yaml, rouge, forwardable-extended, pathutil, mercenary, liquid, kramdown, kramdown-parser-gfm, ffi, rb-inotify, rb-fsevent, listen, jekyll-watch, sassc, jekyll-sass-converter, concurrent-ruby, i18n, http_parser.rb, eventmachine, em-websocket, colorator, public_suffix, addressable, jekyll after 24 seconds 26 gems installed 安装过程需要几分钟，等它装完即可。如果长时间没有反应，可以在命令行按一下回车，不排除可能是 Windows 命令行卡住了没输出信息。
+安装完成后，可以在命令行里使用命令输出一下版本信息，看看安装是否成功。
+&gt; jekyll -v jekyll 4.2.2 生成模板 使用 jekyll 生成模板。
+这里是在 D 盘的 workspace/github.io 目录里生成模板。
+&gt; jekyll new github.io Running bundle install in D:/workspace/github.io... Bundler: Fetching gem metadata from https://rubygems.org/.......... Bundler: Resolving dependencies... Bundler: Using bundler 2.3.7 Bundler: Using public_suffix 4.0.7 Bundler: Using colorator 1.1.0 Bundler: Using concurrent-ruby 1.1.10 Bundler: Using eventmachine 1.2.7 Bundler: Using http_parser.rb 0.8.0 Bundler: Using ffi 1.15.5 (x64-mingw-ucrt) Bundler: Using rb-fsevent 0.11.1 Bundler: Using forwardable-extended 2.6.0 Bundler: Using rexml 3.2.5 Bundler: Using liquid 4.0.3 Bundler: Using mercenary 0.4.0 Bundler: Using rouge 3.28.0 Bundler: Using safe_yaml 1.0.5 Bundler: Using unicode-display_width 1.8.0 Bundler: Using addressable 2.8.0 Bundler: Using terminal-table 2.0.0 Bundler: Using i18n 1.10.0 Bundler: Using em-websocket 0.5.3 Bundler: Using sassc 2.4.0 Bundler: Using rb-inotify 0.10.1 Bundler: Using jekyll-sass-converter 2.2.0 Bundler: Using listen 3.7.1 Bundler: Using pathutil 0.16.2 Bundler: Using kramdown 2.4.0 Bundler: Using jekyll-watch 2.2.1 Bundler: Using kramdown-parser-gfm 1.1.0 Bundler: Using jekyll 4.2.2 Bundler: Fetching jekyll-feed 0.16.0 Bundler: Fetching jekyll-seo-tag 2.8.0 Bundler: Installing jekyll-feed 0.16.0 Bundler: Installing jekyll-seo-tag 2.8.0 Bundler: Fetching minima 2.5.1 Bundler: Installing minima 2.5.1 Bundler: Bundle complete! 7 Gemfile dependencies, 31 gems now installed. Bundler: Use `bundle info [gemname]` to see where a bundled gem is installed. New jekyll site installed in D:/workspace/github.io. Bundler 可以认为是一个针对项目的包管理程序。它通过项目目录下的 Gemfile 文件来管理项目依赖。Bundler 在安装依赖时，会使用 RubyGems。
+开发服务器 Jekyll 集成了一个开发用的服务器，可以使用浏览器在本地进行预览。
+&gt; jekyll serve Configuration file: D:/workspace/github.io/_config.yml Source: D:/workspace/github.io Destination: D:/workspace/github.io/_site Incremental build: disabled. Enable with --incremental Generating... Jekyll Feed: Generating feed for posts done in 0.808 seconds. Please add the following to your Gemfile to avoid polling for changes: gem &#39;wdm&#39;, &#39;&gt;= 0.1.0&#39; if Gem.win_platform? Auto-regeneration: enabled for &#39;D:/workspace/github.io&#39; Server address: http://127.0.0.1:4000/ Server running... press ctrl-c to stop. 正常情况应该是输出上面的内容，然后就用浏览器访问 http://localhost:4000/ 查看博客了。
+异常情况 &gt; jekyll serve Configuration file: D:/workspace/github.io/_config.yml Source: D:/workspace/github.io Destination: D:/workspace/github.io/_site Incremental build: disabled. Enable with --incremental Generating... Jekyll Feed: Generating feed for posts done in 0.827 seconds. Please add the following to your Gemfile to avoid polling for changes: gem &#39;wdm&#39;, &#39;&gt;= 0.1.0&#39; if Gem.win_platform? Auto-regeneration: enabled for &#39;D:/workspace/github.io&#39; ------------------------------------------------ Jekyll 4.2.2 Please append `--trace` to the `serve` command for any additional information or backtrace. ------------------------------------------------ C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve/servlet.rb:3:in `require&#39;: cannot load such file -- webrick (LoadError) from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve/servlet.rb:3:in `&lt;top (required)&gt;&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve.rb:179:in `require_relative&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve.rb:179:in `setup&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve.rb:100:in `process&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/command.rb:91:in `block in process_with_graceful_fail&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/command.rb:91:in `each&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/command.rb:91:in `process_with_graceful_fail&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve.rb:86:in `block (2 levels) in init_with_program&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/mercenary-0.4.0/lib/mercenary/command.rb:221:in `block in execute&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/mercenary-0.4.0/lib/mercenary/command.rb:221:in `each&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/mercenary-0.4.0/lib/mercenary/command.rb:221:in `execute&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/mercenary-0.4.0/lib/mercenary/program.rb:44:in `go&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/mercenary-0.4.0/lib/mercenary.rb:21:in `program&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/exe/jekyll:15:in `&lt;top (required)&gt;&#39; from C:/Ruby31-x64/bin/jekyll:32:in `load&#39; from C:/Ruby31-x64/bin/jekyll:32:in `&lt;main&gt;&#39; 输出的信息提示使用 --trace 参数，看看执行过程中发生了什么。但是实际上下 1 行已经提示了，webrick 无法加载。
+------------------------------------------------ Jekyll 4.2.2 Please append `--trace` to the `serve` command for any additional information or backtrace. ------------------------------------------------ C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve/servlet.rb:3:in `require&#39;: cannot load such file -- webrick (LoadError) 这里用一下 --trace 参数，输出没啥变化，依然提示 webrick 无法加载。
+&gt; jekyll serve --trace Configuration file: D:/workspace/github.io/_config.yml Source: D:/workspace/github.io Destination: D:/workspace/github.io/_site Incremental build: disabled. Enable with --incremental Generating... Jekyll Feed: Generating feed for posts done in 0.747 seconds. Please add the following to your Gemfile to avoid polling for changes: gem &#39;wdm&#39;, &#39;&gt;= 0.1.0&#39; if Gem.win_platform? Auto-regeneration: enabled for &#39;D:/workspace/github.io&#39; C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve/servlet.rb:3:in `require&#39;: cannot load such file -- webrick (LoadError) from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve/servlet.rb:3:in `&lt;top (required)&gt;&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve.rb:179:in `require_relative&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve.rb:179:in `setup&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve.rb:100:in `process&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/command.rb:91:in `block in process_with_graceful_fail&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/command.rb:91:in `each&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/command.rb:91:in `process_with_graceful_fail&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve.rb:86:in `block (2 levels) in init_with_program&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/mercenary-0.4.0/lib/mercenary/command.rb:221:in `block in execute&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/mercenary-0.4.0/lib/mercenary/command.rb:221:in `each&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/mercenary-0.4.0/lib/mercenary/command.rb:221:in `execute&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/mercenary-0.4.0/lib/mercenary/program.rb:44:in `go&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/mercenary-0.4.0/lib/mercenary.rb:21:in `program&#39; from C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/exe/jekyll:15:in `&lt;top (required)&gt;&#39; from C:/Ruby31-x64/bin/jekyll:32:in `load&#39; from C:/Ruby31-x64/bin/jekyll:32:in `&lt;main&gt;&#39; 这时可以回到上面使用 jekyll 生成模板的地方，从输出的信息中可以发现 Bundler 并没有安装 webrick。所以这里手动执行命令安装 webrick。
+&gt; bundle add webrick Fetching gem metadata from https://rubygems.org/.......... Resolving dependencies... Fetching gem metadata from https://rubygems.org/.......... Resolving dependencies... 等待安装完成，应该就可以使用 jekyll serve 命令了。
+推送项目到 GitHub Pages GitHub Pages 官方文档：https://pages.github.com/按照要求建一个名字叫 {username}.github.io 仓库，然后把项目推上去就行了。
+然后就可以通过 https://{username}.github.io 访问了。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>站点示例</title>
+    <url>/flinks.html</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[如想要交换友情链接，请在评论区留下你的站点信息，格式参考如下：
+名称： NexT 主题 说明： 保持简单的易用性和强大的功能。 站标： https://hugo-next.eu.org/imgs/hugo_next_avatar.png网址： https://hugo-next.eu.org]]></content>
+  </entry>
+  
+</search>
