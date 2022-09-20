@@ -101,3 +101,17 @@ GitHub 项目地址 [MeiK2333/github-style](https://github.com/MeiK2333/github-s
 最后在配置文件 config.toml 里设置主题 `theme = "github-style"`。然后就可以使用命令 `hugo server` 启动服务了。
 
 站点是没有问题的，可以正常地跑起来。但是这个主题貌似没有实现标签分类，也可能是本人没有找到，所以就放弃继续使用了。
+
+### 部署到 GitHub Pages
+
+使用命令 `hugo -t {theme-name}` 来把发布用的目录编译出来。 
+
+默认情况下会编译到 `{path-to-project}/publish/` 目录。 可以通过编辑配置文件，在配置文件里添加 `publishDir: docs`，来修改这个目录。
+
+push 到 github.io 的时候，如果使用的是 `publish/` 目录。那么要 push `publish/` 目录上去，然后设置 GitHub Pages 的 Branch 为 `master` 和 `/(root)`。
+
+如果使用的是 `docs/` 目录，那么就要 push 整个项目上去，然后设置 GitHub Pages 的 Branch 为 `master` 和 `docs/`。
+
+### reference（参考）
+
+- [hugo个人博客搭建并部署到GitHub【 for Windows】](https://www.jianshu.com/p/cc73559fea2c)
