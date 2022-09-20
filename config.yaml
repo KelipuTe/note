@@ -19,6 +19,7 @@ title: 西柊图书馆（重建中）
 # 主题名称
 # Theme name
 theme: hugo-theme-next
+publishDir: docs
 # 站点默认的语言和代码
 # Default laguage & code for website
 defaultContentLanguage: zh-cn
