@@ -1,8 +1,15 @@
 ---
-title: "使用 Jekyll 和 GitHub Pages 制作个人博客"
-date: 2022-04-27T20:00:00+08:00
 draft: false
-summary : "1234556"
+title: "使用 Jekyll 和 GitHub Pages 搭建站点"
+date: 2022-04-27 08:00:00 +0800
+lastmod: 2022-04-27 20:00:00 +0800
+categories:
+  - application(应用)
+tags:
+  - Ruby
+  - Jekyll
+  - GitHub Pages
+summary: "Jekyll 安装，建立站点，发布到 GitHub Pages 的过程。"
 ---
 
 ### 环境
@@ -51,7 +58,9 @@ Ruby 官方网站的中文版：[http://www.ruby-lang.org/zh_cn/](http://www.rub
 ```
 > ruby -v
 ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x64-mingw-ucrt]
+```
 
+```
 > gem -v
 3.3.7
 ```
@@ -62,116 +71,7 @@ ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x64-mingw-ucrt]
 
 ```
 > gem install jekyll
-
-Fetching unicode-display_width-1.8.0.gem
-Fetching terminal-table-2.0.0.gem
-Fetching safe_yaml-1.0.5.gem
-Fetching rouge-3.28.0.gem
-Fetching forwardable-extended-2.6.0.gem
-Fetching pathutil-0.16.2.gem
-Fetching mercenary-0.4.0.gem
-Fetching liquid-4.0.3.gem
-Fetching kramdown-2.4.0.gem
-Fetching kramdown-parser-gfm-1.1.0.gem
-Fetching ffi-1.15.5-x64-mingw-ucrt.gem
-Fetching rb-inotify-0.10.1.gem
-Fetching rb-fsevent-0.11.1.gem
-Fetching listen-3.7.1.gem
-Fetching jekyll-watch-2.2.1.gem
-Fetching sassc-2.4.0.gem
-Fetching jekyll-sass-converter-2.2.0.gem
-Fetching concurrent-ruby-1.1.10.gem
-Fetching i18n-1.10.0.gem
-Fetching http_parser.rb-0.8.0.gem
-Fetching eventmachine-1.2.7.gem
-Fetching em-websocket-0.5.3.gem
-Fetching colorator-1.1.0.gem
-Fetching public_suffix-4.0.7.gem
-Fetching jekyll-4.2.2.gem
-Fetching addressable-2.8.0.gem
-Successfully installed unicode-display_width-1.8.0
-Successfully installed terminal-table-2.0.0
-Successfully installed safe_yaml-1.0.5
-Successfully installed rouge-3.28.0
-Successfully installed forwardable-extended-2.6.0
-Successfully installed pathutil-0.16.2
-Successfully installed mercenary-0.4.0
-Successfully installed liquid-4.0.3
-Successfully installed kramdown-2.4.0
-Successfully installed kramdown-parser-gfm-1.1.0
-Successfully installed ffi-1.15.5-x64-mingw-ucrt
-Successfully installed rb-inotify-0.10.1
-Successfully installed rb-fsevent-0.11.1
-Successfully installed listen-3.7.1
-Successfully installed jekyll-watch-2.2.1
-Temporarily enhancing PATH for MSYS/MINGW...
-Building native extensions. This could take a while...
-Successfully installed sassc-2.4.0
-Successfully installed jekyll-sass-converter-2.2.0
-Successfully installed concurrent-ruby-1.1.10
-Successfully installed i18n-1.10.0
-Building native extensions. This could take a while...
-Successfully installed http_parser.rb-0.8.0
-Building native extensions. This could take a while...
-Successfully installed eventmachine-1.2.7
-Successfully installed em-websocket-0.5.3
-Successfully installed colorator-1.1.0
-Successfully installed public_suffix-4.0.7
-Successfully installed addressable-2.8.0
-Successfully installed jekyll-4.2.2
-Parsing documentation for unicode-display_width-1.8.0
-Installing ri documentation for unicode-display_width-1.8.0
-Parsing documentation for terminal-table-2.0.0
-Installing ri documentation for terminal-table-2.0.0
-Parsing documentation for safe_yaml-1.0.5
-Installing ri documentation for safe_yaml-1.0.5
-Parsing documentation for rouge-3.28.0
-Installing ri documentation for rouge-3.28.0
-Parsing documentation for forwardable-extended-2.6.0
-Installing ri documentation for forwardable-extended-2.6.0
-Parsing documentation for pathutil-0.16.2
-Installing ri documentation for pathutil-0.16.2
-Parsing documentation for mercenary-0.4.0
-Installing ri documentation for mercenary-0.4.0
-Parsing documentation for liquid-4.0.3
-Installing ri documentation for liquid-4.0.3
-Parsing documentation for kramdown-2.4.0
-Installing ri documentation for kramdown-2.4.0
-Parsing documentation for kramdown-parser-gfm-1.1.0
-Installing ri documentation for kramdown-parser-gfm-1.1.0
-Parsing documentation for ffi-1.15.5-x64-mingw-ucrt
-Installing ri documentation for ffi-1.15.5-x64-mingw-ucrt
-Parsing documentation for rb-inotify-0.10.1
-Installing ri documentation for rb-inotify-0.10.1
-Parsing documentation for rb-fsevent-0.11.1
-Installing ri documentation for rb-fsevent-0.11.1
-Parsing documentation for listen-3.7.1
-Installing ri documentation for listen-3.7.1
-Parsing documentation for jekyll-watch-2.2.1
-Installing ri documentation for jekyll-watch-2.2.1
-Parsing documentation for sassc-2.4.0
-Installing ri documentation for sassc-2.4.0
-Parsing documentation for jekyll-sass-converter-2.2.0
-Installing ri documentation for jekyll-sass-converter-2.2.0
-Parsing documentation for concurrent-ruby-1.1.10
-Installing ri documentation for concurrent-ruby-1.1.10
-Parsing documentation for i18n-1.10.0
-Installing ri documentation for i18n-1.10.0
-Parsing documentation for http_parser.rb-0.8.0
-unknown encoding name "chunked\r\n\r\n25" for ext/ruby_http_parser/vendor/http-parser-java/tools/parse_tests.rb, skipping
-Installing ri documentation for http_parser.rb-0.8.0
-Parsing documentation for eventmachine-1.2.7
-Installing ri documentation for eventmachine-1.2.7
-Parsing documentation for em-websocket-0.5.3
-Installing ri documentation for em-websocket-0.5.3
-Parsing documentation for colorator-1.1.0
-Installing ri documentation for colorator-1.1.0
-Parsing documentation for public_suffix-4.0.7
-Installing ri documentation for public_suffix-4.0.7
-Parsing documentation for addressable-2.8.0
-Installing ri documentation for addressable-2.8.0
-Parsing documentation for jekyll-4.2.2
-Installing ri documentation for jekyll-4.2.2
+一大堆输出。。。
 Done installing documentation for unicode-display_width, terminal-table, safe_yaml, rouge, forwardable-extended, pathutil, mercenary, liquid, kramdown, kramdown-parser-gfm, ffi, rb-inotify, rb-fsevent, listen, jekyll-watch, sassc, jekyll-sass-converter, concurrent-ruby, i18n, http_parser.rb, eventmachine, em-websocket, colorator, public_suffix, addressable, jekyll after 24 seconds
 26 gems installed
 ```
@@ -182,7 +82,6 @@ Done installing documentation for unicode-display_width, terminal-table, safe_ya
 
 ```
 > jekyll -v
-
 jekyll 4.2.2
 ```
 
@@ -194,46 +93,8 @@ jekyll 4.2.2
 
 ```
 > jekyll new github.io
-
 Running bundle install in D:/workspace/github.io...
-  Bundler: Fetching gem metadata from https://rubygems.org/..........
-  Bundler: Resolving dependencies...
-  Bundler: Using bundler 2.3.7
-  Bundler: Using public_suffix 4.0.7
-  Bundler: Using colorator 1.1.0
-  Bundler: Using concurrent-ruby 1.1.10
-  Bundler: Using eventmachine 1.2.7
-  Bundler: Using http_parser.rb 0.8.0
-  Bundler: Using ffi 1.15.5 (x64-mingw-ucrt)
-  Bundler: Using rb-fsevent 0.11.1
-  Bundler: Using forwardable-extended 2.6.0
-  Bundler: Using rexml 3.2.5
-  Bundler: Using liquid 4.0.3
-  Bundler: Using mercenary 0.4.0
-  Bundler: Using rouge 3.28.0
-  Bundler: Using safe_yaml 1.0.5
-  Bundler: Using unicode-display_width 1.8.0
-  Bundler: Using addressable 2.8.0
-  Bundler: Using terminal-table 2.0.0
-  Bundler: Using i18n 1.10.0
-  Bundler: Using em-websocket 0.5.3
-  Bundler: Using sassc 2.4.0
-  Bundler: Using rb-inotify 0.10.1
-  Bundler: Using jekyll-sass-converter 2.2.0
-  Bundler: Using listen 3.7.1
-  Bundler: Using pathutil 0.16.2
-  Bundler: Using kramdown 2.4.0
-  Bundler: Using jekyll-watch 2.2.1
-  Bundler: Using kramdown-parser-gfm 1.1.0
-  Bundler: Using jekyll 4.2.2
-  Bundler: Fetching jekyll-feed 0.16.0
-  Bundler: Fetching jekyll-seo-tag 2.8.0
-  Bundler: Installing jekyll-feed 0.16.0
-  Bundler: Installing jekyll-seo-tag 2.8.0
-  Bundler: Fetching minima 2.5.1
-  Bundler: Installing minima 2.5.1
-  Bundler: Bundle complete! 7 Gemfile dependencies, 31 gems now installed.
-  Bundler: Use `bundle info [gemname]` to see where a bundled gem is installed.
+一大堆输出。。。
 New jekyll site installed in D:/workspace/github.io.
 ```
 
@@ -245,7 +106,6 @@ Jekyll 集成了一个开发用的服务器，可以使用浏览器在本地进�
 
 ```
 > jekyll serve
-
 Configuration file: D:/workspace/github.io/_config.yml
             Source: D:/workspace/github.io
        Destination: D:/workspace/github.io/_site
@@ -266,7 +126,6 @@ Configuration file: D:/workspace/github.io/_config.yml
 
 ```
 > jekyll serve
-
 Configuration file: D:/workspace/github.io/_config.yml
             Source: D:/workspace/github.io
        Destination: D:/workspace/github.io/_site
@@ -314,7 +173,6 @@ C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve/se
 
 ```
 > jekyll serve --trace
-
 Configuration file: D:/workspace/github.io/_config.yml
             Source: D:/workspace/github.io
        Destination: D:/workspace/github.io/_site
@@ -348,7 +206,6 @@ C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/jekyll-4.2.2/lib/jekyll/commands/serve/se
 
 ```
 > bundle add webrick
-
 Fetching gem metadata from https://rubygems.org/..........
 Resolving dependencies...
 Fetching gem metadata from https://rubygems.org/..........

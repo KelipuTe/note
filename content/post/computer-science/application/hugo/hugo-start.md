@@ -1,10 +1,17 @@
 ---
-title: "使用 Hugo + GitHub Pages 搭建站点"
-date: 2022-09-20T20:00:00+08:00
 draft: false
+title: "使用 Hugo 和 GitHub Pages 搭建站点"
+date: 2022-09-20 20:00:00 +0800
+lastmod: 2022-09-20 20:00:00 +0800
+categories:
+  - application(应用)
+tags:
+  - Hugo
+  - GitHub Pages
+summary: "Hugo 安装，建立站点，配置主题，发布到 GitHub Pages 的过程。"
 ---
 
-- windows 11
+- Windows 11 家庭版
 - cpu amd64
 - hugo 0.103.1
 
@@ -18,18 +25,18 @@ draft: false
 
 在 [Hugo Releases](https://github.com/gohugoio/hugo/releases) 页面下载对应操作系统的版本。这里下载的是 hugo_0.103.1_windows-amd64.zip。
 
-下载完成后，解压到想要的位置。这里的目录是 `D:\hugo\bin`。然后将这个目录添加到 **系统变量 path** 中（我的电脑 -> 属性 -> 高级系统设置 -> 环境变量 -> 系统变量 -> path）。
+下载完成后，解压到想要的位置。这里使用的目录是 **D:\hugo\bin**。然后将这个目录添加到 **系统变量 path** 中（我的电脑 -> 属性 -> 高级系统设置 -> 环境变量 -> 系统变量 -> path）。
 
-搞定之后，可以打开控制台，输出一下版本信息，验证一下安装是否成功。或者试试 `hugo help` 命令输出帮助信息。
+搞定之后，可以打开控制台，输出一下版本信息，验证一下安装是否成功。或者试试 `hugo help` 命令，看看能不能输出帮助信息。
 
-```
+```shell
 > hugo version
 hugo v0.103.1-b665f1e8f16bf043b9d3c087a60866159d71b48d windows/amd64 BuildDate=2022-09-18T13:19:01Z VendorInfo=gohugoio
 ```
 
 如果有需要的话，需要安装 extended 版本的。这里下载的是 hugo_extended_0.103.1_windows-amd64.zip。
 
-```
+```shell
 > hugo version
 hugo v0.103.1-b665f1e8f16bf043b9d3c087a60866159d71b48d+extended windows/amd64 BuildDate=2022-09-18T13:19:01Z VendorInfo=gohugoio
 ```
@@ -38,13 +45,13 @@ hugo v0.103.1-b665f1e8f16bf043b9d3c087a60866159d71b48d+extended windows/amd64 Bu
 
 使用命令创建一个站点，如果没问题的话，hugo 会在当前目录下创建一个名字是 project-name 的目录。
 
-```
+```shell
 > hugo new site {project-name}
 ```
 
-新建的站点没有任何内容，可以使用命令创建一个内容页面。新创建的文件会在目录 `content/` 里。创建内容页面的时候也可以带上目录。
+新建的站点没有任何内容，可以使用命令创建一个内容页面。新创建的文件会在目录 **content/** 里。创建内容页面的时候也可以带上目录。
 
-```
+```shell
 > hugo new helloworld.md
 > hugo new posts/helloworld.md
 ```
@@ -55,9 +62,9 @@ hugo v0.103.1-b665f1e8f16bf043b9d3c087a60866159d71b48d+extended windows/amd64 Bu
 
 但是 hugo 没有默认主题，需要去主题库下载一个，然后添加到站点里并配置好，这样才能启动站点。如果没有安装主题就启动的话，会报没有模板的错误。
 
-可以去 [官方的主题库](https://themes.gohugo.io/) 找一个喜欢的。
+可以去 [官方的主题库](https://themes.gohugo.io/) 找一个喜欢的。然后按照主题提供的文档配置一下。
 
-#### next
+#### Hugo NexT
 
 [Hugo NexT](https://themes.gohugo.io/themes/hugo-theme-next) 这个主题是从 Hexo NexT 移植过来的。
 
@@ -67,15 +74,15 @@ GitHub 项目地址 [hugo-next/hugo-theme-next](https://github.com/hugo-next/hug
 
 别忘了先 `git init`，然后使用命令下载主题 `git submodule add https://github.com/hugo-next/hugo-theme-next.git themes/hugo-theme-next`。
 
-如果需要升级主题的话，就进入 `{path-to-project}/themes/github-style` 目录，执行 `git pull` 命令，拉取最新的代码。
+如果需要升级主题的话，就进入 **{path-to-project}/themes/github-style** 目录，执行 `git pull` 命令，拉取最新的代码。
 
-然后把 `{path-to-project}themes/hugo-theme-next/exampleSite/` 目录下所有的文件复制到 `{path-to-project}/` 目录下覆盖。
+然后把 **{path-to-project}themes/hugo-theme-next/exampleSite/** 目录下所有的文件复制到 **{path-to-project}/** 目录下覆盖。
 
 最后删除原来的配置文件 config.toml，然后就可以使用命令 `hugo server` 启动服务了。
 
 另外需要注意的是，这个主题需要 hugo extended 版本，如果用的不是 extended 版本，启动的时候会报下面这样的错，提示去安装 extended 版本。
 
-```
+```shell
 > hugo server
 Start building sites …
 hugo v0.103.1-b665f1e8f16bf043b9d3c087a60866159d71b48d windows/amd64 BuildDate=2022-09-18T13:19:01Z VendorInfo=gohugoio
@@ -94,9 +101,9 @@ GitHub 项目地址 [MeiK2333/github-style](https://github.com/MeiK2333/github-s
 
 别忘了先 `git init`，然后使用命令下载主题 `git submodule add git@github.com:MeiK2333/github-style.git themes/github-style`。
 
-如果需要升级主题的话，就进入 `{path-to-project}/themes/github-style` 目录，执行 `git pull` 命令，拉取最新的代码。
+如果需要升级主题的话，就进入 **{path-to-project}/themes/github-style** 目录，执行 `git pull` 命令，拉取最新的代码。
 
-在 `content/` 里创建 `post/` 目录，后面所有的内容页面都放到这个目录下面，要不然站点里不会展示。
+在 **content/** 里创建 **post/** 目录，后面所有的内容页面都放到这个目录下面，要不然站点里不会展示。
 
 最后在配置文件 config.toml 里设置主题 `theme = "github-style"`。然后就可以使用命令 `hugo server` 启动服务了。
 
@@ -106,11 +113,11 @@ GitHub 项目地址 [MeiK2333/github-style](https://github.com/MeiK2333/github-s
 
 使用命令 `hugo -t {theme-name}` 来把发布用的目录编译出来。 
 
-默认情况下会编译到 `{path-to-project}/publish/` 目录。 可以通过编辑配置文件，在配置文件里添加 `publishDir: docs`，来修改这个目录。
+默认情况下会编译到 **{path-to-project}/publish/** 目录。 可以通过编辑配置文件，在配置文件里添加 `publishDir: docs`，来修改这个目录。
 
-push 到 github.io 的时候，如果使用的是 `publish/` 目录。那么要 push `publish/` 目录上去，然后设置 GitHub Pages 的 Branch 为 `master` 和 `/(root)`。
+push 到 github.io 的时候，如果使用的是 **publish/** 目录。那么要 push **publish/** 目录上去，然后设置 GitHub Pages 的 Branch 为 **master** 和 **/(root)**。
 
-如果使用的是 `docs/` 目录，那么就要 push 整个项目上去，然后设置 GitHub Pages 的 Branch 为 `master` 和 `docs/`。
+如果使用的是 **docs/** 目录，那么就要 push 整个项目上去，然后设置 GitHub Pages 的 Branch 为 **master** 和 **docs/**。
 
 ### reference（参考）
 

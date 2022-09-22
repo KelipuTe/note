@@ -29,7 +29,7 @@ languageCode: zh-CN
 hasCJKLanguage: true
 # 每页显示文章数量
 # Display items per page
-paginate: 10
+paginate: 20
 # 开启支持表情符号
 # Enable Emoji support
 enableEmoji: false
