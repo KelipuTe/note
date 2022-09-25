@@ -15,7 +15,7 @@
 baseURL: /
 # 站点标题
 # Website title
-title: 西柊图书馆（重建中）
+title: 帕里特档案馆
 # 主题名称
 # Theme name
 theme: hugo-theme-next
@@ -121,11 +121,11 @@ menus:
       pageref: /about.html
       pre: user
       weight: 2
-    - identifier: flinks
-      name: 站点示例
-      pageref: /flinks.html
-      pre: thumbs-up
-      weight: 3
+#    - identifier: flinks
+#      name: 站点示例
+#      pageref: /flinks.html
+#      pre: thumbs-up
+#      weight: 3
     - identifier: archives
       name: 归档
       pageref: /archives
@@ -162,15 +162,15 @@ params:
 
   # 开启暗模式
   # Dark Mode
-  darkmode: true
+  darkmode: false
 
 
   # 站点基本信息
   # Site Information Settings
-  author: NexT 主题
-  subtitle: 为 Hugo 打造的主题
-  description: 保持简单的易用性和强大的功能。
-  keywords: Hugo,NexT,主题,简单,强大
+  author: 西柊慧音
+  subtitle: 重建中
+  #description: 保持简单的易用性和强大的功能。
+  #keywords: Hugo,NexT,主题,简单,强大
 
   # 不同尺寸站点图标
   # Different size of favicon
@@ -266,7 +266,7 @@ params:
   avatar:
     # 设置显示头像的相对路径
     # Replace the default image and set the url here.
-    url: /imgs/hugo_next_avatar.png
+    url: /image/pid49256268.jpg
     # 开启头像的圆形显示效果
     # If true, the avatar will be displayed in circle.
     rounded: true
@@ -286,9 +286,9 @@ params:
   # Key is the link label order.
   # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
   socials: 
-    social0: Github || https://github.com/elkan1788 || fab fa-github
-    #social1: E-Mail || mailto:yourname@gmail.com || fa fa-envelope
-    social2: 知乎 || https://www.zhihu.com/people/lisenhui || fa fa-book
+    social0: Github || https://github.com/KelipuTe || fab fa-github
+    social1: E-Mail || xhy_1365@sina.com || fa fa-envelope
+    #social2: 知乎 || https://www.zhihu.com/people/lisenhui || fa fa-book
     #Google: https://plus.google.com/yourname || fab fa-google
     #Twitter: https://twitter.com/yourname || fab fa-twitter
     #FB Page: https://www.facebook.com/yourname || fab fa-facebook
@@ -361,7 +361,7 @@ params:
     # 站点开始年份，默认为当下时间的年份
     # Specify the year when the site was setup. 
     # If not defined, current year will be used.
-    since: 2010
+    since: 2018
 
     # 年份和版权信息之间的图标
     # Icon between year and copyright info.

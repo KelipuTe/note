@@ -1,37 +1,82 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 西柊图书馆（重建中）</title>
+    <title>Posts on 帕里特档案馆</title>
     <link>/post/</link>
-    <description>Recent content in Posts on 西柊图书馆（重建中）</description>
+    <description>Recent content in Posts on 帕里特档案馆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 20 Sep 2022 20:00:00 +0800</lastBuildDate><atom:link href="/post/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Sep 2022 20:00:00 +0800</lastBuildDate><atom:link href="/post/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>使用 Hugo &#43; GitHub Pages 搭建站点</title>
-      <link>/post/computer-science/application/hugo/start/</link>
+      <title>如何使用档案馆</title>
+      <link>/post/how_to_use/</link>
+      <pubDate>Sun, 25 Sep 2022 20:00:00 +0800</pubDate>
+      
+      <guid>/post/how_to_use/</guid>
+      <description>如何使用档案馆。</description>
+    </item>
+    
+    <item>
+      <title>使用 Go 实现 Web 框架 -- 复杂的 web 框架</title>
+      <link>/post/computer-science/programming-language/golang/web/web_v40/</link>
+      <pubDate>Sat, 24 Sep 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/programming-language/golang/web/web_v40/</guid>
+      <description>用 net/http 包，实现一个复杂的 web 框架。</description>
+    </item>
+    
+    <item>
+      <title>使用 Hugo 和 GitHub Pages 搭建站点</title>
+      <link>/post/computer-science/application/hugo/hugo-start/</link>
       <pubDate>Tue, 20 Sep 2022 20:00:00 +0800</pubDate>
       
-      <guid>/post/computer-science/application/hugo/start/</guid>
-      <description>windows 11 cpu amd64 hugo 0.103.1 Hugo 文档 gohugoio/hugo 英文文档 中文文档 安装 Hugo 在 Hugo Releases 页面下载对应操作系统的版本。这里下载的是 hugo_0.103.1_windows-amd64</description>
+      <guid>/post/computer-science/application/hugo/hugo-start/</guid>
+      <description>Hugo 安装，建立站点，配置主题，发布到 GitHub Pages 的过程。</description>
+    </item>
+    
+    <item>
+      <title>使用 Go 实现 Web 框架 -- middleware(中间件)</title>
+      <link>/post/computer-science/programming-language/golang/web/middleware/</link>
+      <pubDate>Sat, 17 Sep 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/programming-language/golang/web/middleware/</guid>
+      <description>中间件的原理和实现方式。</description>
+    </item>
+    
+    <item>
+      <title>使用 Go 实现 Web 框架 -- router(路由)</title>
+      <link>/post/computer-science/programming-language/golang/web/router/</link>
+      <pubDate>Sat, 10 Sep 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/programming-language/golang/web/router/</guid>
+      <description>路由树的原理和实现方式。</description>
+    </item>
+    
+    <item>
+      <title>使用 Go 开启 HTTP 服务</title>
+      <link>/post/computer-science/programming-language/golang/web/http/</link>
+      <pubDate>Sat, 03 Sep 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/programming-language/golang/web/http/</guid>
+      <description>几种使用 net/http 包或者 net 包开启 HTTP 服务的方法。</description>
     </item>
     
     <item>
       <title>使用 Jekyll 主题</title>
-      <link>/post/4242-04-02-jekyll-theme/</link>
-      <pubDate>Thu, 28 Apr 2022 20:00:00 +0800</pubDate>
+      <link>/post/computer-science/application/jekyll/jekyll-theme/</link>
+      <pubDate>Thu, 28 Apr 2022 08:00:00 +0800</pubDate>
       
-      <guid>/post/4242-04-02-jekyll-theme/</guid>
-      <description>环境 Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2 jekyll-TeXt-theme Github： https://github.com/kitian616/jekyll-TeXt-theme 官方文档： https://tianqi.name/jekyll-TeXt-theme/ 第 1 步，从 Github 上把项目下载下来。 第 2 步，安装 Ruby 依赖包。 &amp;gt; bundle install --path vendor/bundle [DEPRECATED] The `--path` flag is deprecated because it relies on being</description>
+      <guid>/post/computer-science/application/jekyll/jekyll-theme/</guid>
+      <description>Jekyll 配置主题的过程。</description>
     </item>
     
     <item>
-      <title>使用 Jekyll 和 GitHub Pages 制作个人博客</title>
-      <link>/post/4242-04-02-jekyll-github-pages/</link>
-      <pubDate>Wed, 27 Apr 2022 20:00:00 +0800</pubDate>
+      <title>使用 Jekyll 和 GitHub Pages 搭建站点</title>
+      <link>/post/computer-science/application/jekyll/jekyll-start/</link>
+      <pubDate>Wed, 27 Apr 2022 08:00:00 +0800</pubDate>
       
-      <guid>/post/4242-04-02-jekyll-github-pages/</guid>
-      <description>1234556</description>
+      <guid>/post/computer-science/application/jekyll/jekyll-start/</guid>
+      <description>Jekyll 安装，建立站点，发布到 GitHub Pages 的过程。</description>
     </item>
     
   </channel>

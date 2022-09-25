@@ -1,27 +1,17 @@
 ---
-title: "关于 Hugo NexT 组织"
-description: "Hugo NexT 组织介绍说明。"
-
-date: 2022-06-09T20:12:52+08:00
-lastmod: 2022-06-09T20:12:52+08:00
-
-share: false
-followme: false
-nav: false
-copyright: false
-url: about.html
+title: "关于帕里特档案馆和西柊慧音"
+date: 2022-09-09 08:00:00 +0800
+lastmod: 2022-09-25 08:00:00 +0800
 ---
 
-`Hugo NexT` 组织是由众多喜爱 `NexT` 主题及风格的世界各地友人共同组建而成，为的就是让这个主题继续在 `Hugo` 引擎中也能得到发扬光大，在此也欢迎你的加入！
+帕里特档案馆（重建中），是个个人档案馆。内容主要是学习笔记和实操过程的记录。
 
-# 我们的愿景
+站点基于 [hugo 0.103.1 extended 版本](https://github.com/gohugoio/hugo/releases) 搭建。使用的主题是 [Hugo NexT](https://themes.gohugo.io/themes/hugo-theme-next)。
 
-延续 `NexT` 经典的黑白调搭配，保持简单的易用性及强大的功能。
+站点预计会部属在 github pages 和 gitee pages 上。
 
-# 使用反馈
+因为本人能力有限，所以不能保证所有的内容的时效性和正确性。还请各位到访的有缘人务必小心。
 
-- 加入 [GitHub Discussions](https://github.com/hugo-next/hugo-theme-next/discussions) 或 [Gitter](https://gitter.im/hugo-next/community) 在线讨论 :beers:
-- [GitHub Issues](https://github.com/hugo-next/hugo-theme-next/issues/new?labels=Bug&template=bug-report.md) 提交错误报告 :bug:
-- [GitHub Feature](https://github.com/hugo-next/hugo-theme-next/issues/new?labels=Feature+Request&template=feature-request.md) 表新功能的想法 :sparkles:
+如果有问题，欢迎批评指正。同时也欢迎建设性意见。
 
-> 同时国内用户也可加入 QQ 群交流： 604710815
+本人的联系方式，QQ：786907650；微信号：wxid_k3uqy9xeryn422。有意交流者，请至少备注是谁。

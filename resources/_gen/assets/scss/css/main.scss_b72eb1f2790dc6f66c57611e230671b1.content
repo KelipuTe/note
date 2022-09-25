@@ -27,44 +27,6 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --body-bg-color: #282828;
-    --content-bg-color: #333;
-    --card-bg-color: #555;
-    --text-color: #ccc;
-    --blockquote-color: #bbb;
-    --link-color: #ccc;
-    --link-hover-color: #eee;
-    --brand-color: #ddd;
-    --brand-hover-color: #ddd;
-    --table-row-odd-bg-color: #282828;
-    --table-row-hover-bg-color: #363636;
-    --menu-item-bg-color: #555;
-    --theme-color: #222;
-    --btn-default-bg: #222;
-    --btn-default-color: #ccc;
-    --btn-default-border-color: #555;
-    --btn-default-hover-bg: #666;
-    --btn-default-hover-color: #ccc;
-    --btn-default-hover-border-color: #666;
-    --highlight-background: #1c1b1b;
-    --highlight-foreground: #fff;
-    --highlight-gutter-background: #333232;
-    --highlight-gutter-foreground: #e8e8e8;
-    color-scheme: dark;
-  }
-  img {
-    opacity: .75;
-  }
-  img:hover {
-    opacity: .9;
-  }
-  iframe {
-    color-scheme: light;
-  }
-}
-
 /* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
 ========================================================================== */
@@ -3235,53 +3197,6 @@ ul.breadcrumb li:last-child {
   font-size: 1.35em;
 }
 
-@media (prefers-color-scheme: dark) {
-  .tag-cloud-0 {
-    border-bottom-color: #555555;
-    color: #555555;
-  }
-  .tag-cloud-1 {
-    border-bottom-color: #646464;
-    color: #646464;
-  }
-  .tag-cloud-2 {
-    border-bottom-color: #747474;
-    color: #747474;
-  }
-  .tag-cloud-3 {
-    border-bottom-color: #838383;
-    color: #838383;
-  }
-  .tag-cloud-4 {
-    border-bottom-color: #929292;
-    color: #929292;
-  }
-  .tag-cloud-5 {
-    border-bottom-color: #a2a2a2;
-    color: #a2a2a2;
-  }
-  .tag-cloud-6 {
-    border-bottom-color: #b1b1b1;
-    color: #b1b1b1;
-  }
-  .tag-cloud-7 {
-    border-bottom-color: silver;
-    color: silver;
-  }
-  .tag-cloud-8 {
-    border-bottom-color: #cfcfcf;
-    color: #cfcfcf;
-  }
-  .tag-cloud-9 {
-    border-bottom-color: #dfdfdf;
-    color: #dfdfdf;
-  }
-  .tag-cloud-10 {
-    border-bottom-color: #eeeeee;
-    color: #eeeeee;
-  }
-}
-
 .flinks-block .flinks-block-title {
   text-align: center;
   font-weight: bold;
@@ -3484,12 +3399,6 @@ ul.breadcrumb li:last-child {
   border-top-right-radius: 5px;
   display: flex;
   padding: 5px;
-}
-
-@media (prefers-color-scheme: dark) {
-  .search-popup .search-header {
-    background: #666;
-  }
 }
 
 .search-popup input.search-input {

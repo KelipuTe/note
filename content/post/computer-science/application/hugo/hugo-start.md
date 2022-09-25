@@ -111,7 +111,7 @@ GitHub 项目地址 [MeiK2333/github-style](https://github.com/MeiK2333/github-s
 
 ### 部署到 GitHub Pages
 
-使用命令 `hugo -t {theme-name}` 来把发布用的目录编译出来。 
+使用命令 `hugo -t {theme-name}` 来把发布用的目录编译出来。这里就是 `hugo -t hugo-theme-next`。
 
 默认情况下会编译到 **{path-to-project}/publish/** 目录。 可以通过编辑配置文件，在配置文件里添加 `publishDir: docs`，来修改这个目录。
 

@@ -1,10 +1,92 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on 西柊图书馆（重建中）</title>
+    <title>Tags on 帕里特档案馆</title>
     <link>/tags/</link>
-    <description>Recent content in Tags on 西柊图书馆（重建中）</description>
+    <description>Recent content in Tags on 帕里特档案馆</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language><atom:link href="/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 24 Sep 2022 08:00:00 +0800</lastBuildDate><atom:link href="/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>golang</title>
+      <link>/tags/golang/</link>
+      <pubDate>Sat, 24 Sep 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>http</title>
+      <link>/tags/http/</link>
+      <pubDate>Sat, 24 Sep 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/tags/http/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>middleware(中间件)</title>
+      <link>/tags/middleware%E4%B8%AD%E9%97%B4%E4%BB%B6/</link>
+      <pubDate>Sat, 24 Sep 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/tags/middleware%E4%B8%AD%E9%97%B4%E4%BB%B6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>router(路由)</title>
+      <link>/tags/router%E8%B7%AF%E7%94%B1/</link>
+      <pubDate>Sat, 24 Sep 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/tags/router%E8%B7%AF%E7%94%B1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>/tags/web/</link>
+      <pubDate>Sat, 24 Sep 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/tags/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GitHub Pages</title>
+      <link>/tags/github-pages/</link>
+      <pubDate>Tue, 20 Sep 2022 20:00:00 +0800</pubDate>
+      
+      <guid>/tags/github-pages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>/tags/hugo/</link>
+      <pubDate>Tue, 20 Sep 2022 20:00:00 +0800</pubDate>
+      
+      <guid>/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jekyll</title>
+      <link>/tags/jekyll/</link>
+      <pubDate>Thu, 28 Apr 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/tags/jekyll/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ruby</title>
+      <link>/tags/ruby/</link>
+      <pubDate>Thu, 28 Apr 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/tags/ruby/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
