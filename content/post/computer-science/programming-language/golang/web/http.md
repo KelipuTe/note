@@ -1,6 +1,6 @@
 ---
 draft: false
-title: "使用 Go 开启 HTTP 服务"
+title: "使用 Golang 开启 HTTP 服务"
 date: 2022-09-03 08:00:00 +0800
 lastmod: 2022-09-03 08:00:00 +0800
 categories:

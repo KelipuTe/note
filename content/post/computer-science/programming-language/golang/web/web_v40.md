@@ -1,6 +1,6 @@
 ---
 draft: false
-title: "使用 Go 实现 Web 框架 -- 复杂的 web 框架"
+title: "使用 Golang 实现 Web 框架 -- 复杂的 web 框架"
 date: 2022-09-24 08:00:00 +0800
 lastmod: 2022-09-25 08:00:00 +0800
 categories:
@@ -11,7 +11,7 @@ tags:
   - http
   - router(路由)
   - middleware(中间件)
-summary: "用 net/http 包，实现一个复杂的 web 框架。"
+summary: "使用 net/http 包，实现一个复杂的 web 框架。"
 ---
 
 > go version go1.19
@@ -20,11 +20,11 @@ summary: "用 net/http 包，实现一个复杂的 web 框架。"
 
 在看这篇之前，建议先看下面这几篇：
 
-- 使用 Go 开启 HTTP 服务
-- 使用 Go 实现 Web 框架 -- router(路由)
-- 使用 Go 实现 Web 框架 -- middleware(中间件)
+- 使用 Golang 开启 HTTP 服务
+- 使用 Golang 实现 Web 框架 -- router(路由)
+- 使用 Golang 实现 Web 框架 -- middleware(中间件)
 
-路由树和中间件时 web 框架的核心。其他的功能，都是在这两个的基础上，再增加亿点点细节而已。
+路由树和中间件是 web 框架的核心。其他的功能，都是在这两个核心的基础上，再增加亿点点细节而已。
 
 ### 资料
 
