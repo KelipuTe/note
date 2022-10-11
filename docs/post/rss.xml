@@ -6,7 +6,7 @@
     <description>Recent content in Posts on 帕里特档案馆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 25 Sep 2022 20:00:00 +0800</lastBuildDate><atom:link href="/post/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Oct 2022 20:00:00 +0800</lastBuildDate><atom:link href="/post/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何使用档案馆</title>
       <link>/post/how_to_use/</link>
@@ -17,12 +17,21 @@
     </item>
     
     <item>
-      <title>使用 Go 实现 Web 框架 -- 复杂的 web 框架</title>
+      <title>软件架构评估</title>
+      <link>/post/computer-science/software-architecture/architecture_evaluation/</link>
+      <pubDate>Fri, 07 Oct 2022 20:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/software-architecture/architecture_evaluation/</guid>
+      <description>软件架构评估。架构权衡分析方法。</description>
+    </item>
+    
+    <item>
+      <title>使用 Golang 实现 Web 框架 -- 复杂的 web 框架</title>
       <link>/post/computer-science/programming-language/golang/web/web_v40/</link>
       <pubDate>Sat, 24 Sep 2022 08:00:00 +0800</pubDate>
       
       <guid>/post/computer-science/programming-language/golang/web/web_v40/</guid>
-      <description>用 net/http 包，实现一个复杂的 web 框架。</description>
+      <description>使用 net/http 包，实现一个复杂的 web 框架。</description>
     </item>
     
     <item>
@@ -35,7 +44,7 @@
     </item>
     
     <item>
-      <title>使用 Go 实现 Web 框架 -- middleware(中间件)</title>
+      <title>使用 Golang 实现 Web 框架 -- middleware(中间件)</title>
       <link>/post/computer-science/programming-language/golang/web/middleware/</link>
       <pubDate>Sat, 17 Sep 2022 08:00:00 +0800</pubDate>
       
@@ -44,7 +53,7 @@
     </item>
     
     <item>
-      <title>使用 Go 实现 Web 框架 -- router(路由)</title>
+      <title>使用 Golang 实现 Web 框架 -- router(路由)</title>
       <link>/post/computer-science/programming-language/golang/web/router/</link>
       <pubDate>Sat, 10 Sep 2022 08:00:00 +0800</pubDate>
       
@@ -53,12 +62,30 @@
     </item>
     
     <item>
-      <title>使用 Go 开启 HTTP 服务</title>
+      <title>Golang 泛型的基本使用方式</title>
+      <link>/post/computer-science/programming-language/golang/genericity/</link>
+      <pubDate>Sat, 03 Sep 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/programming-language/golang/genericity/</guid>
+      <description>Golang 泛型的基本使用方式。泛型变量的类型断言。</description>
+    </item>
+    
+    <item>
+      <title>使用 Golang 开启 HTTP 服务</title>
       <link>/post/computer-science/programming-language/golang/web/http/</link>
       <pubDate>Sat, 03 Sep 2022 08:00:00 +0800</pubDate>
       
       <guid>/post/computer-science/programming-language/golang/web/http/</guid>
       <description>几种使用 net/http 包或者 net 包开启 HTTP 服务的方法。</description>
+    </item>
+    
+    <item>
+      <title>2-3 树</title>
+      <link>/post/computer-science/data-structure/2-3_tree/</link>
+      <pubDate>Sun, 07 Aug 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/data-structure/2-3_tree/</guid>
+      <description>2-3 树的插入和删除。</description>
     </item>
     
     <item>

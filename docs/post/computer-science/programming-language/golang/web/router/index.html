@@ -10,15 +10,15 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
-<meta itemprop="name" content="使用 Go 实现 Web 框架 -- router(路由)" />
+<meta itemprop="name" content="使用 Golang 实现 Web 框架 -- router(路由)" />
 <meta itemprop="description" content="" />
 <meta itemprop="datePublished" ZgotmplZ />
 <meta itemprop="dateModified" ZgotmplZ />
 <meta itemprop="image" content="/image/pid49256268.jpg" />
-<meta itemprop="keywords" content="golang,web,http,router(路由)" />
+<meta itemprop="keywords" content="computer-science(计算机科学),golang,web,http,router(路由)" />
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="使用 Go 实现 Web 框架 -- router(路由)" />
+<meta property="og:title" content="使用 Golang 实现 Web 框架 -- router(路由)" />
 <meta property="og:description" content="" />
 <meta property="og:image" content="/image/pid49256268.jpg" />
 <meta property="og:image:width" content="312" />
@@ -38,7 +38,12 @@
 
 
   <link rel="stylesheet" href="/css/main.min.97290ac4a57a6d50d00ac7b5bebe946355c2dcdab48c7710d5d185b3373bf643.css">
-  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"router","permalink":"/post/computer-science/programming-language/golang/web/router/","title":"使用 Go 实现 Web 框架 -- router(路由)"}</script>
+  <style type="text/css">
+    .post-footer, .flinks-list-footer hr:after {
+      content: "~ 我可是有底线的哟 ~";
+    }
+  </style>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"router","permalink":"/post/computer-science/programming-language/golang/web/router/","title":"使用 Golang 实现 Web 框架 -- router(路由)"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
     var script = document.createElement('script');
@@ -58,7 +63,7 @@
 
 
 
-  <title>使用 Go 实现 Web 框架 -- router(路由) - 帕里特档案馆</title>
+  <title>使用 Golang 实现 Web 框架 -- router(路由) - 帕里特档案馆</title>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -109,7 +114,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">8</span>
+        <span class="badge">11</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -178,19 +183,19 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
     <div class="site-state-item site-state-categories">
       <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span>
       </a>
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -260,11 +265,11 @@
       <meta itemprop="description" content="">
     </span>
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="使用 Go 实现 Web 框架 -- router(路由)">
+      <meta itemprop="name" content="使用 Golang 实现 Web 框架 -- router(路由)">
       <meta itemprop="description" content="路由树的原理和实现方式。">
     </span>
     <header class="post-header">
-       <h1 class="post-title" itemprop="name headline">使用 Go 实现 Web 框架 -- router(路由) </h1> <div class="post-meta-container">
+       <h1 class="post-title" itemprop="name headline">使用 Golang 实现 Web 框架 -- router(路由) </h1> <div class="post-meta-container">
   <div class="post-meta-items">
     
 
@@ -296,7 +301,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>382</span>
+  <span class="post-meta-item-text">字数：</span><span>383</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -338,7 +343,7 @@
 <p>简单的路由可以使用 map 结构，就是单纯的字符串匹配。map 的 key 就是路由的路径，value 就是路由的处理方法。</p>
 <p>接收到请求时，用请求的路径直接去 map 里找有没有对应的处理方法。但是这种结构无法满足路径参数路由、正则匹配路由、通配符路由这样的需求。</p>
 <p>这些需求需要使用到路由树结构，路由树的结点在存储静态子结点的同时，还可以额外设置特殊子结点。在找不到静态路由时，可以继续判断有没有特殊结点可以选择。</p>
-<p>路由树的结构示例见：<strong>web.drawio.html 2-2</strong>。</p>
+<p>路由树的结构示例见图：<strong>web.drawio.html 2-2</strong>。</p>
 <p>路由树的设计没有强制的要求，按照实际场景的需求，合理的设计路由树的构建和查询规则即可。</p>
 <h3 id="路由组">路由组</h3>
 <p>路由组其实就是额外提供的方便使用的接口而已，相当于对路由的注册功能做了一层包装。</p>
@@ -351,6 +356,9 @@
 
 <div class="post-tags">
   
+    <a href="/tags/computer-science%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%a7%91%e5%ad%a6">
+    computer-science(计算机科学)
+  </a>
     <a href="/tags/golang">
     golang
   </a>
@@ -375,7 +383,7 @@
   <ul>
     <li class="post-copyright-title">
       <strong>文章标题：</strong>
-      使用 Go 实现 Web 框架 -- router(路由)
+      使用 Golang 实现 Web 框架 -- router(路由)
     </li>
     <li class="post-copyright-author">
       <strong>本文作者： </strong>
@@ -383,7 +391,7 @@
     </li>
     <li class="post-copyright-link"> 
       <strong>本文链接：</strong>
-       <a id="post-cr-link" href="/post/computer-science/programming-language/golang/web/router/" title="使用 Go 实现 Web 框架 -- router(路由)">/post/computer-science/programming-language/golang/web/router/</a>
+       <a id="post-cr-link" href="/post/computer-science/programming-language/golang/web/router/" title="使用 Golang 实现 Web 框架 -- router(路由)">/post/computer-science/programming-language/golang/web/router/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -394,13 +402,13 @@
 
 <div class="post-nav">
   <div class="post-nav-next post-nav-item">
-    <a href="/post/computer-science/programming-language/golang/web/middleware/" rel="next" title="使用 Go 实现 Web 框架 -- middleware(中间件)">
-      <i class="fa fa-chevron-left"></i> 使用 Go 实现 Web 框架 -- middleware(中间件)
+    <a href="/post/computer-science/programming-language/golang/web/middleware/" rel="next" title="使用 Golang 实现 Web 框架 -- middleware(中间件)">
+      <i class="fa fa-chevron-left"></i> 使用 Golang 实现 Web 框架 -- middleware(中间件)
     </a>
   </div>
   <div class="post-nav-prev post-nav-item">
-    <a href="/post/computer-science/programming-language/golang/web/http/" rel="prev" title="使用 Go 开启 HTTP 服务">
-      使用 Go 开启 HTTP 服务
+    <a href="/post/computer-science/programming-language/golang/genericity/" rel="prev" title="Golang 泛型的基本使用方式">
+      Golang 泛型的基本使用方式
       <i class="fa fa-chevron-right"></i>
     </a>
   </div>

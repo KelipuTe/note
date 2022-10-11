@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
-<meta itemprop="name" content="使用 Go 实现 Web 框架 -- 复杂的 web 框架" />
+<meta itemprop="name" content="使用 Golang 实现 Web 框架 -- 复杂的 web 框架" />
 <meta itemprop="description" content="" />
 <meta itemprop="datePublished" ZgotmplZ />
 <meta itemprop="dateModified" ZgotmplZ />
@@ -18,7 +18,7 @@
 <meta itemprop="keywords" content="golang,web,http,router(路由),middleware(中间件)" />
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="使用 Go 实现 Web 框架 -- 复杂的 web 框架" />
+<meta property="og:title" content="使用 Golang 实现 Web 框架 -- 复杂的 web 框架" />
 <meta property="og:description" content="" />
 <meta property="og:image" content="/image/pid49256268.jpg" />
 <meta property="og:image:width" content="312" />
@@ -38,7 +38,12 @@
 
 
   <link rel="stylesheet" href="/css/main.min.97290ac4a57a6d50d00ac7b5bebe946355c2dcdab48c7710d5d185b3373bf643.css">
-  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"web_v40","permalink":"/post/computer-science/programming-language/golang/web/web_v40/","title":"使用 Go 实现 Web 框架 -- 复杂的 web 框架"}</script>
+  <style type="text/css">
+    .post-footer, .flinks-list-footer hr:after {
+      content: "~ 我可是有底线的哟 ~";
+    }
+  </style>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"web_v40","permalink":"/post/computer-science/programming-language/golang/web/web_v40/","title":"使用 Golang 实现 Web 框架 -- 复杂的 web 框架"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
     var script = document.createElement('script');
@@ -58,7 +63,7 @@
 
 
 
-  <title>使用 Go 实现 Web 框架 -- 复杂的 web 框架 - 帕里特档案馆</title>
+  <title>使用 Golang 实现 Web 框架 -- 复杂的 web 框架 - 帕里特档案馆</title>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -109,7 +114,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">8</span>
+        <span class="badge">11</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -178,19 +183,19 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
     <div class="site-state-item site-state-categories">
       <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span>
       </a>
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -260,11 +265,11 @@
       <meta itemprop="description" content="">
     </span>
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="使用 Go 实现 Web 框架 -- 复杂的 web 框架">
-      <meta itemprop="description" content="用 net/http 包，实现一个复杂的 web 框架。">
+      <meta itemprop="name" content="使用 Golang 实现 Web 框架 -- 复杂的 web 框架">
+      <meta itemprop="description" content="使用 net/http 包，实现一个复杂的 web 框架。">
     </span>
     <header class="post-header">
-       <h1 class="post-title" itemprop="name headline">使用 Go 实现 Web 框架 -- 复杂的 web 框架 </h1> <div class="post-meta-container">
+       <h1 class="post-title" itemprop="name headline">使用 Golang 实现 Web 框架 -- 复杂的 web 框架 </h1> <div class="post-meta-container">
   <div class="post-meta-items">
     
 
@@ -304,7 +309,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>2587</span>
+  <span class="post-meta-item-text">字数：</span><span>2703</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -339,11 +344,11 @@
 <h3 id="前言">前言</h3>
 <p>在看这篇之前，建议先看下面这几篇：</p>
 <ul>
-<li>使用 Go 开启 HTTP 服务</li>
-<li>使用 Go 实现 Web 框架 &ndash; router(路由)</li>
-<li>使用 Go 实现 Web 框架 &ndash; middleware(中间件)</li>
+<li>使用 Golang 开启 HTTP 服务</li>
+<li>使用 Golang 实现 Web 框架 &ndash; router(路由)</li>
+<li>使用 Golang 实现 Web 框架 &ndash; middleware(中间件)</li>
 </ul>
-<p>路由树和中间件时 web 框架的核心。其他的功能，都是在这两个的基础上，再增加亿点点细节而已。</p>
+<p>路由树和中间件是 web 框架的核心。其他的功能，都是在这两个核心的基础上，再增加亿点点细节而已。</p>
 <h3 id="资料">资料</h3>
 <ul>
 <li>{web-framework-go}/v40</li>
@@ -377,7 +382,7 @@
 <p>静态路由子结点使用 map 结构存储，查询时直接就可以通过路由段查询子结点。</p>
 <p>通配符子结点、路径参数子结点、正则表达式子结点，这三个结点属于特殊结点，而且存在冲突关系，所以单独存储。</p>
 <p>为了支持可路由的中间件，路由结点上还需要有存储中间件的地方，这样就可以为每个结点单独设置中间件。</p>
-<p>另外，服务在运行的时候只要命中的是同一个路由，那么用到的中间件一定也是相通的，在服务启动的时候就可以把中间件遍历好，然后缓存下来。</p>
+<p>另外，服务在运行的时候只要命中的是同一个路由，那么用到的中间件一定也是相同的，在服务启动的时候就可以把中间件遍历好，然后缓存下来。</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -447,7 +452,35 @@
 </div><p>路由树的构造和遍历并不复杂，使用递归逻辑处理即可。不用担心递归带来的性能问题。</p>
 <p>对于路由树的递归操作，都发生在服务启动时，这个时候会遍历路由树然后将结果缓存下来。</p>
 <p>服务启动后，当请求访问过来时，就可以直接使用缓存里的结果，而不用每次都去遍历路由树。</p>
-<h3 id="中间件">中间件</h3>
+<h3 id="路由组">路由组</h3>
+<p>路由组就是个语法糖。相当于路由组方法会在路由组内的每个成员注册的时候，附加路由组的路由前缀和路由组定义的中间件。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// Group 添加一组路由
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p7this</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">HTTPHandler</span>) <span style="color:#a6e22e">Group</span>(<span style="color:#a6e22e">path</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">s5f4mw</span> []<span style="color:#a6e22e">HTTPMiddleware</span>, <span style="color:#a6e22e">s5routeData</span> []<span style="color:#a6e22e">RouteData</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">rd</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">s5routeData</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">t4path</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">path</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">rd</span>.<span style="color:#a6e22e">Path</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">t4path</span> = <span style="color:#a6e22e">path</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">rd</span>.<span style="color:#a6e22e">Path</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">p7this</span>.<span style="color:#a6e22e">addRoute</span>(<span style="color:#a6e22e">rd</span>.<span style="color:#a6e22e">Method</span>, <span style="color:#a6e22e">t4path</span>, <span style="color:#a6e22e">rd</span>.<span style="color:#a6e22e">F4handle</span>, <span style="color:#a6e22e">s5f4mw</span><span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="中间件">中间件</h3>
 <p>全局中间件和可路由中间件是分开放的。全局中间件存储在核心处理逻辑上。可路由中间件存储在路由树结点上。</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -811,7 +844,7 @@
   <ul>
     <li class="post-copyright-title">
       <strong>文章标题：</strong>
-      使用 Go 实现 Web 框架 -- 复杂的 web 框架
+      使用 Golang 实现 Web 框架 -- 复杂的 web 框架
     </li>
     <li class="post-copyright-author">
       <strong>本文作者： </strong>
@@ -819,7 +852,7 @@
     </li>
     <li class="post-copyright-link"> 
       <strong>本文链接：</strong>
-       <a id="post-cr-link" href="/post/computer-science/programming-language/golang/web/web_v40/" title="使用 Go 实现 Web 框架 -- 复杂的 web 框架">/post/computer-science/programming-language/golang/web/web_v40/</a>
+       <a id="post-cr-link" href="/post/computer-science/programming-language/golang/web/web_v40/" title="使用 Golang 实现 Web 框架 -- 复杂的 web 框架">/post/computer-science/programming-language/golang/web/web_v40/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -830,8 +863,8 @@
 
 <div class="post-nav">
   <div class="post-nav-next post-nav-item">
-    <a href="/post/how_to_use/" rel="next" title="如何使用档案馆">
-      <i class="fa fa-chevron-left"></i> 如何使用档案馆
+    <a href="/post/computer-science/software-architecture/architecture_evaluation/" rel="next" title="软件架构评估">
+      <i class="fa fa-chevron-left"></i> 软件架构评估
     </a>
   </div>
   <div class="post-nav-prev post-nav-item">
