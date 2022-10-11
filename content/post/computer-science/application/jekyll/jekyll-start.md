@@ -6,6 +6,7 @@ lastmod: 2022-04-27 20:00:00 +0800
 categories:
   - application(应用)
 tags:
+  - computer-science(计算机科学)
   - Ruby
   - Jekyll
   - GitHub Pages

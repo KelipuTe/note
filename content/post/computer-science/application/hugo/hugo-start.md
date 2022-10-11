@@ -6,6 +6,7 @@ lastmod: 2022-09-20 20:00:00 +0800
 categories:
   - application(应用)
 tags:
+  - computer-science(计算机科学)
   - Hugo
   - GitHub Pages
 summary: "Hugo 安装，建立站点，配置主题，发布到 GitHub Pages 的过程。"
