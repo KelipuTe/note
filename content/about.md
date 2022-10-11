@@ -6,11 +6,11 @@ lastmod: 2022-09-25 08:00:00 +0800
 
 帕里特档案馆（重建中），是个个人档案馆。内容主要是学习笔记和实操过程的记录。
 
+本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的有缘人务必小心。
+
 站点基于 [hugo 0.103.1 extended 版本](https://github.com/gohugoio/hugo/releases) 搭建。使用的主题是 [Hugo NexT](https://themes.gohugo.io/themes/hugo-theme-next)。
 
 站点预计会部属在 github pages 和 gitee pages 上。
-
-因为本人能力有限，所以不能保证所有的内容的时效性和正确性。还请各位到访的有缘人务必小心。
 
 如果有问题，欢迎批评指正。同时也欢迎建设性意见。
 

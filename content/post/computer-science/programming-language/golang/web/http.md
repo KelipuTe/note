@@ -40,6 +40,6 @@ type Handler interface {
 - ListenAndServe() 调用 net.Listen() (src/net/dial.go)，启动 TCP 服务。
 - net.Listen() 返回一个 net.Listener 接口 (src/net/dial.go) 的实例。
 - 调用 net.Listener 的 Accept() 方法，就可以获取连接上来的 TCP 连接。
-- 新开启一个协程，把这个 TCP 连接丢进去处理。自己则继续监听有没有 TCP 连接。
+- 新开启一个协程，把这个 TCP 连接丢进去处理。自己则继续监听有没有别的 TCP 连接。
 - 处理流程继续往下，会遇到这行代码：`serverHandler{c.server}.ServeHTTP(w, w.req)`。
 - 这里调用的就是 Handler 的 ServeHTTP() 方法。再往下就进入框架或者业务处理流程了。

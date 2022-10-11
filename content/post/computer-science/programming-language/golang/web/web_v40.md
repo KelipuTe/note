@@ -55,7 +55,7 @@ summary: "使用 net/http 包，实现一个复杂的 web 框架。"
 
 为了支持可路由的中间件，路由结点上还需要有存储中间件的地方，这样就可以为每个结点单独设置中间件。
 
-另外，服务在运行的时候只要命中的是同一个路由，那么用到的中间件一定也是相通的，在服务启动的时候就可以把中间件遍历好，然后缓存下来。
+另外，服务在运行的时候只要命中的是同一个路由，那么用到的中间件一定也是相同的，在服务启动的时候就可以把中间件遍历好，然后缓存下来。
 
 ```go
 // routingNode 路由结点
@@ -95,6 +95,23 @@ type routingNode struct {
 对于路由树的递归操作，都发生在服务启动时，这个时候会遍历路由树然后将结果缓存下来。
 
 服务启动后，当请求访问过来时，就可以直接使用缓存里的结果，而不用每次都去遍历路由树。
+
+### 路由组
+
+路由组就是个语法糖。相当于路由组内的每个成员注册的时候，都会附加路由组的路由前缀和路由组定义的中间件。
+
+```go
+// Group 添加一组路由
+func (p7this *HTTPHandler) Group(path string, s5f4mw []HTTPMiddleware, s5routeData []RouteData) {
+	for _, rd := range s5routeData {
+		t4path := path
+		if "/" != rd.Path {
+			t4path = path + rd.Path
+		}
+		p7this.addRoute(rd.Method, t4path, rd.F4handle, s5f4mw...)
+	}
+}
+```
 
 ### 中间件
 
