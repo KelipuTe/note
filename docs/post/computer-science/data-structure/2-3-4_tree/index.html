@@ -10,26 +10,26 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon_16x16_next.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon_32_32_next.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple_touch_icon_next.png">
-<meta itemprop="name" content="使用 Golang 开启 HTTP 服务" />
+<meta itemprop="name" content="2-3-4 树" />
 <meta itemprop="description" content="" />
 <meta itemprop="datePublished" ZgotmplZ />
 <meta itemprop="dateModified" ZgotmplZ />
 <meta itemprop="image" content="/image/pid49256268.jpg" />
-<meta itemprop="keywords" content="computer-science(计算机科学),golang,web,http" />
+<meta itemprop="keywords" content="computer-science(计算机科学),data-structure(数据结构),b-tree" />
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="使用 Golang 开启 HTTP 服务" />
+<meta property="og:title" content="2-3-4 树" />
 <meta property="og:description" content="" />
 <meta property="og:image" content="/image/pid49256268.jpg" />
 <meta property="og:image:width" content="312" />
 <meta property="og:image:height" content="312" />
 <meta property="og:image:type" content="image/jpeg/png/svg/jpg" />
-<meta property="og:url" content="/post/computer-science/programming-language/golang/web/http/"/>
+<meta property="og:url" content="/post/computer-science/data-structure/2-3-4_tree/"/>
 <meta property="og:site_name" content="帕里特档案馆" />
 <meta property="og:locale" content="zh-CN"/>
 <meta property="article:author" content="西柊慧音" />
-<meta property="article:published_time" content="2022-09-03 08:00:00 &#43;0800 CST" />
-<meta property="article:modified_time" content="2022-09-03 08:00:00 &#43;0800 CST" />
+<meta property="article:published_time" content="2022-08-05 08:00:00 &#43;0800 CST" />
+<meta property="article:modified_time" content="2022-08-05 08:00:00 &#43;0800 CST" />
 
 
 
@@ -43,7 +43,7 @@
       content: "~ 我可是有底线的哟 ~";
     }
   </style>
-  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"http","permalink":"/post/computer-science/programming-language/golang/web/http/","title":"使用 Golang 开启 HTTP 服务"}</script>
+  <script class="next-config" data-name="page" type="application/json">{"comments":false,"isHome":false,"isPage":true,"path":"2-3-4_tree","permalink":"/post/computer-science/data-structure/2-3-4_tree/","title":"2-3-4 树"}</script>
   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', () => {
     var script = document.createElement('script');
@@ -63,7 +63,7 @@
 
 
 
-  <title>使用 Golang 开启 HTTP 服务 - 帕里特档案馆</title>
+  <title>2-3-4 树 - 帕里特档案馆</title>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -255,7 +255,7 @@
       
   <div class="post-block">
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="/post/computer-science/programming-language/golang/web/http/">
+    <link itemprop="mainEntityOfPage" href="/post/computer-science/data-structure/2-3-4_tree/">
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/image/pid49256268.jpg">
       <meta itemprop="name" content="西柊慧音">
@@ -265,11 +265,11 @@
       <meta itemprop="description" content="">
     </span>
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="使用 Golang 开启 HTTP 服务">
-      <meta itemprop="description" content="几种使用 net/http 包或者 net 包开启 HTTP 服务的方法。">
+      <meta itemprop="name" content="2-3-4 树">
+      <meta itemprop="description" content="2-3-4 树的插入和删除。">
     </span>
     <header class="post-header">
-       <h1 class="post-title" itemprop="name headline">使用 Golang 开启 HTTP 服务 </h1> <div class="post-meta-container">
+       <h1 class="post-title" itemprop="name headline">2-3-4 树 </h1> <div class="post-meta-container">
   <div class="post-meta-items">
     
 
@@ -279,7 +279,7 @@
     <i class="far fa-calendar"></i>
   </span>
   <span class="post-meta-item-text">发表于：</span>
-  <time title="发表于：2022-09-03 08:00:00 &#43;0800 CST" itemprop="dateCreated datePublished" datetime="2022-09-03 08:00:00 &#43;0800 CST">2022-09-03</time>
+  <time title="发表于：2022-08-05 08:00:00 &#43;0800 CST" itemprop="dateCreated datePublished" datetime="2022-08-05 08:00:00 &#43;0800 CST">2022-08-05</time>
 </span>
     
     
@@ -289,8 +289,8 @@
   </span>
   <span class="post-meta-item-text">分类于：</span>
   <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-    <a href="/categories/golang" itemprop="url" rel="index">
-      <span itemprop="name">golang</span>
+    <a href="/categories/data-structure%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" itemprop="url" rel="index">
+      <span itemprop="name">data-structure(数据结构)</span>
     </a>
   </span>
 </span>
@@ -301,7 +301,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>379</span>
+  <span class="post-meta-item-text">字数：</span><span>3465</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -309,7 +309,7 @@
     <i class="far fa-clock"></i>
   </span>
   <span class="post-meta-item-text">阅读：&asymp;</span>
-  <span>1分钟</span>
+  <span>7分钟</span>
 </span>
 
     
@@ -320,7 +320,7 @@
   <span class="post-meta-item-text">
   浏览：
   </span>
-  <span class="waline-pageview-count" data-path="/post/computer-science/programming-language/golang/web/http/"><i class="fa fa-sync fa-spin"></i></span>
+  <span class="waline-pageview-count" data-path="/post/computer-science/data-structure/2-3-4_tree/"><i class="fa fa-sync fa-spin"></i></span>
 </span>
 
   </div>
@@ -330,42 +330,162 @@
     </header>
     <div class="post-body" itemprop="articleBody">
       
-  <blockquote>
-<p>go version go1.19</p>
-</blockquote>
+  <h3 id="前言">前言</h3>
+<p>在看 2-3-4 树之前，建议先看 2-3 树。相似的操作在 2-3-4 树不会重复详细的描述。</p>
 <h3 id="资料">资料</h3>
 <ul>
-<li>{demo-golang}/demo/web/http/</li>
+<li><a href="/drawio/computer-science/data-structure/2-3-4_tree.drawio.html">2-3-4_tree.drawio.html</a></li>
 </ul>
-<h3 id="开启-http-服务">开启 HTTP 服务</h3>
-<p>在 Go 中有多种方式，可以开启 HTTP 服务。但是总的来说基本就下面两大类思路（本质上其实是一类）。</p>
+<h3 id="2-3-4-树">2-3-4 树</h3>
 <ul>
-<li>使用官方提供的封装好的 <code>net/http</code> 包。</li>
-<li>直接使用 <code>net</code> 包从 TCP 开始自行实现。</li>
+<li>2-3-4 树就是 4 阶 B-树</li>
+<li>2-3-4 树和红黑树是等价的：
+<ul>
+<li>2-3-4 树的结点个数 = 红黑树的黑色结点个数。</li>
+<li>把 2-3-4 树的三结点和四结点拆开，就可以变成红黑树。</li>
+<li>把红黑树的红结点移动到和父结点同层，就会变成 2-3-4 树。</li>
 </ul>
-<p>使用 <code>net/http</code> 包的时候，需要关注的最核心的部分，就是 Handler 接口 (src/net/http/server.go)。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Handler</span> <span style="color:#66d9ef">interface</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ServeHTTP</span>(<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">Request</span>)
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>开启 HTTP 服务和 HTTP 请求被处理的流程大致如下：</p>
+</li>
+</ul>
+<h3 id="2-3-4-树的性质">2-3-4 树的性质</h3>
+<p>1、满足二叉查找树的基本性质。</p>
+<p>2、结点可以存放一个元素、两个元素。</p>
 <ul>
-<li>直接或间接地创建 Server 结构体 (src/net/http/server.go) 的实例。</li>
-<li>调用 Server 的 ListenAndServe() 方法。</li>
-<li>ListenAndServe() 调用 net.Listen() (src/net/dial.go)，启动 TCP 服务。</li>
-<li>net.Listen() 返回一个 net.Listener 接口 (src/net/dial.go) 的实例。</li>
-<li>调用 net.Listener 的 Accept() 方法，就可以获取连接上来的 TCP 连接。</li>
-<li>新开启一个协程，把这个 TCP 连接丢进去处理。自己则继续监听有没有别的 TCP 连接。</li>
-<li>处理流程继续往下，会遇到这行代码：<code>serverHandler{c.server}.ServeHTTP(w, w.req)</code>。</li>
-<li>这里调用的就是 Handler 的 ServeHTTP() 方法。再往下就进入框架或者业务处理流程了。</li>
+<li>假设结点结构从左到右分别为：<code>子树 1、元素 1、子树 2、元素 2、子树 3、元素 3、子树 4</code>。</li>
+<li>对于存放一个元素的结点。其形态为：<code>子树 1、元素 1、子树 2</code>。
+<ul>
+<li><code>子树 1</code> 存放比 <code>元素 1</code> 小的元素；</li>
+<li><code>子树 2</code> 存放比 <code>元素 1</code> 大的元素。</li>
+</ul>
+</li>
+<li>对于存放两个元素的结点，其形态为：<code>子树 1、元素 1、子树 2、元素 2、子树 3</code>。
+<ul>
+<li><code>子树 1</code> 存放比 <code>元素 1</code> 和 <code>元素 2</code> 都小的元素；</li>
+<li><code>子树 2</code> 存放在 <code>元素 1</code> 和 <code>元素 2</code> 之间的元素；</li>
+<li>子树 3 存放比 <code>元素 1</code> 和 <code>元素 2</code> 都大的元素。</li>
+</ul>
+</li>
+<li>对于存放三个元素的结点，其形态为：<code>子树 1、元素 1、子树 2、元素 2、子树 3、元素 3、子树 4</code>。
+<ul>
+<li><code>子树 1</code> 存放比 <code>元素 1</code>、<code>元素 2</code>、<code>元素 3</code> 都小的元素；</li>
+<li><code>子树 2</code> 存放在 <code>元素 1</code> 和 <code>元素 2</code> 之间的元素；</li>
+<li>子树 3 存放在 <code>元素 2</code> 和 <code>元素 3</code> 之间的元素；</li>
+<li><code>子树 4</code> 存放比 <code>元素 1</code>、<code>元素 2</code>、<code>元素 3</code> 都大的元素。</li>
+</ul>
+</li>
+</ul>
+<p>3、2-3-4 树是绝对平衡的二叉查找树，所有叶子结点都在同一层上。从根结点到任意一个叶子结点所经过的结点数是相同的。</p>
+<h3 id="2-3-4-树的插入">2-3-4 树的插入</h3>
+<p><strong>下面列举的情况并不一定覆盖所有的场景，但是典型场景都有了，没有提到的场景可以根据典型场景推导。</strong></p>
+<h4 id="只上溢不旋转的情况">只上溢不旋转的情况</h4>
+<p>1、空树。（同 2-3 树的 1）</p>
+<p>2、二结点。（同 2-3 树的 2）</p>
+<p>3、三结点。</p>
+<p>添加结点 =&gt; 变四结点。（见图：<strong>2-3-4_tree.drawio.html 2-2-6</strong>）</p>
+<p>4、没有父结点的四结点。</p>
+<p>添加结点 =&gt; 变五结点 =&gt; 上溢（层数增加）。（见图：<strong>2-3-4_tree.drawio.html 2-4-2</strong>）</p>
+<p>5、有父结点的四结点（父结点不是四结点）。</p>
+<p>添加结点 =&gt; 变五结点 =&gt; 上溢（层数不增加）。（见图：<strong>2-3-4_tree.drawio.html 2-4-4</strong>）</p>
+<p>这种情况，四结点是父结点哪个子结点，都是一样的处理逻辑，上溢一次。</p>
+<p>这里，父结点可以是二结点也可以是三结点。</p>
+<p>6、有父结点的四结点（父结点是四结点）。</p>
+<p>添加结点 =&gt; 变五结点 =&gt; 上溢（父结点变五结点）=&gt; 父结点上溢（层数增加）。（见图：<strong>2-3-4_tree.drawio.html 2-6</strong>）</p>
+<p>这种情况，四结点是父结点哪个子结点，都是一样的处理逻辑，上溢两次。</p>
+<h4 id="可以通过旋转抵消上溢的情况">可以通过旋转抵消上溢的情况</h4>
+<p>1、有父结点的四结点（父结点是四结点、兄弟结点不是四结点）。</p>
+<p>添加结点 =&gt; 变五结点 =&gt; 兄弟结点有空位 =&gt; 旋转结点到兄弟结点（抵消上溢，层数不增加）。</p>
+<p>这种情况，如果只上溢的话，会上溢两次（自己上溢一次、父结点上溢一次），树的深度增加了，可能影响查询效率。</p>
+<p>但是这个时候其实 2-3-4 树是不满的，兄弟结点是有空位的。这时候就可以通过旋转，重新平衡 2-3-4 树。</p>
+<p>根据 2-3-4 树有空位的兄弟结点的位置，旋转的情况分为六种，处理方式是差不多的：</p>
+<ul>
+<li>向右旋转一次（见图：<strong>2-3-4_tree.drawio.html 4-2-2</strong>）</li>
+<li>向左旋转一次（见图：<strong>2-3-4_tree.drawio.html 4-2-4</strong>）</li>
+<li>向右旋转两次（见图：<strong>2-3-4_tree.drawio.html 4-6</strong>）</li>
+<li>向左旋转两次（无图，参考向右旋转两次的图）。</li>
+<li>向右旋转三次（无图，参考向右旋转两次的图）。</li>
+<li>向左旋转三次（无图，参考向右旋转两次的图）。</li>
+</ul>
+<p>2、有父结点的四结点（父结点是四结点、兄弟结点是四结点、祖父结点是四结点、叔叔结点不是四结点）。</p>
+<p>添加结点 =&gt; 变五结点 =&gt; 父结点和兄弟结点都没有空位，无法旋转，只能上溢（父结点变五结点） =&gt; 叔叔结点有空位 =&gt; 旋转结点到叔叔结点（抵消上溢，层数不增加）。</p>
+<p>这种情况，如果只上溢的话，会上溢三次（自己上溢一次、父结点上溢一次、祖父结点上溢一次），树的深度增加了，可能影响查询效率。</p>
+<p>但是这个时候其实 2-3-4 树是不满的，叔叔结点是有空位的。这时候就可以通过旋转，重新平衡 2-3-4 树。</p>
+<p>这里第一次的上溢是避免不了的。上溢之后，重新以父结点为参照，这时就可以看做上面第一种情况。</p>
+<p>根据 2-3-4 树有空位的叔叔结点的位置，旋转的情况分为六种，处理方式是差不多的：</p>
+<ul>
+<li>（上溢一次后）向右旋转一次（无图，参考向右旋转三次的图）。</li>
+<li>（上溢一次后）向左旋转一次（无图，参考向右旋转三次的图）。</li>
+<li>（上溢一次后）向右旋转两次（无图，参考向右旋转三次的图）。</li>
+<li>（上溢一次后）向左旋转两次（无图，参考向右旋转三次的图）。</li>
+<li>（上溢一次后）向右旋转三次（见图：<strong>2-3-4_tree.drawio.html 4-8</strong>）</li>
+<li>（上溢一次后）向左旋转三次（无图，参考向右旋转三次的图）。</li>
+</ul>
+<h3 id="2-3-4-树的删除">2-3-4 树的删除</h3>
+<p><strong>下面列举的情况并不一定覆盖所有的场景，但是典型场景都有了，没有提到的场景可以根据典型场景推导。</strong></p>
+<h4 id="删除叶子结点">删除叶子结点</h4>
+<p>1、删除三结点的结点。（类似 2-3 树的第 1 种情况）</p>
+<p>2、删除四结点的结点。</p>
+<p>直接删掉就好了，不会破坏 2-3-4 树的性质。（见图：<strong>2-3-4_tree.drawio.html 6-2-4</strong>）</p>
+<p>3、删除二结点的结点（父结点是二结点、兄弟结点是二结点）。（类似 2-3 树的第 2 种情况）</p>
+<p>4、删除二结点的结点（父结点是三结点、兄弟结点是二结点）。（类似 2-3 树的第 3 种情况）</p>
+<p>5、删除二结点的结点（父结点是四结点，兄弟结点是二结点）。（类似第 3 种情况）</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 父结点<strong>下溢</strong>（其中一个结点，层次不变） =&gt; 下溢结点和兄弟结点<strong>融合</strong>。（见图：<strong>2-3-4_tree.drawio.html 6-4-6</strong>）</p>
+<p>6、删除二结点的结点（父结点是二结点、兄弟结点是三结点）。（类似 2-3 树的第 4 种情况）</p>
+<p>7、删除二结点的结点（父结点是三结点、兄弟结点是三结点）。（类似 2-3 树的第 5 种情况）</p>
+<p>8、删除二结点的结点（父结点是四结点、兄弟结点是三结点）。（类似第 6 种情况）</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 兄弟结点可以借一个结点 =&gt; <strong>旋转</strong>结点到删除结点的位置。（见图：<strong>2-3-4_tree.drawio.html 6-6-6</strong>）</p>
+<p>另外，还有向左旋转三次的情况（见图：<strong>2-3-4_tree.drawio.html 6-10-4</strong>），向右旋转三次的处理方式是一样的。</p>
+<p>9、删除二结点的结点（父结点是二结点、兄弟结点是四结点）。</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 兄弟结点可以借一个结点 =&gt; <strong>旋转</strong>结点到删除结点的位置。（见图：<strong>2-3-4_tree.drawio.html 6-8-2</strong>）</p>
+<p>这种情况，删掉结点之后，自己这个位置就是空的了。也就是父结点变得少一个子树，这会破坏 2-3-4 树的性质。</p>
+<p>和上面第 3 种情况不同的是，在第 3 种情况中，兄弟结点是二结点，借不出结点。而这里可以借一个结点过来，把这个子树补上，这样就不破坏 2-3-4 树的性质了。</p>
+<p>图里的例子是向左旋转一次的情况，向右旋转一次的处理方式是一样的。</p>
+<p>10、删除二结点的结点（父结点是三结点、兄弟结点是四结点）。（类似第 9 种情况）</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 兄弟结点可以借一个结点 =&gt; <strong>旋转</strong>结点到删除结点的位置。（见图：<strong>2-3-4_tree.drawio.html 6-8-4</strong>）</p>
+<p>11、删除二结点的结点（父结点是四结点、兄弟结点是四结点）。（类似第 9 种情况）</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 兄弟结点可以借一个结点 =&gt; <strong>旋转</strong>结点到删除结点的位置。（见图：<strong>2-3-4_tree.drawio.html 6-8-6</strong>）</p>
+<p>12、删除二结点的结点（父结点是二结点、兄弟结点是二结点、祖父结点是二结点、叔叔结点是二结点）。（类似 2-3 树的第 6 种情况）</p>
+<p>13、删除二结点的结点（父结点是二结点、兄弟结点是二结点、祖父结点是三结点、叔叔结点是二结点）。（类似 2-3 树的第 7 种情况）</p>
+<p>祖父结点是四结点的处理逻辑是一样的。</p>
+<p>14、删除二结点的结点（父结点是二结点、兄弟结点是二结点、祖父结点是三结点、叔叔结点是三结点）。（类似 2-3 树的第 8 种情况）</p>
+<p>叔叔结点是四结点的处理逻辑是一样的。</p>
+<h4 id="删除的不是叶子结点">删除的不是叶子结点</h4>
+<p>这种情况需和平衡二叉树一样，找到中序遍历的前驱结点或者后继结点，把这两个结点互换位置，这个时候要删除的结点会被换到叶子结点的位置，然后再删除。</p>
+<h3 id="2-3-4-树转换成红黑树">2-3-4 树转换成红黑树</h3>
+<ul>
+<li>1、三结点其中一个元素转化为红黑树的红结点，左右哪个元素都可以。四结点中两边的元素转化为红黑树的红结点。</li>
+<li>2、拆分三结点和四结点，和父结点连接的一定是黑结点</li>
+<li>（见图：<strong>2-3-4_tree.drawio.html 12-2</strong>）</li>
+</ul>
+<h3 id="reference参考">reference（参考）</h3>
+<ul>
+<li>
+<a href="https://www.bilibili.com/read/cv12410219" title="掌握了2-3-4树也就掌握了红黑树，不信进来看看，建议收藏！ " rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    掌握了2-3-4树也就掌握了红黑树，不信进来看看，建议收藏！ 
+    <i class="fa fa-external-link-alt"></i>
+</a></li>
+<li>
+<a href="https://www.cnblogs.com/sfencs-hcy/p/10363259.html" title="理解2-3-4树" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    理解2-3-4树
+    <i class="fa fa-external-link-alt"></i>
+</a></li>
+<li>
+<a href="https://space.bilibili.com/27735697" title="bilibili&amp;ndash;木子喵neko" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    bilibili&ndash;木子喵neko
+    <i class="fa fa-external-link-alt"></i>
+</a>
+<ul>
+<li>
+<a href="https://www.bilibili.com/video/BV1BB4y1X7u3" title="【neko】红黑树/插入【算法编程#11】" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    【neko】红黑树/插入【算法编程#11】
+    <i class="fa fa-external-link-alt"></i>
+</a></li>
+<li>
+<a href="https://www.bilibili.com/video/BV1Ce4y1Q76H" title="【neko】红黑树/删除【算法编程#12】" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+    【neko】红黑树/删除【算法编程#12】
+    <i class="fa fa-external-link-alt"></i>
+</a></li>
+</ul>
+</li>
 </ul>
 
 
@@ -378,14 +498,11 @@
     <a href="/tags/computer-science%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%a7%91%e5%ad%a6">
     computer-science(计算机科学)
   </a>
-    <a href="/tags/golang">
-    golang
+    <a href="/tags/data-structure%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84">
+    data-structure(数据结构)
   </a>
-    <a href="/tags/web">
-    web
-  </a>
-    <a href="/tags/http">
-    http
+    <a href="/tags/b-tree">
+    b-tree
   </a>
 </div>
 
@@ -399,7 +516,7 @@
   <ul>
     <li class="post-copyright-title">
       <strong>文章标题：</strong>
-      使用 Golang 开启 HTTP 服务
+      2-3-4 树
     </li>
     <li class="post-copyright-author">
       <strong>本文作者： </strong>
@@ -407,7 +524,7 @@
     </li>
     <li class="post-copyright-link"> 
       <strong>本文链接：</strong>
-       <a id="post-cr-link" href="/post/computer-science/programming-language/golang/web/http/" title="使用 Golang 开启 HTTP 服务">/post/computer-science/programming-language/golang/web/http/</a>
+       <a id="post-cr-link" href="/post/computer-science/data-structure/2-3-4_tree/" title="2-3-4 树">/post/computer-science/data-structure/2-3-4_tree/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -418,13 +535,13 @@
 
 <div class="post-nav">
   <div class="post-nav-next post-nav-item">
-    <a href="/post/computer-science/programming-language/golang/genericity/" rel="next" title="Golang 泛型的基本使用方式">
-      <i class="fa fa-chevron-left"></i> Golang 泛型的基本使用方式
+    <a href="/post/computer-science/programming-language/golang/web/http/" rel="next" title="使用 Golang 开启 HTTP 服务">
+      <i class="fa fa-chevron-left"></i> 使用 Golang 开启 HTTP 服务
     </a>
   </div>
   <div class="post-nav-prev post-nav-item">
-    <a href="/post/computer-science/data-structure/2-3-4_tree/" rel="prev" title="2-3-4 树">
-      2-3-4 树
+    <a href="/post/computer-science/data-structure/2-3_tree/" rel="prev" title="2-3 树">
+      2-3 树
       <i class="fa fa-chevron-right"></i>
     </a>
   </div>

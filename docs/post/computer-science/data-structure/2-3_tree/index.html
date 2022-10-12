@@ -28,8 +28,8 @@
 <meta property="og:site_name" content="帕里特档案馆" />
 <meta property="og:locale" content="zh-CN"/>
 <meta property="article:author" content="西柊慧音" />
-<meta property="article:published_time" content="2022-08-07 08:00:00 &#43;0800 CST" />
-<meta property="article:modified_time" content="2022-08-07 08:00:00 &#43;0800 CST" />
+<meta property="article:published_time" content="2022-07-31 08:00:00 &#43;0800 CST" />
+<meta property="article:modified_time" content="2022-07-31 08:00:00 &#43;0800 CST" />
 
 
 
@@ -114,7 +114,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">11</span>
+        <span class="badge">12</span>
       </a>
     </li>
     <li class="menu-item menu-item-commonweal">
@@ -183,7 +183,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -279,7 +279,7 @@
     <i class="far fa-calendar"></i>
   </span>
   <span class="post-meta-item-text">发表于：</span>
-  <time title="发表于：2022-08-07 08:00:00 &#43;0800 CST" itemprop="dateCreated datePublished" datetime="2022-08-07 08:00:00 &#43;0800 CST">2022-08-07</time>
+  <time title="发表于：2022-07-31 08:00:00 &#43;0800 CST" itemprop="dateCreated datePublished" datetime="2022-07-31 08:00:00 &#43;0800 CST">2022-07-31</time>
 </span>
     
     
@@ -301,7 +301,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>3428</span>
+  <span class="post-meta-item-text">字数：</span><span>3433</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -360,29 +360,30 @@
 </ul>
 <p>3、2-3 树是绝对平衡的二叉查找树，所有叶子结点都在同一层上。从根结点到任意一个叶子结点所经过的结点数是相同的。</p>
 <h3 id="2-3-树的插入">2-3 树的插入</h3>
+<p><strong>下面列举的情况并不一定覆盖所有的场景，但是典型场景都有了，没有提到的场景可以根据典型场景推导。</strong></p>
 <h4 id="只上溢不旋转的情况">只上溢不旋转的情况</h4>
 <p>1、空树。</p>
-<p>添加结点 =&gt; 变二结点。（见图：<strong>2-3_tree.drawio.html 2-2</strong>）</p>
+<p>添加结点 =&gt; 变二结点。（见图：<strong>2-3_tree.drawio.html 2-2-2</strong>）</p>
 <p>2、二结点。</p>
-<p>添加结点 =&gt; 变三结点。（见图：<strong>2-3_tree.drawio.html 2-4</strong>）</p>
+<p>添加结点 =&gt; 变三结点。（见图：<strong>2-3_tree.drawio.html 2-2-4</strong>）</p>
 <p>3、没有父结点的三结点。</p>
-<p>添加结点 =&gt; 变四结点 =&gt; 上溢（层数增加）。（见图：<strong>2-3_tree.drawio.html 2-6</strong>）</p>
+<p>添加结点 =&gt; 变四结点 =&gt; 上溢（层数增加）。（见图：<strong>2-3_tree.drawio.html 2-4-2</strong>）</p>
 <p>4、有父结点的三结点（父结点不是三结点）。</p>
-<p>添加结点 =&gt; 变四结点 =&gt; 上溢（层数不增加）。（见图：<strong>2-3_tree.drawio.html 2-8</strong>）</p>
+<p>添加结点 =&gt; 变四结点 =&gt; 上溢（层数不增加）。（见图：<strong>2-3_tree.drawio.html 2-4-4</strong>）</p>
 <p>这种情况，三结点是父结点哪个子结点，都是一样的处理逻辑，上溢一次。</p>
 <p>5、有父结点的三结点（父结点是三结点）。</p>
-<p>添加结点 =&gt; 变四结点 =&gt; 上溢（父结点变四结点）=&gt; 父结点上溢（层数增加）。（见图：<strong>2-3_tree.drawio.html 2-10</strong>）</p>
+<p>添加结点 =&gt; 变四结点 =&gt; 上溢（父结点变四结点）=&gt; 父结点上溢（层数增加）。（见图：<strong>2-3_tree.drawio.html 2-6</strong>）</p>
 <p>这种情况，四结点是父结点哪个子结点，都是一样的处理逻辑，上溢两次。</p>
 <h4 id="可以通过旋转抵消上溢的情况">可以通过旋转抵消上溢的情况</h4>
 <p>1、有父结点的三结点（父结点是三结点、兄弟结点不是三结点）。</p>
 <p>添加结点 =&gt; 变四结点 =&gt; 兄弟结点有空位 =&gt; 旋转结点到兄弟结点（抵消上溢，层数不增加）。</p>
 <p>这种情况，如果只上溢的话，会上溢两次（自己上溢一次、父结点上溢一次），树的深度增加了，可能影响查询效率。</p>
 <p>但是这个时候其实 2-3 树是不满的，兄弟结点是有空位的。这时候就可以通过旋转，重新平衡 2-3 树。</p>
-<p>根据 2-3 树，有空位的兄弟结点的位置，旋转的情况分为四种：</p>
+<p>根据 2-3 树有空位的兄弟结点的位置，旋转的情况分为四种，处理方式是差不多的：</p>
 <ul>
-<li>向右旋转一次（见图：<strong>2-3_tree.drawio.html 4-4</strong>）</li>
-<li>向左旋转一次（见图：<strong>2-3_tree.drawio.html 4-6</strong>）</li>
-<li>向右旋转两次（见图：<strong>2-3_tree.drawio.html 4-8</strong>）</li>
+<li>向右旋转一次（见图：<strong>2-3_tree.drawio.html 4-2-2</strong>）</li>
+<li>向左旋转一次（见图：<strong>2-3_tree.drawio.html 4-2-4</strong>）</li>
+<li>向右旋转两次（见图：<strong>2-3_tree.drawio.html 4-4</strong>）</li>
 <li>向左旋转两次（无图，参考向右旋转两次的图）。</li>
 </ul>
 <p>2、有父结点的三结点（父结点是三结点、兄弟结点是三结点、祖父结点是三结点、叔叔结点不是三结点）。</p>
@@ -390,43 +391,42 @@
 <p>这种情况，如果只上溢的话，会上溢三次（自己上溢一次、父结点上溢一次、祖父结点上溢一次），树的深度增加了，可能影响查询效率。</p>
 <p>但是这个时候其实 2-3 树是不满的，叔叔结点是有空位的。这时候就可以通过旋转，重新平衡 2-3 树。</p>
 <p>这里第一次的上溢是避免不了的。上溢之后，重新以父结点为参照，这时就可以看做上面第一种情况。</p>
-<p>根据 2-3 树，有空位的叔叔结点的位置，旋转的情况分为四种：</p>
+<p>根据 2-3 树有空位的叔叔结点的位置，旋转的情况分为四种，处理方式是差不多的：</p>
 <ul>
-<li>（上溢一次后）向右旋转一次（见图：<strong>2-3_tree.drawio.html 4-10</strong>）</li>
+<li>（上溢一次后）向右旋转一次（见图：<strong>2-3_tree.drawio.html 4-6-2</strong>）</li>
 <li>（上溢一次后）向左旋转一次（无图，参考向右旋转一次的图）</li>
-<li>（上溢一次后）向右旋转两次（见图：<strong>2-3_tree.drawio.html 4-12</strong>）</li>
+<li>（上溢一次后）向右旋转两次（见图：<strong>2-3_tree.drawio.html 4-6-4</strong>）</li>
 <li>（上溢一次后）向左旋转两次（无图，参考向右旋转两次的图）。</li>
 </ul>
 <h3 id="2-3-树的删除">2-3 树的删除</h3>
+<p><strong>下面列举的情况并不一定覆盖所有的场景，但是典型场景都有了，没有提到的场景可以根据典型场景推导。</strong></p>
 <h4 id="删除叶子结点">删除叶子结点</h4>
 <p>1、删除三结点的结点。</p>
 <p>直接删掉就好了，不会破坏 2-3 树的性质。（见图：<strong>2-3_tree.drawio.html 6-2</strong>）</p>
 <p>2、删除二结点的结点（父结点是二结点、兄弟结点是二结点）。</p>
-<p>删除结点 =&gt; 父结点少一个子树 =&gt; 父结点下溢（唯一的结点，层次减少） =&gt; 父结点和兄弟结点融合。（见图：<strong>2-3_tree.drawio.html 6-4</strong>）</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 父结点<strong>下溢</strong>（唯一的结点，层次减少） =&gt; 父结点和兄弟结点<strong>融合</strong>。（见图：<strong>2-3_tree.drawio.html 6-4-2</strong>）</p>
 <p>这种情况，删掉结点之后，自己这个位置就是空的了。也就是父结点变得少一个子树，这会破坏 2-3 树的性质。</p>
-<p>处理方式是，就把父结点放到下面一层去，和兄弟结点融合成一个结点，这样就不会破坏2-3 树的性质了。</p>
+<p>处理方式是，就把父结点放到下面一层去，和兄弟结点融合成一个结点，这样就不会破坏 2-3 树的性质了。</p>
 <p>图里的例子是父结点的子树 1 被删空了，子树 2 被删空的情况是一样的处理方式。</p>
-<p>3、删除二结点的结点（父结点是三结点、兄弟结点都是二结点）。</p>
-<p>删除结点 =&gt; 父结点少一个子树 =&gt; 父结点下溢（其中一个结点，层次不变） =&gt; 下溢结点和兄弟结点融合。（见图：<strong>2-3_tree.drawio.html 6-6</strong>）</p>
-<p>这种情况，删掉结点之后，自己这个位置就是空的了。也就是父结点变得少一个子树，这会破坏 2-3 树的性质。</p>
-<p>处理方式是，就把父结点少子树的那个结点放到下面一层去，和兄弟结点融合成一个结点，这样就不会破坏 2-3 树的性质了。</p>
-<p>图里的例子是父结点的子树 1 被删空了，子树 2、子树 3 被删空的情况是一样的处理方式。</p>
+<p>3、删除二结点的结点（父结点是三结点、兄弟结点都是二结点）。（类似第 2 种情况）</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 父结点<strong>下溢</strong>（其中一个结点，层次不变） =&gt; 下溢结点和兄弟结点<strong>融合</strong>。（见图：<strong>2-3_tree.drawio.html 6-4-4</strong>）</p>
 <p>4、删除二结点的结点（父结点是二结点、兄弟结点是三结点）。</p>
-<p>删除结点 =&gt; 父结点少一个子树 =&gt; 兄弟结点可以借一个结点 =&gt; 旋转结点到删除结点的位置。（见图：<strong>2-3_tree.drawio.html 6-8</strong>）</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 兄弟结点可以借一个结点 =&gt; <strong>旋转</strong>结点到删除结点的位置。（见图：<strong>2-3_tree.drawio.html 6-6-2</strong>）</p>
 <p>这种情况，删掉结点之后，自己这个位置就是空的了。也就是父结点变得少一个子树，这会破坏 2-3 树的性质。</p>
 <p>和上面第 2 种情况不同的是，在第 2 种情况中，兄弟结点是二结点，借不出结点。而这里可以借一个结点过来，把这个子树补上，这样就不破坏 2-3 树的性质了。</p>
 <p>图里的例子是向左旋转一次的情况，向右旋转一次的处理方式是一样的。</p>
-<p>5、删除二结点的结点（父结点是三结点、兄弟结点有三结点）。</p>
-<p>删除结点 =&gt; 父结点少一个子树 =&gt; 兄弟结点可以借一个结点 =&gt; 旋转结点到删除结点的位置。（见图：<strong>2-3_tree.drawio.html 6-10</strong>）</p>
-<p>图里的例子是向左旋转一次的情况，向右旋转一次的处理方式是一样的。另外，还有向左旋转两次的情况（见图：<strong>2-3_tree.drawio.html 6-12</strong>），向右旋转两次的处理方式是一样的。</p>
+<p>另外，还有向左旋转两次的情况（见图：<strong>2-3_tree.drawio.html 6-10-2</strong>），向右旋转两次的处理方式是一样的。</p>
+<p>5、删除二结点的结点（父结点是三结点、兄弟结点是三结点）。</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 兄弟结点可以借一个结点 =&gt; <strong>旋转</strong>结点到删除结点的位置。（见图：<strong>2-3_tree.drawio.html 6-6-4</strong>）</p>
+<p>图里的例子是向左旋转一次的情况，向右旋转一次的处理方式是一样的。</p>
 <p>6、删除二结点的结点（父结点是二结点、兄弟结点是二结点、祖父结点是二结点、叔叔结点是二结点）。</p>
-<p>删除结点 =&gt; 父结点少一个子树 =&gt; 父结点下溢（父结点和兄弟结点融合） =&gt; 祖父结点少一个子树 =&gt; 祖父结点下溢（唯一的结点，层次减少） =&gt; 祖父结点和叔叔结点融合。（见图：<strong>2-3_tree.drawio.html 6-14</strong>）</p>
-<p>这种情况，初始场景类似上面第 2 种情况，解决方案也是类似第 2 种情况的：下溢 + 融合。初始场景处理完之后，重新以父结点为参照，类似上面第 2 种情况，再来一遍就好了。</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 父结点<strong>下溢</strong>（父结点和兄弟结点<strong>融合</strong>） =&gt; 祖父结点少一个子树 =&gt; 祖父结点<strong>下溢</strong>（唯一的结点，层次减少） =&gt; 祖父结点和叔叔结点<strong>融合</strong>。（见图：<strong>2-3_tree.drawio.html 6-12-2</strong>）</p>
+<p>这种情况，初始场景类似上面第 2 种情况，解决方案也是类似第 2 种情况的：下溢 + 融合。初始场景处理完之后，重新以父结点为参照，又是类似上面第 2 种情况，再来一遍就好了。</p>
 <p>7、删除二结点的结点（父结点是二结点、兄弟结点是二结点、祖父结点是三结点、叔叔结点是二结点）。</p>
-<p>删除结点 =&gt; 父结点少一个子树 =&gt; 父结点下溢（父结点和兄弟结点融合） =&gt; 祖父结点少一个子树 =&gt; 祖父结点下溢（其中一个结点，层次不变） =&gt; 下溢结点和叔叔结点融合。（见图：<strong>2-3_tree.drawio.html 6-16</strong>）</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 父结点<strong>下溢</strong>（父结点和兄弟结点<strong>融合</strong>） =&gt; 祖父结点少一个子树 =&gt; 祖父结点<strong>下溢</strong>（其中一个结点，层次不变） =&gt; 下溢结点和叔叔结点<strong>融合</strong>。（见图：<strong>2-3_tree.drawio.html 6-12-4</strong>）</p>
 <p>这种情况，初始场景类似上面第 2 种情况，解决方案也是类似第 2 种情况的：下溢 + 融合。初始场景处理完之后，重新以父结点为参照，类似上面第 3 种情况，解决方案也是类似第 3 种情况的：下溢 + 融合。</p>
 <p>8、删除二结点的结点（父结点是二结点、兄弟结点是二结点、祖父结点是三结点、叔叔结点是三结点）。</p>
-<p>删除结点 =&gt; 父结点少一个子树 =&gt; 父结点下溢（父结点和兄弟结点融合） =&gt; 祖父结点少一个子树 =&gt; 叔叔结点可以借一个结点 =&gt; 旋转结点到祖父结点的删除结点的位置。（见图：<strong>2-3_tree.drawio.html 6-18</strong>）</p>
+<p>删除结点 =&gt; 父结点少一个子树 =&gt; 父结点<strong>下溢</strong>（父结点和兄弟结点<strong>融合</strong>） =&gt; 祖父结点少一个子树 =&gt; 叔叔结点可以借一个结点 =&gt; <strong>旋转</strong>结点到祖父结点的删除结点的位置。（见图：<strong>2-3_tree.drawio.html 6-14</strong>）</p>
 <p>这种情况，初始场景类似上面第 2 种情况，解决方案也是类似第 2 种情况的：下溢 + 融合。初始场景处理完之后，重新以父结点为参照，类似上面第 4 种情况，解决方案也是类似第 4 种情况的：旋转。</p>
 <h4 id="删除的不是叶子结点">删除的不是叶子结点</h4>
 <p>这种情况需和平衡二叉树一样，找到中序遍历的前驱结点或者后继结点，把这两个结点互换位置，这个时候要删除的结点会被换到叶子结点的位置，然后再删除。</p>
@@ -525,8 +525,8 @@
 
 <div class="post-nav">
   <div class="post-nav-next post-nav-item">
-    <a href="/post/computer-science/programming-language/golang/web/http/" rel="next" title="使用 Golang 开启 HTTP 服务">
-      <i class="fa fa-chevron-left"></i> 使用 Golang 开启 HTTP 服务
+    <a href="/post/computer-science/data-structure/2-3-4_tree/" rel="next" title="2-3-4 树">
+      <i class="fa fa-chevron-left"></i> 2-3-4 树
     </a>
   </div>
   <div class="post-nav-prev post-nav-item">
