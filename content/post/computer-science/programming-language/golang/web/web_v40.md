@@ -1,17 +1,19 @@
 ---
 draft: false
-title: "使用 Golang 实现 Web 框架 -- 复杂的 web 框架"
 date: 2022-09-24 08:00:00 +0800
 lastmod: 2022-09-25 08:00:00 +0800
+title: "使用 Golang 实现 Web 框架 -- 复杂的 web 框架"
+summary: "使用 net/http 包，实现一个复杂的 web 框架。"
+
 categories:
   - golang
+
 tags:
   - golang
   - web
   - http
   - router(路由)
   - middleware(中间件)
-summary: "使用 net/http 包，实现一个复杂的 web 框架。"
 ---
 
 > go version go1.19

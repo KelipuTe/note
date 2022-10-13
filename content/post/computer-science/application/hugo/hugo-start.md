@@ -1,15 +1,17 @@
 ---
 draft: false
-title: "使用 Hugo 和 GitHub Pages 搭建站点"
 date: 2022-09-20 20:00:00 +0800
 lastmod: 2022-09-20 20:00:00 +0800
+title: "使用 Hugo 和 GitHub Pages 搭建站点"
+summary: "Hugo 安装，建立站点，配置主题，发布到 GitHub Pages 的过程。"
+
 categories:
   - application(应用)
+  
 tags:
   - computer-science(计算机科学)
   - Hugo
   - GitHub Pages
-summary: "Hugo 安装，建立站点，配置主题，发布到 GitHub Pages 的过程。"
 ---
 
 - Windows 11 家庭版

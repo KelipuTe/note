@@ -1,0 +1,66 @@
+---
+draft: false
+title: "平衡二叉树"
+date: 2022-07-31 08:00:00 +0800
+lastmod: 2022-07-31 08:00:00 +0800
+summary: "平衡二叉树的插入、平衡、删除。"
+
+categories:
+  - data-structure(数据结构)
+
+tags:
+  - computer-science(计算机科学)
+  - data-structure(数据结构)
+  - binary-search-tree(二叉查找树)
+---
+
+### 资料
+
+- {demo-c}/data-structure/balanced_binary_tree.c
+
+### 平衡二叉树
+
+平衡二叉树（balanced binary tree、AVL-Tree）是一种特殊的二叉排序树。
+
+### 平衡二叉树的性质
+
+- 1、满足二叉查找树的基本性质。
+- 2、每个结点的左右子树的高度之差的绝对值（平衡因子）最多为 1。
+
+### 平衡二叉树的插入
+
+#### 左旋和右旋
+
+（见图：**balanced_binary_tree.drawio.html 2-2**）
+
+#### 4 种需要平衡的场景
+
+1、LL 型
+
+LL 型，直接右旋 x 结点。（见图：**balanced_binary_tree.drawio.html 4-2**）
+
+2、LR 型
+
+LR 型，直接右旋 x 结点，依然不平衡。（见图：**balanced_binary_tree.drawio.html 4-4-2**）
+
+需要先左旋 y 结点，再右旋 x 结点。（见图：**balanced_binary_tree.drawio.html 4-4-4**）
+
+3、RR 型
+
+RR 型，直接左旋 x 结点。（见图：**balanced_binary_tree.drawio.html 6-2**）
+
+4、RL 型
+
+RL 型，直接左旋 x 结点，依然不平衡。（见图：**balanced_binary_tree.drawio.html 6-4-2**）
+
+需要先右旋 y 结点，再左旋 x 结点。（见图：**balanced_binary_tree.drawio.html 6-4-4**）
+
+### 平衡二叉树的删除
+
+平衡二叉树的删除和二插叉查找树的删除步骤是差不多的。
+
+区别在于，平衡二叉树删除结点之后，需要依次向上检查每一个结点是否平衡。
+
+### reference（参考）
+
+- [平衡二叉树（AVL树）及C语言实现](http://c.biancheng.net/view/3432.html)

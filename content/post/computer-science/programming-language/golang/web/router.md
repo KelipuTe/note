@@ -1,17 +1,19 @@
 ---
 draft: false
-title: "使用 Golang 实现 Web 框架 -- router(路由)"
 date: 2022-09-10 08:00:00 +0800
 lastmod: 2022-09-10 08:00:00 +0800
+title: "使用 Golang 实现 Web 框架 -- router(路由)"
+summary: "路由树的原理和实现方式。"
+
 categories:
   - golang
+
 tags:
   - computer-science(计算机科学)
   - golang
   - web
   - http
   - router(路由)
-summary: "路由树的原理和实现方式。"
 ---
 
 > go version go1.19
