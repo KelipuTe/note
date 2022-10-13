@@ -6,12 +6,12 @@ title: "使用 Hugo 和 GitHub Pages 搭建站点"
 summary: "Hugo 安装，建立站点，配置主题，发布到 GitHub Pages 的过程。"
 
 categories:
-  - application(应用)
+- application(应用)
   
 tags:
-  - computer-science(计算机科学)
-  - Hugo
-  - GitHub Pages
+- computer-science(计算机科学)
+- Hugo
+- GitHub Pages
 ---
 
 - Windows 11 家庭版

@@ -6,14 +6,14 @@ title: "使用 Golang 实现 Web 框架 -- router(路由)"
 summary: "路由树的原理和实现方式。"
 
 categories:
-  - golang
+- golang
 
 tags:
-  - computer-science(计算机科学)
-  - golang
-  - web
-  - http
-  - router(路由)
+- computer-science(计算机科学)
+- golang
+- web
+- http
+- router(路由)
 ---
 
 > go version go1.19

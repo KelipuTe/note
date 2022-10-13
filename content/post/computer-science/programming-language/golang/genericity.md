@@ -6,12 +6,12 @@ title: "Golang 泛型的基本使用方式"
 summary: "Golang 泛型的基本使用方式。泛型变量的类型断言。"
 
 categories:
-  - golang
+- golang
 
 tags:
-  - computer-science(计算机科学)
-  - golang
-  - genericity
+- computer-science(计算机科学)
+- golang
+- genericity
 ---
 
 ### 资料

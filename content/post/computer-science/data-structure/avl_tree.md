@@ -6,12 +6,12 @@ lastmod: 2022-07-31 08:00:00 +0800
 summary: "平衡二叉树的插入、平衡、删除。"
 
 categories:
-  - data-structure(数据结构)
+- data-structure(数据结构)
 
 tags:
-  - computer-science(计算机科学)
-  - data-structure(数据结构)
-  - binary-search-tree(二叉查找树)
+- computer-science(计算机科学)
+- data-structure(数据结构)
+- binary-search-tree(二叉查找树)
 ---
 
 ### 资料

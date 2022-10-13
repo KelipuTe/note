@@ -6,14 +6,14 @@ title: "使用 Golang 实现 Web 框架 -- middleware(中间件)"
 summary: "中间件的原理和实现方式。"
 
 categories:
-  - golang
+- golang
 
 tags:
-  - computer-science(计算机科学)
-  - golang
-  - web
-  - http
-  - middleware(中间件)
+- computer-science(计算机科学)
+- golang
+- web
+- http
+- middleware(中间件)
 ---
 
 > go version go1.19

@@ -6,13 +6,13 @@ title: "使用 Jekyll 主题"
 summary: "Jekyll 配置主题的过程。"
 
 categories:
-  - application(应用)
+- application(应用)
 
 tags:
-  - computer-science(计算机科学)
-  - Ruby
-  - Jekyll
-  - GitHub Pages
+- computer-science(计算机科学)
+- Ruby
+- Jekyll
+- GitHub Pages
 ---
 
 ### 环境

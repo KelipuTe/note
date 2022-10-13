@@ -6,14 +6,14 @@ title: "使用 Golang 实现 Web 框架 -- 复杂的 web 框架"
 summary: "使用 net/http 包，实现一个复杂的 web 框架。"
 
 categories:
-  - golang
+- golang
 
 tags:
-  - golang
-  - web
-  - http
-  - router(路由)
-  - middleware(中间件)
+- golang
+- web
+- http
+- router(路由)
+- middleware(中间件)
 ---
 
 > go version go1.19

@@ -6,11 +6,11 @@ title: "BT 种子和磁力链接"
 summary: "BT 种子是什么，BT 下载的原理，如何制作图种。"
 
 categories:
-  - protocol(协议)
+- protocol(协议)
 
 tags:
-  - computer-science(计算机科学)
-  - protocol(协议)
+- computer-science(计算机科学)
+- protocol(协议)
 ---
 
 ### BT 种子

@@ -6,13 +6,13 @@ title: "使用 Golang 开启 HTTP 服务"
 summary: "几种使用 net/http 包或者 net 包开启 HTTP 服务的方法。"
 
 categories:
-  - golang
+- golang
 
 tags:
-  - computer-science(计算机科学)
-  - golang
-  - web
-  - http
+- computer-science(计算机科学)
+- golang
+- web
+- http
 ---
 
 > go version go1.19

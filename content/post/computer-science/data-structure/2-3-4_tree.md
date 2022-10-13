@@ -6,12 +6,12 @@ title: "2-3-4 树"
 summary: "2-3-4 树的插入、平衡、删除。"
 
 categories:
-  - data-structure(数据结构)
+- data-structure(数据结构)
 
 tags:
-  - computer-science(计算机科学)
-  - data-structure(数据结构)
-  - b-tree
+- computer-science(计算机科学)
+- data-structure(数据结构)
+- b-tree
 ---
 
 ### 前言
