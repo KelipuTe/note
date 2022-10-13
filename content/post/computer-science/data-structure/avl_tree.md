@@ -1,6 +1,6 @@
 ---
 draft: false
-title: "平衡二叉树"
+title: "AVL-Tree（平衡二叉树）"
 date: 2022-07-31 08:00:00 +0800
 lastmod: 2022-07-31 08:00:00 +0800
 summary: "平衡二叉树的插入、平衡、删除。"
@@ -17,10 +17,11 @@ tags:
 ### 资料
 
 - {demo-c}/data-structure/balanced_binary_tree.c
+- <a href="/drawio/computer-science/data-structure/balanced_binary_tree.drawio.html">balanced_binary_tree.drawio.html</a>
 
 ### 平衡二叉树
 
-平衡二叉树（balanced binary tree、AVL-Tree）是一种特殊的二叉排序树。
+AVL-Tree（balanced binary tree、平衡二叉树）是一种特殊的二叉排序树。
 
 ### 平衡二叉树的性质
 
