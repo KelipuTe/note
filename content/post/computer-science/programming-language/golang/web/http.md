@@ -1,16 +1,18 @@
 ---
 draft: false
-title: "使用 Golang 开启 HTTP 服务"
 date: 2022-09-03 08:00:00 +0800
 lastmod: 2022-09-03 08:00:00 +0800
-categories:
-  - golang
-tags:
-  - computer-science(计算机科学)
-  - golang
-  - web
-  - http
+title: "使用 Golang 开启 HTTP 服务"
 summary: "几种使用 net/http 包或者 net 包开启 HTTP 服务的方法。"
+
+categories:
+- golang
+
+tags:
+- computer-science(计算机科学)
+- golang
+- web
+- http
 ---
 
 > go version go1.19

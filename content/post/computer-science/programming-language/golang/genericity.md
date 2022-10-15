@@ -1,15 +1,17 @@
 ---
-draft: false
-title: "Golang 泛型的基本使用方式"
+draft: true
 date: 2022-09-03 08:00:00 +0800
 lastmod: 2022-09-03 08:00:00 +0800
-categories:
-  - golang
-tags:
-  - computer-science(计算机科学)
-  - golang
-  - genericity
+title: "Golang 泛型的基本使用方式"
 summary: "Golang 泛型的基本使用方式。泛型变量的类型断言。"
+
+categories:
+- golang
+
+tags:
+- computer-science(计算机科学)
+- golang
+- genericity
 ---
 
 ### 资料

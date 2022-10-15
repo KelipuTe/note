@@ -1,15 +1,17 @@
 ---
 draft: false
-title: "2-3-4 树"
 date: 2022-08-05 08:00:00 +0800
 lastmod: 2022-08-05 08:00:00 +0800
+title: "2-3-4 树"
+summary: "2-3-4 树的插入、平衡、删除。"
+
 categories:
-  - data-structure(数据结构)
+- data-structure(数据结构)
+
 tags:
-  - computer-science(计算机科学)
-  - data-structure(数据结构)
-  - b-tree
-summary: "2-3-4 树的插入和删除。"
+- computer-science(计算机科学)
+- data-structure(数据结构)
+- b-tree
 ---
 
 ### 前言
