@@ -9,26 +9,15 @@
     <tags>
     </tags>
     <content type="html"><![CDATA[前言 再次强调：
-帕里特档案馆（重建中，旧篇总计 283，迁移完成 4，新增 8），是个个人档案馆。内容主要是学习笔记和实操过程的记录。
+帕里特档案馆（重建中，旧篇总计 283，迁移完成 8，新增 6），是个个人档案馆。
+内容主要是学习笔记和实操过程的记录。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的有缘人务必小心。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的有缘人务必小心。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的有缘人务必小心。
 如何使用档案馆 档案馆的内容分为三个部分：
 文本 代码，借助 github 图，借助 draw.io 如果文本使用到了代码或者图片，通常在文本的最前面会有一个标题为 资料 的部分。
-如果是类似 {xxx}/aaa/bbb/ 这种格式的，就是 github 的项目的代码，需要去 github 上查看。 如果是类似 xxx.drawio.html 这种格式的，就是 draw.io 生成的 html，直接打开就可以预览。 参考到的外部资料通常在文本的最后面会有一个标题为 reference（参考） 的部分。
-]]></content>
-  </entry>
-  
-  <entry>
-    <title>软件架构评估</title>
-    <url>/post/computer-science/software-architecture/architecture_evaluation/</url>
-    <categories><category>software-architecture(软件架构)</category>
-    </categories>
-    <tags>
-      <tag>computer-science(计算机科学)</tag>
-      <tag>software-architecture(软件架构)</tag>
-    </tags>
-    <content type="html"><![CDATA[架构权衡分析方法 Architecture Tradeoff Analysis Method（ATAM，架构权衡分析方法）
+如果是类似 {xxx}/aaa/bbb/ 这种格式的，就是 github 的项目的代码，需要去 github 上查看。 其中 {demo-c}、{tcp-service-c} 是私有仓库，暂不对外开放。
+如果是类似 xxx.drawio.html 这种格式的，就是 draw.io 生成的 html，直接打开就可以预览。 参考到的外部资料通常在文本的最后面会有一个标题为 reference（参考） 的部分。
 ]]></content>
   </entry>
   
@@ -175,27 +164,15 @@ reference（参考） hugo个人博客搭建并部署到GitHub【 for Windows】
     </categories>
     <tags>
     </tags>
-    <content type="html"><![CDATA[帕里特档案馆（重建中，旧篇总计 283，迁移完成 4，新增 8），是个个人档案馆。内容主要是学习笔记和实操过程的记录。
+    <content type="html"><![CDATA[帕里特档案馆（重建中，旧篇总计 283，迁移完成 8，新增 6），是个个人档案馆。
+内容主要是学习笔记和实操过程的记录。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的有缘人务必小心。
 站点基于 hugo 0.103.1 extended 版本搭建。使用的主题是 Hugo NexT。
 站点预计会部属在 github pages 和 gitee pages 上。
 如果有问题，欢迎批评指正。同时也欢迎建设性意见。
-本人的联系方式，QQ：786907650；微信号：wxid_k3uqy9xeryn422。
+和本人的交流方式，QQ：786907650；微信号：wxid_k3uqy9xeryn422。昵称和头像都是一样的。
 有意交流者，请至少备注是谁和从哪来。
 ]]></content>
-  </entry>
-  
-  <entry>
-    <title>Golang 泛型的基本使用方式</title>
-    <url>/post/computer-science/programming-language/golang/genericity/</url>
-    <categories><category>golang</category>
-    </categories>
-    <tags>
-      <tag>computer-science(计算机科学)</tag>
-      <tag>golang</tag>
-      <tag>genericity</tag>
-    </tags>
-    <content type="html"><![CDATA[资料 {demo-golang}/demo/genericity/ reference（参考） Go 泛型十年磨一剑 go 1.18泛型]]></content>
   </entry>
   
   <entry>
@@ -356,6 +333,135 @@ reference（参考） hugo个人博客搭建并部署到GitHub【 for Windows】
   </entry>
   
   <entry>
+    <title>Virtual Memory（虚拟内存）</title>
+    <url>/post/computer-science/operating-system/memory/virtual_memory/</url>
+    <categories><category>operating-system(操作系统)</category>
+    </categories>
+    <tags>
+      <tag>computer-science(计算机科学)</tag>
+      <tag>operating-system(操作系统)</tag>
+      <tag>memory(内存)</tag>
+    </tags>
+    <content type="html"><![CDATA[资料 virtual_memory.drawio.html 虚拟内存涉及的知识点（笔记里不一定有） virtual memory（虚拟内存） memory protection（内存保护） dynamic memory allocation（动态分配内存） virtual memory address（虚拟内存地址） physical memory address（物理内存地址） memory management unit（MMU、内存管理单元） segmented memory management（段式管理） segment（段） segment table（段表） memory fragmentation（内存碎片） page memory management（页式管理） page（页） page table（页表） missing page interruption（缺页中断） multi-level page table（多级页表） Translation Lookaside Buffer（TLB、页表缓存） segmented paged memory management（段页式管理） 虚拟内存 单片机的 CPU 可以直接操作物理内存地址。但是，在这种情况下是无法同时运行多个程序的。
+如果多个程序都操作了同一块物理内存，那么他们就可能会互相影响，最终可能导致程序崩溃。
+操作系统使用虚拟内存将进程与物理内存进行隔离，为每个进程分配独立的一套虚拟内存地址，这样每个进程就互不干涉。
+虚拟内存地址（virtual memory address）：程序使用的内存地址 物理内存地址（physical memory address）：硬件里面的内存地址 虚拟内存地址和物理内存地址的映射由操作系统为进程提供，进程不需要管数据到底存在哪块物理内存上。
+进程使用的虚拟地址，会通过 CPU 芯片中的内存管理单元（Memory Management Unit、MMU）的映射关系，来转换变成物理地址，然后再通过物理地址访问内存。
+另外，虚拟内存可以使得进程的运行内存超过物理内存大小。因为程序运行符合局部性原理，不是所有的内存都是同时在使用的。
+操作系统主要有两种管理内存的方式：内存分段（Segmentation）和内存分页（Paging）。
+段式管理 程序由若干个逻辑分段组成，如：代码分段、数据分段、栈段、堆段等。（见图：virtual_memory.drawio.html 2-2）
+虚拟地址由段选择子和段内偏移量两部分组成。
+段选择子保存在段寄存器。段选择子里的段号用作段表的索引。段表保存段基地址、段界限和特权等级等。（见图：virtual_memory.drawio.html 2-4）
+虚拟地址中的段内偏移量应该位于 0 和段界限之间，如果段内偏移量是合法的，就将段基地址加上段内偏移量得到物理内存地址。
+段式管理的不足 段式管理的不足主要有两点：1、内存碎片；2、内存交换的效率低。
+内存碎片有两种：
+外部碎片：多个不连续的小物理内存，导致新的程序由于内存不够无法被装载。 内部碎片：程序所有的数据都被装载到了物理内存，但是这个程序有部分的数据可能并不是很常使用，这会导致内存的浪费。 内存交换可以解决外部碎片的问题。可以把程序占用的内存写到硬盘上，然后再从硬盘上读回到内存。在 Linux 中，内存交换空间（Swap 空间），这块空间是从硬盘划分出来的，用于内存与硬盘的空间交换。
+对于多进程的系统来说，用分段的方式，很容易产生内存碎片。内存交换又受硬盘速度限制，效率低。
+页式管理 整个虚拟内存空间和物理内存空间都被切成一个个固定尺寸大小的内存空间（内存页）。
+分页可以让内存交换时，读写的数据少一点。在 Linux 中，每一页的大小为 4KB。
+虚拟地址与物理地址之间通过页表来映射。（见图：virtual_memory.drawio.html 4-2）
+页表存储在内存里，每个进程都有自己的页表。（见图：virtual_memory.drawio.html 4-4）
+从页表的性质来看，保存在内存中的页表承担的职责是将虚拟地址翻译成物理地址，所以页表一定要覆盖全部虚拟地址空间。内存管理单元负责将虚拟内存地址转换成物理地址。
+虚拟地址分为两部分：页号和页内偏移。页号作为页表的索引，页表包含物理页每页所在物理内存的基地址，这个基地址与页内偏移的组合就形成了物理内存地址。
+页表里的页表项中除了物理地址之外，还有一些标记属性的数据，比如控制一个页的读写权限，标记该页是否存在等。在内存访问方面，操作系统提供了更好的安全性。
+对于一个内存地址转换，分三个步骤：
+1、把虚拟内存地址，切分成页号和偏移量。 2、根据页号，从页表里面，查询对应的物理页号。 3、拿物理页号，加上前面的偏移量，就得到了物理内存地址。 当进程访问的虚拟地址在页表中查不到时，系统会产生一个缺页异常。然后进入系统内核空间，分配物理内存，更新进程页表，最后再返回用户空间，恢复进程的运行。
+页式管理的优点 由于内存空间都是预先划分好的，所以释放的内存都是以页为单位释放的，不会产生无法给进程使用的小内存。
+如果内存空间不够，操作系统会把其他正在运行的进程中的最近没被使用的内存页面给释放掉，也就是暂时写在硬盘上，称为换出（Swap Out）。
+一旦需要的时候，再加载进来，称为换入（Swap In）。所以，一次性写入磁盘的也只有少数的一个页或者几个页，不会花太多时间，内存交换的效率就相对比较高。
+分页的方式使得在加载程序的时候，不需要一次性都把程序加载到物理内存中。只有在程序运行中，需要用到对应虚拟内存页里面的指令和数据时，再加载到物理内存里面去。
+简单分页的缺陷 简单分页有空间上的缺陷。
+在 32 位的环境下，虚拟地址空间共有 4GB（2^32）。假设一个页的大小是 4KB（2^12），每个页表项 4 个字节。
+那么 4GB 空间就需要 100 万（2^20）个页，大概 4MB 来存储页表。每个进程都有自己的虚拟地址空间（页表）。那么，100 个进程就需要 400MB 来存储页表。
+多级页表（Multi-Level Page Table）可以解决简单分页的空间上的缺陷。
+多级页表 多级页表把 100 多万个页表项再分页，用一个一级页表 4KB 表示全部的虚拟地址空间，一级页表一共有 1024 个页表项。每个一级页表项对应一个二级页表，每个二级页表也有 1024 个页表项。
+（见图：virtual_memory.drawio.html 4-6）
+二级页表可以在需要时进行创建。每个进程都有 4GB 的虚拟地址空间，而对于大多数程序来说，其使用到的空间远未达到 4GB，所以大多数的页表项都是空的。这样就可以节省下很多的空间。
+多级页表解决了空间上的问题，但是转换工序带来了时间上的开销。
+对于 64 位的系统，多级页表变成了四级目录，分别是：
+PGD（page global directory、全局页目录项） PUD（page upper directory、上层页目录项） PMD（page middle directory、中间页目录项） PTE（page table entry、页表项）。 页表缓存 根据局部性原理，程序在一段时间内的执行会集中在整个程序的其中一个部分。相应地，执行所访问的存储空间也局限于某个内存区域。
+利用这一特性，可以在 CPU 里放一块缓存，用来存放最常访问的页表项。这个缓存就是页表缓存（Translation Lookaside Buffer、TLB、快表、转址旁路缓存等）
+段页式管理 内存分段和内存分页可以组合起来在同一个系统中使用。
+先将程序划分为多个逻辑段，接着再把每个段划分为多个页。地址结构由段号、段内页号、页内位移三部分组成。
+每个程序一张段表，每个段一张页表，段表中的地址是页表的起始地址，而页表中的地址则是物理页号。
+（见图：virtual_memory.drawio.html 6-2）
+段页式地址变换中要得到物理地址须经过三次内存访问：
+访问段表，得到页表起始地址 访问页表，得到物理页号 将物理页号与页内位移组合，得到物理地址 可用软、硬件相结合的方法实现，虽然增加了硬件成本和系统开销，但提高了内存的利用率。
+reference（参考） Crash Course Computer Science（计算机科学速成课） bilibiliCrashCourse 字幕组Youtube 原视频小林coding图解系统]]></content>
+  </entry>
+  
+  <entry>
+    <title>AVL-Tree（平衡二叉树）</title>
+    <url>/post/computer-science/data-structure/avl_tree/</url>
+    <categories><category>data-structure(数据结构)</category>
+    </categories>
+    <tags>
+      <tag>computer-science(计算机科学)</tag>
+      <tag>data-structure(数据结构)</tag>
+      <tag>binary-search-tree(二叉查找树)</tag>
+    </tags>
+    <content type="html"><![CDATA[资料 {demo-c}/data-structure/balanced_binary_tree.c balanced_binary_tree.drawio.html 平衡二叉树 AVL-Tree（balanced binary tree、平衡二叉树）是一种特殊的二叉排序树。
+平衡二叉树的性质 1、满足二叉查找树的基本性质。 2、每个结点的左右子树的高度之差的绝对值（平衡因子）最多为 1。 平衡二叉树的插入 左旋和右旋 （见图：balanced_binary_tree.drawio.html 2-2）
+4 种需要平衡的场景 1、LL 型
+LL 型，直接右旋 x 结点。（见图：balanced_binary_tree.drawio.html 4-2）
+2、LR 型
+LR 型，直接右旋 x 结点，依然不平衡。（见图：balanced_binary_tree.drawio.html 4-4-2）
+需要先左旋 y 结点，再右旋 x 结点。（见图：balanced_binary_tree.drawio.html 4-4-4）
+3、RR 型
+RR 型，直接左旋 x 结点。（见图：balanced_binary_tree.drawio.html 6-2）
+4、RL 型
+RL 型，直接左旋 x 结点，依然不平衡。（见图：balanced_binary_tree.drawio.html 6-4-2）
+需要先右旋 y 结点，再左旋 x 结点。（见图：balanced_binary_tree.drawio.html 6-4-4）
+平衡二叉树的删除 平衡二叉树的删除和二插叉查找树的删除步骤是差不多的。
+区别在于，平衡二叉树删除结点之后，需要依次向上检查每一个结点是否平衡。
+reference（参考） 平衡二叉树（AVL树）及C语言实现]]></content>
+  </entry>
+  
+  <entry>
+    <title>Linux memory（Linux 内存）</title>
+    <url>/post/computer-science/operating-system/memory/linux_memory/</url>
+    <categories><category>operating-system(操作系统)</category>
+    </categories>
+    <tags>
+      <tag>computer-science(计算机科学)</tag>
+      <tag>operating-system(操作系统)</tag>
+      <tag>memory(内存)</tag>
+    </tags>
+    <content type="html"><![CDATA[资料 linux_memory.drawio.html 页式管理 Linux 内存主要采用的是页式内存管理，但是由于 Intel 处理器的发展史，Linux 无法避免分段管理。
+因为操作系统必须按照硬件结构设计，所以 Linux 的内核必须服从 CPU 的硬件结构。
+虚拟地址空间 在 Linux 中，虚拟地址空间被分为内核空间和用户空间。
+32 位系统，内核空间占用 1G，位于最高处，剩下的 3G 是用户空间。 （见图：linux_memory.drawio.html 2-2） 64 位系统，内核空间和用户空间都是 128T，分别占据整个内存空间的最高和最低处，剩下的中间部分是未定义的。 （见图：linux_memory.drawio.html 2-4） 进程在用户态时，只能访问用户空间内存。只有进入内核态后，才可以访问内核空间的内存。
+虽然每个进程都各自有独立的虚拟内存，但是虚拟内存中的内核地址，关联的是相同的物理内存。
+这样，进程切换到内核态后，就可以很方便地访问内核空间内存。
+用户空间分布 32 位系统的用户空间分布的情况：
+程序文件段（.text），包括二进制可执行代码。 已初始化数据段（.data），包括静态常量。 未初始化数据段（.bss），包括未初始化的静态变量。 堆段，包括动态分配的内存，从低地址开始向上增长。 文件映射段，包括动态库、共享内存等，从低地址开始向上增长。 栈段，包括局部变量和函数调用的上下文等。栈的大小是固定的，一般是 8 MB。当然系统也提供了参数，以便自定义大小. （见图：linux_memory.drawio.html 2-6） 在这 6 个内存段中，堆和文件映射段的内存是动态分配的。
+比如，使用 C 标准库的 malloc() 或者 mmap()，就可以分别在堆和文件映射段动态分配内存。
+malloc malloc() 不是系统调用，而是 C 库里的函数，用于动态分配内存。
+malloc 申请内存的时候，会有两种方式向操作系统申请堆内存:
+通过 brk() 系统调用从堆分配内存，通过 brk 将堆顶指针向高地址移动，获得新的内存空间。 （见图：linux_memory.drawio.html 4-2） 通过 mmap() 系统调用在文件映射区域分配内存，也就是从文件映射区拿一块内存。 （见图：linux_memory.drawio.html 4-4） malloc 源码默认定义了一个阈值：如果用户分配的内存小于 128 KB，则使用 brk；如果用户分配的内存大于 128 KB，则使用 mmap。
+分类内存采用两种方式的原因有两个：1、避免堆内存碎片；2、避免频繁的进行系统调用。
+malloc 分配的是虚拟内存。如果分配后的虚拟内存没有被访问的话，是不会将虚拟内存不会映射到物理内存，这样就不会占用物理内存了。
+只有在访问已分配的虚拟地址空间的时候，操作系统通过查找页表，发现虚拟内存对应的页没有在物理内存中，就会触发缺页中断。然后操作系统会建立虚拟内存和物理内存之间的映射关系。
+堆内存碎片 假设，先 malloc 2+2+2 K 的内存，然后 free 2+2 K。因为通过 brk 从堆空间分配的内存，并不会归还给操作系统。所以，这时 malloc 内存池就有 4K 的空闲。
+如果这个时候 malloc 小于 4K ，就可以直接从内存池分配，如果 malloc 大于 4K，就必须再从堆上申请。
+如果程序后来的 malloc 都大于 4K ，那么这个空闲的 4K 就变成了无法使用到的内存碎片。（见图：linux_memory.drawio.html 4-6）
+生产环境的程序通常会长时间运行，所以这样的碎片有可能会越积越多，尤其是如果频繁的 malloc 和 free 小块内存。
+malloc 在分配内存的时候，并不是按用户预期申请的字节数来分配内存空间大小，而是会预分配更大的空间作为内存池。具体会预分配多大的空间，跟 malloc 使用的内存管理器有关系。
+内存池 brk 和 mmap 都是系统调用。执行系统调用是要进入内核态的，然后在回到用户态，运行态的切换会耗费不少时间。 如果都用 mmap 来分配内存，等于每次都要执行系统调用。
+另外，因为 mmap 分配的内存每次释放的时候，都会归还给操作系统，于是每次 mmap 分配的虚拟地址都是缺页状态的，然后在第一次访问该虚拟地址的时候，就会触发缺页中断。
+频繁通过 mmap 分配的内存话，不仅每次都会发生运行态的切换，还会发生缺页中断（在第一次访问虚拟地址后），这样会导致 CPU 消耗较大。
+为了改进这两个问题，malloc 通过 brk 系统调用在堆空间申请内存的时候，由于堆空间是连续的，所以直接预分配更大的内存来作为内存池，当内存释放的时候，就缓存在内存池中。
+等下次在申请内存的时候，就直接从内存池取出对应的内存块就行了，而且可能这个内存块的虚拟地址与物理地址的映射关系还存在，这样不仅减少了系统调用的次数，也减少了缺页中断的次数，这将大大降低 CPU 的消耗。
+/proc/{pid}/maps 程序运行后可以通过 /proc/{pid}/maps 文件查看进程的内存分布情况。
+02dc7000-02de8000 rw-p 00000000 00:00 0 [heap] 02de8000 - 02dc7000 = 21000，也就是在 heap（堆上）分配了 21000 字节。如果 malloc 是通过 mmap 分配的，右边显示 [heap] 的那个位置就啥都没有。
+需要注意的是，程序中返回的地址应该是 02dc7010 而不是 02dc7000。前面的 16 字节（0x10）是内存块的头信息。内存块头信息在 《Linux\Unix 系统编程手册》 第 7 章里有提到。
+图片：linux-memory.drawio/6-2、内存块头信息 free 如果 malloc 通过 brk 方式申请的内存，free 内存后，堆内存还存在。这是因为内存会被放入 malloc 的内存池里，当进程再次申请内存时就可以直接复用。当进程退出后，操作系统就会回收进程的所有资源。
+如果 malloc 通过 mmap 方式申请的内存，free 释放内存后就会立刻归还给操作系统。也就是，如果是通过 brk 方式申请的内存，free 后，依然可以在 /proc/{pid}/maps 文件里看到，因为内存还没有被归还给操作系统。如果是通过 mmap 方式申请的内存，free 后，就看不到了。
+free 函数使用的时候只传入一个内存地址，没有传入内存大小。内存大小被存在了这个指针指向的内存块的内存块的头信息里。
+reference（参考） Crash Course Computer Science（计算机科学速成课） bilibiliCrashCourse 字幕组Youtube 原视频小林coding图解系统Linux 文档malloc(3) - allocate and free dynamic memoryproc(5) - process information pseudo-filesystem《Linux\Unix 系统编程手册》 第 7 章 ]]></content>
+  </entry>
+  
+  <entry>
     <title>使用 Jekyll 主题</title>
     <url>/post/computer-science/application/jekyll/jekyll-theme/</url>
     <categories><category>application(应用)</category>
@@ -415,6 +521,41 @@ If you don’t know what version to install and you’re getting started with Ru
 &gt; bundle add webrickFetching gem metadata from https://rubygems.org/..........Resolving dependencies...Fetching gem metadata from https://rubygems.org/..........Resolving dependencies... 等待安装完成，应该就可以使用 jekyll serve 命令了。
 推送项目到 GitHub Pages GitHub Pages 官方文档：https://pages.github.com/按照要求建一个名字叫 {username}.github.io 仓库，然后把项目推上去就行了。
 然后就可以通过 https://{username}.github.io 访问了。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>BT 种子和磁力链接</title>
+    <url>/post/computer-science/protocol/bit-torrent/</url>
+    <categories><category>protocol(协议)</category>
+    </categories>
+    <tags>
+      <tag>computer-science(计算机科学)</tag>
+      <tag>protocol(协议)</tag>
+    </tags>
+    <content type="html"><![CDATA[BT 种子 BT 种子，实际上指的是由 BitTorrent 协议所生成的一个包含资源信息的文件。
+与传统的网络传输协议不同，BitTorrent 协议是一种以 P2P（peer-to-peer、用户对用户）模式为主的资源分享协议。采用的是一种去中心化的思想，不需要一个专门的文件发布者或者发布平台。
+从理论上来说，一个 BT 种子只要发布了，种子所包含的资源就永远存在于互联网上。
+平常所使用的 HTTP、FTP 等协议需要一个中心发布者在网络上发布文件，即一种点对多的模式。当然，如果中心发布者由于某种原因被封了或者发布者删除了资源，那么就无法下载资源了。
+BitTorrent BitTorrent 协议的思想是将一个文件划分为大小相等的 n 块，每块大小必须为 2 的整数次方。
+例如一个 100M 的文件，按照每块 1024kb 的大小被分为 100 个小块，每块中包含索引信息和 Hash 值，而我们的下载过程实际上就是块的交换过程。
+BitTorrent 协议的资源发布者会根据要求，制作一个包含资源下载信息，例如 Tracker 服务器地址、文件大小、文件名、块文件大小等信息的 .torrent 文件，这个过程也就是平时说的做种。
+如果要下载 BT 资源，首先要得到对应的 .torrent 文件，然后用专门的下载软件，例如 BitComet（比特彗星），下载过程大概为：
+1、读取 .torrent 文件信息，载入内存。 2、得到文件内的 Tracker 地址，连接 Tracker 服务器。 3、Tracker 服务器回应下载请求，记录你的 IP 并告知其它下载者的 IP 地址。 4、你与其他在线的下载者连接，交换各自没有的块。 5、验证得到的块信息，若不同，则需要重新下载。 磁力链接 由上文可以看出，Tracker 是很重要的一个东西。一但 Tracker 服务器被封，就无法进行下载了。由此，Magnet URI scheme（磁力链接）诞生了。
+磁力链接，是对等网络中进行信息检索和下载文档的电脑程序。和基于位置连接的统一资源定位符不同，磁力链接是基于 metadata（元数据）文件内容，属于统一资源名称。
+也就是说，磁力链接不基于文档的IP地址或定位符，而是在分布式数据库中，通过散列函数值来识别、搜索来下载文档。
+因为不依赖一个处于启动状态的主机来下载文档，所以特别适用没有中心服务器的对等网络。
+磁力链接利用 DHT（distributed hash table、分布式哈希表）和 PEX（peer exchange、节点信息交换）实现了资源的随意传播，根本无法禁止。
+磁力链接下载的本质是将每一个人都变为 Tracker 服务器，将资源与下载者对应起来，每位下载者保存部分信息。这样，在下载资源时，只需寻找拥有所需资源的下载者。
+简单理解就是，A 认识 B，B 认识 C，C 认识 D 和 E。如果 A 想认识 E，就可以通过 B 和 C 的介绍来认识 D，不需要 A 一个个去寻找 E。
+magnet:?xt=urn:btih:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 上面是一个常见的磁力链接。
+magnet：为协议名。 xt：exact topic，资源定位点。 urn：Uniform Resource Name，资源名。 btih：BitTorrent info hash，表示种子散列函数。 最主要的就是 btih 后面唯一的一串 16 进制的数字。 图种 图种就是把包含 BT 种子的压缩文件隐藏在图片中。
+下面的操作是在 windows 11 系统环境下操作的。
+需要准备一张图片 1.jpg 和一个压缩文件 2.rar。然后新建一个 .bat 后缀的批处理文件，把下面的代码放进去。
+1 copy /b 1.jpg+2.rar 3.jpg copy /b 是一个基础的 DOS 命令，作用是合并文件。
+把图片、压缩文件、批处理文件放在同一个目录。然后执行批处理文件，之心完成后就会得到一张图片 3.jpg。
+这个图片实际上同时文件含了图片和压缩文件。如果把图片 3.jpg 的后缀名改成 .rar，这个时候图片就变成了压缩文件。
+这个压缩文件是可以解压的，压缩文件的内容就是 2.rar 的内容。
 ]]></content>
   </entry>
   

@@ -6,25 +6,7 @@
     <description>Recent content in Tags on 帕里特档案馆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 07 Oct 2022 20:00:00 +0800</lastBuildDate><atom:link href="/tags/rss.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>computer-science(计算机科学)</title>
-      <link>/tags/computer-science%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/</link>
-      <pubDate>Fri, 07 Oct 2022 20:00:00 +0800</pubDate>
-      
-      <guid>/tags/computer-science%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>software-architecture(软件架构)</title>
-      <link>/tags/software-architecture%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/</link>
-      <pubDate>Fri, 07 Oct 2022 20:00:00 +0800</pubDate>
-      
-      <guid>/tags/software-architecture%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Sat, 24 Sep 2022 08:00:00 +0800</lastBuildDate><atom:link href="/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>golang</title>
       <link>/tags/golang/</link>
@@ -71,6 +53,15 @@
     </item>
     
     <item>
+      <title>computer-science(计算机科学)</title>
+      <link>/tags/computer-science%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/</link>
+      <pubDate>Tue, 20 Sep 2022 20:00:00 +0800</pubDate>
+      
+      <guid>/tags/computer-science%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>GitHub Pages</title>
       <link>/tags/github-pages/</link>
       <pubDate>Tue, 20 Sep 2022 20:00:00 +0800</pubDate>
@@ -85,15 +76,6 @@
       <pubDate>Tue, 20 Sep 2022 20:00:00 +0800</pubDate>
       
       <guid>/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>genericity</title>
-      <link>/tags/genericity/</link>
-      <pubDate>Sat, 03 Sep 2022 08:00:00 +0800</pubDate>
-      
-      <guid>/tags/genericity/</guid>
       <description></description>
     </item>
     
@@ -116,6 +98,33 @@
     </item>
     
     <item>
+      <title>memory(内存)</title>
+      <link>/tags/memory%E5%86%85%E5%AD%98/</link>
+      <pubDate>Mon, 01 Aug 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/tags/memory%E5%86%85%E5%AD%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>operating-system(操作系统)</title>
+      <link>/tags/operating-system%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Mon, 01 Aug 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/tags/operating-system%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>binary-search-tree(二叉查找树)</title>
+      <link>/tags/binary-search-tree%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/</link>
+      <pubDate>Sun, 31 Jul 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/tags/binary-search-tree%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Jekyll</title>
       <link>/tags/jekyll/</link>
       <pubDate>Thu, 28 Apr 2022 08:00:00 +0800</pubDate>
@@ -130,6 +139,15 @@
       <pubDate>Thu, 28 Apr 2022 08:00:00 +0800</pubDate>
       
       <guid>/tags/ruby/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>protocol(协议)</title>
+      <link>/tags/protocol%E5%8D%8F%E8%AE%AE/</link>
+      <pubDate>Tue, 14 Dec 2021 20:00:00 +0800</pubDate>
+      
+      <guid>/tags/protocol%E5%8D%8F%E8%AE%AE/</guid>
       <description></description>
     </item>
     

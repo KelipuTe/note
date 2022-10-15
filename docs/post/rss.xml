@@ -6,7 +6,7 @@
     <description>Recent content in Posts on 帕里特档案馆</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 07 Oct 2022 20:00:00 +0800</lastBuildDate><atom:link href="/post/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Sep 2022 20:00:00 +0800</lastBuildDate><atom:link href="/post/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何使用档案馆</title>
       <link>/post/how_to_use/</link>
@@ -14,15 +14,6 @@
       
       <guid>/post/how_to_use/</guid>
       <description>如何使用档案馆。</description>
-    </item>
-    
-    <item>
-      <title>软件架构评估</title>
-      <link>/post/computer-science/software-architecture/architecture_evaluation/</link>
-      <pubDate>Fri, 07 Oct 2022 20:00:00 +0800</pubDate>
-      
-      <guid>/post/computer-science/software-architecture/architecture_evaluation/</guid>
-      <description>软件架构评估。架构权衡分析方法。</description>
     </item>
     
     <item>
@@ -62,15 +53,6 @@
     </item>
     
     <item>
-      <title>Golang 泛型的基本使用方式</title>
-      <link>/post/computer-science/programming-language/golang/genericity/</link>
-      <pubDate>Sat, 03 Sep 2022 08:00:00 +0800</pubDate>
-      
-      <guid>/post/computer-science/programming-language/golang/genericity/</guid>
-      <description>Golang 泛型的基本使用方式。泛型变量的类型断言。</description>
-    </item>
-    
-    <item>
       <title>使用 Golang 开启 HTTP 服务</title>
       <link>/post/computer-science/programming-language/golang/web/http/</link>
       <pubDate>Sat, 03 Sep 2022 08:00:00 +0800</pubDate>
@@ -85,16 +67,43 @@
       <pubDate>Fri, 05 Aug 2022 08:00:00 +0800</pubDate>
       
       <guid>/post/computer-science/data-structure/2-3-4_tree/</guid>
-      <description>2-3-4 树的插入和删除。</description>
+      <description>2-3-4 树的插入、平衡、删除。</description>
     </item>
     
     <item>
       <title>2-3 树</title>
       <link>/post/computer-science/data-structure/2-3_tree/</link>
-      <pubDate>Sun, 31 Jul 2022 08:00:00 +0800</pubDate>
+      <pubDate>Tue, 02 Aug 2022 08:00:00 +0800</pubDate>
       
       <guid>/post/computer-science/data-structure/2-3_tree/</guid>
-      <description>2-3 树的插入和删除。</description>
+      <description>2-3 树的插入、平衡、删除。</description>
+    </item>
+    
+    <item>
+      <title>Virtual Memory（虚拟内存）</title>
+      <link>/post/computer-science/operating-system/memory/virtual_memory/</link>
+      <pubDate>Mon, 01 Aug 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/operating-system/memory/virtual_memory/</guid>
+      <description>虚拟内存、段式管理、页式管理、段页式管理</description>
+    </item>
+    
+    <item>
+      <title>AVL-Tree（平衡二叉树）</title>
+      <link>/post/computer-science/data-structure/avl_tree/</link>
+      <pubDate>Sun, 31 Jul 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/data-structure/avl_tree/</guid>
+      <description>平衡二叉树的插入、平衡、删除。</description>
+    </item>
+    
+    <item>
+      <title>Linux memory（Linux 内存）</title>
+      <link>/post/computer-science/operating-system/memory/linux_memory/</link>
+      <pubDate>Thu, 12 May 2022 08:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/operating-system/memory/linux_memory/</guid>
+      <description>虚拟地址空间、内存空间分布、内存碎片、内存池</description>
     </item>
     
     <item>
@@ -113,6 +122,15 @@
       
       <guid>/post/computer-science/application/jekyll/jekyll-start/</guid>
       <description>Jekyll 安装，建立站点，发布到 GitHub Pages 的过程。</description>
+    </item>
+    
+    <item>
+      <title>BT 种子和磁力链接</title>
+      <link>/post/computer-science/protocol/bit-torrent/</link>
+      <pubDate>Tue, 14 Dec 2021 20:00:00 +0800</pubDate>
+      
+      <guid>/post/computer-science/protocol/bit-torrent/</guid>
+      <description>BT 种子是什么，BT 下载的原理，如何制作图种。</description>
     </item>
     
   </channel>
