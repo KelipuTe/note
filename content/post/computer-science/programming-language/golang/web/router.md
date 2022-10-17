@@ -16,7 +16,7 @@ tags:
 - router(路由)
 ---
 
-> go version go1.19
+> go version go1.19 windows/amd64
 
 ### 资料
 

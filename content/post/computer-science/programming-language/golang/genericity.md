@@ -14,6 +14,8 @@ tags:
 - genericity
 ---
 
+> go version go1.19 windows/amd64
+
 ### 资料
 
 - {demo-golang}/demo/genericity/
