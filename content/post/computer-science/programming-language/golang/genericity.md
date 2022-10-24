@@ -18,7 +18,7 @@ tags:
 
 ### 资料
 
-- {demo-golang}/demo/genericity/
+- [{demo-golang}](https://github.com/KelipuTe/demo-golang)/demo/genericity/
 
 ### reference（参考）
 

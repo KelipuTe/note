@@ -19,7 +19,7 @@ tags:
 
 ### 资料
 
-- {demo-golang}/demo/web/http/
+- [{demo-golang}](https://github.com/KelipuTe/demo-golang)/demo/web/http/
 
 ### 开启 HTTP 服务
 

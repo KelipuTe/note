@@ -20,7 +20,7 @@ tags:
 
 ### 资料
 
-- {demo-golang}/demo/web/router/
+- [{demo-golang}](https://github.com/KelipuTe/demo-golang)/demo/web/router/
 - <a href="/drawio/computer-science/programming-language/golang/web.drawio.html">web.drawio.html</a>
 
 ### 路由
