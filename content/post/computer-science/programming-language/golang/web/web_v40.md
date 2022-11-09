@@ -9,6 +9,8 @@ categories:
 - golang
 
 tags:
+- computer-science(计算机科学)
+- programming-language(编程语言)
 - golang
 - web
 - http
