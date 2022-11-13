@@ -6,15 +6,16 @@ title: "使用 Golang 实现 Web 框架 -- middleware(中间件)"
 summary: "中间件的原理和实现方式。"
 
 categories:
-- golang
+- framework(框架)
 
 tags:
 - computer-science(计算机科学)
 - programming-language(编程语言)
-- golang
+- framework(框架)
 - web
 - http
 - middleware(中间件)
+- golang
 ---
 
 > go version go1.19 windows/amd64
@@ -22,7 +23,7 @@ tags:
 ### 资料
 
 - [{demo-golang}](https://github.com/KelipuTe/demo-golang)/demo/web/middleware/
-- <a href="/drawio/computer-science/programming-language/golang/web.drawio.html">web.drawio.html</a>
+- <a href="/drawio/computer-science/programming-language/web/web.drawio.html">web.drawio.html</a>
 
 ### 中间件
 

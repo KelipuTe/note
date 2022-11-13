@@ -4,6 +4,12 @@ date: 2022-10-24 08:00:00 +0800
 lastmod: 2022-10-24 08:00:00 +0800
 title: "临时笔记"
 summary: "自留地，请勿对号入座"
+
+categories:
+- private-plot(自留地)
+
+tags:
+- private-plot(自留地)
 ---
 
 ###
