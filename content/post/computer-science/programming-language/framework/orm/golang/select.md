@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 date: 2022-10-10 08:00:00 +0800
 lastmod: 2022-10-10 08:00:00 +0800
 title: "使用 Golang 实现 ORM 框架 -- SELECT"
@@ -89,7 +89,3 @@ For each table specified, you can optionally specify an alias.
 ```
 tbl_name [[AS] alias]
 ```
-
-#### aggregate（聚合函数）
-
-- [12.20 Aggregate Functions](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions-and-modifiers.html)
