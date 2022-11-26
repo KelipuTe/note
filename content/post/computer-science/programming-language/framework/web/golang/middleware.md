@@ -2,7 +2,7 @@
 draft: false
 date: 2022-09-17 08:00:00 +0800
 lastmod: 2022-09-17 08:00:00 +0800
-title: "使用 Golang 实现 Web 框架 -- middleware(中间件)"
+title: "使用 Golang 实现简单的 Web 框架 -- middleware(中间件)"
 summary: "中间件的原理和实现方式。"
 
 categories:
