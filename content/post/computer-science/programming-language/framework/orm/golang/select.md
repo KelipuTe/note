@@ -4,6 +4,7 @@ date: 2022-10-10 08:00:00 +0800
 lastmod: 2022-10-10 08:00:00 +0800
 title: "使用 Golang 实现简单的 ORM 框架 -- SELECT"
 summary: "使用 Builder 设计模式构建 MySQL 的 SELECT 语句的过程。"
+toc: true
 
 categories:
 - framework
@@ -157,3 +158,5 @@ join_specification: {
 先从最简单的 `SELECT 列 FROM 表` 开始。
 
 这里就会遇到一个问题，列和表怎么来，这就涉及到元数据的问题。
+
+未完。。。
