@@ -1,7 +1,7 @@
 ---
 draft: false
 date: 2022-04-28 08:00:00 +0800
-lastmod: 2022-04-28 20:00:00 +0800
+lastmod: 2022-04-28 08:00:00 +0800
 title: "使用 Jekyll 主题"
 summary: "Jekyll 配置主题的过程。"
 

@@ -10,16 +10,17 @@ categories:
 
 tags:
 - computer-science(计算机科学)
+- programming-language(编程语言)
 - golang
 - web
 - http
 ---
 
-> go version go1.19
+> go version go1.19 windows/amd64
 
 ### 资料
 
-- {demo-golang}/demo/web/http/
+- [{demo-golang}](https://github.com/KelipuTe/demo-golang)/demo/web/http/
 
 ### 开启 HTTP 服务
 

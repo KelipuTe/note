@@ -2,45 +2,53 @@
 draft: false
 date: 2022-09-17 08:00:00 +0800
 lastmod: 2022-09-17 08:00:00 +0800
-title: "使用 Golang 实现 Web 框架 -- middleware(中间件)"
+title: "使用 Golang 实现简单的 Web 框架 -- middleware(中间件)"
 summary: "中间件的原理和实现方式。"
 
 categories:
-- golang
+- framework(框架)
 
 tags:
 - computer-science(计算机科学)
-- golang
+- programming-language(编程语言)
+- framework(框架)
 - web
 - http
 - middleware(中间件)
+- golang
 ---
 
-> go version go1.19
+> go version go1.19 windows/amd64
 
 ### 资料
 
-- {demo-golang}/demo/web/middleware/
-- <a href="/drawio/computer-science/programming-language/golang/web.drawio.html">web.drawio.html</a>
+- [{demo-golang}](https://github.com/KelipuTe/demo-golang)/demo/web/middleware/
+- <a href="/drawio/computer-science/programming-language/framework/web/web.drawio.html">web.drawio.html</a>
 
 ### 中间件
 
-web 框架的中间件可以理解成一种 aop 方案的实现。
+web 框架的中间件可以理解成一种 aop 方案的实现。可以借助各路教程中常见的洋葱模型来理解中间件的整体结构，这里我用的是同心圆模型。
 
-可以借助洋葱模型、责任链设计模式、链式调用的概念来理解中间件的整体结构。
+中间件的同心圆模型结构示例见图：**web.drawio.html 4-2**。这玩意的核心思路就一个，一层一层的进去，一层一层的出来。
 
-中间件的结构示例见图：**web.drawio.html 4-2**。
+另外需要保证每层的数据格式都是一样的。定义数据格式可以保证，第一顺序可以换，第二可以加层或者减层。
 
-定义中间件的时候需要关注两个重要的组成部分：路由的对应的处理方法和中间件的处理方法。
+定义中间件的时候需要关注两个重要的组成部分：路由对应的处理方法和中间件的处理方法。
+
+路由对应的处理方法就是，中间件一层一层的进去之后，最里面那层和业务衔接的地方的定义。
+
+这里需要处理的是，把中间件的数据格式解包，交给业务逻辑去处理。拿到处理的结果后，在包装成中间件的数据格式，然后丢出去。
+
+中间件的处理方法就是，中间件最外面一层的外面，进入中间件的地方的定义。因为进了第一层之后，每层都是一样的，所以这里只关注最外面一层。
+
+这里需要处理的是，把请求数据包装成中间件的数据格式，然后丢进去。拿到处理的结果后，把结果处理成请求想要的响应数据，然后响应回去。
 
 这两个部分定义一起规定了中间件该怎么定义，中间件定义需要围绕这两个定义去实现，要不然调用链条串不起来。
 
 ```go
 // HTTPHandleFunc 路由对应的处理方法的定义
 type HTTPHandleFunc func(p7ctx *HTTPContext)
-```
 
-```go
 // HTTPMiddleware 中间件的处理方法的定义
 type HTTPMiddleware func(next HTTPHandleFunc) HTTPHandleFunc
 ```
@@ -59,7 +67,7 @@ func DemoMiddleware() HTTPMiddleware {
 }
 ```
 
-假设定义两个中间件。
+这里假设定义两个中间件。
 
 ```go
 func AMiddleware() HTTPMiddleware {

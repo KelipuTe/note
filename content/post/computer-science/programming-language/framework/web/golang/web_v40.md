@@ -2,29 +2,32 @@
 draft: false
 date: 2022-09-24 08:00:00 +0800
 lastmod: 2022-09-25 08:00:00 +0800
-title: "使用 Golang 实现 Web 框架 -- 复杂的 web 框架"
-summary: "使用 net/http 包，实现一个复杂的 web 框架。"
+title: "使用 Golang 实现复杂的 Web 框架"
+summary: "使用 net/http 包，实现一个复杂的 Web 框架。"
 
 categories:
-- golang
+- framework(框架)
 
 tags:
-- golang
+- computer-science(计算机科学)
+- programming-language(编程语言)
+- framework(框架)
 - web
 - http
 - router(路由)
 - middleware(中间件)
+- golang
 ---
 
-> go version go1.19
+> go version go1.19 windows/amd64
 
 ### 前言
 
 在看这篇之前，建议先看下面这几篇：
 
 - 使用 Golang 开启 HTTP 服务
-- 使用 Golang 实现 Web 框架 -- router(路由)
-- 使用 Golang 实现 Web 框架 -- middleware(中间件)
+- 使用 Golang 实现简单的 Web 框架 -- router(路由)
+- 使用 Golang 实现简单的 Web 框架 -- middleware(中间件)
 
 路由树和中间件是 web 框架的核心。其他的功能，都是在这两个核心的基础上，再增加亿点点细节而已。
 
@@ -206,7 +209,7 @@ func (p7this *ServiceManager) Start() {
 }
 ```
 
-在可以主动介入程序运行之后，就可以设计主动拒绝新请求的逻辑了。这样可以实现服务不完全停止的情况下，拒绝对外服务
+在可以主动介入程序运行之后，就可以设计主动拒绝新请求的逻辑了。这样可以实现服务不完全停止的情况下，拒绝对外服务。
 
 因为服务停止不仅仅是不对外服务这么简单，在服务真正的停止之前，还有很多善后的工作需要做。
 

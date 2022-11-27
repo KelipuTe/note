@@ -1,7 +1,7 @@
 ---
 draft: false
-date: 2022-09-20 20:00:00 +0800
-lastmod: 2022-09-20 20:00:00 +0800
+date: 2022-09-20 08:00:00 +0800
+lastmod: 2022-09-20 08:00:00 +0800
 title: "使用 Hugo 和 GitHub Pages 搭建站点"
 summary: "Hugo 安装，建立站点，配置主题，发布到 GitHub Pages 的过程。"
 
@@ -121,6 +121,31 @@ GitHub 项目地址 [MeiK2333/github-style](https://github.com/MeiK2333/github-s
 push 到 github.io 的时候，如果使用的是 **publish/** 目录。那么要 push **publish/** 目录上去，然后设置 GitHub Pages 的 Branch 为 **master** 和 **/(root)**。
 
 如果使用的是 **docs/** 目录，那么就要 push 整个项目上去，然后设置 GitHub Pages 的 Branch 为 **master** 和 **docs/**。
+
+### 文本头部信息
+
+---
+draft: true
+date: 2000-01-01 08:00:00 +0800
+lastmod: 2002-01-01 08:00:00 +0800
+title: "title"
+summary: "summary"
+
+categories:
+- categories(分类)
+
+tags:
+- tags1(标签1)
+- tags2(标签2)
+---
+
+- draft：是不是草稿，true=是；false=不是。启动的时候带 `--buildDrafts` 选项就可以看到草稿的内容。
+- date：创建时间
+- lastmod：最后修改时间
+- title：文本标题
+- summary：文本概述 
+- categories：文本分类，一般一个 
+- tags：文本标签，可以多个
 
 ### reference（参考）
 

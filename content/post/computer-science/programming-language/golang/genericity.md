@@ -10,13 +10,16 @@ categories:
 
 tags:
 - computer-science(计算机科学)
+- programming-language(编程语言)
 - golang
-- genericity
+- genericity(泛型)
 ---
+
+> go version go1.19 windows/amd64
 
 ### 资料
 
-- {demo-golang}/demo/genericity/
+- [{demo-golang}](https://github.com/KelipuTe/demo-golang)/demo/genericity/
 
 ### reference（参考）
 

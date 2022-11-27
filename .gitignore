@@ -1,5 +1,10 @@
+# Jet Brains 全家桶的配置
 .idea/
+
+# Visual Studio Code 的配置
 .vscode/
 
+# draw.io 的备份文件
 *.bkp
+
 *.dtmp
