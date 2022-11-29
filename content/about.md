@@ -14,7 +14,7 @@ lastmod: 2022-09-25 08:00:00 +0800
 
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
 
-另外，如果访客您觉得毫无干货或者内容非常水，那么非常抱歉，浪费了您宝贵的时间。
+另外，如果访客您觉得毫无干货或者内容非常水，那么非常抱歉。
 
 站点基于 [hugo 0.103.1 extended 版本](https://github.com/gohugoio/hugo/releases) 搭建。使用的主题是 [Hugo NexT](https://themes.gohugo.io/themes/hugo-theme-next)。
 

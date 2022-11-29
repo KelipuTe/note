@@ -4,6 +4,7 @@ date: 2022-09-24 08:00:00 +0800
 lastmod: 2022-09-25 08:00:00 +0800
 title: "使用 Golang 实现复杂的 Web 框架"
 summary: "使用 net/http 包，实现一个复杂的 Web 框架。"
+toc: true
 
 categories:
 - framework(框架)
@@ -19,6 +20,8 @@ tags:
 - golang
 ---
 
+> CPU AMD64(x86_64)<br/>
+> Windows 11 家庭版<br/>
 > go version go1.19 windows/amd64
 
 ### 前言

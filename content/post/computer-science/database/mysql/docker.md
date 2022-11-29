@@ -15,6 +15,7 @@ tags:
 - docker
 ---
 
+> CPU AMD64(x86_64)<br/>
 > Windows 11 家庭版<br/>
 > Docker v20.10.17<br/>
 > docker images mysql 8.0

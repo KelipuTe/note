@@ -17,10 +17,11 @@ tags:
 
 ### 环境
 
-- Windows 11 家庭版
-- Ruby 3.1.2
-- RubyGems 3.3.7
-- Jekyll 4.2.2
+> CPU AMD64(x86_64)<br/>
+> Windows 11 家庭版<br/>
+> Ruby 3.1.2<br/>
+> RubyGems 3.3.7<br/>
+> Jekyll 4.2.2
 
 ### 安装 Jekyll
 

@@ -14,9 +14,9 @@ tags:
 - GitHub Pages
 ---
 
-- Windows 11 家庭版
-- cpu amd64
-- hugo 0.103.1
+> CPU AMD64(x86_64)<br/>
+> Windows 11 家庭版<br/>
+> hugo 0.103.1
 
 ### Hugo 文档
 

@@ -3,7 +3,8 @@ draft: false
 date: 2022-09-17 08:00:00 +0800
 lastmod: 2022-09-17 08:00:00 +0800
 title: "使用 Golang 实现简单的 Web 框架 -- middleware(中间件)"
-summary: "中间件的原理和实现方式。"
+summary: "Web 框架中的中间件的原理和实现方式。"
+toc: true
 
 categories:
 - framework(框架)
@@ -18,6 +19,8 @@ tags:
 - golang
 ---
 
+> CPU AMD64(x86_64)<br/>
+> Windows 11 家庭版<br/>
 > go version go1.19 windows/amd64
 
 ### 资料

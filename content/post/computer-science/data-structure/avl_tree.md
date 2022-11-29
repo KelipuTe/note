@@ -14,6 +14,11 @@ tags:
 - binary-search-tree(二叉查找树)
 ---
 
+> CPU AMD64(x86_64)<br/>
+> Windows 11 家庭版<br/>
+> Cygwin<br/>
+> gcc version 11.2.0
+
 ### 资料
 
 - {demo-c}/data-structure/balanced_binary_tree.c

@@ -13,6 +13,11 @@ tags:
 - data-structure(数据结构)
 - b-tree
 ---
+
+> CPU AMD64(x86_64)<br/>
+> Windows 11 家庭版<br/>
+> Cygwin<br/>
+> gcc version 11.2.0
   
 ### 资料
 
