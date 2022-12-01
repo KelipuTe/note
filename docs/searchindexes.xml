@@ -1,17 +1,126 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>访客如何使用档案馆</title><url>/post/how_to_use/</url><categories/><tags/><content type="html">前言 帕里特档案馆（重建中，旧篇总计 283，迁移完成 8，新增 11），是个个人档案馆。
 档案馆的内容主要是本人的学习笔记、对学到的东西的解释和思考、对实操过程的记录。
-这些玩意本质上是当时的本人给以后的本人的留言，不是教程，更不是论文。
+这些玩意本质上是当时的我给以后的我的留言。它们不是教程，更不是论文。
+写它们的目的是，如果以后的我忘记了这块的内容，那么现在的我可以把以后的我教会。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
-另外，如果访客您觉得毫无干货或者内容非常水，那么非常抱歉，浪费了您宝贵的时间。
+另外，如果访客您觉得毫无干货或者内容非常水，那么非常抱歉。
 如何使用档案馆 档案馆的内容分为三个部分：
-文本 代码，借助 github 图，借助 draw.io 如果文本使用到了代码或者图片，通常在文本的最前面会有一个标题为 资料 的部分。
+文本 代码，借助 github 图，借助 draw.io 如果文本使用到了代码或者图，通常在文本的最前面会有一个标题为 资料 的部分。
 如果是类似 {xxx}/aaa/bbb/ 这种格式的，就是 github 上的项目的代码，需要去 github 上查看。 其中 {demo-c}、{tcp-service-c} 是私有仓库，暂不对外开放。
 关于项目的代码中的符号命名，详见 符号命名 这一篇。
 实际开发中符号命名规则应该和团队的风格保持统一，这套符号命名规则是本人的个人喜好。
 如果访客您非要说不符合哪里哪里的规范，怎么怎么有问题，那么访客您说的都对。
-如果是类似 xxx.drawio.html 这种格式的，就是 draw.io 生成的 html，直接打开就可以预览。 参考到的外部资料通常在文本的最后面会有一个标题为 reference（参考） 的部分。</content></entry><entry><title>符号命名</title><url>/post/computer-science/programming-language/symbol_naming/</url><categories><category>programming-language(编程语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag></tags><content type="html">前言 实际开发中符号命名规则应该和团队的风格保持统一，这套符号命名规则是本人的个人喜好。
+如果是类似 xxx.drawio.html 这种格式的，就是 draw.io 生成的 html，直接打开就可以预览。 参考到的外部资料通常在文本的最后面会有一个标题为 reference（参考） 的部分。</content></entry><entry><title>使用 Golang 实现 ORM 框架 -- 其他辅助工具</title><url>/post/computer-science/programming-language/framework/orm/golang/middleware/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>orm</tag><tag>middleware(中间件)</tag><tag>mysql</tag><tag>golang</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+资料 {orm-go}
+/v20/ orm.drawio.html 注意：orm.drawio.html 里面的这个类图和流程图都是和 v20 版本的代码对应的最终形态。 中间件 ORM 框架的中间件和 web 框架的中间件的原理是一样的，这里就不重复了。这里需要考虑的是中间件注册在哪里，查询构造器上显然是不合适的，这里可以考虑和方言抽象一样，放到数据库抽象上去。在执行查询之前，先去数据库实例上把中间件拿出来，然后把执行查询的逻辑放在最里面。
+另外，需要定义中间件入参和出参的数据格式。这里和 web 框架一样，要不然套不起来。但是这里比 web 框架会复杂一点，在 web 框架那里入参和出参是一样的，整条链路上都只需要处理 TCP 连接的输入流和输出流。ORM 框架这里，输入的参数有 4 种，即 4 种查询构造器。输出的参数有两种，即数据库执行 SQL 返回的两大类结果。
+所以需要把 4 中查询构造器封装到中间件入参里面，入参包括查询构造器的类型和查询构造器的本体。把数据库执行 SQL 返回的两大类结果封装到中间件出参里面，出参包括数据库执行 SQL 返回的两大类结果以及异常。这里又有一个问题了，SQL 语句执行完了，怎么处理返回回来的被封装的两大类结果。
+可以注意到，SELECT 和 INSERT、UPDATE、DELETE 是分别对应数据库执行 SQL 返回的两类结果的，而且前面执行 SQL 的时候也是分别使用 query() 和 exec() 的。所以在最外面，也就是进入中间件链条的位置，是可以知道执行的到底是哪类 SQL 语句的。所以对于数据库返回的结果，就可以在这里进行类型断言。</content></entry><entry><title>使用 Golang 实现 ORM 框架 -- INSERT、UPDATE、DELETE</title><url>/post/computer-science/programming-language/framework/orm/golang/insert_update_delete/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>orm</tag><tag>mysql</tag><tag>sqlite3</tag><tag>golang</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+资料 {orm-go}
+/v20/ orm.drawio.html 注意：orm.drawio.html 里面的这个类图和流程图都是和 v20 版本的代码对应的最终形态。 前言 这篇是接着 SELECT 后面的。INSERT、UPDATE、DELETE 三个加起来都没有 SELECT 复杂。其中 INSERT 因为涉及到不同数据库的方言的处理，相对 UPDATE 和 DELETE 会更复杂一点。
+本篇主要涉及：INSERT 语句的构造过程、不同数据库 INSERT 语句不一样的问题的处理方式、UPDATE 语句的构造过程、DELETE 语句的构造过程。
+分析 INSERT 语句的使用场景 和 SELECT 的分析套路一样。
+这里实现的是一个简单的 ORM，INSERT 的部分就先处理下面这几种。
+INSERT INTO 表(列) VALUES(值) INSERT INTO 表(列) VALUES(值1),(值2) INSERT INTO 表(列) VALUES(值) ON DUPLICATE KEY UPDATE 列=VALUES(值) INSERT INTO 表(列) VALUES(值) ON DUPLICATE KEY UPDATE 列=值 从上面的 SELECT 语句结构可以看出，SELECT 语句大致可以分成几个部分。
+INSERT INTO 表(列) VALUES(值) ON DUPLICATE KEY UPDATE (表达式) 然后再去看一下 MySQL 的官方文档中对 INSERT 语句的定义和说明。
+MySQL INSERT Statement MySQL 8 官方文档中，关于 INSERT 语句的描述：
+13.2.6 INSERT Statement
+把文档给出的结构和上面的那几种比较一下，提取出文档中相关的描述部分，大概是下面这部分。
+INSERT [INTO] tbl_name [(col_name [, col_name] ...)] { {VALUES | VALUE} (value_list) [, (value_list)] ... } [ON DUPLICATE KEY UPDATE assignment_list] assignment: col_name = value | [tbl_name.]col_name assignment_list: assignment [, assignment] ... 构造 INSERT 语句 从最简单的开始 先从最简单的 INSERT INTO 表(列) VALUES(值) 开始。
+表和列很熟悉了，直接从元数据里搞。值也是一样的，构建元数据的时候，只通过反射获取了结构体属性的类型，值就是把结构体属性上的值也拿出来。然后按照把语句拼起来就可以了。INSERT 单个值的搞定了，多个值的循环单个值的步骤就行了。
+提取查询构造器 在构造 INSERT 语句的时候会发现，在构造 SELECT 语句的时候使用到的一些构造的方法，在构造 INSERT 语句的时候也会用的到。所以这里可以提取一个抽象出来，就叫它 SQL 查询构造器好了。这样后面 UPDATE 和 DELETE 语句构造的时候也可以用的上，不用重复的去写。创建 SELECT 查询构造器或者 INSERT 查询构造器这些具体的构造器的时候，组合一个 SQL 查询构造器进去就行了。
+处理 ON CONFLICT ON CONFLICT 在 MySQL 里面就是指的 ON DUPLICATE KEY UPDATE 也可以叫 UPSERT。这里单独拿出来说它是因为 ORM 框架一般不会只支持一种数据库。当需要支持多种数据库的时候，不同数据库的 SQL 语法之间冲突的部分就需要处理。这里用 MySQL 和 SQLite3 做演示。
+在 MySQL 里面，语句是这样的：
+INSERT INTO 表(列) VALUES(值) ON DUPLICATE KEY UPDATE 列=VALUES(列) INSERT INTO 表(列) VALUES(值) ON DUPLICATE KEY UPDATE 列=值 SQLite 官方文档中，关于 INSERT 语句和 ON CONFLICT 的描述：
+INSERT
+The ON CONFLICT Clause
+在 SQLite3 里面，语句是这样的：
+INSERT INTO 表(列) VALUES(值) ON CONFLICT (列) DO UPDATE SET 列=excluded.列; INSERT INTO 表(列) VALUES(值) ON CONFLICT (列) DO UPDATE SET 列=值; 这两个数据库的 ON CONFLICT 语法结构是不一样的，所以在构造 SQL 语句的之后需要分开处理。这里需要对两个数据库的 ON CONFLICT 进行抽象。然后通过观察每个数据库的 SQL 语句，也就是 ON CONFLICT 后面的两种赋值方式，也会得到一个抽象。同样的，MySql 官方文档里也已经告诉你了，这个抽象叫 assignment_list（这里叫赋值表达式）。这个东西 UPDATE 语句里面也会用到，后面再说。
+处理的时候先处理完 INSERT 前面一样的部分，然后再处理 ON CONFLICT 的部分。这个地方处理的时候，会有一个从处理公共部分的 INSERT 查询构造器跳到处理不同部分的 ON CONFLICT 查询构造器的步骤。这里可以用在 INSERT 查询构造器里面定义一个抽象的方式，然后构造 INSERT 查询构造器的时候把 ON CONFLICT 查询构造器传进来。
+另外一个思路是，INSERT 查询构造器处理完公共部分之后，把自己交给一个 ON CONFLICT 查询构造器。完了 ON CONFLICT 查询构造器处理完之后，在把他自己交给刚才的 INSERT 查询构造器，由 INSERT 查询构造器继续后面的执行 SQL 和处理结果集的步骤。
+关于方言抽象的注入 从上面的过程可以发现，方言抽象是需要注入到 INSERT 查询构造器里面的。这就意味着每次创建新的 INSERT 查询构造器的时候，都需要根据到底是生成哪个数据库的 SQL 语句进而注入对应的方言抽象的实例。这显然是非常麻烦的，有一个更好的位置可以放这个方言抽象，这个位置就是数据库抽象。
+仔细想一下，不管是哪种具体的查询构造器，构造出来的语句最终都是要靠数据库实例去执行的。而且方言本身也是因为需要使用不同的数据库从而产生的设计，所以把方言放到数据库抽象里面是最合适的。查询构造器在构造 SQL 的时候，就可以直接调用数据库实例里面的方言实例去处理不同数据库里面冲突的部分。
+INSERT 语句就差不多了 UPDATE UPDATE 就比较简单了。同样的，把文档放在这里，然后把相关的描述部分提取出来。
+13.2.15 UPDATE Statement
+UPDATE table_reference SET assignment_list [WHERE where_condition] table_reference 和 where_condition 在 SELECT 那里处理过，assignment_list 在 INSERT 那里处理过。
+注意这个 assignment（赋值语句） assignment 接口有两种实现。一个是列，对应 列=VALUES(列) 这种语句。另一种是常规的赋值语句，对应 列=值 这种的。这里注意一下 列=VALUES(列) 这种的，这种语句在 INSERT 的不同的数据库方言里和 UPDATE 语句里面，它的实现又是各不相同的。目前的实现是先把 assignment 接口断言成列，然后不同的数据库方言和 UPDATE 自己实现自己的逻辑。
+DELETE DELETE 更简单。同样的，把文档放在这里，然后把相关的描述部分提取出来。
+13.2.2 DELETE Statement
+DELETE FROM tbl_name [WHERE where_condition] table_reference 在 SELECT 那里处理过，assignment_list 在 INSERT 那里处理过。
+执行语句 这三个语句的执行和 SELECT 不一样，它们是没有处理结果集一说的，都是返回影响了多少行。顶多 INSERT 有一个返回插入的行的 id 的功能。所以这里需要再写一套和数据库交互的逻辑，因为返回值不一样。如果是在 Golang 里面，执行 SQL 调用的方法就是不一样的，SELECT 用的是 query() 这三个用的是 exec()。
+全流程结束 到这里，生成 INSERT、UPDATE、DELETE 语句、执行语句、处理返回值，就都处理完了。同样的，设计上的东西，看类图、流程图会更加直观。细节上的实现，直接看代码，这个靠说是说不太清楚的。</content></entry><entry><title>使用 Golang 实现简单的 ORM 框架 -- SELECT</title><url>/post/computer-science/programming-language/framework/orm/golang/select/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>orm</tag><tag>mysql</tag><tag>golang</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+资料 {orm-go}/v20/ orm.drawio.html 注意：orm.drawio.html 里面的这个类图和流程图都是和 v20 版本的代码对应的最终形态。 前言 注意，这里实现的是一个简单的 ORM 框架，并不是一个完备的 ORM 框架，主要目的是研究原理和设计。
+ORM 框架的核心功能主要有两个：1、把数据结构转换成 SQL 语句。2、处理 SQL 语句的执行结果。其他的功能，都是在这两个功能的基础上，再增加亿点点细节而已。
+数据结构转换成 SQL 语句这没啥好说的，在这个简单的 ORM 框架里面就是把 Golang 的结构体转换成对应的 SQL 语句。处理 SQL 语句的执行结果主要指的是，简化手动操作，自动把 SELECT 语句执行的结果装到对应的结构体里去。
+另外，这两个功能的实现过程都会用到反射操作和内存操作，需要先有这两个方面的知识。
+本篇主要涉及：SELECT 语句的分析和抽象、SELECT 语句的构造过程、元数据的构造、结果集的处理。
+分析 SELECT 语句的使用场景 这里实现的是一个简单的 ORM，SELECT 的部分就先处理下面这几种。
+SELECT &hellip; FROM &hellip; SELECT &hellip; FROM &hellip; WHERE &hellip; SELECT &hellip; FROM &hellip; WHERE &hellip; GROUP BY &hellip; HAVING &hellip; SELECT &hellip; FROM &hellip; WHERE &hellip; ORDER BY &hellip; SELECT &hellip; FROM &hellip; WHERE &hellip; LIMIT &hellip; OFFSET &hellip; SELECT &hellip; AS &hellip; FROM &hellip; AS &hellip; WHERE &hellip; SELECT &hellip; FROM JOIN SELECT &hellip; FROM 子查询 SELECT &hellip; FROM &hellip; WHERE &hellip; IN &hellip; 从上面的 SELECT 语句结构可以看出，SELECT 语句大致可以分成几个部分。
+SELECT {*|列|聚合函数} AS 别名 FROM {表|JOIN|子查询} AS 别名 WHERE 条件 GROUP BY 列 HAVING 条件 ORDER BY 列 LIMIT 数字 OFFSET 数字 这样大概的内容和处理流程就有了。就是构建 SELECT 语句需要哪些东西，构建的大概流程是什么样的。然后再去看一下 MySQL 的官方文档中对 SELECT 语句的定义和说明。
+MySQL SELECT Statement MySQL 8 官方文档中，关于 SELECT 语句的描述：
+13.2.10 SELECT Statement把文档给出的结构和上面的那几种比较一下，提取出文档中相关的描述部分，大概是下面这部分。
+SELECT [DISTINCT] select_expr [, select_expr] ... [FROM table_references] [WHERE where_condition] [GROUP BY {col_name}, ...] [HAVING where_condition] [ORDER BY {col_name} [ASC | DESC], ...] [LIMIT {row_count | row_count OFFSET offset}] [FOR UPDATE] } 还需要关注以下关于别名的部分：
+列的别名： A select_expr can be given an alias using AS alias_name.
+表的别名： A table reference can be aliased using tbl_name AS alias_name or tbl_name alias_name. For each table specified, you can optionally specify an alias.
+tbl_name [[AS] alias] 还需要关注一下 JOIN 的部分：
+13.2.11.2 JOIN Clause主要是下面这部分，描述的是 JOIN 的结构。
+table_reference: { table_factor | joined_table } table_factor: { tbl_name [[AS] alias] | table_subquery [AS] alias [(col_list)] | ( table_references ) } joined_table: { table_reference {JOIN} table_factor [join_specification] | table_reference {LEFT|RIGHT} JOIN table_reference join_specification | table_reference NATURAL [INNER | {LEFT|RIGHT} [OUTER]] JOIN table_factor } join_specification: { ON search_condition | USING (join_column_list) } 也就是说 JOIN 的结构大概可以描述成下面这几种，而且还可以嵌套。
+表 JOIN 表 （表 JOIN 表） JOIN 表 表 JOIN 子查询 子查询 JOIN 子查询 还需要关注一下（Sub Query）子查询的部分：
+13.2.13 Subqueries简单的理解，JOIN 和子查询都是构建了一个临时的表，和常规的表不同的是，这里的表名和表里的列都不是固定的，而是动态生成的。
+到这里 SELECT 语句的构成分析的就差不多了，下面是对 SELECT 语句的构成进行合理的抽象。
+分析和抽象 其实抽象的工作是比较容易的，官方文档中的描述已经把抽象给出来了。在这个简单的 ORM 框架里面，大概是下面这几个。
+select_expr 对应列和聚合函数 table_references 对应表、JOIN、子查询 where_condition 对应查询条件 col_name 对应列 这里还需要再看一下关于表达式和聚合函数的部分：
+9.5 Expressions12.20 Aggregate Functions到这里，在这个简单的 ORM 框架里需要实现的部分，就都差不多都了解了，下面就可以开始动手了。
+构造语句 从最简单的开始 先从最简单的 SELECT 列 FROM 表 开始。首先需要构造一个处理 SELECT 语句的对象，封装相关的数据和方法，一般叫它查询构造器（这里叫 SELECT 查询构造器，为了和 INSERT、UPDATE、DELETE 区分开）。
+这里上来就会遇到问题，语句里的列和表怎么来。在 ORM 框架中，这里的列和表，不是手动写入的，而是通过解析结构体得到的。既然是通过解析结构体，那么就需要有解析的规则。解析规则由 ORM 框架定义，是解析结构体的属性、还是解析结构体的属性的注释、还是解析 Golang 结构体的属性上的 tag、还是混合模式。
+结构体需要按照 ORM 框架定义的解析规则去写，要不然 ORM 框架对着没有按规则来的结构体也是抓瞎的。虽然注释和 tag 可以自定义的随便写，但是结构体它至少会有属性，所以这里可以做一个兜底的策略。这个简单的 ORM 框架里的解析规则为：默认解析结构体的属性，如果结构体的属性上有 tag 就解析 tag。
+解析出来的玩意，专业一点的叫法，叫 metadata（元数据），内容是结构体和数据库表的映射关系。包括结构体名和数据库表名的对应关系，结构体的属性名和数据库表的字段名的对应关系，里面还会有一些辅助的信息，这个后面再说。
+元数据 在 Golang 里面，可以通过反射解析结构体。通过反射的一些列操作，可以得到结构体名、结构体的属性、还有挂在这些玩意上面的其他信息。这里通过转换结构体名得到数据库表名，拿到结构体名之后，直接驼峰命名转蛇形命名就行。
+还可以通过解析注释或者定义接口的方式获取数据库表名。注释就不多说了，通过 AST 解析结构体的注释就行。定义接口，就是定义一个获取数据库表名的接口，然后具体对应数据库表的结构体去实现这个接口。
+这样在 SQL 构建的过程中，通过类型断言可以确认结构体是否实现了这个接口，如果实现了这个接口就调用接口取获取自定义的数据库表名。
+需要注意的是，元数据里关于结构体的属性名和数据库表的字段名的对应关系的数据，在两个方向上的都需要。因为元数据不止构造 SQL 语句的时候需要正向用，处理结果集的时候也需要用，只不过方向是反过来的，通过数据库字段名，找到对应的结构体属性名。
+元数据这块的内容是独立的，可以和 SQL 语句构造的内容隔离开来，自己成为一个独立的模块，这里叫它元数据注册中心。
+回到 SQL 语句的构造 解决完元数据的问题，那么语句里的列和表就都有了，这个语句就很好构造了。把传进来的结构体解析之后，把列和表捞出来塞到语句里就行。
+对于列来说，后面还可以结合元数据，做一下列存不存在之类的校验。但是如果列写了别名或者是一个复杂查询啥的，校验起来会有点麻烦。
+下面搞 WHERE 语句后面的 SELECT 列 FROM 表 WHERE 查询条件。
+在动手设计之前，需要先观察一下查询条件的结构。这里列举几个常用的查询条件。
+列{=|&gt;|&lt;|!=}值 列=值 AND 列=值 列=值 OR 列=值 列=值 AND (列=值 OR 列=值) 列 LIKE 值 列 IN (值) 这里可以观察到，查询条件的结构，大体上是嵌套起来的左中右的结构。中间是操作符，左边是列或者值，右边一般都是值。
+这里看上去是一样的，但是实际上有两层抽象。第一层是：左=列，中间=操作符，右边=值；第二层是：左=第一层抽象 中间=操作符，右=第一层抽象。所以这里需要处理的对象不仅有第一层抽象的 column（列）和 value（值）。还有对第一层抽象的抽象，也就是 expression（表达式）。而且可以得出一个结论，列和值都是表达式的一种。由此可以推论，列和值可以是对象，但是表达式肯定是个接口。
+这种左中右的结构，可以联想到树的结构，中间是一个根结点，左右是两个叶子结点。大概的形状见图：orm.drawio.html 2-0。常规的等于、大于、小于、不等于等数学运算和与、或两个逻辑运算可以直接通过这个结构表示。包括 LIKE 和 IN 也可以用这个结构。问题在于 NOT 逻辑运算和原生语句。NOT 只有一边，原生语句直接没有结构。其实这两个玩意，树形结构也是可以兼容的。
+NOT 直接让他没有左边就可以了，处理的时候判断一下左边是不是空的就行。大概的形状见图：orm.drawio.html 2-2。
+原生语句看上去是自定义的，不符合树的结构，但是可以换个思路，把语句拆开看，其实它已经包含了列和值，所以它就是一个完整的第一层抽象。只不过它只有左边，不需要中间和右边（语句放右边，不需要左边和中间也行）。大概的形状见图：orm.drawio.html 2-4。
+代码中处理的时候用递归就行，先递归处理左边的非空叶子，然后处理中间的操作符，然后递归处理右边的非空叶子。每次递归的结果，两边加括号包起来，这样不容易出错。遇到空的位置，空格就不管了。括号和空格多了就多了，只要保证语法没问题就行。
+基本的 WHERE 用这个结构就差不多了，需要注意 WHERE IN 那里不仅可以直接填数据，还可能涉及到子查询，这后面再说。
+下面处理 GROUP BY SELECT 列 FROM 表 GROUP BY 列 HAVING 查询条件。
+GROUP BY 其实很简单了，这玩意有两个部分。前面的列很简单了，没啥好说的。后面的 HAVING 和上面的 WHERE 是一样的。官方文档里面这两个位置都是 where_condition 把上面 WHERE 的逻辑直接拿过来复用就可以。
+下面处理 ORDER BY SELECT 列 FROM 表 ORDER BY 列。
+这玩意也没啥好说的，就是个列，加上升序或者降序的标志。
+下面处理 LIMIT 和 OFFSET SELECT 列 FROM 表 LIMIT 20 OFFSET 100。
+这两个也没啥好说的，就是两个数字。
+处理 SELECT 后面的 SELECT 列 FROM 表。 SELECT 列 AS 新名字 FROM 表。 SELECT 聚合函数 FROM 表。 SELECT 聚合函数 AS 新名字 FROM 表。 SELECT 后面就两大类东西：列和聚合函数，还会涉及到别名。另外，这里还可以插入原生表达式。
+从形态上看，列和聚合函数完全不一样，但是它们都可以放在 SELECT 后面，所以这里肯定有一个抽象。其实官方文档里也已经告诉你了，这个抽象叫 select_expr（这里叫查询表达式）。
+这里分开处理这两个玩意。列很简单了，就是列。聚合函数需要一个单独的对象，对象里面放上聚合函数的名字还有聚合函数操作的那个列。别名就目前的场景而言其实很简单，就直接对象里给一个字符串设置一下就好了。加上表、JOIN、子查询的别名之后，这里的别名会变的复杂一点。原生表达式就更简单了，直接把表达式原封不动的放在这里就行了。
+到这里，在单个表上的操作基本就都搞定了。下面开始搞 JOIN 和子查询。
+JOIN SELECT 列 FROM JOIN。
+实现简单的 JOIN 其实不怎么复杂，主要功能包括起别名、选择列、复杂一点的是 JOIN 可以嵌套。
+常用的 JOIN 结构大概就是下面这几个：
+表 A JOIN 表 B ON &hellip; 表 A AS 新名字 JOIN 表 B AS 新名字 ON &hellip; 表 A JOIN (表 B JOIN 表 C ON &hellip;) ON &hellip; 之前处理 FROM 后面那个位置的时候是直接用的数据库表名，但是那个位置其实可以放的玩意有表名、JOIN、子查询，这明摆了是要有一个抽象的，官方文档也告诉你了，叫 table_references（这里叫表表达式）。但是这三种对象的处理方式肯定是不一样的，语句形态差的都很远，基本没有共同点，所以铁定是分开各写各的。
+观察一下上面的几个 JOIN 的样例，又是个左中右的结构，只不过这里的左右两边是一样的，都是 table_references。处理思路和上面的 WHERE 那里处理查询条件的思路是一样的，都是用递归，先处理递归左边的非空叶子，再递归处理右边的非空叶子。另外 JOIN 还有 ON 子句，官方文档里 ON 后面跟的是 search_condition。它和 WHERE 后面的 where_condition 是差不多的，这里不做复杂处理，所以直接拿过来复用。
+这里可以换个思路理解，把带有 JOIN 的查询分成两块。JOIN 单独拿出来看，它最终其实就会变成个临时表。把别名当做表名，左右两个 table_references 的列就是临时表的列，这样问题就又回到了之前处理单个数据库表的问题。后面解决子查询的时候，思路也是这样的。
+选择列和上面 SELECT 那里处理查询表达式的地方差不多。但是加入 JOIN 之后，列的处理会变得复杂一点，以前的列都是默认在同一个表里的，加入 JOIN 之后，表就不是一个了。所以列里面，必须把自己属于哪个表存着，这样构造列的时候，需要先构造前面的前缀，而且前缀这玩意可以有别名。也就是表和 JOIN 包括后面的子查询都要有别名，列从原来依托于元数据直接构造变成依托于 table_references 构造。
+子查询 子查询看着很复杂，但是构成子查询的元素，上面都已经处理过了。前面说过，子查询就是一个临时表，把别名当做表名，左右两个 table_references 的列就是临时表的列，如果子查询设置了查询表达式，那么临时表的列就是查询表达式里面写的那些列。
+整体思路和 JOIN 的思路是差不多的，区别的地方在于对列的处理方式不同。处理 JOIN 的时候，查询表达式里的列可能来自不同的表。但是在子查询这里，所有的列都来自子查询的临时表。
+语句构建结束 在编码的时候使用 Builder 设计模式实现，基本思路就是将和 SELECT 语句有关的数据的填充和使用这些数据构造 SELECT 语句的部分隔离开。其最终形态就是常见的 ORM 框架的一堆用起来很流畅的链式调用，最后一个 First() 方法或者 Get() 方法，然后查询构造器构建 SQL、执行 SQL、处理结果集一气呵成之后返回结果集。
+到这里简单的 SELECT 语句的构建思路就差不多了。下面就是执行语句和处理结果集了。
+执行语句 执行语句分为两种，一种是直接执行，一种是事务执行。这两个的区别也很简单就是拿到数据库实例之后，要不要开事务。这个地方可以做两个抽象，一个是数据库的抽象，一个是事务的抽象。其中事务的抽象可以包括数据库的抽象，和装饰器有点像，事务对象可以理解成把数据库的抽象拿过来，用事务功能装饰一下。
+这两个抽象其实可以再抽象出一个共同的部分，就是执行 SQL 的部分。无论是数据库的抽象还是事物的抽象，最后都会完成执行 SQL 的操作。这个部分可以再抽象一下，抽象成一个会话，一个会话就表示用户的一次数据库交互操作。
+这样编码的时候可以使用依赖注入的方式，把数据库抽象或者事务抽象注入到 SELECT 查询构造器里面。SELECT 查询构造器在构造完 SQL 语句后，就可以继续使用链式调用的方式，调用会话抽象去执行语句。
+处理结果集 结果集的处理也不难，前面构造的元数据里不是已经有反方向的映射关系了嘛。先通过数据库返回的结果集里面的结果的字段名，结合元数据，把所有的变量类型先确定好。然按照变量类型构造一个接收数据库返回的结构，接收的时候注意顺序。
+成功接收到数据库的返回结果后，先通过元数据构造一个对应的空的结构体。然后通过数据库返回的字段名，结合元数据，反向去找结构体的属性。然后通过反射或者内存操作，把值塞到结构体对应的属性上去。
+全流程结束 到这里，构造元数据、生成 SELECT 语句、执行语句、处理返回值，就都处理完了。设计上的东西，看类图、流程图会更加直观。细节上的实现，直接看代码，这个靠说是说不太清楚的。
+]]></content></entry><entry><title>符号命名</title><url>/post/computer-science/programming-language/symbol_naming/</url><categories><category>programming-language(编程语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag></tags><content type="html">前言 实际开发中符号命名规则应该和团队的风格保持统一，这套符号命名规则是本人的个人喜好。
 如果访客您非要说不符合哪里哪里的规范，怎么怎么有问题，那么访客您说的都对。
 命名 本人的符号（变量名、方法名）命名方式和主流的命名方式比起来有一些奇怪。区别主要在于各种各样标记类型的前缀。
 声明的变量名和方法名、定义的类型名，都会带前缀。加前缀的目的，主要是为一些特殊的类型作标记，编码过程中引起重视。
@@ -26,37 +135,9 @@
 Golang 命名目录时，多单词用中划线连接 import 引入时，多单词用下划线连接 目录里的 kn 后缀，用于回避关键字，比如：mapkn 符号命名全部都用驼峰（camel case） 数据库命名全部都用蛇形（snake case） 符号命名前缀：
 t4，temp，临时变量 c5，const，常量 p7，pointer，指针 a5，array，数组 s5，slice，切片 m3，map，map c7，channel，管道 s6，struct，结构体 i9，interface，接口 f8，function，方法 版本号 版本号可能是 x.y 或者 x.y.z。大版本号从 2 开始，小版本号从 0 开始，以 2 为步长递增。
 第 1 版：v2.0.0（v2.0） 第 1 版小改一次：v2.0.2（v2.2） 第 1 版小改一次：v2.0.4（v2.4） 第 1 版大改一次：v2.2.0（v2.6） 第 1 版小改一次：v2.2.2（v2.8） 第 2 版：v4.0.0（v4.0） 通常 x.y 用的多，本人的各种 demo 代码版本一般情况下达不到需要使用 x.y.z 这样的规模。
-而且版本号一般不会超过 10，常见的是：v20、v22、v40、v200、v202、v220、v400。</content></entry><entry><title>使用 Golang 实现简单的 ORM 框架 -- SELECT</title><url>/post/computer-science/programming-language/framework/orm/golang/select/</url><categories><category>framework</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework</tag><tag>orm</tag><tag>mysql</tag><tag>golang</tag></tags><content type="html">前言 注意，这里实现的是一个简单的 ORM 框架，并不是一个完备的 ORM 框架，主要目的是研究原理和设计。
-ORM 框架的核心功能主要有两个：1、把数据结构转换成 SQL 语句。2、处理 SQL 语句的执行结果。
-数据结构转换成 SQL 语句这没啥好说的，在这个简单的 ORM 框架里面就是把 Golang 的结构体转换成 SQL 语句。
-处理 SQL 语句的执行结果主要指的是，简化手动操作，自动把 SELECT 语句执行的结果装到对应的结构体里去。
-另外，这两个功能的实现过程都会用到反射操作和内存操作，需要先有这两个方面的知识。
-本篇主要涉及：SQL 语句的分析和抽象、SELECT 语句的分析和抽象、元数据的构造、结果集的处理。
-分析 SELECT 语句的使用场景 这里实现的是一个简单的 ORM，SELECT 的部分就先处理下面这几种。
-SELECT 列 FROM 表 WHERE 条件 SELECT 列 FROM 别名 WHERE 条件 SELECT 聚合函数 FROM 表 WHERE 条件 SELECT 列 AS 别名 FROM 表 AS 别名 WHERE 条件 SELECT 列 FROM 表 WHERE 条件 LIMIT 数字 OFFSET 数字 SELECT 列 FROM 表 WHERE 条件 ORDER BY 列 SELECT 列 FROM 表 WHERE 条件 GROUP BY 列 HAVING 条件 SELECT 列 FROM JOIN AS 别名 WHERE 条件 SELECT 列 FROM 子查询 AS 别名 WHERE 条件 SELECT 列 FROM 表 WHERE 列 IN 子查询取一列 从上面的 SELECT 语句结构可以看出，SELECT 语句大致可以分成几个部分。
-SELECT {列|聚合函数} AS 别名 FROM {表|JOIN|子查询} AS 别名 WHERE 条件 GROUP BY 列 HAVING 条件 ORDER BY 列 LIMIT 数字 OFFSET 数字 这样大概的内容和处理流程就有了。就是构建 SELECT 语句需要哪些东西，构建的大概流程是什么样的。
-然后再去看一下 MySQL 的官方文档中对 SELECT 语句的定义和说明。
-MySQL SELECT Statement MySQL 8 官方文档中，关于 SELECT 语句的描述：
-13.2.10 SELECT Statement
-把文档给出的结构和上面的那几种比较一下，提取出文档中相关的描述部分，大概是下面这部分。
-SELECT [DISTINCT] select_expr [, select_expr] ... [FROM table_references] [WHERE where_condition] [GROUP BY {col_name}, ...] [HAVING where_condition] [ORDER BY {col_name} [ASC | DESC], ...] [LIMIT {row_count | row_count OFFSET offset}] [FOR UPDATE] } 还需要关注以下关于别名的部分：
-列的别名： A select_expr can be given an alias using AS alias_name.
-表的别名： A table reference can be aliased using tbl_name AS alias_name or tbl_name alias_name. For each table specified, you can optionally specify an alias.
-tbl_name [[AS] alias] 还需要关注一下 JOIN 的部分：
-13.2.11.2 JOIN Clause
-主要是下面这部分，描述的就是 JOIN 的结构。
-table_reference: { table_factor | joined_table } table_factor: { tbl_name [[AS] alias] | table_subquery [AS] alias [(col_list)] | ( table_references ) } joined_table: { table_reference {JOIN} table_factor [join_specification] | table_reference {LEFT|RIGHT} JOIN table_reference join_specification | table_reference NATURAL [INNER | {LEFT|RIGHT} [OUTER]] JOIN table_factor } join_specification: { ON search_condition | USING (join_column_list) } 也就是说 JOIN 的结构大概可以描述成下面这几种，而且还可以套娃。
-表 JOIN 表 （表 JOIN 表） JOIN 表 表 JOIN 子查询 子查询 JOIN 子查询 还需要关注一下子查询的部分：
-13.2.13 Subqueries
-简单的理解，子查询就是构建了一个临时的表，只不过子查询的表的列不是固定的，而是动态生成的。
-到这里 SELECT 语句的构成分析的就差不多了，下面是对 SELECT 语句的构成进行合理的抽象。
-分析和抽象 其实抽象的工作是比较容易的，官方文档中的描述已经把抽象给出来了。
-在这个简单的 ORM 框架里面，大概是下面这几个。
-select_expr 对应列和聚合函数 table_references 对应表、JOIN、子查询 where_condition 对应查询条件 col_name 对应列 构造开始 先从最简单的 SELECT 列 FROM 表 开始。
-这里就会遇到一个问题，列和表怎么来，这就涉及到元数据的问题。
-未完。。。</content></entry><entry><title>使用 Golang 实现复杂的 Web 框架</title><url>/post/computer-science/programming-language/framework/web/golang/web_v40/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>router(路由)</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"><![CDATA[ go version go1.19 windows/amd64
+而且版本号一般不会超过 10，常见的是：v20、v22、v40、v200、v202、v220、v400。</content></entry><entry><title>使用 Golang 实现复杂的 Web 框架</title><url>/post/computer-science/programming-language/framework/web/golang/web_v40/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>router(路由)</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 前言 在看这篇之前，建议先看下面这几篇：
-使用 Golang 开启 HTTP 服务 使用 Golang 实现简单的 Web 框架 &ndash; router(路由) 使用 Golang 实现简单的 Web 框架 &ndash; middleware(中间件) 路由树和中间件是 web 框架的核心。其他的功能，都是在这两个核心的基础上，再增加亿点点细节而已。
+使用 Golang 开启 HTTP 服务 使用 Golang 实现简单的 Web 框架 &ndash; router(路由) 使用 Golang 实现简单的 Web 框架 &ndash; middleware(中间件) 路由树是 web 框架的核心。其他的功能，都是在路由树的基础上，再增加亿点点细节而已。
 资料 {web-framework-go}/v40 实现功能 主要实现： 路由树（静态、通配符、路径参数、正则表达式）、路由组 全局中间件、可路由的中间件 次要实现： 内存池（请求上下文对象复用） 服务管理（管理多个子服务） 优雅退出、退出时的回调方法 计划实现： 用户认证（中间件实现） 文件操作（上传、下载） 单元测试、集成测试、性能测试 设计文档 路由树 首先是路由树结点的设计。结点的基础数据包括：结点类型、这个路由结点代表的那段路径、命中路由之后的的处理逻辑。
 静态路由子结点使用 map 结构存储，查询时直接就可以通过路由段查询子结点。
 通配符子结点、路径参数子结点、正则表达式子结点，这三个结点属于特殊结点，而且存在冲突关系，所以单独存储。
@@ -81,7 +162,8 @@ func (p7this *ServiceManager) Shutdown() { ... log.Println(&#34;停止接收新�
 比如：系统里如果有缓存的话，可能需要把缓存进行持久化处理；系统关闭时，需要上报数据其他服务等。
 这个可以通过回调实现，和中间件的用法类似。不过最后执行的时候，是所有的回调是并发执行的，而不是像中间件一样套起来，一次执行的。
 func (p7this *ServiceManager) Shutdown() { ... log.Println(&#34;开始执行子服务的关闭回调。。。&#34;) for _, p7hs := range p7this.s5p7HTTPService { log.Printf(&#34;执行子服务 %s 的关闭回调，限制 %d 秒内完成。。。&#34;, p7hs.name, p7this.shutdownCallbackTimeOut/time.Second) for _, f4cb := range p7hs.s5f4shutdownCallback { t4f4cb := f4cb wg.Add(1) go func() { defer wg.Done() t4ctx, t4cancel := context.WithTimeout(context.Background(), p7this.shutdownCallbackTimeOut) defer t4cancel() t4f4cb(t4ctx) }() } } wg.Wait() ... } 到这里核心的部分就差不多了，细节上的实现可以看代码。
-]]></content></entry><entry><title>使用 Hugo 和 GitHub Pages 搭建站点</title><url>/post/computer-science/application/hugo/hugo-start/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Hugo</tag><tag>GitHub Pages</tag></tags><content type="html"><![CDATA[ Windows 11 家庭版 cpu amd64 hugo 0.103.1 Hugo 文档 gohugoio/hugo英文文档中文文档安装 Hugo 在 Hugo Releases页面下载对应操作系统的版本。这里下载的是 hugo_0.103.1_windows-amd64.zip。
+]]></content></entry><entry><title>使用 Hugo 和 GitHub Pages 搭建站点</title><url>/post/computer-science/application/hugo/hugo-start/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Hugo</tag><tag>GitHub Pages</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 hugo 0.103.1
+Hugo 文档 gohugoio/hugo英文文档中文文档安装 Hugo 在 Hugo Releases页面下载对应操作系统的版本。这里下载的是 hugo_0.103.1_windows-amd64.zip。
 下载完成后，解压到想要的位置。这里使用的目录是 D:\hugo\bin。然后将这个目录添加到 系统变量 path 中（我的电脑 -&gt; 属性 -&gt; 高级系统设置 -&gt; 环境变量 -&gt; 系统变量 -&gt; path）。
 搞定之后，可以打开控制台，输出一下版本信息，验证一下安装是否成功。或者试试 hugo help 命令，看看能不能输出帮助信息。
 &gt; hugo version hugo v0.103.1-b665f1e8f16bf043b9d3c087a60866159d71b48d windows/amd64 BuildDate=2022-09-18T13:19:01Z VendorInfo=gohugoio 如果有需要的话，需要安装 extended 版本的。这里下载的是 hugo_extended_0.103.1_windows-amd64.zip。
@@ -110,19 +192,16 @@ GitHub 项目地址 MeiK2333/github-style。
 默认情况下会编译到 {path-to-project}/publish/ 目录。 可以通过编辑配置文件，在配置文件里添加 publishDir: docs，来修改这个目录。
 push 到 github.io 的时候，如果使用的是 publish/ 目录。那么要 push publish/ 目录上去，然后设置 GitHub Pages 的 Branch 为 master 和 /(root)。
 如果使用的是 docs/ 目录，那么就要 push 整个项目上去，然后设置 GitHub Pages 的 Branch 为 master 和 docs/。
-文本头部信息 draft: true date: 2000-01-01 08:00:00 +0800 lastmod: 2002-01-01 08:00:00 +0800 title: &ldquo;title&rdquo; summary: &ldquo;summary&rdquo;
+文本头部信息 draft: true date: 2000-01-01 08:00:00 +0800 lastmod: 2002-01-01 08:00:00 +0800 title: &ldquo;title&rdquo; summary: &ldquo;summary&rdquo; toc: true
 categories:
 categories(分类) tags:
-tags1(标签1) tags2(标签2) draft：是不是草稿，true=是；false=不是。启动的时候带 --buildDrafts 选项就可以看到草稿的内容。 date：创建时间 lastmod：最后修改时间 title：文本标题 summary：文本概述 categories：文本分类，一般一个 tags：文本标签，可以多个 reference（参考） hugo个人博客搭建并部署到GitHub【 for Windows】]]></content></entry><entry><title>使用 Golang 实现简单的 Web 框架 -- middleware(中间件)</title><url>/post/computer-science/programming-language/framework/web/golang/middleware/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"> go version go1.19 windows/amd64
+tags1(标签1) tags2(标签2) draft：是不是草稿，true=是；false=不是。启动的时候带 --buildDrafts 选项就可以看到草稿的内容。 date：创建时间 lastmod：最后修改时间 title：文本标题 summary：文本概述 toc：是不是显示文章目录，true=是；false=不是。 categories：文本分类，一般一个 tags：文本标签，可以多个 reference（参考） hugo个人博客搭建并部署到GitHub【 for Windows】]]></content></entry><entry><title>使用 Golang 实现简单的 Web 框架 -- middleware(中间件)</title><url>/post/computer-science/programming-language/framework/web/golang/middleware/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 资料 {demo-golang}
-/demo/web/middleware/ web.drawio.html 中间件 web 框架的中间件可以理解成一种 aop 方案的实现。可以借助各路教程中常见的洋葱模型来理解中间件的整体结构，这里我用的是同心圆模型。
-中间件的同心圆模型结构示例见图：web.drawio.html 4-2。这玩意的核心思路就一个，一层一层的进去，一层一层的出来。
-另外需要保证每层的数据格式都是一样的。定义数据格式可以保证，第一顺序可以换，第二可以加层或者减层。
+/demo/web/middleware/ web.drawio.html 中间件 web 框架的中间件可以理解成一种 AOP 方案的实现。可以借助各路教程中常见的洋葱模型来理解中间件的整体结构，这里我用的是同心圆模型。
+中间件的同心圆模型结构示例见图：web.drawio.html 4-2。这玩意的核心思路就一个，一层一层的进去，一层一层的出来。另外，需要保证每层的数据格式都是一样的。定义数据格式可以保证，第一顺序可以换，第二可以加层或者减层。
 定义中间件的时候需要关注两个重要的组成部分：路由对应的处理方法和中间件的处理方法。
-路由对应的处理方法就是，中间件一层一层的进去之后，最里面那层和业务衔接的地方的定义。
-这里需要处理的是，把中间件的数据格式解包，交给业务逻辑去处理。拿到处理的结果后，在包装成中间件的数据格式，然后丢出去。
-中间件的处理方法就是，中间件最外面一层的外面，进入中间件的地方的定义。因为进了第一层之后，每层都是一样的，所以这里只关注最外面一层。
-这里需要处理的是，把请求数据包装成中间件的数据格式，然后丢进去。拿到处理的结果后，把结果处理成请求想要的响应数据，然后响应回去。
+路由对应的处理方法就是，中间件一层一层的进去之后，最里面那层和业务衔接的地方的定义。这里需要处理的是，把中间件的数据格式解包，交给业务逻辑去处理。拿到处理的结果后，在包装成中间件的数据格式，然后丢出去。
+中间件的处理方法就是，中间件最外面一层的外面，进入中间件的地方的定义。因为进了第一层之后，每层都是一样的，所以这里只关注最外面一层。这里需要处理的是，把请求数据包装成中间件的数据格式，然后丢进去。拿到处理的结果后，把结果处理成请求想要的响应数据，然后响应回去。
 这两个部分定义一起规定了中间件该怎么定义，中间件定义需要围绕这两个定义去实现，要不然调用链条串不起来。
 // HTTPHandleFunc 路由对应的处理方法的定义 type HTTPHandleFunc func(p7ctx *HTTPContext) // HTTPMiddleware 中间件的处理方法的定义 type HTTPMiddleware func(next HTTPHandleFunc) HTTPHandleFunc 具体的中间件的实现方式，就像下面这样。
 func DemoMiddleware() HTTPMiddleware { return func(next HTTPHandleFunc) HTTPHandleFunc { return func(p7ctx *HTTPContext) { // before DemoMiddleware next(p7ctx) // after DemoMiddleware } } } 这里假设定义两个中间件。
@@ -130,7 +209,7 @@ func AMiddleware() HTTPMiddleware { return func(next HTTPHandleFunc) HTTPHandleF
 // serve 是最内层业务代码 chain := serve // 组装中间件 mb := BMiddleware() chain = mb(chain) ma := AMiddleware() chain = mb(chain) // 执行 chain(ctx) 最后的效果等价于下面这样的伪代码。
 // before AMiddleware // before BMiddleware serve(p7ctx) // after BMiddleware // after AMiddleware 可路由的中间件 可路由的中间件就是在路由树的基础上，分别给每个路由树结点设置中间件。
 这样在路由匹配到某个路由结点之后，不仅可以获取到路由的处理方法，还可以获取到路由上设置的中间件。
-然后把这些中间件，按照定义好的顺序，套起来即可。</content></entry><entry><title>使用 Golang 实现简单的 Web 框架 -- router(路由)</title><url>/post/computer-science/programming-language/framework/web/golang/router/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>router(路由)</tag><tag>golang</tag></tags><content type="html"><![CDATA[ go version go1.19 windows/amd64
+然后把这些中间件，按照定义好的顺序，套起来即可。</content></entry><entry><title>使用 Golang 实现简单的 Web 框架 -- router(路由)</title><url>/post/computer-science/programming-language/framework/web/golang/router/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>router(路由)</tag><tag>golang</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 资料 {demo-golang}/demo/web/router/ web.drawio.html 路由 在实现路由树之前，首先需要理解路由是干什么的。路由的作用简单地说就是，通过某个请求的请求路径找到对应的处理方法然后处理这个请求。
 简单的路由可以使用 map 结构，就是单纯的字符串匹配。map 的 key 就是路由的路径，value 就是路由的处理方法。
 像这样 &quot;user/num&quot; =&gt; func userNum()。如果路由命中了 user/num，就调用 func userNum() 去处理。
@@ -150,9 +229,10 @@ func AMiddleware() HTTPMiddleware { return func(next HTTPHandleFunc) HTTPHandleF
 路由组的内部，会把定义到路由组上的路由路径前缀和中间件，附加到路由组内的每一个路由上去。
 ]]></content></entry><entry><title>关于帕里特档案馆和西柊慧音</title><url>/about/</url><categories/><tags/><content type="html">帕里特档案馆（重建中，旧篇总计 283，迁移完成 8，新增 11），是个个人档案馆。
 档案馆的内容主要是本人的学习笔记、对学到的东西的解释和思考、对实操过程的记录。
-这些玩意本质上是当时的本人给以后的本人的留言，不是教程，更不是论文。
+这些玩意本质上是当时的我给以后的我的留言。它们不是教程，更不是论文。
+写它们的目的是，如果以后的我忘记了这块的内容，那么现在的我可以把以后的我教会。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
-另外，如果访客您觉得毫无干货或者内容非常水，那么非常抱歉，浪费了您宝贵的时间。
+另外，如果访客您觉得毫无干货或者内容非常水，那么非常抱歉。
 站点基于 hugo 0.103.1 extended 版本
 搭建。使用的主题是 Hugo NexT
 。
@@ -164,7 +244,8 @@ func AMiddleware() HTTPMiddleware { return func(next HTTPHandleFunc) HTTPHandleF
 /demo/web/http/ 开启 HTTP 服务 在 Go 中有多种方式，可以开启 HTTP 服务。但是总的来说基本就下面两大类思路（本质上其实是一类）。
 使用官方提供的封装好的 net/http 包。 直接使用 net 包从 TCP 开始自行实现。 使用 net/http 包的时候，需要关注的最核心的部分，就是 Handler 接口 (src/net/http/server.go)。
 type Handler interface { ServeHTTP(ResponseWriter, *Request) } 开启 HTTP 服务和 HTTP 请求被处理的流程大致如下：
-直接或间接地创建 Server 结构体 (src/net/http/server.go) 的实例。 调用 Server 的 ListenAndServe() 方法。 ListenAndServe() 调用 net.Listen() (src/net/dial.go)，启动 TCP 服务。 net.Listen() 返回一个 net.Listener 接口 (src/net/dial.go) 的实例。 调用 net.Listener 的 Accept() 方法，就可以获取连接上来的 TCP 连接。 新开启一个协程，把这个 TCP 连接丢进去处理。自己则继续监听有没有别的 TCP 连接。 处理流程继续往下，会遇到这行代码：serverHandler{c.server}.ServeHTTP(w, w.req)。 这里调用的就是 Handler 的 ServeHTTP() 方法。再往下就进入框架或者业务处理流程了。</content></entry><entry><title>2-3-4 树</title><url>/post/computer-science/data-structure/2-3-4_tree/</url><categories><category>data-structure(数据结构)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>data-structure(数据结构)</tag><tag>b-tree</tag></tags><content type="html"><![CDATA[前言 在看 2-3-4 树之前，建议先看 2-3 树。相似的操作在 2-3-4 树不会重复详细的描述。
+直接或间接地创建 Server 结构体 (src/net/http/server.go) 的实例。 调用 Server 的 ListenAndServe() 方法。 ListenAndServe() 调用 net.Listen() (src/net/dial.go)，启动 TCP 服务。 net.Listen() 返回一个 net.Listener 接口 (src/net/dial.go) 的实例。 调用 net.Listener 的 Accept() 方法，就可以获取连接上来的 TCP 连接。 新开启一个协程，把这个 TCP 连接丢进去处理。自己则继续监听有没有别的 TCP 连接。 处理流程继续往下，会遇到这行代码：serverHandler{c.server}.ServeHTTP(w, w.req)。 这里调用的就是 Handler 的 ServeHTTP() 方法。再往下就进入框架或者业务处理流程了。</content></entry><entry><title>2-3-4 树</title><url>/post/computer-science/data-structure/2-3-4_tree/</url><categories><category>data-structure(数据结构)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>data-structure(数据结构)</tag><tag>b-tree</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 Cygwin gcc version 11.2.0
+前言 在看 2-3-4 树之前，建议先看 2-3 树。相似的操作在 2-3-4 树不会重复详细的描述。
 资料 2-3-4_tree.drawio.html 2-3-4 树 2-3-4 树就是 4 阶 B-树 2-3-4 树和红黑树是等价的： 2-3-4 树的结点个数 = 红黑树的黑色结点个数。 把 2-3-4 树的三结点和四结点拆开，就可以变成红黑树。 把红黑树的红结点移动到和父结点同层，就会变成 2-3-4 树。 2-3-4 树的性质 1、满足二叉查找树的基本性质。
 2、结点可以存放一个元素、两个元素。
 假设结点结构从左到右分别为：子树 1、元素 1、子树 2、元素 2、子树 3、元素 3、子树 4。 对于存放一个元素的结点。其形态为：子树 1、元素 1、子树 2。 子树 1 存放比 元素 1 小的元素； 子树 2 存放比 元素 1 大的元素。 对于存放两个元素的结点，其形态为：子树 1、元素 1、子树 2、元素 2、子树 3。 子树 1 存放比 元素 1 和 元素 2 都小的元素； 子树 2 存放在 元素 1 和 元素 2 之间的元素； 子树 3 存放比 元素 1 和 元素 2 都大的元素。 对于存放三个元素的结点，其形态为：子树 1、元素 1、子树 2、元素 2、子树 3、元素 3、子树 4。 子树 1 存放比 元素 1、元素 2、元素 3 都小的元素； 子树 2 存放在 元素 1 和 元素 2 之间的元素； 子树 3 存放在 元素 2 和 元素 3 之间的元素； 子树 4 存放比 元素 1、元素 2、元素 3 都大的元素。 3、2-3-4 树是绝对平衡的二叉查找树，所有叶子结点都在同一层上。从根结点到任意一个叶子结点所经过的结点数是相同的。
@@ -221,7 +302,8 @@ type Handler interface { ServeHTTP(ResponseWriter, *Request) } 开启 HTTP 服�
 14、删除二结点的结点（父结点是二结点、兄弟结点是二结点、祖父结点是三结点、叔叔结点是三结点）。（类似 2-3 树的第 8 种情况）
 叔叔结点是四结点的处理逻辑是一样的。
 删除的不是叶子结点 这种情况需和平衡二叉树一样，找到中序遍历的前驱结点或者后继结点，把这两个结点互换位置，这个时候要删除的结点会被换到叶子结点的位置，然后再删除。
-2-3-4 树转换成红黑树 1、三结点其中一个元素转化为红黑树的红结点，左右哪个元素都可以。四结点中两边的元素转化为红黑树的红结点。 2、拆分三结点和四结点，和父结点连接的一定是黑结点 （见图：2-3-4_tree.drawio.html 12-2） reference（参考） 掌握了2-3-4树也就掌握了红黑树，不信进来看看，建议收藏！ 理解2-3-4树bilibili&ndash;木子喵neko【neko】红黑树/插入【算法编程#11】【neko】红黑树/删除【算法编程#12】]]></content></entry><entry><title>2-3 树</title><url>/post/computer-science/data-structure/2-3_tree/</url><categories><category>data-structure(数据结构)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>data-structure(数据结构)</tag><tag>b-tree</tag></tags><content type="html"><![CDATA[资料 2-3_tree.drawio.html 2-3 树 2-3 树就是 3 阶 B-树。 把 2-3 树的三结点拆开，就可以变成红黑树。 2-3 树的性质 1、满足二叉查找树的基本性质。
+2-3-4 树转换成红黑树 1、三结点其中一个元素转化为红黑树的红结点，左右哪个元素都可以。四结点中两边的元素转化为红黑树的红结点。 2、拆分三结点和四结点，和父结点连接的一定是黑结点 （见图：2-3-4_tree.drawio.html 12-2） reference（参考） 掌握了2-3-4树也就掌握了红黑树，不信进来看看，建议收藏！ 理解2-3-4树bilibili&ndash;木子喵neko【neko】红黑树/插入【算法编程#11】【neko】红黑树/删除【算法编程#12】]]></content></entry><entry><title>2-3 树</title><url>/post/computer-science/data-structure/2-3_tree/</url><categories><category>data-structure(数据结构)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>data-structure(数据结构)</tag><tag>b-tree</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 Cygwin gcc version 11.2.0
+资料 2-3_tree.drawio.html 2-3 树 2-3 树就是 3 阶 B-树。 把 2-3 树的三结点拆开，就可以变成红黑树。 2-3 树的性质 1、满足二叉查找树的基本性质。
 2、结点可以存放一个元素、两个元素。
 假设结点结构从左到右分别为：子树 1、元素 1、子树 2、元素 2、子树 3。 对于存放一个元素的结点，其形态为：子树 1、元素 1、子树 2。 子树 1 存放比 元素 1 小的元素； 子树 2 存放比 元素 1 大的元素。 对于存放两个元素的结点，其形态为：子树 1、元素 1、子树 2、元素 2、子树 3。 子树 1 存放比 元素 1 和 元素 2 都小的元素； 子树 2 存放在 元素 1 和 元素 2 之间的元素； 子树 3 存放比 元素 1 和 元素 2 都大的元素。 3、2-3 树是绝对平衡的二叉查找树，所有叶子结点都在同一层上。从根结点到任意一个叶子结点所经过的结点数是相同的。
 2-3 树的插入 下面列举的情况并不一定覆盖所有的场景，但是典型场景都有了，没有提到的场景可以根据典型场景推导。
@@ -326,7 +408,8 @@ reference（参考） Crash Course Computer Science（计算机科学速成课�
 CrashCourse 字幕组
 Youtube 原视频
 小林coding
-图解系统</content></entry><entry><title>AVL-Tree（平衡二叉树）</title><url>/post/computer-science/data-structure/avl_tree/</url><categories><category>data-structure(数据结构)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>data-structure(数据结构)</tag><tag>binary-search-tree(二叉查找树)</tag></tags><content type="html">资料 {demo-c}/data-structure/balanced_binary_tree.c balanced_binary_tree.drawio.html 平衡二叉树 AVL-Tree（balanced binary tree、平衡二叉树）是一种特殊的二叉排序树。
+图解系统</content></entry><entry><title>AVL-Tree（平衡二叉树）</title><url>/post/computer-science/data-structure/avl_tree/</url><categories><category>data-structure(数据结构)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>data-structure(数据结构)</tag><tag>binary-search-tree(二叉查找树)</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 Cygwin gcc version 11.2.0
+资料 {demo-c}/data-structure/balanced_binary_tree.c balanced_binary_tree.drawio.html 平衡二叉树 AVL-Tree（balanced binary tree、平衡二叉树）是一种特殊的二叉排序树。
 平衡二叉树的性质 1、满足二叉查找树的基本性质。 2、每个结点的左右子树的高度之差的绝对值（平衡因子）最多为 1。 平衡二叉树的插入 左旋和右旋 （见图：balanced_binary_tree.drawio.html 2-2）
 4 种需要平衡的场景 1、LL 型
 LL 型，直接右旋 x 结点。（见图：balanced_binary_tree.drawio.html 4-2）
@@ -340,7 +423,7 @@ RL 型，直接左旋 x 结点，依然不平衡。（见图：balanced_binary_t
 需要先右旋 y 结点，再左旋 x 结点。（见图：balanced_binary_tree.drawio.html 6-4-4）
 平衡二叉树的删除 平衡二叉树的删除和二插叉查找树的删除步骤是差不多的。
 区别在于，平衡二叉树删除结点之后，需要依次向上检查每一个结点是否平衡。
-reference（参考） 平衡二叉树（AVL树）及C语言实现</content></entry><entry><title>使用 Docker 部属 MySQL 8.0</title><url>/post/computer-science/database/mysql/docker/</url><categories><category>mysql</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>database(数据库)</tag><tag>mysql</tag><tag>docker</tag></tags><content type="html"><![CDATA[ Windows 11 家庭版 Docker v20.10.17 docker images mysql 8.0
+reference（参考） 平衡二叉树（AVL树）及C语言实现</content></entry><entry><title>使用 Docker 部属 MySQL 8.0</title><url>/post/computer-science/database/mysql/docker/</url><categories><category>mysql</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>database(数据库)</tag><tag>mysql</tag><tag>docker</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 Docker v20.10.17 docker images mysql 8.0
 拉取镜像 访问 Docker MySQL 镜像库拉取 MySQL 8.0 镜像。
 &gt; docker pull mysql:8.0 8.0: Pulling from library/mysql ... Digest: sha256:147572c972192417add6f1cf65ea33edfd44086e461a3381601b53e1662f5d15 Status: Downloaded newer image for mysql:8.0 docker.io/library/mysql:8.0 拉好之后，可以在 image 列表看到。
 &gt; docker images REPOSITORY TAG IMAGE ID CREATED SIZE mysql 8.0 40b83de8fb1a 4 days ago 535MB 启动容器 设置好参数，然后后台启动容器。
@@ -387,7 +470,8 @@ Youtube 原视频
 Linux 文档
 malloc(3) - allocate and free dynamic memory
 proc(5) - process information pseudo-filesystem
-《Linux\Unix 系统编程手册》 第 7 章</content></entry><entry><title>使用 Jekyll 主题</title><url>/post/computer-science/application/jekyll/jekyll-theme/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Ruby</tag><tag>Jekyll</tag><tag>GitHub Pages</tag></tags><content type="html">环境 Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2 jekyll-TeXt-theme Github：
+《Linux\Unix 系统编程手册》 第 7 章</content></entry><entry><title>使用 Jekyll 主题</title><url>/post/computer-science/application/jekyll/jekyll-theme/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Ruby</tag><tag>Jekyll</tag><tag>GitHub Pages</tag></tags><content type="html">环境 CPU AMD64(x86_64) Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2
+jekyll-TeXt-theme Github：
 https://github.com/kitian616/jekyll-TeXt-theme
 官方文档：
 https://tianqi.name/jekyll-TeXt-theme/
@@ -400,7 +484,8 @@ https://github.com/cotes2020/jekyll-theme-chirpy
 官方文档（同时也是个 Demo）：
 https://chirpy.cotes.page/
 个人感觉，这个主题比上面那个正在用的要好看不少。
-但是无奈，按照官方文档走流程的时候，在发布流程的 Github Action 步骤卡住了。而且没有找到解决方案，遂遗憾放弃。</content></entry><entry><title>使用 Jekyll 和 GitHub Pages 搭建站点</title><url>/post/computer-science/application/jekyll/jekyll-start/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Ruby</tag><tag>Jekyll</tag><tag>GitHub Pages</tag></tags><content type="html"><![CDATA[环境 Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2 安装 Jekyll 在官方文档中有详细的安装 Jekyll 的流程说明。
+但是无奈，按照官方文档走流程的时候，在发布流程的 Github Action 步骤卡住了。而且没有找到解决方案，遂遗憾放弃。</content></entry><entry><title>使用 Jekyll 和 GitHub Pages 搭建站点</title><url>/post/computer-science/application/jekyll/jekyll-start/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Ruby</tag><tag>Jekyll</tag><tag>GitHub Pages</tag></tags><content type="html"><![CDATA[环境 CPU AMD64(x86_64) Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2
+安装 Jekyll 在官方文档中有详细的安装 Jekyll 的流程说明。
 Jekyll 官方文档的中文版：http://jekyllcn.com/。
 第 1 步，安装 Ruby。
 Ruby 官方网站的中文版：http://www.ruby-lang.org/zh_cn/。
