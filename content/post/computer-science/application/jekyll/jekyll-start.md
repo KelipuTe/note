@@ -4,6 +4,7 @@ date: 2022-04-27 08:00:00 +0800
 lastmod: 2022-04-27 08:00:00 +0800
 title: "使用 Jekyll 和 GitHub Pages 搭建站点"
 summary: "Jekyll 安装，建立站点，发布到 GitHub Pages 的过程。"
+toc: true
 
 categories:
 - application(应用)

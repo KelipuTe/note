@@ -4,6 +4,7 @@ title: "AVL-Tree（平衡二叉树）"
 date: 2022-07-31 08:00:00 +0800
 lastmod: 2022-07-31 08:00:00 +0800
 summary: "平衡二叉树的插入、平衡、删除。"
+toc: true
 
 categories:
 - data-structure(数据结构)

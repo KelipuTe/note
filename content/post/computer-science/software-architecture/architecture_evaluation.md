@@ -4,6 +4,7 @@ date: 2022-10-07 08:00:00 +0800
 lastmod: 2022-10-07 08:00:00 +0800
 title: "软件架构评估"
 summary: "软件架构评估。架构权衡分析方法。"
+toc: true
 
 categories:
 - software-architecture(软件架构)

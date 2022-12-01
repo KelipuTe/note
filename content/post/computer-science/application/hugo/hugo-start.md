@@ -4,6 +4,7 @@ date: 2022-09-20 08:00:00 +0800
 lastmod: 2022-09-20 08:00:00 +0800
 title: "使用 Hugo 和 GitHub Pages 搭建站点"
 summary: "Hugo 安装，建立站点，配置主题，发布到 GitHub Pages 的过程。"
+toc: true
 
 categories:
 - application(应用)
@@ -130,6 +131,7 @@ date: 2000-01-01 08:00:00 +0800
 lastmod: 2002-01-01 08:00:00 +0800
 title: "title"
 summary: "summary"
+toc: true
 
 categories:
 - categories(分类)
@@ -144,6 +146,7 @@ tags:
 - lastmod：最后修改时间
 - title：文本标题
 - summary：文本概述 
+- toc：是不是显示文章目录，true=是；false=不是。
 - categories：文本分类，一般一个 
 - tags：文本标签，可以多个
 

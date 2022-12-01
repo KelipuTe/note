@@ -4,6 +4,7 @@ date: 2022-09-20 08:00:00 +0800
 lastmod: 2022-09-20 08:00:00 +0800
 title: "程序员的定位"
 summary: "程序员的定位"
+toc: true
 
 categories:
 - computer-science(计算机科学)

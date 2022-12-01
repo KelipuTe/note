@@ -4,6 +4,7 @@ date: 2022-05-12 08:00:00 +0800
 lastmod: 2022-05-12 08:00:00 +0800
 title: "Linux memory（Linux 内存）"
 summary: "虚拟地址空间、内存空间分布、内存碎片、内存池"
+toc: true
 
 categories:
 - operating-system(操作系统)

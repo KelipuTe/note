@@ -4,6 +4,7 @@ date: 2022-08-01 08:00:00 +0800
 lastmod: 2022-08-01 08:00:00 +0800
 title: "Virtual Memory（虚拟内存）"
 summary: "虚拟内存、段式管理、页式管理、段页式管理"
+toc: true
 
 categories:
 - operating-system(操作系统)

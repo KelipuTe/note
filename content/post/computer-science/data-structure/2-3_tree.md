@@ -4,6 +4,7 @@ date: 2022-08-02 08:00:00 +0800
 lastmod: 2022-08-02 08:00:00 +0800
 title: "2-3 树"
 summary: "2-3 树的插入、平衡、删除。"
+toc: true
 
 categories:
 - data-structure(数据结构)
