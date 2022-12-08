@@ -13,7 +13,7 @@ tags:
 - computer-science(计算机科学)
 - Ruby
 - Jekyll
-- GitHub Pages
+- GitHub-Pages
 ---
 
 ### 环境
