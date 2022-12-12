@@ -16,6 +16,8 @@ tags:
 - genericity(泛型)
 ---
 
+> CPU AMD64(x86_64)<br/>
+> Windows 11 家庭版<br/>
 > go version go1.19 windows/amd64
 
 ### 资料

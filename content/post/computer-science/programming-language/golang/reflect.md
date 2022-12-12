@@ -16,6 +16,10 @@ tags:
 - reflect(反射)
 ---
 
+> CPU AMD64(x86_64)<br/>
+> Windows 11 家庭版<br/>
+> go version go1.19 windows/amd64
+
 ### 实例
 
 在 Golang 中，一个实例（叫变量也行），它由类型信息和值信息组成。比如：`var int a = 8`。a 就是一个实例，它的类型信息就是 int，值信息就是 8。当然实际上没有这么简单，这里就是方便理解。
