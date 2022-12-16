@@ -3,7 +3,7 @@ draft: false
 date: 2022-09-20 08:00:00 +0800
 lastmod: 2022-09-20 08:00:00 +0800
 title: "使用 Hugo 和 GitHub Pages 搭建站点"
-summary: "Hugo 安装，建立站点，配置主题，发布到 GitHub Pages 的过程。"
+summary: "安装 Hugo；创建站点；配置主题；发布到 GitHub Pages；"
 toc: true
 
 categories:
