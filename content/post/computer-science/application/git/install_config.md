@@ -11,7 +11,7 @@ categories:
 
 tags:
 - computer-science(计算机科学)
-- Git
+- git
 ---
 
 > CPU AMD64(x86_64)<br/>
