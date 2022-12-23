@@ -21,7 +21,6 @@ tags:
 ### 无法拉取代码
 
 使用 `git pull` 命令拉取代码时卡住，并输出如下信息：
-
 ```
 > git pull
 Auto packing the repository in background for optimum performance.
@@ -30,12 +29,9 @@ fatal: failed to run repack
 ```
 
 这是因为，git 本地仓库如果长时间不进行清理，会导致本地 dangling commit 太多，从而造成拉取代码失败。
-
 可以使用 `git fsck` 命令查看本地的 dangling commit。
-
 ```
 > git fsck --lost-found
-
 Checking object directories: 100% (256/256), done.
 Checking objects: 100% (110393/110393), done.
 dangling commit 01039c0c1efcc232be342aacc928af72df82503b
@@ -55,10 +51,8 @@ dangling commit 1ca1f0e7aafa762a675076fbc25ff6ff7048e41b
 ```
 
 使用 `git gc` 命令清理后，就可以正常拉取代码了。
-
 ```
 > git gc --prune=now
-
 Enumerating objects: 93146, done.
 Counting objects: 100% (93146/93146), done.
 Delta compression using up to 12 threads
