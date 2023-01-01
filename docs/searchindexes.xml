@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>访客如何使用档案馆</title><url>/post/how_to_use/</url><categories/><tags/><content type="html">前言 帕里特档案馆（重建中，旧篇总计 283，迁移完成 8，新增 11），是个个人档案馆。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>访客如何使用档案馆</title><url>/post/how_to_use/</url><categories/><tags/><content type="html">前言 帕里特档案馆（重建中，旧篇总计 283，迁移完成 8），是个个人档案馆。
 档案馆的内容主要是本人的学习笔记、对学到的东西的解释和思考、对实操过程的记录。
 这些玩意本质上是当时的我给以后的我的留言。它们不是教程，更不是论文。
-写它们的目的是，如果以后的我忘记了这块的内容，那么现在的我可以把以后的我教会。
+写它们的目的是，如果以后的我忘记了这块的内容，那么希望现在的我可以把以后的我教会。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
@@ -12,12 +12,88 @@
 关于项目的代码中的符号命名，详见 符号命名 这一篇。
 实际开发中符号命名规则应该和团队的风格保持统一，这套符号命名规则是本人的个人喜好。
 如果访客您非要说不符合哪里哪里的规范，怎么怎么有问题，那么访客您说的都对。
-如果是类似 xxx.drawio.html 这种格式的，就是 draw.io 生成的 html，直接打开就可以预览。 参考到的外部资料通常在文本的最后面会有一个标题为 reference（参考） 的部分。</content></entry><entry><title>使用 Golang 实现 ORM 框架 -- 其他辅助工具</title><url>/post/computer-science/programming-language/framework/orm/golang/middleware/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>orm</tag><tag>middleware(中间件)</tag><tag>mysql</tag><tag>golang</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+如果是类似 xxx.drawio.html 这种格式的，就是 draw.io 生成的 html，直接打开就可以预览。 参考到的外部资料通常在文本的最后面会有一个标题为 reference（参考） 的部分。</content></entry><entry><title>使用 Golang 实现简单的自定义 RPC 协议</title><url>/post/computer-science/programming-language/golang/rpc/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag><tag>rpc</tag><tag>protocol(协议)</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+前言 在看这篇之前，建议先看下面这篇：
+《关于 RPC 的基本认知》 在动手实现自定义 RPC 之前，先搞清楚 RPC 是什么，以及 RPC 的原理。
+资料 {micro-service-go}
+/v20/ rpc.drawio.html 先来看看有几块东西 RPC 的意思是远程过程调用。既然是调用，那么这玩意肯定有一个调用方，一个被调用方，也就是说会有客户端和服务端。然后又是远程调用，那客户端和服务端应该不在同一个服务里，那么它们之间要用就需要用到网络，那么他们之间就必须要商量一个通信的方式，也就是需要一个通信协议。差不多就这三个玩意：客户端、服务端、协议。
+理论上，可以基于 TCP 协议构造一个 RPC 协议，也可以基于 HTTP 协议构造一个 RPC 协议，这个其实没有严格的规定。进行协议设计的时候需要注意的是：如果是基于 HTTP 协议设计，那么里面会包含 HTTP 和 TCP 两个协议，会多一层转换的开销；如果是直接基于 TCP 协议设计，虽然少一层转换的开销，但是编码难度上去了。在实际应用中，需要做好协议性能和开发难度的权衡。
+这几块东西是怎么工作的 RPC 有一个核心的描述：它想像使用本地服务一样使用远端服务。也就是说，如果在 a 服务上有另一个类 B，在远端服务 b 上有一个类 A，这个类 B 想直接 new 一个类 A 出来，然后调用方法。通常情况下这么干肯定是不行的，因为 a 服务上并没有类 A 的代码。但是如果把类 A 的代码在 a 服务上再写一份，那就没意义了。
+RPC 这里想要的是 a 服务上有一个类 A 的壳子，这个类 A 的壳子可以直接 new 出来，然后调用壳子上的方法。调用壳子上的方法的时候，这个壳子上的方法做的事情是，把调用者传进来的参数收集起来，然后交给远端服务 b 上真正的类 A 去处理，拿到处理结果后，返回给调用者。调用者只是感觉上和使用本地服务没什么区别。
+为了保证 a 服务和远端服务 b 上的类 A 是一样的，这里需要引入一个公共的抽象。a 服务基于这个公共的抽象实现一个壳子，远端服务 b 基于这个公共的抽象实现真正的功能。这里的两方是可以使用不同的语言的，a 服务上收集到的调用参数可以进行序列化处理然后再传到远端服务 b，只要远端服务 b 能根据序列化的数据还原出调用参数就行。
+来总结一下这几块东西是怎么工作的：
+客户端需要实现一个壳子。 壳子需要收集调用参数，把调用参数序列化，然后传给远端服务 b。 远端服务 b 在接到数据之后，需要用序列化后的数据还原出调用参数，处理完成后把结果返回回去。 壳子收到远端服务 b 的处理结果后，把处理结果返回给调用者。 这里面还有几处细节：
+双方的通信的方式，也就是协议还没有约定。 远端服务 b 在接到数据之后，需要知道调用哪个类的哪个方法，这个是壳子需要告诉远端服务 b 的。 远端服务 b 处理出错了怎么办，也就是异常还没有处理。 RPC 调用的大概过程 用流程图（见图：rpc.drawio.html 4-2）来描述 RPC 调用的大概过程比较合适。
+大概的实现 几个抽象 服务：就是壳子和真正的功能的抽象，两端需要基于这个抽象传递方法的入参和出参。 序列化：序列化可以用任意的算法，比如 JSON 或 protobuf。抽象是为了方便后续扩展新的序列化算法，上层不需要知道参数是怎么序列化的。 协议：协议可以用任意的协议，比如自定义 JSON 协议或自定义 RPC 协议。抽象是为了方便后续扩展新的协议，上层不需要知道数据是怎么发出去的。 网络请求：网络请求可以使用任意的形式，比如 TCP 或 HTTP，比如每次都新建连接或使用连接池。对网络请求层进行抽象是为了可以替换不同的实现，上层不需要知道网络请求是怎么实现的。 请求参数和响应参数：对这两个东西进行抽象是为了方便对 RPC 流程进行抽象。要不然请求的那个地方会是任意类型的，不方便添加中间件之类的结构。 协议 协议设计见图：rpc.drawio.html 6-2
+最前面的定长的部分，这几个字段属于非常常见的字段了，很多协议里都可以看到这种设计。
+请求（响应）头长度用于标记请求（响应）头的长度，这里的请求头包括前面定长的部分。 请求（响应）体长度用于标记请求（响应）体的长度。 这两个玩意合起来用于从 TCP 里读取一个完整的报文。也就是从 TCP 里读取的时候，先读前面 8 个字节，然后解析出这两个长度，这样就可以知道这一个报文的长度了。 版本号、序列换算法、压缩算法这三个属于标记位，用于提示客户端或者服务端，协议的内容怎么解析。
+请求头里用 \r\n 分隔每一条数据。最前面两个固定为：service name 和 method name，后面则是剩下的元数据。比如，链路追踪 id 和超时时间之类的。service name 和 method name 单独拿出来放最前面是考虑到：1、这两个属于必须字段；2、如果有网关的存在，网关直接解析最前面这两个字段就可以进行转发，不用解析整个请求头。
+响应头里只有一个放异常的位置。因为返回响应的时候一般都是原路返回的，所以 service name 和 method name 是不必要的。然后元数据，本来就是上游传过去的，没必要传回来，而且一般也不会有穿别的元数据回来的需要。所以请求头里的玩意，在响应头里都可以去掉。
+壳子 客户端这边最重要的就是壳子了。如果客户端里需要大量使用 RPC 的话，那么每个方法都要作 RPC 改造。但是每个方法要做的事情都是一样的：收集调用信息，发起 RPC 调用，得到结果，返回给调用者。所以这里应该要进行封装。问题来了，各个方法它是不一样的，这东西怎么封装呢。这里就需要使用约定加反射的技巧。这里使用的是 Golang 别的语言依葫芦画瓢就行了。
+首先约定 RPC 方法的入参只有两个：上下文和一个结构体指针。结构体里面装着方法需要的所有的参数。方法的出参也是两个：一个结构体指针和异常。结构体里面装着方法返回的所有的结果。这样子反射就好操作了。对于入参，通过反射获取入参的上下文参数，然后进行格式化，作为协议里的元数据。通过反射获取入参的结构体，然后进行序列化，作为协议请求报文里的请求体。对于出参，通过反射获取出参的结构体，然后进行序列化，作为协议响应报文里的响应体。通过反射获取异常，然后进行格式化，作为协议里的元数据。
+异常 上面提到，异常是放到元数据那里的。为什么异常要放到元数据的位置呢。这是因为不管是 TCP 协议还是 HTTP 协议，它们都属于字节流协议。请求过来的时候，不会被分隔成独立的协议数据报文，这个也就是经常问的那个 TCP 粘包的问题。协议内部也是一样的，如果把出参的结构体和异常都放到响应体里面，那就需要有分隔它们的手段。要不然这两玩意粘在一起，直接序列化是要报错的。
+大概就差不多了 具体的直接看代码就好了。</content></entry><entry><title>诺维科夫自洽性原则</title><url>/post/physics/time/novikov/</url><categories><category>time(时间)</category></categories><tags><tag>physics(物理学)</tag><tag>time(时间)</tag></tags><content type="html">诺维科夫自洽性原则 诺维科夫自洽性原则（Novikov self-consistency principle），是一个物理学术语。是由前苏联数学家，诺维科夫，在 1980 年代提出的，有关时间悖论的规则。
+这个原则的核心概念是：人可以回到过去，但是不能因此改变历史的进程。我们的世界是已经被改变的最终结局。
+我对这玩意的理解是 假设一个人 A 在时间节点 α 上，在某件事情 a 上，做了某个选择 1。然后在时间节点 β （α &amp;lt; β）上，他后悔了，选择用时间旅行，去把在时间节点 α 上，在某件事情 a 上做的选择 1，修正成选择 2。
+到这里矛盾就出现了。如果在时间节点 α 上，选择 1 真的被修正成选择 2，那么 A 这个人观测到的历史就应该是，他在时间节点 α 上，在某件事情 a 上，做了某个选择 2。这样的话，他不会后悔，也就没有了时间旅行。
+还有一种可能，A 在时间节点 α 上，在某件事情 a 上，做了某个选择 1，就是在时间节点 β 上的 A 进行时间旅行造成的，进行时间旅行的 A 变成了历史的一部分。
+换个角度再来理解一下 假设在时间节点 β 上的 A（就叫他 Aβ），回到了时间节点 α 上，做选择的也不是他 Aβ 啊，做选择的是在时间节点 α 上的那个 A（就叫他 Aα）。所以如果时间旅行存在，在 Aβ 观测到的历史里应该有 Aβ 的存在，但是现在没有，到这里矛盾就出现了。
+再换个角度理解一下 对于已经观测过过去的历史的人，过去的时间已经是确定的事实，而未来是不确定的。如果通过时间旅行，回到某段已经观测过的历史进程中。
+虽然对于时间旅行者而言，从穿越时间点到未来这次穿越发生的时间点之间的这段时间都应该属于未来，但是由于其结果已经被时间旅行者观测过，所以即使时间旅行者试图改变历史，也会得到相同的结果。
+所以诺维科夫自洽性原则也可以理解成：时间线是唯一的。
+关于平行宇宙的问题 如果假设平行宇宙（多元宇宙、多重宇宙、世界泡）存在的话。宇宙从时间节点 α 上应该会分裂成两个宇宙，宇宙一和宇宙二。这里假设宇宙一对应选择 1，宇宙二对应选择 2。还是宇宙一中在时间节点 β 上的 A，进行了时间旅行。
+结合上面的两个角度，如果想解决矛盾，那应该是从时间节点 α 上又分裂出了一个新的宇宙，宇宙三。在这个新的宇宙里，宇宙三的 Aα 能观测到宇宙一的 Aβ。但是这种情况，宇宙一什么都没有改变。
+关于欺骗世界的说法 这种说法属于一种比较中二病的说法，故事情节看上去改变了世界，但是里面其实玩了一点花招。
+如果某个故事的背景是设定在诺维科夫自洽性原则下的，那么这个故事的世界观就是过去不可变。但是人本身的感官是不能收集所有的信息的，也就是人通过感官获得的信息不一定就是真正的客观现实。所以以人的视角创造的历史就是可以被改变的。
+所以在这种情况下，这类故事会先以人的视角观测一些现象，然后加上一些心理学上的预设，诱导读者 往某个看上去合理的历史上想，但是这其实不是真正的历史。然后当要开始所谓的欺骗世界的时候，就可以给之前给出的一些现象，另外一套解释。看上去就像是欺骗了世界，从而达到一种看上去像是改变了历史的表象。
+比如，主角看到队友被捅了几刀，然后倒在血泊之中。队友临死之前让主角跑路，然后主角就头也不回的跑了。这种情况中，主角其实没有足够的信息判断队友死了没有。被捅了几刀，有没有可能是玩具刀；那个所谓的血泊，有没有可能是假的。
+时间跳针 时间跳针是游戏《量子破碎》（《Quantum Break》）中的概念，类似 《JOJO的奇妙冒险》 里的绯红之王，或者很多作品里的形态各异但是本质上差不多的&amp;quot;时停&amp;quot;的概念。
+时间已经经过了一段时间，但是没有能力的个体感觉到的只是一瞬。
+reference（参考） 一个七年前的游戏，竟展现了2022年时间将彻底终结（量子破碎）〖游戏不止〗
+预言2022年世界静止的游戏，最终的结局是什么样？（量子破碎）〖游戏不止〗
+诺维科夫自洽性原则
+诺维科夫
+如何理解诺维科夫自洽性原则的解释？
+蘑菇食草的回答</content></entry><entry><title>Golang 使用 mockgen 进行单元测试</title><url>/post/computer-science/programming-language/golang/mockgen/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag><tag>test</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+安装 GitHub的 README 就是文档。
+使用 go install github.com/golang/mock/mockgen@v1.6.0 命令安装。装完就可以用了，直接命令行窗口输入 mockgen 命令，会得到下面的输出。
+mockgen has two modes of operation: source and reflect. Source mode generates mock interfaces from a source file. It is enabled by using the -source flag. Other flags that may be useful in this mode are -imports and -aux_files. Example: mockgen -source=foo.go [other options] Reflect mode generates mock interfaces by building a program that uses reflection to understand interfaces. It is enabled by passing two non-flag arguments: an import path, and a comma-separated list of symbols. Example: mockgen database/sql/driver Conn,Driver -aux_files string (source mode) Comma-separated pkg=path pairs of auxiliary Go source files. -build_flags string (reflect mode) Additional flags for go build. -copyright_file string Copyright file used to add copyright header -debug_parser Print out parser results only. -destination string Output file; defaults to stdout. -exec_only string (reflect mode) If set, execute this reflection program. -imports string (source mode) Comma-separated name=path pairs of explicit imports to use. -mock_names string Comma-separated interfaceName=mockName pairs of explicit mock names to use. Mock names default to &#39;Mock&#39;+ interfaceName suffix. -package string Package of the generated code; defaults to the package of the input with a &#39;mock_&#39; prefix. -prog_only (reflect mode) Only generate the reflection program; write it to stdout and exit. -self_package string The full package import path for the generated code. The purpose of this flag is to prevent import cycles in the generated code by trying to include its own package. This can happen if the mock&#39;s package is set to one of its inputs (usually the main one) and the output is stdio so mockgen cannot detect the final output package. Setting this flag will then tell mockgen which import to exclude. -source string (source mode) Input Go source file; enables source mode. -version Print version. -write_package_comment Writes package documentation comment (godoc) if true. (default true) 2022/12/12 10:00:27 Expected exactly two arguments 生成 mock 文件 参数很多但是一般就用两个：-package 指定生成的 go 文件的包名； -destination= 指定生成的 go 文件的位置和文件名。比如，给 go-redis 的 Cmdable 接口生成 mock，就可以在项目的根目录输入下面的命令。
+mockgen -package=mock -destination=&quot;mock/redis_cmdable.mock.go&quot; github.com/go-redis/redis/v9 Cmdable
+这个命令就表示给 go-redis 的 Cmdable 接口生成 mock。生成的 go 文件的包名为 package mock。生成的文件在 ./mock/ 目录，文件名为 redis_cmdable.mock.go。
+如果上面的命令没有生成文件，就先试试不加参数的能不能执行：mockgen github.com/go-redis/redis/v9 Cmdable。这个命令会使用默认配置生成 mock 文件。
+如果碰到下面这种报错：
+prog.go:12:2: no required module provides package github.com/golang/mock/mockgen/model; to add it: go get github.com/golang/mock/mockgen/model prog.go:12:2: no required module provides package github.com/golang/mock/mockgen/model; to add it: go get github.com/golang/mock/mockgen/model prog.go:14:2: no required module provides package github.com/go-redis/redis/v9: go.mod file not found in current directory or any parent directory; see &#39;go help modules&#39; prog.go:12:2: no required module provides package github.com/golang/mock/mockgen/model: go.mod file not found in current directory or any parent directory; see &#39;go help modules&#39; 2022/12/10 16:40:01 Loading input failed: exit status 1 就执行一下 go get github.com/golang/mock/mockgen/model 命令就行了。
+在单元测试里使用 func TestXXX(p7s6t *testing.T) { // 开头这里是固定这么写的 p7s6t.Parallel() p7ctrl := gomock.NewController(p7s6t) defer p7ctrl.Finish() // 这个方法是 mockgen 生成的 p7cmdable := mock.NewMockCmdable(p7ctrl) // 定义 redis 语句执行的结果 p7cmd := redis.NewCmd(context.Background(), nil) p7cmd.SetVal(&#34;OK&#34;) // 把上面定义的执行结果，指定给一个语句 p7cmdable.EXPECT().Eval(gomock.Any(), {redis 语句}, 语句需要的参数 1, 语句需要的参数 2, ..., gomock.Any()).Return(p7cmd) } 这么就定义好了调用 redis 执行指定的 redis 语句的 mock 数据。注意，测试的时候调用的语句和语句需要的参数必须是一样的。而且上面这种定义方式这里只能调用一次。
+p7cmdable := mock.NewMockCmdable(p7ctrl) p7cmd := redis.NewCmd(context.Background(), nil) p7cmd.SetErr(context.DeadlineExceeded) p7cmdable.EXPECT().Eval(gomock.Any(), {redis 语句 1}, 语句需要的参数 1, 语句需要的参数 2, ..., gomock.Any()).Times(2).Return(p7cmd) p7cmd2 := redis.NewCmd(context.Background(), nil) p7cmd2.SetVal(&#34;OK&#34;) p7cmdable.EXPECT().Eval(gomock.Any(), {redis 语句 2}, 语句需要的参数 1, 语句需要的参数 2, ..., gomock.Any()).Return(p7cmd2) 可以用 Times() 方法指定语句的调用次数，如果无限次的话就用 AnyTimes()。如果需要设置多种语句执行的结果，那就像上面那样，挨个定义，挨个设置就行。
+用 Times() 的时候，不知道需不需要控制调用次数。这里用的时候发现，如果设置的调用次数没用完测试就结束了，那单元测试会报错。调整一下调用次数和被测试的程序保持一致就行。
+controller.go:269: missing call(s) to 中间一大堆，应该就是调用次数没用完那个 redis 语句 controller.go:269: aborting test due to missing call(s) ]]></content></entry><entry><title>使用 WSL 和 Goland 进行 Golang 开发</title><url>/post/computer-science/application/wsl/golang/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>wsl</tag><tag>linux</tag><tag>golang</tag><tag>goland</tag></tags><content type="html"><![CDATA[环境 CPU AMD64(x86_64) Windows 11 家庭版 WSL2 Ubuntu-20.04
+安装 WSL Windows 里需要安装 Hyper-V 虚拟机。有没有安装 Hyper-V 可以通过在命令行窗口（CMD、PowerShell）里输入 systeminfo 命令查看。
+... Hyper-V 要求: 已检测到虚拟机监控程序。将不显示 Hyper-V 所需的功能。 完全未安装 WSL 时，执行 wsl --install 才会一键安装，这里是手动安装。先以管理员模式运行 PowerShell。
+可以通过 wsl --list --verbose 命令或者简写的 wsl -l -v 命令，查看机器上已经安装的 WSL
+PS C:\WINDOWS\system32&gt; wsl -l -v NAME STATE VERSION * docker-desktop-data Stopped 2 docker-desktop Stopped 2 通过 wsl --list --online 命令，查看可用发行版列表。
+以下是可安装的有效分发的列表。 请使用“wsl --install -d &lt;分发&gt;”安装。 NAME FRIENDLY NAME Ubuntu Ubuntu Debian Debian GNU/Linux kali-linux Kali Linux Rolling openSUSE-42 openSUSE Leap 42 SLES-12 SUSE Linux Enterprise Server v12 Ubuntu-16.04 Ubuntu 16.04 LTS Ubuntu-18.04 Ubuntu 18.04 LTS Ubuntu-20.04 Ubuntu 20.04 LTS 然后通过 wsl --install -d Ubuntu-20.04 命令安装 Ubuntu-20.04。
+等着下载好，如果进度条不动或者出错了，Ctrl+C 然后重新执行就行。
+正在下载: Ubuntu 20.04 LTS 安装过程中出现错误。分发名称: &#39;Ubuntu 20.04 LTS&#39; 错误代码: 0x80072eff 正在下载: Ubuntu 20.04 LTS 正在安装: Ubuntu 20.04 LTS 已安装 Ubuntu 20.04 LTS。 正在启动 Ubuntu 20.04 LTS… 装好后自动会打开一个命令行窗口。
+Please create a default UNIX user account. The username does not need to match your Windows username. For more information visit: https://aka.ms/wslusers Enter new UNIX username: 这里需要设置用户名和密码，root 不能用，所以换 kelipute，密码就 123456。
+Please create a default UNIX user account. The username does not need to match your Windows username. For more information visit: https://aka.ms/wslusers Enter new UNIX username: root adduser: The user `root&#39; already exists. Enter new UNIX username: kelipute New password: Retype new password: passwd: password updated successfully Installation successful! To run a command as administrator (user &#34;root&#34;), use &#34;sudo &lt;command&gt;&#34;. See &#34;man sudo_root&#34; for details. Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.10.16.3-microsoft-standard-WSL2 x86_64) * Documentation: https://help.ubuntu.com * Management: https://landscape.canonical.com * Support: https://ubuntu.com/advantage System information as of Thu Dec 8 13:04:08 CST 2022 System load: 0.0 Processes: 8 Usage of /: 0.4% of 250.98GB Users logged in: 0 Memory usage: 0% IPv4 address for eth0: 172.27.168.157 Swap usage: 0% 0 updates can be installed immediately. 0 of these updates are security updates. The list of available updates is more than a week old. To check for new updates run: sudo apt update This message is shown once once a day. To disable it please create the /home/kelipute/.hushlogin file. kelipute@keliputeC2021A:~$ 如果不关闭 Linux 子系统的话，在 Windows 的命令行窗口执行 wsl -l -v 命令，就可以看到刚才装的 Ubuntu-20.04，状态是 Running 的。
+NAME STATE VERSION * docker-desktop-data Stopped 2 Ubuntu-20.04 Running 2 docker-desktop Stopped 2 Linux 子系统的命令行窗口，后续可以从 Windows 的开始菜单，搜索 Ubuntu 打开。
+安装和配置 Golang 在 $HOME 目录（cd ~） 下载一个 Linux 环境的 go 安装包。
+sudo wget https://studygolang.com/dl/golang/go1.19.4.linux-amd64.tar.gz 把下载下来的压缩包解压到 /usr/local/ 目录。这里不用自己建一个 go 目录，压缩包里有。
+sudo tar zxf go1.19.4.linux-amd64.tar.gz -C /usr/local/ 打开配置文件：vim ~/.profile。在最后面追加 Golang 的环境配置。
+export PATH=$PATH:$GOROOT/bin export GOROOT=/usr/local/go export GOPATH=$HOME/go export GO111MODULE=on export GOPROXY=https://goproxy.cn,direct 保存之后执行 source ~/.profile 命令，让配置生效。
+这个时候理论上就可以使用 go 命令了，可以使用 go version 命令输出 go 的版本，测试一下。
+go version go1.19.4 linux/amd64 配置 goland 菜单栏 File =&gt; Settings&hellip; =&gt; Build,Execution,Deployment =&gt; Run Targets
+创建一个 WSL 的，这里创建的是 WSL Ubuntu-20.04。下面的配置，Go Executable 选 /usr/local/go/bin/go。GOPATH 选 /home/kelipute/go。都是上面在 WSL 里面配置的 go 的环境变量。
+然后配置 Goland 右上角的 Run 和 Debug 按钮。偷懒的办法，先本地点一下 Run 或者 Debug。让 Goland 自动创建一个配置，然后进去 Edit Configurations&hellip; 修改。
+选中对应的配置，右边 Run on 默认是 Local machine 这里改成刚才创建的 WSL Ubuntu-20.04，然后把下面的 Build on remote target 勾上。保存之后，这个时候再点 Run 或者 Debug 用的就是 WSL 里面的环境了。
+build 报错 run 的时候报错 ... dial tcp 172.217.160.113:443: connect: connection refused ... 这个是 go mod 下不了包，在 WSL 里面改代理就行。
+debug 报错 debug 断点调试的时候报错 ... # runtime/cgo cgo: C compiler &#34;gcc&#34; not found: exec: &#34;gcc&#34;: executable file not found in $PATH ... 这个提示表示没安装 gcc。使用 sudo apt install gcc 命令在 WSL 里面安装 gcc 就行。装完之后可以用 gcc -v 命令输出一下 gcc 版本，测试一下。
+gcc -v Using built-in specs. COLLECT_GCC=gcc COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/9/lto-wrapper OFFLOAD_TARGET_NAMES=nvptx-none:hsa OFFLOAD_TARGET_DEFAULT=1 Target: x86_64-linux-gnu Configured with: ../src/configure -v --with-pkgversion=&#39;Ubuntu 9.3.0-10ubuntu2&#39; --with-bugurl=file:///usr/share/doc/gcc-9/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,gm2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-9 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none,hsa --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu Thread model: posix gcc version 9.3.0 (Ubuntu 9.3.0-10ubuntu2) reference（参考） WSL 2 安装Goland WSL2下开发调试goland配合wsl2直接调用wsl2里go环境的方法]]></content></entry><entry><title>使用 Golang 实现简单的 ORM 框架 -- 其他辅助工具</title><url>/post/computer-science/programming-language/framework/orm/golang/middleware/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>orm</tag><tag>middleware(中间件)</tag><tag>mysql</tag><tag>golang</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 资料 {orm-go}
 /v20/ orm.drawio.html 注意：orm.drawio.html 里面的这个类图和流程图都是和 v20 版本的代码对应的最终形态。 中间件 ORM 框架的中间件和 web 框架的中间件的原理是一样的，这里就不重复了。这里需要考虑的是中间件注册在哪里，查询构造器上显然是不合适的，这里可以考虑和方言抽象一样，放到数据库抽象上去。在执行查询之前，先去数据库实例上把中间件拿出来，然后把执行查询的逻辑放在最里面。
 另外，需要定义中间件入参和出参的数据格式。这里和 web 框架一样，要不然套不起来。但是这里比 web 框架会复杂一点，在 web 框架那里入参和出参是一样的，整条链路上都只需要处理 TCP 连接的输入流和输出流。ORM 框架这里，输入的参数有 4 种，即 4 种查询构造器。输出的参数有两种，即数据库执行 SQL 返回的两大类结果。
 所以需要把 4 中查询构造器封装到中间件入参里面，入参包括查询构造器的类型和查询构造器的本体。把数据库执行 SQL 返回的两大类结果封装到中间件出参里面，出参包括数据库执行 SQL 返回的两大类结果以及异常。这里又有一个问题了，SQL 语句执行完了，怎么处理返回回来的被封装的两大类结果。
-可以注意到，SELECT 和 INSERT、UPDATE、DELETE 是分别对应数据库执行 SQL 返回的两类结果的，而且前面执行 SQL 的时候也是分别使用 query() 和 exec() 的。所以在最外面，也就是进入中间件链条的位置，是可以知道执行的到底是哪类 SQL 语句的。所以对于数据库返回的结果，就可以在这里进行类型断言。</content></entry><entry><title>使用 Golang 实现 ORM 框架 -- INSERT、UPDATE、DELETE</title><url>/post/computer-science/programming-language/framework/orm/golang/insert_update_delete/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>orm</tag><tag>mysql</tag><tag>sqlite3</tag><tag>golang</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+可以注意到，SELECT 和 INSERT、UPDATE、DELETE 是分别对应数据库执行 SQL 返回的两类结果的，而且前面执行 SQL 的时候也是分别使用 query() 和 exec() 的。所以在最外面，也就是进入中间件链条的位置，是可以知道执行的到底是哪类 SQL 语句的。所以对于数据库返回的结果，就可以在这里进行类型断言。</content></entry><entry><title>使用 Golang 实现简单的 ORM 框架 -- INSERT、UPDATE、DELETE</title><url>/post/computer-science/programming-language/framework/orm/golang/insert_update_delete/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>orm</tag><tag>mysql</tag><tag>sqlite3</tag><tag>golang</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 资料 {orm-go}
 /v20/ orm.drawio.html 注意：orm.drawio.html 里面的这个类图和流程图都是和 v20 版本的代码对应的最终形态。 前言 这篇是接着 SELECT 后面的。INSERT、UPDATE、DELETE 三个加起来都没有 SELECT 复杂。其中 INSERT 因为涉及到不同数据库的方言的处理，相对 UPDATE 和 DELETE 会更复杂一点。
 本篇主要涉及：INSERT 语句的构造过程、不同数据库 INSERT 语句不一样的问题的处理方式、UPDATE 语句的构造过程、DELETE 语句的构造过程。
@@ -137,7 +213,7 @@ t4，temp，临时变量 c5，const，常量 p7，pointer，指针 a5，array，
 第 1 版：v2.0.0（v2.0） 第 1 版小改一次：v2.0.2（v2.2） 第 1 版小改一次：v2.0.4（v2.4） 第 1 版大改一次：v2.2.0（v2.6） 第 1 版小改一次：v2.2.2（v2.8） 第 2 版：v4.0.0（v4.0） 通常 x.y 用的多，本人的各种 demo 代码版本一般情况下达不到需要使用 x.y.z 这样的规模。
 而且版本号一般不会超过 10，常见的是：v20、v22、v40、v200、v202、v220、v400。</content></entry><entry><title>使用 Golang 实现复杂的 Web 框架</title><url>/post/computer-science/programming-language/framework/web/golang/web_v40/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>router(路由)</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 前言 在看这篇之前，建议先看下面这几篇：
-使用 Golang 开启 HTTP 服务 使用 Golang 实现简单的 Web 框架 &ndash; router(路由) 使用 Golang 实现简单的 Web 框架 &ndash; middleware(中间件) 路由树是 web 框架的核心。其他的功能，都是在路由树的基础上，再增加亿点点细节而已。
+《使用 Golang 开启 HTTP 服务》 《使用 Golang 实现简单的 Web 框架 &ndash; router(路由)》 《使用 Golang 实现简单的 Web 框架 &ndash; middleware(中间件)》 路由树是 web 框架的核心。其他的功能，都是在路由树的基础上，再增加亿点点细节而已。
 资料 {web-framework-go}/v40 实现功能 主要实现： 路由树（静态、通配符、路径参数、正则表达式）、路由组 全局中间件、可路由的中间件 次要实现： 内存池（请求上下文对象复用） 服务管理（管理多个子服务） 优雅退出、退出时的回调方法 计划实现： 用户认证（中间件实现） 文件操作（上传、下载） 单元测试、集成测试、性能测试 设计文档 路由树 首先是路由树结点的设计。结点的基础数据包括：结点类型、这个路由结点代表的那段路径、命中路由之后的的处理逻辑。
 静态路由子结点使用 map 结构存储，查询时直接就可以通过路由段查询子结点。
 通配符子结点、路径参数子结点、正则表达式子结点，这三个结点属于特殊结点，而且存在冲突关系，所以单独存储。
@@ -162,7 +238,11 @@ func (p7this *ServiceManager) Shutdown() { ... log.Println(&#34;停止接收新�
 比如：系统里如果有缓存的话，可能需要把缓存进行持久化处理；系统关闭时，需要上报数据其他服务等。
 这个可以通过回调实现，和中间件的用法类似。不过最后执行的时候，是所有的回调是并发执行的，而不是像中间件一样套起来，一次执行的。
 func (p7this *ServiceManager) Shutdown() { ... log.Println(&#34;开始执行子服务的关闭回调。。。&#34;) for _, p7hs := range p7this.s5p7HTTPService { log.Printf(&#34;执行子服务 %s 的关闭回调，限制 %d 秒内完成。。。&#34;, p7hs.name, p7this.shutdownCallbackTimeOut/time.Second) for _, f4cb := range p7hs.s5f4shutdownCallback { t4f4cb := f4cb wg.Add(1) go func() { defer wg.Done() t4ctx, t4cancel := context.WithTimeout(context.Background(), p7this.shutdownCallbackTimeOut) defer t4cancel() t4f4cb(t4ctx) }() } } wg.Wait() ... } 到这里核心的部分就差不多了，细节上的实现可以看代码。
-]]></content></entry><entry><title>使用 Hugo 和 GitHub Pages 搭建站点</title><url>/post/computer-science/application/hugo/hugo-start/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Hugo</tag><tag>GitHub Pages</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 hugo 0.103.1
+]]></content></entry><entry><title>程序员的定位</title><url>/post/computer-science/programmer/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag></tags><content type="html">程序员的自我修养 原则一： 技术、语言、框架，本质都是工具。工具的价值，在于提升使用者的效率。
+原则二: 如果一种语言或者一个框架很牛逼，那么荣耀属于创造它的人，与使用者没有半毛钱关系。 针对恰当的需求，使用恰当的技术、语言、框架，并且做到按时交付以及高质量，才是使用者的荣耀。
+原则三: 大部分人并不是天生有选择恐惧症，也不是天生的杠精。所有关于选择的迷惑或者争吵，大都因为：1、标准不唯一，没有设定清晰的标准；2、标准之间没有优先级或者权重。
+慕课网，隔壁王校长
+Go语言框架：Beego vs Gin</content></entry><entry><title>使用 Hugo 和 GitHub Pages 搭建站点</title><url>/post/computer-science/application/hugo/install_publish/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Hugo</tag><tag>GitHub-Pages</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 hugo 0.103.1
 Hugo 文档 gohugoio/hugo英文文档中文文档安装 Hugo 在 Hugo Releases页面下载对应操作系统的版本。这里下载的是 hugo_0.103.1_windows-amd64.zip。
 下载完成后，解压到想要的位置。这里使用的目录是 D:\hugo\bin。然后将这个目录添加到 系统变量 path 中（我的电脑 -&gt; 属性 -&gt; 高级系统设置 -&gt; 环境变量 -&gt; 系统变量 -&gt; path）。
 搞定之后，可以打开控制台，输出一下版本信息，验证一下安装是否成功。或者试试 hugo help 命令，看看能不能输出帮助信息。
@@ -227,10 +307,10 @@ func AMiddleware() HTTPMiddleware { return func(next HTTPHandleFunc) HTTPHandleF
 路由树的设计没有强制的要求，不是非的像图里那样。按照实际场景的需求，只要设计出路由树的构建和查询规则合理即可。
 路由组 路由组其实就是额外提供的方便使用的接口而已，相当于对路由的注册功能做了一层包装。
 路由组的内部，会把定义到路由组上的路由路径前缀和中间件，附加到路由组内的每一个路由上去。
-]]></content></entry><entry><title>关于帕里特档案馆和西柊慧音</title><url>/about/</url><categories/><tags/><content type="html">帕里特档案馆（重建中，旧篇总计 283，迁移完成 8，新增 11），是个个人档案馆。
+]]></content></entry><entry><title>关于帕里特档案馆和西柊慧音</title><url>/about/</url><categories/><tags/><content type="html">帕里特档案馆（重建中，旧篇总计 283，迁移完成 8），是个个人档案馆。
 档案馆的内容主要是本人的学习笔记、对学到的东西的解释和思考、对实操过程的记录。
 这些玩意本质上是当时的我给以后的我的留言。它们不是教程，更不是论文。
-写它们的目的是，如果以后的我忘记了这块的内容，那么现在的我可以把以后的我教会。
+写它们的目的是，如果以后的我忘记了这块的内容，那么希望现在的我可以把以后的我教会。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
 另外，如果访客您觉得毫无干货或者内容非常水，那么非常抱歉。
 站点基于 hugo 0.103.1 extended 版本
@@ -239,7 +319,7 @@ func AMiddleware() HTTPMiddleware { return func(next HTTPHandleFunc) HTTPHandleF
 站点预计会部属在 github pages 和 gitee pages 上。
 如果有问题，欢迎批评指正。同时也欢迎建设性意见。
 和本人的交流方式，QQ：786907650；微信号：wxid_k3uqy9xeryn422。昵称和头像都是一样的。
-有意交流者，请至少备注是谁和从哪来。</content></entry><entry><title>使用 Golang 开启 HTTP 服务</title><url>/post/computer-science/programming-language/golang/http/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag><tag>web</tag><tag>http</tag></tags><content type="html"> go version go1.19 windows/amd64
+有意交流者，请至少备注是谁和从哪来。</content></entry><entry><title>使用 Golang 开启 HTTP 服务</title><url>/post/computer-science/programming-language/golang/http/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag><tag>web</tag><tag>http</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 资料 {demo-golang}
 /demo/web/http/ 开启 HTTP 服务 在 Go 中有多种方式，可以开启 HTTP 服务。但是总的来说基本就下面两大类思路（本质上其实是一类）。
 使用官方提供的封装好的 net/http 包。 直接使用 net 包从 TCP 开始自行实现。 使用 net/http 包的时候，需要关注的最核心的部分，就是 Handler 接口 (src/net/http/server.go)。
@@ -470,7 +550,7 @@ Youtube 原视频
 Linux 文档
 malloc(3) - allocate and free dynamic memory
 proc(5) - process information pseudo-filesystem
-《Linux\Unix 系统编程手册》 第 7 章</content></entry><entry><title>使用 Jekyll 主题</title><url>/post/computer-science/application/jekyll/jekyll-theme/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Ruby</tag><tag>Jekyll</tag><tag>GitHub Pages</tag></tags><content type="html">环境 CPU AMD64(x86_64) Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2
+《Linux\Unix 系统编程手册》 第 7 章</content></entry><entry><title>使用 Jekyll 主题</title><url>/post/computer-science/application/jekyll/theme/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Ruby</tag><tag>Jekyll</tag><tag>GitHub-Pages</tag></tags><content type="html">环境 CPU AMD64(x86_64) Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2
 jekyll-TeXt-theme Github：
 https://github.com/kitian616/jekyll-TeXt-theme
 官方文档：
@@ -484,7 +564,7 @@ https://github.com/cotes2020/jekyll-theme-chirpy
 官方文档（同时也是个 Demo）：
 https://chirpy.cotes.page/
 个人感觉，这个主题比上面那个正在用的要好看不少。
-但是无奈，按照官方文档走流程的时候，在发布流程的 Github Action 步骤卡住了。而且没有找到解决方案，遂遗憾放弃。</content></entry><entry><title>使用 Jekyll 和 GitHub Pages 搭建站点</title><url>/post/computer-science/application/jekyll/jekyll-start/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Ruby</tag><tag>Jekyll</tag><tag>GitHub Pages</tag></tags><content type="html"><![CDATA[环境 CPU AMD64(x86_64) Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2
+但是无奈，按照官方文档走流程的时候，在发布流程的 Github Action 步骤卡住了。而且没有找到解决方案，遂遗憾放弃。</content></entry><entry><title>使用 Jekyll 和 GitHub Pages 搭建站点</title><url>/post/computer-science/application/jekyll/install_publish/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>Ruby</tag><tag>Jekyll</tag><tag>GitHub-Pages</tag></tags><content type="html"><![CDATA[环境 CPU AMD64(x86_64) Windows 11 家庭版 Ruby 3.1.2 RubyGems 3.3.7 Jekyll 4.2.2
 安装 Jekyll 在官方文档中有详细的安装 Jekyll 的流程说明。
 Jekyll 官方文档的中文版：http://jekyllcn.com/。
 第 1 步，安装 Ruby。
@@ -514,7 +594,13 @@ If you don’t know what version to install and you’re getting started with Ru
 &gt; bundle add webrick Fetching gem metadata from https://rubygems.org/.......... Resolving dependencies... Fetching gem metadata from https://rubygems.org/.......... Resolving dependencies... 等待安装完成，应该就可以使用 jekyll serve 命令了。
 推送项目到 GitHub Pages GitHub Pages 官方文档：https://pages.github.com/按照要求建一个名字叫 {username}.github.io 仓库，然后把项目推上去就行了。
 然后就可以通过 https://{username}.github.io 访问了。
-]]></content></entry><entry><title>BT 种子和磁力链接</title><url>/post/computer-science/protocol/bit-torrent/</url><categories><category>protocol(协议)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>protocol(协议)</tag></tags><content type="html">BT 种子 BT 种子，实际上指的是由 BitTorrent 协议所生成的一个包含资源信息的文件。
+]]></content></entry><entry><title>关于 RPC 的基本认知</title><url>/post/computer-science/protocol/rpc/</url><categories><category>protocol(协议)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>protocol(协议)</tag><tag>rpc</tag></tags><content type="html">资料 rpc.drawio.html RPC 是什么 RPC 是 Remote Procedure Call 的简写，翻译成中文叫远程过程调用。用这玩意的目的，简单的理解就是，想像使用本地服务一样使用远端服务。这个怎么理解呢？
+这里先假定有一个类 A 在 a 服务上，这个类 A 实现了一个方法。如果现在在 a 服务上有另一个类 B 要调用这个方法，那么通常是直接 new 一个类 A 出来，然后调用方法就行了。现在如果这个类 A 在远端服务 b 上，怎么办呢？
+通常情况是 a 服务通过网络，请求 b 服务来达到目的。比如，可以通过发起一次 TCP 进行访问，可以通过短连接的 HTTP 进行访问，当然长链接的 Socket 的也行。这些请求方式各不相同，原因是它们对于两个服务之间的沟通方式有着不同约定，这些约定也就是协议。
+那么 RPC 协议是啥样的呢？RPC 协议希望，即使类 A 在远端服务 b 上，a 服务上的类 B 依然可以使用 new 一个类 A 出来，然后调用接口的方式达到目的。这里在 a 服务上的类 A 的使用方式看上去本地调用一样，但是背地里它是通过网络请求，请求了 b 服务，调用了 b 服务上真正的类 A 的接口拿到结果，然后返回给调用者的。
+RPC 的原理 RPC 首先需要定义一个协议，也就是约定两个服务之间的沟通方式。这个协议主要是为了把本地服务的接口调用的信息传递给远端服务。也就是 a 服务上的类 A 假装自己就是 b 服务上的类 A，这样上游调用的时候，类 A 就可以拿到调用的信息（调了哪个接口，传了哪些参数），然后把这些调用信息传递给 b 服务上真正的类 A 去执行。
+这个过程大概可以简单的分成下面几个步骤：
+a 服务上的类 A 需要把自己伪装成 b 服务上的类 A，从外面看上去是一样的。 a 服务上的类 A 在被调用的时候需要把调用的信息收集起来，然后通过网络传给 b 服务。 b 服务接收到请求之后需要通过传过来的调用的信息，分析出这个请求调的是类 A，传了哪些参数。 b 服务 new 一个类 A 出来，使用传过来的参数调用接口拿到结果。 b 服务拿到结果之后，给 a 服务传回去。a 服务上的类 A 拿到结果之后，对上游做出响应。</content></entry><entry><title>BT 种子和磁力链接</title><url>/post/computer-science/protocol/bit-torrent/</url><categories><category>protocol(协议)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>protocol(协议)</tag></tags><content type="html">BT 种子 BT 种子，实际上指的是由 BitTorrent 协议所生成的一个包含资源信息的文件。
 与传统的网络传输协议不同，BitTorrent 协议是一种以 P2P（peer-to-peer、用户对用户）模式为主的资源分享协议。采用的是一种去中心化的思想，不需要一个专门的文件发布者或者发布平台。
 从理论上来说，一个 BT 种子只要发布了，种子所包含的资源就永远存在于互联网上。
 平常所使用的 HTTP、FTP 等协议需要一个中心发布者在网络上发布文件，即一种点对多的模式。当然，如果中心发布者由于某种原因被封了或者发布者删除了资源，那么就无法下载资源了。
@@ -534,7 +620,109 @@ magnet：为协议名。 xt：exact topic，资源定位点。 urn：Uniform Res
 下面的操作是在 windows 11 系统环境下操作的。
 需要准备一张图片 1.jpg 和一个压缩文件 2.rar。然后新建一个 .bat 后缀的批处理文件，把下面的代码放进去。
 copy /b 1.jpg+2.rar 3.jpg copy /b 是一个基础的 DOS 命令，作用是合并文件。
-把图片、压缩文件、批处理文件放在同一个目录。然后执行批处理文件，之心完成后就会得到一张图片 3.jpg。
+把图片、压缩文件、批处理文件放在同一个目录。然后执行批处理文件，执行完成后就会得到一张图片 3.jpg。
 这个图片实际上同时文件含了图片和压缩文件。如果把图片 3.jpg 的后缀名改成 .rar，这个时候图片就变成了压缩文件。
-这个压缩文件是可以解压的，压缩文件的内容就是 2.rar 的内容。</content></entry><entry><title>站点示例</title><url>/flinks.html</url><categories/><tags/><content type="html">如想交换本站友情链接，请在评论区留下你的站点信息，格式参考如下：
+这个压缩文件是可以解压的，压缩文件的内容就是 2.rar 的内容。</content></entry><entry><title>在 Windows 环境安装和配置 Git</title><url>/post/computer-science/application/git/install_config/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>git</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 git 2.34.0
+下载和安装 去 Git 官方网站下一个 Windows 环境的安装包。这里下载到的安装包是 Git-2.34.0-64-bit.exe。运行安装包，一路下一步即可。本体安装应该是自动配好的，可以输出版本检查一下有没有安装好。
+&gt; git version git version 2.34.1.windows.1 全局配置用户名和邮箱 &gt; git config --global user.name &#34;xxx&#34; &gt; git config --global user.email &#34;xxx@xxx.com&#34; 执行命令后，会在目录 C:\Users\用户名\ 下创建一个 .gitconfig 文件用于保存配置。
+记住密码 永久记住密码：
+&gt; git config --global credential.helper store 临时记住密码：
+&gt; git config –global credential.helper cache &gt; git config –global credential.helper &#39;cache –timeout=3600&#39; 这两条命令执行后，会在目录 C:\Users\用户名\ 下创建一个 .gitconfig 文件用于保存配置。第一次提交任然需要输入用户名和密码。提交成功后，同一个用户就不需要再输入了。提交成功后会在目录 C:\Users\用户名\ 下创建一个 .git-credentials 文件用于保存密码。
+Github 配置 SSH 打开 Github 的账号设置页面，在左侧边栏里找到 Access-&gt;SSH and GPG keys。最后要把生成的 SSH 的公钥配置在这里。
+第 1 步，在自己的终端上生成 SSH SSH 目录一般都在 ~/.ssh，对应到 win11 上就是 C:\Users\用户名\.ssh 目录。 进入 ~/ 目录，对应到 win11 上就是 C:\Users\用户名\ 目录。 这里建议用 Git 提供的那个 Git Bash 命令行窗口操作。它会自动的把 ~ 目录对应到 win11 的用户目录。 然后使用命令生成 SSH，一般一路回车即可。 &gt; ssh-keygen -t rsa -C &#34;xxx@xxx.com&#34; -f ~/.ssh/github_rsa Generating public/private rsa key pair. Enter passphrase (empty for no passphrase): 直接回车 Enter same passphrase again: 直接回车 Your identification has been saved in /c/Users/Administrator/.ssh/github_rsa Your public key has been saved in /c/Users/Administrator/.ssh/github_rsa.pub ... -t rsa：表示使用 rsa 算法。 -C &quot;xxx@xxx.com&quot;：指定 SSH 的名字，不一定非要是邮箱，但是一般用邮箱。 -f ~/.ssh/github_rsa：指定了生成出来的文件的目录和文件名。 如果不指定文件名，则会用默认的文件名，如果想要配置多个 SSH 就需要指定文件名。
+第 2 步，获取和配置公钥 生成 SSH 的步骤完成后，用 cat 获取公钥。
+&gt; cat ~/.ssh/github_rsa.pub ssh-rsa 一大串 xxx@xxx.com 然后把上面 cat 到的公钥内容贴到代码仓库配置 SSH 公钥的地方。
+第 3 步，配置 SSH 如果第 1 步用的是默认的文件名，那第 3 步是不需要配置的，直接默认配置就生效了。 但是如果第 1 步指定了文件名，也就是需要配置多个 SSH 的时候，就需要进行下面的配置。 即使用 ssh-add 添加私钥。如果需要配置多个 SSH，那么每个 SSH 都要配置。
+&gt; ssh-add ~/.ssh/github_rsa Identity added: /c/Users/Administrator/.ssh/github_rsa (xxx@xxx.com) 如果遇到报错：Could not open a connection to your authentication agent.。 就先执行 ssh-agent bash，这命令没有输出。然后再执行 ssh-add 命令。
+ssh-add -l：查看私钥。 ssh-add -D：删除全部私钥。 私钥添加完成后，在 ~/.ssh/ 目录创建文件名为 config 的配置文件。 在 config 文件中添加以下配置内容，如果需要配置多个 SSH，那么每个 SSH 都要写一个。
+# Github Host github.com HostName github.com IdentityFile ~/.ssh/github_rsa User xxx 符号 # 开头表示这行是注释。 Host：识别模式。和主机名一样就行。 HostName：主机名 Port：端口号。如果不是默认的 22 就需要指定。 IdentityFile：秘钥文件路径 User：用户名 第 4 步，测试 如果配置成功，则执行 ssh -T 命令后会，有下面提示成功的输出。
+&gt; ssh -T git@github.com Hi xxx! You&#39;ve successfully authenticated, but GitHub does not provide shell access. 配置多个 SSH 这里给 Github 和 Gitee 两个代码仓库配置 SSH。
+第 1 步、第 2 步是一样的。都是生成 SSH 然后到对应的仓库去配置。 第 3 步、第 4 步不一样。ssh-add 需要执行多次，把每个 SSH 都添加。config 文件的配置也需要配多个。
+如果有第 3 个、第 4 个、或者更多的仓库，依葫芦画瓢即可。
+Gitee 配置 SSH Gitee 的帮助中心有关于 配置 SSH 的文档打开 Gitee 的账号设置页面，在左侧边栏里找到 安全设置-&gt;SSH 公钥。最后要把生成的 SSH 的公钥配置在这里。
+生成 SSH，这里除了用的是 ed25519 算法，其他的差不多。
+&gt; ssh-keygen -t ed25519 -C &#34;xxx@xxx.com&#34; -f ~/.ssh/gitee_rsa Generating public/private ed25519 key pair. Enter passphrase (empty for no passphrase): 直接回车 Enter same passphrase again: 直接回车 Your identification has been saved in /c/Users/kelipute/.ssh/gitee_rsa Your public key has been saved in /c/Users/kelipute/.ssh/gitee_rsa.pub ... 生成 SSH 的步骤完成后，用 cat 获取公钥。
+&gt; cat .ssh/gitee_rsa.pub ssh-ed25519 一大串 xxx@xxx.com 然后把上面 cat 到的公钥内容贴到代码仓库配置 SSH 的地方。
+使用 ssh-add 添加私钥。
+&gt; ssh-add ~/.ssh/gitee_rsa Identity added: /c/Users/Administrator/.ssh/gitee_rsa (xxx@xxx.com) 在 config 文件添加以下配置内容。
+# Gitee Host gitee.com HostName gitee.com IdentityFile ~/.ssh/gitee_rsa User xxx 测试。
+&gt; ssh -T git@gitee.com 阿里云云效配置 SSH 打开 云效的个人设置页面，在左侧边栏里找到 SSH 公钥。最后要把生成的 SSH 的公钥配置在这里。
+生成 SSH，阿里云云效要求使用 ed25519 算法，其他的差不多。
+&gt; ssh-keygen -t ed25519 -C &#34;xxx@xxx.com&#34; -f ~/.ssh/yun2xiao4_ed25519 Generating public/private ed25519 key pair. Enter passphrase (empty for no passphrase): 直接回车 Enter same passphrase again: 直接回车 Your identification has been saved in /c/Users/Administrator/.ssh/yun2xiao4_ed25519 Your public key has been saved in /c/Users/Administrator/.ssh/yun2xiao4_ed25519.pub ... 生成 SSH 的步骤完成后，用 cat 获取公钥。
+&gt; cat ~/.ssh/yun2xiao4_ed25519.pub ssh-ed25519 一大串 xxx@xxx.com 然后把上面 cat 到的公钥内容贴到代码仓库配置 SSH 的地方。
+使用 ssh-add 添加私钥。
+&gt; ssh-add ~/.ssh/yun2xiao4_ed25519 Identity added: /c/Users/Administrator/.ssh/yun2xiao4_ed25519 (xxx@xxx.com) 在 config 文件添加以下配置内容。
+# Gitee Host codeup.aliyun.com HostName codeup.aliyun.com IdentityFile ~/.ssh/yun2xiao4_ed25519 User xxx 腾讯云 Coding 配置 SSH Coding 的帮助中心有关于 配置 SSH 的文档打开 Coding 的个人账户页面，在左侧边栏里找到 SSH 公钥。最后要把生成的 SSH 的公钥配置在这里。
+生成 SSH，腾讯云 Coding 的文档里给了命令，直接用就好了。
+&gt; ssh-keygen -m PEM -t ed25519 -C &#34;huiyu.xue@ly.com&#34; -f ~/.ssh/coding_ed25519 Generating public/private ed25519 key pair. Enter passphrase (empty for no passphrase): 直接回车 Enter same passphrase again: 直接回车 Your identification has been saved in /c/Users/kelipute/.ssh/coding_ed25519 Your public key has been saved in /c/Users/kelipute/.ssh/coding_ed25519.pub ... 生成 SSH 的步骤完成后，用 cat 获取公钥。
+&gt; cat ~/.ssh/coding_ed25519.pub ssh-ed25519 一大串 xxx@xxx.com 然后把上面 cat 到的公钥内容贴到代码仓库配置 SSH 的地方。
+使用 ssh-add 添加私钥。
+&gt; ssh-add ~/.ssh/coding_ed25519 Identity added: /c/Users/kelipute/.ssh/coding_ed25519 (xxx@xxx.com) 在 config 文件添加以下配置内容。
+# Coding Host e.coding.net HostName e.coding.net IdentityFile ~/.ssh/coding_ed25519 User {xxx} 测试
+&gt; ssh -T git@e.coding.net Are you sure you want to continue connecting (yes/no/[fingerprint])? 输入 yes，回车 CODING 提示: Hello xxx, You&#39;ve connected to coding.net via SSH. This is a Personal Key. ... ]]></content></entry><entry><title>Git 常用命令</title><url>/post/computer-science/application/git/common_command/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>git</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 git 2.34.0
+创建 git init，初始化 git 仓库。
+初始化之后就会在当前目录创建 .git/ 目录。
+修改 git add .，添加所有文件到缓冲区。
+git status，查看 git 库的状态。
+当前在哪个分支，还有文件的变化情况，哪些文件被新增、修改、删除了。
+git diff，用于文件修改了，但是还没有提交时，比较文件修改前后的差异。
+git diff，默认比较全部的文件。
+git diff {filename}，可以指定文件 filename 进行比较。
+提交 git commit -m &amp;quot;message&amp;quot;，提交缓冲区的所有修改到本地仓库。
+如果修改了但是没有 add 到缓冲区的，是不会被提交的。
+git reset，回退版本。
+git reset HEAD^，回退所有内容到上一个版本。
+git reset {code}，回退所有内容到指定版本。
+上面的 code 参数填的是 git log 输出的信息中，每个提交最前面的那一串。
+--hard 参数，撤销工作区中所有未提交的修改内容，将暂存区与工作区都回退，并删除之前的所有的提交信息。
+git reset --hard HEAD^，强行回退所有内容到上一个版本。
+git reset --hard {code}，强行回退所有内容到指定版本。
+git reset --hard origin/master，强行将本地分支回退到和远程 master 分支一样。
+谨慎使用 --hard 参数。
+日志 git log，查看历史记录，主要是提交信息。
+--oneline 参数，查看历史记录的简洁的版本。
+--graph 参数，查看历史记录中的分支和合并。
+远程仓库 git remote，操作远程仓库
+git remote -v，显示所有远程仓库。
+git remote add {name} {url}，添加远程仓库 name 并设置地址为 url。
+常用的：git remote add origin {url}，添加远程仓库 origin 并设置地址为 url。
+git remote set-url origin {url}，修改远程仓库 origin 的地址为 url。如果未指定协议，则默认为 SSH。
+git remote rm {name}，删除远程仓库 name 。
+获取代码 git fetch，从远程仓库获取代码。
+git fetch origin，从远程仓库 origin 获取代码。
+获取代码并合并 git pull，从远程获取代码并合并。
+git pull 其实是 git fetch 和 git merge FETCH_HEAD 的简写。
+git pull {name} {remote branch}:{locol branch}，将远程仓库 name 的 remote branch 分支拉取过来，与本地的 locol branch 分支合并。
+常用的：git pull origin master，将远程仓库 origin 的 master 分支拉取过来，与本地的当前分支合并。
+上传代码并合并 git push,将本地的分支上传到远程并合并。
+git push {name} {remote branch}:{locol branch}，将本地的 locol branch 分支推送到远程仓库 name 的 remote branch 分支。
+如果本地的 locol branch 分支和远程仓库 name 的 remote branch 分支名字一样，可以简化成 git push {name} {branch}。
+git push origin master:master，将本地的 master 分支推送到远程仓库 origin 的 master 分支。
+常用的：git push origin master 是 git push origin master:master 的简写。
+-u 参数，记录 push 到远端分支的默认值，下次想要继续 push 这个分支的时候，推送命令就可以简写成 git push。
+执行 git push -u origin master 之后，下次在想推送 master 分支的时候，直接 git push 即可。
+--force 参数，强制推送。
+git push --force master，将本地的 master 分支强制推送到远程仓库 origin 的 master 分支并覆盖。
+git push --force master 可以简写为 git push -f master。
+谨慎使用 --force 参数。
+git push origin -d {name}，删除远程仓库 origin 的 name 分支。
+分支 git branch，列出本地分支。星号 * 标记当前在哪个分支下。
+git branch -a，列出本地和远端的所有分支。星号 * 标记当前在哪个分支下。
+git branch {name}，创建 name 分支。
+git branch -d {name}，删除本地 name 分支。如果该分支有提交未进行合并，则会删除失败。
+git branch -D {name}，强制删除本地 name 分支。如果该分支有提交未进行合并，也会删除成功。
+git checkout {name}，切换到 name 分支。
+git checkout -b {name}，创建 name 分支并切换到 name 分支。
+git checkout .，把本地所有修改的，但是没有提交的，都回退到原来的状态。
+合并 git merge {name}，合并 name 分支到当前分支。
+如果合并时发生冲突，则会将有冲突的文件的文件名输出到命令行。
+进入文件解决冲突后，需要执行 git add 命令通知 git 冲突已解决。
+暂存 git stash，把所有没有提交的修改暂存。
+git stash pop，恢复到 git stash 之前。
+提交一个本地仓库到多个远程仓库 这里提交一个本地仓库到 Github 和 Gitee 两个远程仓库。
+git remote add origin git@github.com:xxx/demo_project.git git push origin master git remote add gitee git@gitee.com:xxx/demo_project.git git push gitee master</content></entry><entry><title>使用 Git 时遇到的一些异常和解决方案</title><url>/post/computer-science/application/git/exception/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>git</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 git 2.34.0
+无法拉取代码 使用 git pull 命令拉取代码时卡住，并输出如下信息：
+&gt; git pull Auto packing the repository in background for optimum performance. See &#34;git help gc&#34; for manual housekeeping. fatal: failed to run repack 这是因为，git 本地仓库如果长时间不进行清理，会导致本地 dangling commit 太多，从而造成拉取代码失败。 可以使用 git fsck 命令查看本地的 dangling commit。
+&gt; git fsck --lost-found Checking object directories: 100% (256/256), done. Checking objects: 100% (110393/110393), done. dangling commit 01039c0c1efcc232be342aacc928af72df82503b dangling blob 5b0bd062917d784486756ef941a7446b1aa5e340 dangling commit 4a1c18fa0803db6d64e9cffded496beb686aeaa7 dangling commit f528f06bd9739511bf962e32636697f807764cf8 dangling commit ea5fb0909b71b997c3feb5c436a150f745e40886 dangling commit c76448818640c1b0a3c00546abf16e5b4dff94e4 dangling commit d27fd8f73e071d3a629348f40d079888e821b10f dangling commit 9a84703a10972d28e784d26417d6f53193b7ef78 dangling blob e7841cedb8d8a5b2cb02814cd9a2af06c5f46e00 dangling commit 6e8cf4714bc2ebb4d866a0aa046766598a1bcaf6 dangling blob fa990caae09e8d23923aed1d303e56272f6c8587 dangling commit 269e6c37f2208841d904577cd6e70d36f8ab0283 dangling commit 1ca1f0e7aafa762a675076fbc25ff6ff7048e41b ... 使用 git gc 命令清理后，就可以正常拉取代码了。
+&gt; git gc --prune=now Enumerating objects: 93146, done. Counting objects: 100% (93146/93146), done. Delta compression using up to 12 threads Compressing objects: 100% (28200/28200), done. Writing objects: 100% (93146/93146), done. Total 93146 (delta 67637), reused 88951 (delta 64013), pack-reused 0 Removing duplicate objects: 100% (256/256), done. ]]></content></entry><entry><title>站点示例</title><url>/flinks.html</url><categories/><tags/><content type="html">如想交换本站友情链接，请在评论区留下你的站点信息，格式参考如下：
 - name: Hugo-NexT desc: Hugo NexT 官方预览网站。 avatar: https://hugo-next.eu.org/imgs/hugo_next_avatar.png link: https://hugo-next.eu.org</content></entry></search>
