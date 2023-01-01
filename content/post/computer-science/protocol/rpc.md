@@ -15,6 +15,10 @@ tags:
 - rpc
 ---
 
+### 资料
+
+- <a href="/drawio/computer-science/protocol/rpc.drawio.html">rpc.drawio.html</a>
+
 ### RPC 是什么
 
 RPC 是 Remote Procedure Call 的简写，翻译成中文叫远程过程调用。用这玩意的目的，简单的理解就是，想像使用本地服务一样使用远端服务。这个怎么理解呢？
