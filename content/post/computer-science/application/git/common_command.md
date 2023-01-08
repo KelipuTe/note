@@ -11,6 +11,7 @@ categories:
 
 tags:
 - computer-science(计算机科学)
+- application(应用)
 - git
 ---
 
