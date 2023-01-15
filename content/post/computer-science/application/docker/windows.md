@@ -3,7 +3,7 @@ draft: false
 date: 2021-06-29 08:00:00 +0800
 lastmod: 2021-06-29 08:00:00 +0800
 title: "Windows 10 环境使用 Docker"
-summary: "Windows 10 环境使用 Docker"
+summary: "安装，镜像，使用，异常处理"
 toc: true
 
 categories:

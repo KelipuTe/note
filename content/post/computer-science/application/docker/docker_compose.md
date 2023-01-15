@@ -3,7 +3,7 @@ draft: false
 date: 2023-01-08 08:00:00 +0800
 lastmod: 2023-01-08 08:00:00 +0800
 title: "Docker Compose 怎么用"
-summary: "Docker Compose 怎么用"
+summary: "编辑 docker-compose.yaml，启动 Docker Compose"
 toc: true
 
 categories:

@@ -3,7 +3,7 @@ draft: false
 date: 2021-06-29 08:00:00 +0800
 lastmod: 2021-06-29 08:00:00 +0800
 title: "使用 Docker 部署 EasySwoole"
-summary: "使用 Docker 部署 EasySwoole"
+summary: "镜像，使用，异常处理"
 toc: true
 
 categories:

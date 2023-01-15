@@ -2,8 +2,8 @@
 draft: false
 date: 2022-12-10 08:00:00 +0800
 lastmod: 2022-12-10 08:00:00 +0800
-title: "Golang 使用 mockgen 进行单元测试"
-summary: "mockgen 的安装和使用。"
+title: "在 Golang 中使用 mockgen 工具进行单元测试"
+summary: "mockgen 工具的安装和使用。"
 toc: true
 
 categories:
