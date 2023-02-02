@@ -150,6 +150,12 @@ func (p7this *Queue) Dequeue(ctx context.Context) (data, error) {
 
 ### 延迟队列
 
+代码详见：
+
+- {demo-golang}/demo/queue/delay_queue.go
+- {demo-golang}/demo/queue/priority_queue.go
+- {demo-golang}/demo/queue/wait_cond_v2.go
+
 延迟队列就是进入队列的元素有时间属性，在时间到之前不能出队。入队的时候没有什么限制，问题在出队这里。简单的搞法，直接整一个轮询不停地全量扫描，这是可以达到目的的，就是会占用 CPU 资源。
 
 但是如果队列里面的元素很多，那全量扫描的时间，说不定队列里面已经有元素到时间了。所以最好对队列元素进行排序，搞成有优先级的，这样每次只需要检查第一个元素就行了。
