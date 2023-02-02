@@ -2,7 +2,7 @@
 draft: false
 date: 2022-09-03 08:00:00 +0800
 lastmod: 2022-09-03 08:00:00 +0800
-title: "使用 Golang 开启 HTTP 服务"
+title: "在 Golang 中开启 HTTP 服务"
 summary: "几种使用 net/http 包或者 net 包开启 HTTP 服务的方法。"
 toc: true
 
@@ -13,7 +13,6 @@ tags:
 - computer-science(计算机科学)
 - programming-language(编程语言)
 - golang
-- web
 - http
 ---
 

@@ -2,8 +2,8 @@
 draft: false
 date: 2022-11-14 08:00:00 +0800
 lastmod: 2022-11-14 08:00:00 +0800
-title: "使用 Golang 实现简单的 ORM 框架 -- INSERT、UPDATE、DELETE"
-summary: "ORM 框架中使用 Builder 设计模式构建 MySQL 的 INSERT、UPDATE、DELETE 语句的过程、不同数据库 INSERT 语句不一样的问题的处理方式。"
+title: "Golang 实现简单的 ORM 框架 -- INSERT、UPDATE、DELETE"
+summary: "使用 Builder 设计模式构建 MySQL 的 INSERT、UPDATE、DELETE 语句的过程、不同数据库 INSERT 语句不一样的问题的处理方式。"
 toc: true
 
 categories:

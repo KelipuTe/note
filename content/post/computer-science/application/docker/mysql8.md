@@ -3,23 +3,23 @@ draft: false
 date: 2022-05-18 08:00:00 +0800
 lastmod: 2022-10-17 08:00:00 +0800
 title: "使用 Docker 部属 MySQL 8.0"
-summary: "使用 Docker 部属 MySQL 8.0"
+summary: "镜像，使用，异常处理"
 toc: true
 
 categories:
-- mysql
+- application(应用)
 
 tags:
 - computer-science(计算机科学)
+- application(应用)
+- docker
 - database(数据库)
 - mysql
-- docker
 ---
 
 > CPU AMD64(x86_64)<br/>
 > Windows 11 家庭版<br/>
-> Docker v20.10.17<br/>
-> docker images mysql 8.0
+> Docker v20.10.17
 
 ### 拉取镜像
 
@@ -29,6 +29,7 @@ tags:
 
 ```shell
 > docker pull mysql:8.0
+
 8.0: Pulling from library/mysql
 ...
 Digest: sha256:147572c972192417add6f1cf65ea33edfd44086e461a3381601b53e1662f5d15
@@ -40,6 +41,7 @@ docker.io/library/mysql:8.0
 
 ```shell
 > docker images
+
 REPOSITORY   TAG       IMAGE ID       CREATED      SIZE
 mysql        8.0       40b83de8fb1a   4 days ago   535MB
 ```
@@ -50,6 +52,7 @@ mysql        8.0       40b83de8fb1a   4 days ago   535MB
 
 ```shell
 > docker run -itd --name mysql-8-dev -p 127.0.0.1:13306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:8.0
+
 45804f67e3bf4b79735c308a8073131525c5fbc6f714e8fca5efb4f628127532
 ```
 
@@ -62,6 +65,7 @@ mysql        8.0       40b83de8fb1a   4 days ago   535MB
 启动好容器之后，可以通过 `docker ps` 命令查看容器状态。
 ```shell
 > docker ps
+
 CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS                                  NAMES
 45804f67e3bf   mysql:8.0   "docker-entrypoint.s…"   15 seconds ago   Up 14 seconds   33060/tcp, 127.0.0.1:13306->3306/tcp   mysql-8-dev
 ```
@@ -72,13 +76,15 @@ CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS     
 
 ```shell
 > docker exec -it mysql-8-dev /bin/bash
+
 bash-4.4# 
 ```
 
 这里直接使用用户名和密码访问 mysql。
 
 ```shell
-bash-4.4# mysql -uroot -p123456
+> bash-4.4# mysql -uroot -p123456
+
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 10

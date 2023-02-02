@@ -2,8 +2,8 @@
 draft: false
 date: 2022-11-21 08:00:00 +0800
 lastmod: 2022-11-21 08:00:00 +0800
-title: "使用 Golang 实现简单的 ORM 框架 -- 其他辅助工具"
-summary: "ORM 框架中的中间件的原理和实现方式。"
+title: "Golang 实现简单的 ORM 框架 -- 其他辅助工具"
+summary: "中间件的原理和实现方式。"
 toc: true
 
 categories:

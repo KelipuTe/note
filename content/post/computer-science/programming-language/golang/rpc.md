@@ -2,8 +2,8 @@
 draft: false
 date: 2023-01-01 08:00:00 +0800
 lastmod: 2023-01-01 08:00:00 +0800
-title: "使用 Golang 实现简单的自定义 RPC 协议"
-summary: ""
+title: "Golang 实现简单的自定义 RPC 协议"
+summary: "RPC 有几块，这几块是怎么工作的，一次 RPC 调用的大概过程，RPC 大概的实现思路"
 toc: true
 
 categories:
@@ -13,8 +13,8 @@ tags:
 - computer-science(计算机科学)
 - programming-language(编程语言)
 - golang
-- rpc
 - protocol(协议)
+- rpc
 ---
 
 > CPU AMD64(x86_64)<br/>
@@ -25,7 +25,7 @@ tags:
 
 在看这篇之前，建议先看下面这篇：
 
-- 《关于 RPC 的基本认知》
+- [关于 RPC 的基本认知](/post/computer-science/protocol/rpc)
 
 在动手实现自定义 RPC 之前，先搞清楚 RPC 是什么，以及 RPC 的原理。
 

@@ -2,8 +2,8 @@
 draft: true
 date: 2022-09-03 08:00:00 +0800
 lastmod: 2022-09-03 08:00:00 +0800
-title: "Golang 泛型的基本使用方式"
-summary: "Golang 泛型的基本使用方式。泛型变量的类型断言。"
+title: "Golang 的泛型的使用"
+summary: "泛型的基本使用方式。泛型的类型断言。"
 toc: true
 
 categories:

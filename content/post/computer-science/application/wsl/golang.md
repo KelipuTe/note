@@ -11,7 +11,8 @@ categories:
 
 tags:
 - computer-science(计算机科学)
-- wsl
+- application(应用)
+- WindowsSubsystemForLinux(wsl)
 - linux
 - golang
 - goland

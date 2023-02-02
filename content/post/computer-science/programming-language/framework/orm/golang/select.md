@@ -2,8 +2,8 @@
 draft: false
 date: 2022-11-11 08:00:00 +0800
 lastmod: 2022-11-11 08:00:00 +0800
-title: "使用 Golang 实现简单的 ORM 框架 -- SELECT"
-summary: "ORM 框架中使用 Builder 设计模式构建 MySQL 的 SELECT 语句的过程、元数据的构造、结果集的处理。"
+title: "Golang 实现简单的 ORM 框架 -- SELECT"
+summary: "使用 Builder 设计模式构建 MySQL 的 SELECT 语句的过程、元数据的构造、结果集的处理。"
 toc: true
 
 categories:

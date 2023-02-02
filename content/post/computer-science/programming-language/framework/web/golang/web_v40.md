@@ -2,7 +2,7 @@
 draft: false
 date: 2022-09-24 08:00:00 +0800
 lastmod: 2022-09-25 08:00:00 +0800
-title: "使用 Golang 实现复杂的 Web 框架"
+title: "Golang 实现复杂的 Web 框架"
 summary: "使用 net/http 包，实现一个复杂的 Web 框架。"
 toc: true
 
@@ -28,9 +28,9 @@ tags:
 
 在看这篇之前，建议先看下面这几篇：
 
-- 《使用 Golang 开启 HTTP 服务》
-- 《使用 Golang 实现简单的 Web 框架 -- router(路由)》
-- 《使用 Golang 实现简单的 Web 框架 -- middleware(中间件)》
+- [Golang 开启 HTTP 服务](/post/computer-science/programming-language/golang/http)
+- [Golang 实现简单的 Web 框架 -- router(路由)](/post/computer-science/programming-language/framework/web/golang/router)
+- [Golang 实现简单的 Web 框架 -- middleware(中间件)](/post/computer-science/programming-language/framework/web/golang/middleware)
 
 路由树是 web 框架的核心。其他的功能，都是在路由树的基础上，再增加亿点点细节而已。
 
