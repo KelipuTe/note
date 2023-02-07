@@ -394,11 +394,11 @@ params:
   footer:
     # 启动谷歌翻译功能
     # Enable google translate in footer
-    translate: true
+    translate: false
     # 站点开始年份，默认为当下时间的年份
     # Specify the year when the site was setup.
     # If not defined, current year will be used.
-    since: 2010
+    since: 2020
 
     # 年份和版权信息之间的图标
     # Icon between year and copyright info.
@@ -461,6 +461,14 @@ params:
   # 文章参数设置
   # Post Settings
   # ---------------------------------------------------------------
+
+  enableGitInfo: true
+
+  frontmatter:
+    lastmod:
+      - :git
+      - lastmod
+      - :default
 
   # TODO
   # 将文章的描述内容用于首页展示（暂时未实现）

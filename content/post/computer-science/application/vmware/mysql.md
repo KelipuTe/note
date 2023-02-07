@@ -1,7 +1,7 @@
 ---
 draft: false
-date: 2022-06-07 08:00:00 +0800
-lastmod: 2022-06-07 08:00:00 +0800
+date: 2022-06-09 08:00:00 +0800
+lastmod: 2022-06-09 08:00:00 +0800
 title: "在 Linux 中安装 MySQL"
 summary: "安装 MySQL 8；"
 toc: true

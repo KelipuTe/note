@@ -1,7 +1,7 @@
 ---
 draft: false
-date: 2023-02-06 08:00:00 +0800
-lastmod: 2023-02-06 08:00:00 +0800
+date: 2022-06-07 08:00:00 +0800
+lastmod: 2022-06-07 08:00:00 +0800
 title: "在 Windows 中安装 VMware 的产品"
 summary: "安装 VMware Workstation；"
 toc: true
