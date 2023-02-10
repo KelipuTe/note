@@ -34,7 +34,9 @@ tags:
 
 通常说的编译指的是：c 源码文件通过 gcc 编译得到可执行文件（elf）。通常使用 gcc 命令 `gcc xxx.c -o xxx` 一步就完成了。但是，这一步里面其实有四个步骤：预处理、编译、汇编、链接。
 
-关于 gcc 命令具体怎么用可以看 [gcc(1) - GNU project C and C++ compiler](https://man7.org/linux/man-pages/man1/gcc.1.html)。这里会用到 `-E`、`-S`、`-c` 几个参数。
+关于 gcc 命令具体怎么用可以看：[gcc(1) - GNU project C and C++ compiler](https://man7.org/linux/man-pages/man1/gcc.1.html)。这里会用到 `-E`、`-S`、`-c`、`-o` 几个参数。
+
+`-E`：预处理；`-S`：预处理、编译，得到汇编代码；`-c`：预处理、编译、汇编，得到可重定位文件；`-o`：指定目标名称；如果什么参数都不写，那就会预处理、编译、汇编、链接一步到位，得到可执行文件。
 
 - preprocessing（预处理）：`gcc -E xxx.c -o xxx.i`，预处理器会在源码的基础上增加一些代码。
 - compilation（编译）：`gcc -S xxx.i -o xxx.s`，编译器通过编译代码（词法分析、语法分析等）得到汇编代码。
@@ -49,7 +51,7 @@ tags:
 
 #### file
 
-通过 `file` 命令可以查看文件的类型。关于 file 命令具体怎么用可以看 [file(1) - determine file type](https://man7.org/linux/man-pages/man1/file.1.html)。
+通过 `file` 命令可以查看文件的类型。关于 file 命令具体怎么用可以看：[file(1) - determine file type](https://man7.org/linux/man-pages/man1/file.1.html)。
 
 ```
 > file helloworld.c
@@ -68,9 +70,9 @@ helloworld: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically
 
 #### objdump
 
-通过 `objdump` 命令可以查看文件的具体内容。关于 objdump 命令具体怎么用可以看 [objdump(1) - display information from object files](https://man7.org/linux/man-pages/man1/objdump.1.html)。
+通过 `objdump` 命令可以查看文件的具体内容。关于 objdump 命令具体怎么用可以看：[objdump(1) - display information from object files](https://man7.org/linux/man-pages/man1/objdump.1.html)。
 
-这里会用到 `-h`、`-s`、`-d` 几个参数。大概是：`-h` 输出段表、`-s` 输出段表中每个段的详细内容、`-d` 输出 `.text` 段对应的汇编代码。
+这里会用到 `-h`、`-s`、`-d` 几个参数。大概是：`-h` 输出段表；`-s` 输出段表中每个段的详细内容；`-d` 输出 `.text` 段对应的汇编代码。
 
 这里观察一下 helloworld.o 文件。命令具体的输出放在 {demo-c}/demo-in-linux/helloworld/objdump.md 里面。
 

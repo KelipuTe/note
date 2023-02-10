@@ -3,7 +3,7 @@ draft: false
 date: 2021-12-06 08:00:00 +0800
 lastmod: 2023-02-07 08:00:00 +0800
 title: "ELF 文件"
-summary: "可执行文件里有啥；字节序；符号表；"
+summary: "可执行文件；字节序；符号表；"
 toc: true
 
 categories:
@@ -46,7 +46,7 @@ elf 文件格式有四种：
 
 #### readelf
 
-通过 `readelf` 命令可以查看 elf 文件的具体信息。关于 readelf 命令具体怎么用可以看 [readelf(1) - display information about ELF files](https://man7.org/linux/man-pages/man1/readelf.1.html)。
+通过 `readelf` 命令可以查看 elf 文件的具体信息。关于 readelf 命令具体怎么用可以看：[readelf(1) - display information about ELF files](https://man7.org/linux/man-pages/man1/readelf.1.html)。
 
 这里会用到 `-h`、`-l`、`-S`、`-s` 几个参数。大概是：`-h` 输出 elf header （elf 文件头）、`-l` 输 program headers、`-S` 输出 section headers（段表）、`-s` 输出符号表。
 
@@ -146,7 +146,7 @@ c 语言的 int 变量由 4 个字节组成，每个字节由 8 个 bit 位组�
 
 #### size
 
-通过命令 `size` 可以查看文件中各段及其总和的大小，单位是字节。关于 size 命令具体怎么用可以看 [size(1) - list section sizes and total size of binary files](https://man7.org/linux/man-pages/man1/size.1.html)。
+通过命令 `size` 可以查看文件中各段及其总和的大小，单位是字节。关于 size 命令具体怎么用可以看：[size(1) - list section sizes and total size of binary files](https://man7.org/linux/man-pages/man1/size.1.html)。
 
 这里观察一下 demo02 文件。
 
@@ -155,6 +155,11 @@ c 语言的 int 变量由 4 个字节组成，每个字节由 8 个 bit 位组�
    text	   data	    bss	    dec	    hex	filename
    1588	    608	     16	   2212	    8a4	demo02
 ```
+
+- text，代码段通常是指用来存放程序执行代码的一块内存区域。
+- data，数据段通常是指用来存放程序中已初始化的全局变量的一块内存区域。数据段属于静态内存分配。
+- bss，bss 段通常是指用来存放程序中未初始化的全局变量的一块内存区域。bss 段属于静态内存分配。
+- 默认情况下，段的大小是以十进制的方式来展示。
 
 #### 程序的入口地址
 
@@ -247,7 +252,7 @@ Symbol table '.symtab' contains 42 entries:
 
 #### nm
 
-命令 `nm` 也可以输出符号表。`nm demo02` 命令输出的内容在文件 {demo-c}/demo-in-linux/elf/nm.md 中。关于 gcc 命令具体怎么用可以看 [nm(1) - list symbols from object files](https://man7.org/linux/man-pages/man1/nm.1.html)。
+命令 `nm` 也可以输出符号表。`nm demo02` 命令输出的内容在文件 {demo-c}/demo-in-linux/elf/nm.md 中。关于 gcc 命令具体怎么用可以看：[nm(1) - list symbols from object files](https://man7.org/linux/man-pages/man1/nm.1.html)。
 
 #### 使用符号表的地址直接访问数据
 
