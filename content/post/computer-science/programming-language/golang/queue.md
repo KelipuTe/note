@@ -138,7 +138,7 @@ func (p7this *Queue) Dequeue(ctx context.Context) (data, error) {
 		// 检查队列是否为空
 		// 通过原子操作把队头拿出来
 		if atomic.CompareAndSwapPointer(队头, 取到的队头, 队头结点的下一个结点) {
-			// CAS 返回成功，说明队尾没变，可以直接修改
+			// CAS 返回成功，说明队头没变，可以直接修改
 			// 直接把结点上的数据取出来，然后出队就行了
 		}
 		// CAS 返回失败，说明队头变了，其他想要出队的，已经抢先出队而且完成了，那就要重头再来
