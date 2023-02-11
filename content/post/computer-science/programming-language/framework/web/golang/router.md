@@ -2,7 +2,7 @@
 draft: false
 date: 2022-09-10 08:00:00 +0800
 lastmod: 2022-09-10 08:00:00 +0800
-title: "Golang 实现简单的 Web 框架 -- router(路由)"
+title: "【过期，留做对比】Golang 实现简单的 Web 框架 -- router(路由)"
 summary: "路由树的原理和实现方式。"
 toc: true
 
