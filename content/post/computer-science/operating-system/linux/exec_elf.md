@@ -30,7 +30,6 @@ tags:
 
 ### 资料
 
-- [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/helloworld/
 - [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/process/
 
 ### 进程是什么
@@ -63,7 +62,7 @@ docker run -it -p 127.0.0.1:9501:9501 -v {local path}:{docker path} --name={cont
 
 进入容器，然后使用命令：`echo 0 > /proc/sys/kernel/yama/ptrace_scope`。将 `/proc/sys/kernel/yama/ptrace_scope` 文件中的值修改成0。然后就可以使用 `strace -p` 命令跟踪进程了。
 
-### 观察一下执行 helloworld 的过程
+### 观察一下 helloworld 程序运行的过程
 
 可以直接用 `strace -f -i -T -s 65535 ./helloworld` 直接跟踪 `./helloworld` 运行的过程，但是这样观察不到全部的细节。这里用另外一种观察方式，观察输入 `./helloworld` 的那个终端对应的进程。
 

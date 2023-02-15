@@ -24,7 +24,7 @@ tags:
 
 ### 前言
 
-在看这篇之前，建议先看一下 [什么是程序](/post/computer-science/operating-system/linux/program)
+先看：[什么是程序](/post/computer-science/operating-system/linux/program)
 
 ### 资料
 
