@@ -3,20 +3,17 @@ draft: false
 date: 2021-12-08 08:00:00 +0800
 lastmod: 2023-02-15 08:00:00 +0800
 title: "进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收"
-summary: "进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收"
+summary: "进程的创建、进程的运行、进程的运行顺序、进程的内存资源、进程的资源限制、进程的退出、进程的回收"
 toc: true
 
 categories:
-
 - operating-system(操作系统)
 
 tags:
-
 - computer-science(计算机科学)
 - operating-system(操作系统)
 - linux
 - linux-c
-
 ---
 
 ## 前言
@@ -76,8 +73,7 @@ getpid() 返回调用进程的 pid，getppid() 返回调用进程的父进程的
 > ...</br>
 > The child process and the parent process run in separate memory spaces.</br>
 > At the time of fork() both memory spaces have the same content.</br>
-> Memory writes, file mappings (mmap(2)), and unmappings (munmap(2)) performed by one of the processes do not affect the
-> other.</br>
+> Memory writes, file mappings (mmap(2)), and unmappings (munmap(2)) performed by one of the processes do not affect the other.</br>
 > ...
 
 两个进程运行在不同的内存空间，进程间是隔离的。在 fork() 时，两个进程的内存空间的内容是一样的（程序数据和程序指令）。两个进程进行写内存操作（定义新的变量并赋值，修改已定义的变量的值，定义新的函数）或者文件映射（进程间通信）时互不影响。
@@ -112,8 +108,7 @@ getpid() 返回调用进程的 pid，getppid() 返回调用进程的父进程的
 > vfork(), just like fork(2), creates a child process of the calling process.</br>
 > For details and return value and errors, see fork(2).</br>
 > ...</br>
-> vfork() differs from fork(2) in that the calling thread is suspended until the child terminates (either normally, by
-> calling_exit(2), or abnormally, after delivery of a fatal signal), or it makes a call to execve(2).</br>
+> vfork() differs from fork(2) in that the calling thread is suspended until the child terminates (either normally, by calling_exit(2), or abnormally, after delivery of a fatal signal), or it makes a call to execve(2).</br>
 > Until that point, the child shares all memory with its parent, including the stack.</br>
 > ...
 
@@ -149,11 +144,9 @@ vfork() 有 bug。当使用 `return 0` 结束或者执行到最后一行代码�
 
 > DESCRIPTION</br>
 > ...</br>
-> This causes the program that is currently being run by the calling process to be replaced with a new program, with
-> newly initialized stack, heap, and (initialized and uninitialized) data segments.</br>
+> This causes the program that is currently being run by the calling process to be replaced with a new program, with newly initialized stack, heap, and (initialized and uninitialized) data segments.</br>
 > ...</br>
-> execve() does not return on success, and the text, initialized data, uninitialized data (bss), and stack of the
-> calling process are overwritten according to the contents of the newly loaded program.
+> execve() does not return on success, and the text, initialized data, uninitialized data (bss), and stack of the calling process are overwritten according to the contents of the newly loaded program.
 
 execve() 在成功时不会返回。而是会导致当前正在运行的程序被另外一个新的程序所取代。当前程序的 .test 段、.data 段、.bss 段、栈、堆等，都会被新的程序的数据覆盖。
 
@@ -176,6 +169,23 @@ execve() 在成功时不会返回。而是会导致当前正在运行的程序�
 - {demo-c}/demo-in-linux/process/call_by_exec.c
 
 这个例子在 Ubuntu 22.04 环境中执行，会返回 Bad Address，不知道为什么。
+
+### 进程的运行顺序
+
+> DESCRIPTION</br>
+> The scheduling priority of the process, process group, or user, as indicated by which and who is obtained with the getpriority() call and set with the setpriority() call.</br>
+> The process attribute dealt with by these system calls is the same attribute (also known as the "nice" value) that is dealt with by nice(2).</br>
+> ...</br>
+> The prio argument is a value in the range -20 to 19 (but see NOTES below), with -20 being the highest priority and 19 being the lowest priority.</br>
+> Attempts to set a priority outside this range are silently clamped to the range.</br>
+> The default priority is 0; lower values give a process a higher scheduling priority.</br>
+> ...
+
+进程的运行（执行、调度）顺序受到 PRI（priority）值和 NI（nice）值控制，这两个值对应进程的同一个属性。值的范围是 -20~19，值越小，进程优先级越高。这两个值可以通过 ps 命令（`ps -ely`）查看（PRI 和 NI 参数），也可以通过 top 命令查看（PR 和 NI 参数）。
+
+在系统中，可以使用 nice 命令和 renice 命令调整进程的优先级。nice 命令用于进程启动之前，renice 命令用于进程启动之后。在代码中，getpriority() 可以查看进程优先级，setpriority()、nice() 可以调整进程优先级。getpriority() 和 setpriority() 使用的时候需要注意的是，who 参数要和 which 参数对应。
+
+示例详见：{demo-c}/demo-in-linux/process/nice.c。
 
 ### 进程的内存数据
 
