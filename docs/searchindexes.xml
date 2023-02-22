@@ -12,7 +12,74 @@
 关于项目的代码中的符号命名，详见 符号命名 这一篇。
 实际开发中符号命名规则应该和团队的风格保持统一，这套符号命名规则是本人的个人喜好。
 如果访客您非要说不符合哪里哪里的规范，怎么怎么有问题，那么访客您说的都对。
-如果是类似 xxx.drawio.html 这种格式的，就是 draw.io 生成的 html，直接打开就可以预览。 参考到的外部资料通常在文本的最后面会有一个标题为 reference（参考） 的部分。</content></entry><entry><title>Golang 实现简单的 Web 框架 -- middleware(中间件)</title><url>/post/computer-science/programming-language/framework/web/golang/middleware_v2/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+如果是类似 xxx.drawio.html 这种格式的，就是 draw.io 生成的 html，直接打开就可以预览。 参考到的外部资料通常在文本的最后面会有一个标题为 reference（参考） 的部分。</content></entry><entry><title>CPU（Central Processing Unit，中央处理器）</title><url>/post/computer-science/hardware/cpu/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html">资料 cpu.drawio.html 正文 程序 ALU 可以进行算数运算，内存可以存储数据。如果能把两个结合起来，那就可以处理复杂的逻辑了。ALU 有三个输入，这里假设有两个 8 bit 的二进制数和一个操作码，但是一个内存地址只能存储 8 bit，显然不可能把所有的东西都存在一个内存地址上，然后一股脑的扔给 ALU。
+所以这里就需要一种方式把需要执行的逻辑转化成一个一个的小步骤，每个内存地址存一个小步骤，然后依次执行。这里就可以引出指令的概念了，一个小步骤就是一次指令操作，操作码就是指令码，两个 8 bit 的二进制数就是操作数。指令明确 ALU 要干什么，数据就是 ALU 要处理的数据，指令和数据合起来就是程序了。
+指令集 程序就是由程序指令和程序数据构成的。下面把一次加法操作，比如，0b1 + 0b1 = 0b10，转换成程序。首先需要依次加载两个数字，然后需要知道是加法，然后需要进行运算，最后需要存储运算结果。
+这里面有几种不同的操作：加载、加法、存储。这三个操作囊括了一次加法操作所需要的全部操作，构成了一个操作集合。实际的运行过程中需要给每个操作设计对应的电路来实现，这些不同的电路可以用指令码来进行标记。那么和操作一样，这些指令码也属于一个指令码集合，这就是指令集的概念。
+控制单元 有了指令集之后，就可以设计电路来识别这些指令了。比如，0b0001 表示加载、0b0010 表示加法、0b0011 表示存储。每一个指令码对应一个电路（见图：cpu.drawio.html 2-2），当输入一个指令码的时候，整个电路只有和这个指令码匹配的那一处电路会导通（见图：cpu.drawio.html 2-4）。
+识别出指令码是哪一个之后，就可以进行后续的操作了。比如，让电路连接内存，写入或者读取数据；或者让电路连接 ALU 进行运算并得到运算结果。这块的电路可以和 ALU、内存等组件独立开来成为单独一个模块，这就是控制单元。
+CPU ALU 和 控制单元就组成了 CPU（Central Processing Unit，中央处理器）的核心。除了这两个玩意，CPU 里面还有寄存器和 cache（高速缓存）等其他的组件。
+上文的那个一次加法操作的整个程序是可以存储在内存中的，比如，内存篇里面提到的那块可以存储一个字节的内存。但是跑这个程序的时候，直接操作内存搞，搞起来会很复杂，所以会需要一些额外的空间临时存储一些数据，这些额外的空间通常由寄存器来实现。这里继续使用上文的一次加法操作来说明。
+首先，构成一次加法操作的每一步指令是需要分析的。但是把内存线路直接接到控制单元上直接产生依赖显然不是一个好设计。可以从内存里把指令拿出来，暂存在控制单元里，然后再进行分析，这就是指令寄存器的概念。然后，程序跑到哪一步了也是需要记录的，这就是指令地址寄存器的概念。
+两个操作数肯定是放在两个内存地址上的，这里肯定需要一个一个取出来，也就是需要两个能暂存操作数的地方。这里就是很普通的用于存数据的寄存器，叫寄存器 A 和寄存器 B 就好了。另外，ALU 计算的结果和标志位也需要处理。
+最后，程序的每一次指令操作都需要电来触发，这个由时钟组件来控制，时钟会定时发射电脉冲。比如，每过一秒，就发射一次电脉冲，驱动整个系统运作一次。到这里，就可以画一个简单的结构图了，分为两部分：执行程序的 CPU 和存储程序的内存（见图：cpu.drawio.html 2-6）。
+CPU 执行程序的过程 定义指令集和程序 这里假设这个 CPU 一次可以处理 8 bit 的数据，也就是一条指令是 8 bit。一条指令有包括指令码和操作数，这里假设前 4 bit 作为指令码，后 4 bit 作为操作数。
+指令码属于指令集，这里假设指令集为：0b0001，从内存读取数据到寄存器 A；0b0010 从内存读取数据到寄存器 B；0b0011 把寄存器 A 和寄存器 B 的数据交给 ALU 做加法运算，然后把输出的结果放到寄存器 A，这个步骤不需要操作数；0b0100，把寄存器 A 的数据写入内存；
+最后，假定指令的操作数都是内存地址。这样就可以把这个程序大概写出来了（见图：cpu.drawio.html 2-8）。假设两个数据都是 1，分别存储在内存地址 1100 和 1101 上。执行一次加法运算，然后把结果存储到内存地址 1110 上。
+执行程序的过程 把存有程序的内存和 CPU 连接起来（见图：cpu.drawio.html 2-10-2），假设指令地址寄存器从 0 开始，那么程序的执行过程如下：
+1、将内存地址 0b0000 上的指令 0b00011100 加载到指令寄存器。分析指令的指令码，0b0001 表示从内存读取数据到寄存器 A。分析指令的操作数，0b1100 表示内存地址。于是去内存地址 0b1100 上，把数据 0b00000001 加载到寄存器 A。内存地址 0b0000 上的指令执行结束，指令地址寄存器 +1 得到 0b0001。（见图：cpu.drawio.html 2-10-4-2、2-10-4-4、2-10-4-6）
+2、将内存地址 0b0001 上的指令 0b00101101 加载到指令寄存器。分析指令的指令码，0b0010 表示从内存读取数据到寄存器 B。分析指令的操作数，0b1101 表示内存地址。于是去内存地址 0b1101 上，把数据 0b00000001 加载到寄存器 B。内存地址 0b0001 上的指令执行结束，指令地址寄存器 +1 得到 0b0010。（见图：cpu.drawio.html 2-10-6-2、2-10-6-4、2-10-6-6）
+3、将内存地址 0b0010 上的指令 0b00110000 加载到指令寄存器。分析指令的指令码，0b0011 表示把寄存器 A 和寄存器 B 的数据交给 ALU 做加法运算，然后把输出的结果放到寄存器 A，这个步骤不需要操作数。（见图：cpu.drawio.html 2-10-8-2、2-10-8-4）
+于是先把寄存器 A 和寄存器 B 的数据交给 ALU 做加法运算，得到 0b00000010。因为这个时候寄存器 A 还连着 ALU 呢，直接把数据给过去，数据就又传给 ALU 了。所以控制单元会先暂存运算结果，然后切断寄存器 A 和 ALU 的连接，然后再把运算的结果放到寄存器 A 上。内存地址 0b0010 上的指令执行结束，指令地址寄存器 +1 得到 0b0011。（见图：cpu.drawio.html 2-10-8-6、2-10-8-8）
+4、将内存地址 0b0011 上的指令 0b01001110 加载到指令寄存器。分析指令的指令码，0b0100 表示把寄存器 A 的数据写入内存。分析指令的操作数，0b1110 表示内存地址。于是去内存地址 0b1101 上，把数据 0b00000010 存进去。内存地址 0b0011 上的指令执行结束，指令地址寄存器 +1 得到 0b0100。（见图：cpu.drawio.html 2-10-10-2、2-10-10-4、2-10-10-6）
+到这里，这个程序就已经执行结束了，后面的内存地址上如果存储了指令，那属于另外一个程序。
+reference（参考） Crash Course Computer Science（计算机科学速成课） bilibili
+CrashCourse 字幕组
+Youtube 原视频</content></entry><entry><title>Memory（内存）</title><url>/post/computer-science/hardware/memory/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html">资料 memory.drawio.html 正文 锁存器 and-or latch（锁存器）由与门、或门、非门组成（见图：memory.drawio.html 2-2）。可以存储 1 bit 的数据。
+初始状态，set 线不通电，reset 线不通电（见图：memory.drawio.html 2-4-2），此时输出的是 0，也可以认为锁存器存储了 0。
+当 set 线通电，reset 线不通电时（见图：memory.drawio.html 2-4-4-2），此时输出变成 1。如果这个时候 set 线从通电变成不通电（见图：memory.drawio.html 2-4-4-4），那么整个结构依然可以输出 1，相当于这个 1 就被锁存器存下来了。
+想要把里面存住的 1 恢复成 0，只需要 reset 线通电即可。这个时候 set 线通不通电是无所谓的，都会输出 0（见图：memory.drawio.html 2-4-6-2、2-4-6-4、2-4-8-2、2-4-8-2）。
+门锁 锁存器已经可以实现存储 1 bit 的数据了，但是它有一点问题。set 用于输入 1，reset 用于输入 0，输入数据需要两条线。另外，没有安全机制，任意一条线通电了，就有可能改变里面存储的数据。所以可以在锁存器的前面，加上与门、非门进行限制，然后就可以得到 gated latch（门锁）（见图：memory.drawio.html 4-2）。
+初始状态，data input 线不通电，write enable 线不通电（见图：memory.drawio.html 4-4-2），此时输出的是 0，也可以认为门锁存储了 0。
+如果只给 data input 线通电，而 write enable 线不通电的话，1 这个数据是设置不进去的（见图：memory.drawio.html 4-4-4）。只有当 data input 和 write enable 线都通电时，1 这个数据才能设置进去（见图：memory.drawio.html 4-4-6-2、4-4-6-4）。
+想要把里面存住的 1 恢复成 0，就需要给 write enable 线通电的同时保证 data input 线不通电，这里就和锁存器那里 set 线通不通电无所谓不一样了（见图：memory.drawio.html 4-4-8-2、4-4-8-4）。
+这样就可以做到一条线控制输入的数据，另一条线控制允不允许输入了，这个操作的逻辑是非常清晰的。
+寄存器 把 n 个门锁线性排列起来，就可以存储 n 个 bit 的数据了，这种结构叫 register（寄存器）。这里简单画一个 8 位的寄存器（见图：memory.drawio.html 6-2）。
+二维的平面结构 如果需要存储的数据容量很大的话，寄存器这种一维的线性的结构就不合适了，导线数量太多。所以需要排列更紧密的结构，减少导线的数量。比如，二维的平面结构，或者三维的立体结构。但是这会带来新的问题，怎么找到众多门锁中的某一个门锁？这里用二维的平面结构举例。
+门锁是没有位置信息的，但是二维的平面结构是可以放到坐标系里去的，这样二维的平面结构里的门锁就可以用行列坐标表示了。把行列坐标和 write enable 线组合起来，就可以控制二维的平面结构里的某一个门锁了（见图：memory.drawio.html 8-2）。
+用同样的思路，还可以控制某一个门锁的输出，也就是图里的 read enable 线。read enable 线结合二极管就可以把数据的输入输出都用一条线解决。这里简单画一下存入数据和读取数据的图（见图：memory.drawio.html 8-4-2、8-4-4）。
+内存 这里把一个 2 行 2 列的二维的平面结构画出来（见图：memory.drawio.html 8-8-2）。显然还有一个问题，行列的电路怎么控制？这里就要用到图里的 &amp;ldquo;多路复用器&amp;rdquo; 结构。
+多路复用器就是一堆不同逻辑门的组合，用于判断输入是不是满足某个条件。比如，输入 0b10 的时候，多路复用器会输出 2。对应到图中，就是标记为 2 的那条线通电了。行列两个方向上都放上一个多路复用器，就可以控制所有的存储单元了。
+这里就得到了一个 16 bit 的内存。再扩展一下，从 2 行 2 列变成 16 行 16 列，就可以得到一个 256 bit 的内存（见图：memory.drawio.html 8-8-4）。
+上面的那块 256 bit 的内存，每个内存地址只能存储 1 bit 的数据。现在常用的内存，一个内存地址可以存储一个字节，也就是 8 bit 的数据，这是怎么做到的？这里用到的思路和寄存器那里是一样的，把 8 个 256 bit 的内存线性排列起来（见图：memory.drawio.html 8-10-2），让一个地址对应 8 块内存里相同的位置。
+假设，有一个字节的数据 0b10001000 要存储进去。这里用到的思路是拆开，把 0b10001000 拆成 1、0、0、0、1、0、0、0 分别存储。第 0 位，放到第一块；第 1 位，放到第二块；以此类推。这样就可以让一个地址对应 8 块内存里相同的位置都存储了这个数据的一部分。取数据的时候，把取出来的 8 个 1 bit 的数据，按照拆分规则再组合起来就可以了。
+reference（参考） Crash Course Computer Science（计算机科学速成课） bilibili
+CrashCourse 字幕组
+Youtube 原视频</content></entry><entry><title>ALU（Arithmetic and Logic Unit、算术逻辑单元）</title><url>/post/computer-science/hardware/alu/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html"><![CDATA[资料 alu.drawio.html 正文 ALU ALU（arithmetic and logic unit、算术逻辑单元）由 AU（算术单元）、LU（逻辑单元）组成。算术单元由逻辑门、半加器、全加器、加法器等各种各样的单元组成。逻辑单元，由大量逻辑门组成。ALU 的主要功能是进行二进制的算术运算。
+机械继电器 机械继电器主要由机械开关和电磁铁组成（见图：alu.drawio.html 2-2）。
+当控制线不通电时，电磁铁不产生磁性，开关断开，输出端没有电，表示输出 0；当控制线通电时，电磁铁产生磁性，开关闭合，输出端有电，表示输出 1（见图：alu.drawio.html 2-4-2、2-4-4）。
+二极管 二极管通常由半导体材料制造。半导体是指在常温下导电性范围介于导体和绝缘体之间的材料，最关键的特点就是导电性可控。
+画一个简单的二极管的示意图（见图：alu.drawio.html 4-2），里面最关键的就是控制线和半导体。假设，当控制线不通电时，半导体不导通，这个时候输出端没有电，表示输出 0；当控制线通电时，半导体导通，这个时候输出端有电，表示输出 1（见图：alu.drawio.html 4-4-2、4-4-4）。
+下文的逻辑电路都会用到这个简单的二极管。
+逻辑门 与门 AND gate（与门）就是实现了与运算的逻辑电路，串联两个二极管就可以实现（见图：alu.drawio.html 6-2）。
+操作数 1 操作数 2 运算结果 示意图 0 0 0 alu.drawio.html 6-4-2 1 0 0 alu.drawio.html 6-4-4 0 1 0 alu.drawio.html 6-4-6 1 1 1 alu.drawio.html 6-4-8 或门 OR gate（或门）就是实现了或运算的逻辑电路，并联两个二极管就可以实现（见图：alu.drawio.html 8-2）。
+操作数 1 操作数 2 运算结果 示意图 0 0 0 alu.drawio.html 8-4-2 1 0 1 alu.drawio.html 8-4-4 0 1 1 alu.drawio.html 8-4-6 1 1 1 alu.drawio.html 8-4-8 非门 NOT gate（非门）就是实现了非运算的逻辑电路，一个二极管加上短路的设计就可以实现（见图：alu.drawio.html 10-2）。
+操作数 运算结果 示意图 0 1 alu.drawio.html 10-4-2 1 0 alu.drawio.html 10-4-4 异或门 XOR gate（Exclusive-OR gate、异或门）就是实现了异或运算的逻辑电路，异或门由与门、或门、非门组成（见图：alu.drawio.html 12-2）。
+操作数 1 操作数 2 运算结果 示意图 0 0 0 alu.drawio.html 12-4-2 1 0 1 alu.drawio.html 12-4-4 0 1 1 alu.drawio.html 12-4-6 1 1 0 alu.drawio.html 12-4-8 算术单元 半加器 half adder（半加器）由异或门、与门组成（见图：alu.drawio.html 14-2）。可以处理两个 1 位二进制数的加法运算，产生 2 个输出：一个 carry（进位）、一个 sum（和）。
+操作数 1 操作数 2 运算结果 carry sum 示意图 0 0 00 0 0 alu.drawio.html 14-4-2 1 0 01 0 1 alu.drawio.html 14-4-4 0 1 01 0 1 alu.drawio.html 14-4-6 1 1 10 1 0 alu.drawio.html 14-4-8 全加器 full adder（全加器）由半加器、或门组成（见图：alu.drawio.html 16-2）。可以处理三个 1 位二进制数的加法运算，产生 2 个输出：一个 carry、1 个 sum。
+操作数 1 操作数 2 操作数 3 运算结果 carry sum 示意图 0 0 0 00 0 0 alu.drawio.html 16-4-2 1 0 0 01 0 1 alu.drawio.html 16-4-4 0 1 0 01 0 1 alu.drawio.html 16-4-6 0 0 1 01 0 0 alu.drawio.html 16-4-8 1 1 0 10 1 0 alu.drawio.html 16-4-10 1 0 1 10 1 0 alu.drawio.html 16-4-12 0 1 1 10 1 0 alu.drawio.html 16-4-14 1 1 1 11 1 1 alu.drawio.html 16-4-16 两个 2 位二进制数加法 运算的电路由半加器、全加器组成（见图：alu.drawio.html 18-2）。可以处理两个 2 位二进制数加法运算，产生 3 个输出：一个 carry、2 个 sum（注意顺序）。
+这里简要描述一下加法运算的逻辑，就是电路里的半加器和全加器是怎么工作的。用 0b11 + 0b11 举例。为了描述方便，这里借用 10 进制的个位、十位、百位的概念。先把 0b11 拆成十位的 1 和个位的 1。
+在进行加法运算的时候，先进行个位和个位的加法，这里只有两个参数，两个个位，所以由半加器进行运算。1 + 1 = 10，产生 2 个输出：carry = 1、sum1 = 0。然后进行十位和十位的加法，这里有三个参数，两个十位还有个位相加的进位，所以这里需要全加器进行运算。1 + 1 + 1 = 11，产生 2 个输出：carry = 1、sum2 = 1。所以最后的结果就是 0b110，carry = 1、sum2 = 1、sum1 = 0。
+操作数 A 操作数 B 运算结果 carry sum2 sum1 示意图 00 00 000 0 0 0 alu.drawio.html 16-4-2 01 00 001 0 0 1 alu.drawio.html 16-4-4 00 01 001 0 0 1 alu.drawio.html 16-4-6 01 01 010 0 1 0 alu.drawio.html 16-4-8 10 00 010 0 1 0 alu.drawio.html 16-4-10 00 10 010 0 1 0 alu.drawio.html 16-4-12 10 01 011 0 1 1 alu.drawio.html 16-4-14 01 10 011 0 1 1 alu.drawio.html 16-4-16 10 10 100 1 0 0 alu.drawio.html 16-4-18 11 00 011 0 1 1 alu.drawio.html 16-4-20 00 11 011 0 1 1 alu.drawio.html 16-4-22 11 01 100 1 0 0 alu.drawio.html 16-4-24 01 11 100 1 0 0 alu.drawio.html 16-4-26 11 10 101 1 0 1 alu.drawio.html 16-4-28 10 11 101 1 0 1 alu.drawio.html 16-4-30 11 11 110 1 1 0 alu.drawio.html 16-4-32 行波进位加法器 参考&quot;两个 2 位二进制数加法&quot;的运算电路，就可以设计出&quot;两个 n 位二进制数加法&quot;的运算电路。这里画一个 8 bit ripple carry adder（8 位行波进位加法器）的示意图（见图：alu.drawio.html 20-2）。可以处理两个 8 位二进制数的加法运算，产生 9 个输出：一个 carry、8 个 sum（注意顺序）。
+逻辑单元 逻辑单元简单的理解就是，用不同逻辑门的组合，判断输入是不是满足某个条件。
+判断是否为 0 判断 4 位二进制输入是不是 0（见图：alu.drawio.html 30-2）。二进制数的 4 个位上只有全是 0 时，才输出 1；二进制数的 4 个位上只要有一个非 0，就输出 0（见图：alu.drawio.html 30-4-2 30-4-4）。
+ALU ALU 是由算术单元和逻辑单元组成的，这里画一个简单的 ALU 的示意图（见图：alu.drawio.html 60-2），真正的 ALU 会有更多的东西。
+这里假设是一个可以处理 8 位二进制数的 ALU。它有，两个数据输入（两个操作数）、一个 operation code（操作码）输入（加法还是减法）、一个数据输出（运算的结果）、3 个 flag（标志位）输出（overflow 是否溢出、zero 是否为 0、negative 负标志）。
+下面举几个例子：
+计算 0b11111111 + 0b11111111。两个数据输入就是 0b11111111 和 0b11111111、操作码输入就是 0b0001（表示加法）。这个时候，因为 0b11111111 + 0b11111111 = 0b111111110，它溢出了。所以数据输出会是 0b11111110、overflow 会是 1。
+计算 0b11111111 == 0b11111111。判断两个数字是否相等，计算机是不会直接比较的，可以用相减之后和 0 比较的思路。那么，两个数据输入就是 0b11111111 和 0b11111111、操作码输入就是 0002（表示减法）。这个时候，因为 0b11111111 - 0b11111111 = 0b00000000，为 0。所以数据输出会是 0b00000000、zero 会是 1。
+计算 0b11111111 &lt; 0b11111110。判断两个数字的大小，计算机是不会直接比较的，可以用相减之后和 0 比较的思路。那么，两个数据输入就是 0b11111111 和 0b11111110、操作码输入就是 0002（表示减法）。这个时候，因为 0b11111111 - 0b11111110 = 0b00000001，大于 0。所以数据输出会是 0b00000001、negative 会是 0（表示 0b11111111 - 0b11111110 &gt; 0）。如果是 0b11111110 - 0b11111111，那 negative 就会是 1（表示 0b11111110- - 0b11111111 &lt; 0）。
+reference（参考） Crash Course Computer Science（计算机科学速成课） bilibiliCrashCourse 字幕组Youtube 原视频]]></content></entry><entry><title>Golang 实现简单的 Web 框架 -- middleware(中间件)</title><url>/post/computer-science/programming-language/framework/web/golang/middleware_v2/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 前言 在看这篇之前，建议先看一下 Golang 实现简单的 Web 框架 &ndash; router(路由)资料 {demo-golang}/demo/web/middleware/ web.drawio.html 前置（后置）工作成对出现 承接上一篇的问题，在前一篇里讨论前置（后置）工作的时候，都是以&quot;前置（后置）工作是可以独立执行的整体&quot;为前提讨论的。如果它们之间有合作关系，也就是需要相互传递数据，那么怎么办呢？这里可以使用封装的思路，设计一个全链路通用的数据结构。然后所有的前置（后置）工作和最终的处理方法都接收这个数据结构作为参数。
 在最外层 ServeHTTP 方法最开始的地方创建一个这样的数据结构，先封装 ServeHTTP 方法的两个参数，然后在后面调用到的所有方法那里一层一层传下去。如果后面的工作需要前面的工作的数据，就可以借助这个数据结构进行传递。
 type 全链路通用的数据结构 struct { // ServeHTTP 方法的两个参数 http.ResponseWriter *http.Request // 其他参数 } 这里沿用上一篇中，访问 /user/id 的时候的结果。结合上面说的全链路通用的数据结构，最终地执行逻辑可以总结成下面这样。注意一定是引用传递，值传递进去的是一个副本，方法里面修改副本是不会影响外面的这个本体的。
@@ -350,8 +417,8 @@ JOIN SELECT 列 FROM JOIN。
 处理结果集 结果集的处理也不难，前面构造的元数据里不是已经有反方向的映射关系了嘛。先通过数据库返回的结果集里面的结果的字段名，结合元数据，把所有的变量类型先确定好。然按照变量类型构造一个接收数据库返回的结构，接收的时候注意顺序。
 成功接收到数据库的返回结果后，先通过元数据构造一个对应的空的结构体。然后通过数据库返回的字段名，结合元数据，反向去找结构体的属性。然后通过反射或者内存操作，把值塞到结构体对应的属性上去。
 全流程结束 到这里，构造元数据、生成 SELECT 语句、执行语句、处理返回值，就都处理完了。设计上的东西，看类图、流程图会更加直观。细节上的实现，直接看代码，这个靠说是说不太清楚的。
-]]></content></entry><entry><title>符号命名</title><url>/post/computer-science/programming-language/symbol_naming/</url><categories><category>programming-language(编程语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag></tags><content type="html">前言 实际开发中符号命名规则应该和团队的风格保持统一，这套符号命名规则是本人的个人喜好。 如果访客您非要说不符合哪里哪里的规范，怎么怎么有问题，那么访客您说的都对。
-命名 本人的符号（变量名、方法名）命名方式和主流的命名方式比起来有一些奇怪。 区别主要在于各种各样标记类型的前缀。 声明的变量名和方法名、定义的类型名，都会带前缀。加前缀的目的，主要是为一些特殊的类型作标记，编码过程中引起重视。
+]]></content></entry><entry><title>符号命名</title><url>/post/computer-science/programming-language/symbol_naming/</url><categories><category>programming-language(编程语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag></tags><content type="html">前言 实际开发中符号命名规则应该和团队的风格保持统一，这套符号命名规则是本人的个人喜好。如果访客您非要说不符合哪里哪里的规范，怎么怎么有问题，那么访客您说的都对。
+命名 本人的符号（变量名、方法名）命名方式和主流的命名方式比起来有一些奇怪。区别主要在于各种各样标记类型的前缀。 声明的变量名和方法名、定义的类型名，都会带前缀。加前缀的目的，主要是为一些特殊的类型作标记，编码过程中引起重视。
 比如，一个 map，map 的内容是指向结构体的指针，前缀就是 m3p7s6（var m3p7s6user map[string]*User）。
 基本类型就不管了。比如，一个切片，切片的内容是 int 类型，前缀就是 s5（var s5UserId []int）。
 另外，如果是临时变量，t4 一定在最前面。
@@ -361,8 +428,8 @@ JOIN SELECT 列 FROM JOIN。
 如果变量名是两个或以上的单词，则第一个单词首字母用小写，后面的单词首字母用大写（var s5UserId []int）。
 如果有前缀，则单词首字母可用小写也可用大写（var s5name, s5Name []string）。
 Golang 命名目录时，多单词用中划线连接。 import 引入时，多单词用下划线连接。 目录里的 hkn 后缀，用于回避关键字，比如：maphkn。 符号命名全部都用驼峰（camel case）。 数据库命名全部都用蛇形（snake case）。 符号命名前缀：
-t4，temp，临时变量 c5，const，常量 p7，pointer，指针 a5，array，数组 s5，slice，切片 m3，map，map c7，channel，管道 s6，struct，结构体 i9，interface，接口 f8，function，方法 版本号 版本号可能是 x.y 或者 x.y.z。大版本号从 2 开始，小版本号从 0 开始，以 2 为步长递增。
-第 1 版：v2.0.0（v2.0） 第 1 版小改一次：v2.0.2（v2.2） 第 1 版小改一次：v2.0.4（v2.4） 第 1 版大改一次：v2.2.0（v2.6） 第 1 版小改一次：v2.2.2（v2.8） 第 2 版：v4.0.0（v4.0） 通常 x.y 用的多，本人的各种 demo 代码版本一般情况下达不到需要使用 x.y.z 这样的规模。 而且版本号一般不会超过 10，常见的是：v20、v22、v40、v200、v202、v220、v400。</content></entry><entry><title>【过期，留做对比】Golang 实现复杂的 Web 框架</title><url>/post/computer-science/programming-language/framework/web/golang/complex/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>router(路由)</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+t4，temp，临时变量； c5，const，常量； p7，pointer，指针； a5，array，数组； s5，slice，切片； m3，map，map； c7，channel，管道； s6，struct，结构体； i9，interface，接口； f8，function，方法； 版本号 版本号可能是 x.y 或者 x.y.z。大版本号从 2 开始，小版本号从 0 开始，以 2 为步长递增。
+第 1 版：v2.0.0（v2.0） 第 1 版小改一次：v2.0.2（v2.2） 第 1 版小改一次：v2.0.4（v2.4） 第 1 版大改一次：v2.2.0（v2.6） 第 1 版小改一次：v2.2.2（v2.8） 第 2 版：v4.0.0（v4.0） 通常 x.y 用的多，本人的各种 demo 代码版本一般情况下达不到需要使用 x.y.z 这样的规模。而且版本号一般不会超过 10，常见的是：v20、v22、v40、v200、v202、v220、v400。</content></entry><entry><title>【过期，留做对比】Golang 实现复杂的 Web 框架</title><url>/post/computer-science/programming-language/framework/web/golang/complex/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>router(路由)</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 前言 在看这篇之前，建议先看下面这几篇：
 Golang 开启 HTTP 服务Golang 实现简单的 Web 框架 &ndash; router(路由)Golang 实现简单的 Web 框架 &ndash; middleware(中间件)路由树是 web 框架的核心。其他的功能，都是在路由树的基础上，再增加亿点点细节而已。
 资料 {web-framework-go}/v40 实现功能 主要实现： 路由树（静态、通配符、路径参数、正则表达式）、路由组 全局中间件、可路由的中间件 次要实现： 内存池（请求上下文对象复用） 服务管理（管理多个子服务） 优雅退出、退出时的回调方法 计划实现： 用户认证（中间件实现） 文件操作（上传、下载） 单元测试、集成测试、性能测试 设计文档 路由树 首先是路由树结点的设计。结点的基础数据包括：结点类型、这个路由结点代表的那段路径、命中路由之后的的处理逻辑。
@@ -802,8 +869,116 @@ magnet：为协议名。 xt：exact topic，资源定位点。 urn：Uniform Res
 copy /b 1.jpg+2.rar 3.jpg copy /b 是一个基础的 DOS 命令，作用是合并文件。
 把图片、压缩文件、批处理文件放在同一个目录。然后执行批处理文件，执行完成后就会得到一张图片 3.jpg。
 这个图片实际上同时文件含了图片和压缩文件。如果把图片 3.jpg 的后缀名改成 .rar，这个时候图片就变成了压缩文件。
-这个压缩文件是可以解压的，压缩文件的内容就是 2.rar 的内容。</content></entry><entry><title>ELF 文件</title><url>/post/computer-science/operating-system/linux/elf/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
-前言 在看这篇之前，建议先看一下 什么是程序资料 {demo-c}/demo-in-linux/elf/ ELF 之前提到过，c 源码文件通过 gcc 编译得到可执行文件，这里的可执行文件就是 elf 文件的一种。关于 elf 具体的细节可以看 elf(5) - format of Executable and Linking Format (ELF) files。
+这个压缩文件是可以解压的，压缩文件的内容就是 2.rar 的内容。</content></entry><entry><title>进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收</title><url>/post/computer-science/operating-system/linux/process/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0 资料 {demo-c}/demo-in-linux/process/ 正文 进程的创建 笔记主要涉及 fock()、vfock()。
+fock() DESCRIPTION fork() creates a new process by duplicating the calling process. The new process is referred to as the child process. The calling process is referred to as the parent process. &hellip;
+fork() 通过复制调用进程创建一个新进程，新进程为子进程，调用进程为父进程。
+RETURN VALUE On success, the PID of the child process is returned in the parent, and 0 is returned in the child. On failure, -1 is returned in the parent, no child process is created, and errno is set to indicate the error.
+成功时，父进程拿到子进程的 pid，子进程拿到 0。可以根据这个判断哪个是父进程，哪个是子进程。 失败时，父进程拿到-1，子进程不会被创建，errno 会被设置用于表示错误。 示例详见：{demo-c}/demo-in-linux/process/fork.c。
+pid 和 ppid 在终端里使用 echo $$ 命令，可以打印上当前进程的 pid。
+getpid() 返回调用进程的 pid，getppid() 返回调用进程的父进程的 pid。在使用时需要注意，必须让子进程先执行，父进程后执行，打印出来的 ppid 才是正确的。
+示例详见：{demo-c}/demo-in-linux/process/pid_and_ppid.c。
+如果父进程在子进程执行前先跑完了，那么子进程打印出来的 ppid 就会变成 1。因为父进程已经没了，子进程变成了孤儿进程。孤儿进程会被 1 号进程接管，有可能会变成后台进程。
+1 号进程就是 init 进程。init 进程是所有其他进程的祖先进程，它是 linux 系统启动过程中的第一个进程，也是系统在运行时的第一个用户级进程。init 进程的 pid（进程标识符）是就是 1。
+子进程和父进程的内存空间 DESCRIPTION &hellip; The child process and the parent process run in separate memory spaces. At the time of fork() both memory spaces have the same content. Memory writes, file mappings (mmap(2)), and unmappings (munmap(2)) performed by one of the processes do not affect the other. &hellip;
+两个进程运行在不同的内存空间，进程间是隔离的。在 fork() 时，两个进程的内存空间的内容是一样的（程序数据和程序指令）。两个进程进行写内存操作（定义新的变量并赋值，修改已定义的变量的值，定义新的函数）或者文件映射（进程间通信）时互不影响。
+示例详见：{demo-c}/demo-in-linux/process/fork_separate_memory.c。
+在 fork() 时，子进程和父进程代码是一样的，子进程会从 fork() 的下一行代码开始继续执行。一般是父进程先被调度，除非父进程被阻塞了。
+copy on write（写时复制） 在 fork() 执行之后 exec() 执行之前，两个进程用的是相同的物理空间，子进程的代码段、数据段、堆栈都是指向父进程的物理空间。两者的虚拟空间不同，但其对应的物理空间是同一个。当父子进程中有更改相应段的行为发生时，再为子进程相应的段分配物理空间。
+如果没有执行 exec()，内核会给子进程的数据段、堆栈段分配相应的物理空间（两者有各自的进程空间，互不影响）。而代码段继续共享父进程的物理空间（两者的代码完全相同）。而如果执行了 exec()，由于两者执行的代码不同，子进程的代码段也会被分配单独的物理空间。
+子进程和父进程的区别 DESCRIPTION &hellip; * The child has its own unique process ID, and this PID does not match the ID of any existing process group (setpgid( 2)) or session. * The child&rsquo;s parent process ID is the same as the parent&rsquo;s process ID. * The child does not inherit its parent&rsquo;s memory locks (mlock(2), mlockall(2)). &hellip;
+子进程有自己独立的唯一的进程标识（pid）。 子进程的父进程的 pid（ppid）和父进程的 pid 是一样的。 子进程不会继承父进程的内存锁。 vfork() Linux description vfork(), just like fork(2), creates a child process of the calling process. For details and return value and errors, see fork(2). &hellip; vfork() differs from fork(2) in that the calling thread is suspended until the child terminates (either normally, by calling_exit(2), or abnormally, after delivery of a fatal signal), or it makes a call to execve(2). Until that point, the child shares all memory with its parent, including the stack. &hellip;
+vfork() 和 fork() 用法一样。区别在于，vfork() 创建子进程后，父进程会被阻塞，直到子进程退出。
+示例详见：{demo-c}/demo-in-linux/process/vfork.c。
+而且 vfork() 创建出来的子进程和父进程共享内存，包括栈。
+示例详见：{demo-c}/demo-in-linux/process/vfork_share_memory.c。
+vfork() 有 bug。当使用 return 0 结束或者执行到最后一行代码结束时，有可能会报 &ldquo;Segmentation fault (core dumped)&rdquo; 错误。但是使用 exit(0)或者 _exit(0) 结束的时候不会。
+通过 strace 命令追踪可以发现：报错时，子进程调用 exit_group(0) 退出，但是父进程没有调用 exit_group(0)；不报错时，两个进程都调用 exit_group(0) 退出。
+这里猜测应该是共享内存的问题，如果子进程退出的时候把栈干碎了，那父进程被拉起来的时候，就没有栈，肯定会报错。
+进程的运行 笔记主要涉及 execve()、exec 家族的六个函数。
+程序被 execve() 加载到内存中时，需要操作系统分配内存资源。准备工作做完后，下一步就是找到程序入口并开始执行。主进程默认会启动一个主线程去执行 main() 入口函数。
+execve() DESCRIPTION execve() executes the program referred to by pathname. &hellip; pathname must be either a binary executable, or a script starting with a line of the form: #!interpreter [optional-arg] &hellip;
+在当前正在运行的程序里，可以调用 execve() 通过另外一个新的程序的路径名执行它。这个新的程序必须是一个二进制的可执行文件。或者是一个以 #!interpreter [optional-arg] 形式开始的脚本，比如，shell 脚本文件开头的 #!/bin/bash。
+DESCRIPTION &hellip; This causes the program that is currently being run by the calling process to be replaced with a new program, with newly initialized stack, heap, and (initialized and uninitialized) data segments. &hellip; execve() does not return on success, and the text, initialized data, uninitialized data (bss), and stack of the calling process are overwritten according to the contents of the newly loaded program.
+execve() 在成功时不会返回。而是会导致当前正在运行的程序被另外一个新的程序所取代。当前程序的 .test 段、.data 段、.bss 段、栈、堆等，都会被新的程序的数据覆盖。
+exec DESCRIPTION The exec() family of functions replaces the current process image with a new process image. The functions described in this manual page are layered on top of execve(2).
+简单理解，exec 家族的六个函数底层都是基于 execve() 实现的。
+用 execl() 举例，示例详见：
+{demo-c}/demo-in-linux/process/execl.c {demo-c}/demo-in-linux/process/call_by_exec.c 用 execv() 举例，示例详见：
+{demo-c}/demo-in-linux/process/execv.c {demo-c}/demo-in-linux/process/call_by_exec.c 这个例子在 Ubuntu 22.04 环境中执行，会返回 Bad Address，不知道为什么。
+进程的运行顺序 DESCRIPTION The scheduling priority of the process, process group, or user, as indicated by which and who is obtained with the getpriority() call and set with the setpriority() call. The process attribute dealt with by these system calls is the same attribute (also known as the &ldquo;nice&rdquo; value) that is dealt with by nice(2). &hellip; The prio argument is a value in the range -20 to 19 (but see NOTES below), with -20 being the highest priority and 19 being the lowest priority. Attempts to set a priority outside this range are silently clamped to the range. The default priority is 0; lower values give a process a higher scheduling priority. &hellip;
+进程的运行（执行、调度）顺序受到 PRI（priority）值和 NI（nice）值控制，这两个值对应进程的同一个属性。值的范围是 -20~19，值越小，进程优先级越高。这两个值可以通过 ps 命令（ps -ely）查看（PRI 和 NI 参数），也可以通过 top 命令查看（PR 和 NI 参数）。
+在系统中，可以使用 nice 命令和 renice 命令调整进程的优先级。nice 命令用于进程启动之前，renice 命令用于进程启动之后。在代码中，getpriority() 可以查看进程优先级，setpriority()、nice() 可以调整进程优先级。getpriority() 和 setpriority() 使用的时候需要注意的是，who 参数要和 which 参数对应。
+示例详见：{demo-c}/demo-in-linux/process/nice.c。
+进程的内存数据 进程通过 execve() 将程序加载到内存中去执行，此时操作系统会它们分配相应的内存资源。分配的内存资源主要用于存储程序指令和程序数据。还有额外的进程内存数据、进程标识、进程状态、哪个用户启动的、打开的文件等。这些数据主要存储在 /proc 目录中。
+/proc 目录 DESCRIPTION The proc filesystem is a pseudo-filesystem which provides an interface to kernel data structures. It is commonly mounted at /proc. Typically, it is mounted automatically by the system, but it can also be mounted manually using a command such as: mount -t proc proc /proc Most of the files in the proc filesystem are read-only, but some files are writable, allowing kernel variables to be changed. &hellip;
+proc 文件系统是一个伪文件系统，它提供了一个观察内核数据结构的接口。一般来说，它会被操作系统自动挂载到 /proc 目录。proc 文件系统中的大多数文件都是只读的。但有些文件是可写的，允许通过这些可写的文件改变内核变量。
+DESCRIPTION &hellip; /proc/[pid] subdirectories Each one of these subdirectories contains files and subdirectories exposing information about the process with the corresponding process ID. &hellip;
+/proc 目录存储了操作系统上所有进程的内存数据。进程对应的目录用进程标识（pid）命名。比如，进程标识（pid）为 42 的进程，对应的目录就是 /proc/42。
+/proc/[pid] 目录 cmdline This read-only file holds the complete command line for the process, unless the process is a zombie.
+cmdline，记录进程是用什么命令启动的。如果进程已经变成僵尸进程了，那么这个文件就是空的。
+environ This file contains the initial environment that was set when the currently executing program was started via execve(2).
+environ，记录进程启动的时候的环境参数。就是调用 execve() 启动程序的时候，传给 execve() 的环境参数。
+exe Under Linux 2.2 and later, this file is a symbolic link containing the actual pathname of the executed command. This symbolic link can be dereferenced normally; attempting to open it will open the executable. You can even type /proc/[pid]/exe to run another copy of the same executable that is being run by process [pid].
+exe，包含被执行命令的实际路径名的软连接。可以直接通过它启动程序。
+fd/ This is a subdirectory containing one entry for each file which the process has open, named by its file descriptor, and which is a symbolic link to the actual file. Thus, 0 is standard input, 1 standard output, 2 standard error, and so on.
+fd 目录，记录进程打开的文件。这里面的内容就是常说的文件标识符。程序启动的时候一般都会打开 0（标准输入）、1（标准输出）、2（标准错误）这三个。也就是说，程序里通过代码打开的文件的文件标识符一般都是从 3 开始的。
+limits This file displays the soft limit, hard limit, and units of measurement for each of the process&rsquo;s resource limits (see getrlimit(2)).
+limits，记录进程的资源限制。
+maps A file containing the currently mapped memory regions and their access permissions. See mmap(2) for some further information about memory mappings.
+maps，记录进程的内存映射和对内存的访问权限。在里面可以找到，进程的堆栈对应的内存地址到底在哪。
+net/ This directory contains various files and subdirectories containing information about the networking layer. The files contain ASCII structures and are, therefore, readable with cat(1). However, the standard netstat(8) suite provides much cleaner access to these files.
+net 目录，记录进程和网络有关的数据。比如，和 socket 有关的东西。
+stat Status information about the process. This is used by ps(1).
+stat，记录进程状态信息。比如，进程状态、线程、信号等。这个文件是给 ps 命令用的。
+statm Provides information about memory usage, measured in pages.
+statm，以页为单位提供关于内存使用的信息。
+status Provides much of the information in /proc/[pid]/stat and /proc/[pid]/statm in a format that&rsquo;s easier for humans to parse.
+status，整合了 stat 和 statm 的内容。不过这个文件是给人看的，可读性更强。
+进程内存布局 todo hkn linux 内存相关的会单独开一篇
+进程的内存空间被分为内核空间（kernel space）和用户空间。用户空间里面主要关注：栈（stack）、文件映射（里面有动态库的映射）、堆（heap）、读写数据区（主要是程序数据，.bss 段、.data 段等）、只读数据区（主要是程序指令，.text 段；也有程序数据 .rodata 段等。
+进程的资源限制 DESCRIPTION The getrlimit() and setrlimit() system calls get and set resource limits. Each resource has an associated soft and hard limit, &hellip; The soft limit is the value that the kernel enforces for the corresponding resource. The hard limit acts as a ceiling for the soft limit: an unprivileged process may set only its soft limit to a value in the range from 0 up to the hard limit, and (irreversibly) lower its hard limit. A privileged process (under Linux: one with the CAP_SYS_RESOURCE capability in the initial user namespace) may make arbitrary changes to either limit value. &hellip;
+getrlimit() 可以查看资源限制， setrlimit() 可以调整资源限制。进程的资源限制包括软限制、硬限制等。其中软限制必须小于等于硬限制。
+The resource argument must be one of: &hellip; RLIMIT_NOFILE This specifies a value one greater than the maximum file descriptor number that can be opened by this process. Attempts (open(2), pipe(2), dup(2), etc.) to exceed this limit yield the error EMFILE. (Historically, this limit was named RLIMIT_OFILE on BSD.) &hellip;
+可以通过资源参数指定需要操作的资源。比如 RLIMIT_NOFILE 对应进程可以打开的文件个数。这个参数很重要，因为 linux 上一切皆文件。
+示例详见：{demo-c}/demo-in-linux/process/rlimit.c。
+另外，在生产环境中，应该优先在程序中动态修改资源限制，不要轻易修改操作系统的资源限制。
+进程的退出 笔记主要涉及：exit()、_exit()、_Exit()、exit_group()、abort()。
+示例详见：{demo-c}/demo-in-linux/process/exit.c。
+进程退出的方式 程序运行到最后一行代码。 主动调用 exit()、_exit()、_Exit()、exit_group() 主动 return 0。 主动调用 abort()，会导致进程异常终止，报 &ldquo;Aborted (core dumped)&rdquo; 错误。 进程收到了中断信号。 exit() DESCRIPTION The exit() function causes normal process termination and the least significant byte of status (i.e., status &amp; 0xFF) is returned to the parent (see wait(2)). All functions registered with atexit(3) and on_exit(3) are called, in the reverse order of their registration. &hellip; If one of these functions does not return (e.g., it calls _exit(2), or kills itself with a signal), then none of the remaining functions is called, and further exit processing (in particular, flushing of stdio(3) streams) is abandoned. All open stdio(3) streams are flushed and closed. Files created by tmpfile(3) are removed. &hellip;
+exit() 会让进程正常终止，退出状态码会先和 0xFF 做与运算，然后返回给父进程。所有打开的 stdio(3) 流会被刷新然后关闭
+_exit()、_Exit() DESCRIPTION _exit() terminates the calling process &ldquo;immediately&rdquo;. Any open file descriptors belonging to the process are closed. Any children of the process are inherited by init(1) (or by the nearest &ldquo;subreaper&rdquo; process as defined through the use of the prctl(2) PR_SET_CHILD_SUBREAPER operation). The process&rsquo;s parent is sent a SIGCHLD signal. The value status &amp; 0xFF is returned to the parent process as the process&rsquo;s exit status, and can be collected by the parent using one of the wait(2) family of calls. The function _Exit() is equivalent to _exit().
+NOTES &hellip; The function _exit() is like exit(3), but does not call any functions registered with atexit(3) or on_exit(3). Open stdio(3) streams are not flushed. &hellip;
+_exit() （_Exit()和 _exit() 是等价的）会让进程立即终止，退出状态码会先和 0xFF 做与运算，然后返回给父进程。打开的 stdio(3) 流不会被刷新。
+exit_group() SYNOPSIS Note: glibc provides no wrapper for exit_group(), necessitating the use of syscall(2).
+DESCRIPTION This system call is equivalent to _exit(2) except that it terminates not only the calling thread, but all threads in the calling process&rsquo;s thread group.
+退出状态码 [00007fdf9e51ea3d] exit_group(0) = ? [????????????????] +++ exited with 0 +++ 退出状态码会先和 0xFF 做与运算。这个的意思是说，加入退出状态码设置的是 300，那实际返回的是 300 &amp; 255 的结果，也就是 44。
+[00007fb290aeaca1] exit_group(300) = ? [????????????????] +++ exited with 44 +++ 在终端里使用 echo $? 命令，可以打印上一个程序的退出状态码。
+不同退出方式下 printf() 的区别 上面提到，过不同的退出方式，对打开的 stdio(3) 流的处理方式不一样。
+程序运行到最后一行代码、主动 return 0、主动调用 exit() 时，会输出输出缓冲区内的内容。而主动调用 _exit()、_Exit()、exit_group 时不会。
+也就是对于 printf(&quot;hello, world&quot;) （注意，没有 \n）来说，前面三个方式会输出 hello, world，而前面三个方式不会输出。
+进程的回收 笔记主要涉及：wait()、waitpid()
+wait()、waitpid() SYNOPSIS pid_t wait(int *wstatus); pid_t waitpid(pid_t pid, int *wstatus, int options);
+DESCRIPTION All of these system calls are used to wait for state changes in a child of the calling process, and obtain information about the child whose state has changed. A state change is considered to be: the child terminated; the child was stopped by a signal; or the child was resumed by a signal. If a child has already changed state, then these calls return immediately. Otherwise, they block until either a child changes state or a signal handler interrupts the call (assuming that system calls are not automatically restarted using the SA_RESTART flag of sigaction(2)). &hellip;
+RETURN VALUE wait(): on success, returns the process ID of the terminated child; on failure, -1 is returned. waitpid(): on success, returns the process ID of the child whose state has changed; if WNOHANG was specified and one or more child(ren) specified by pid exist, but have not yet changed state, then 0 is returned. On failure, -1 is returned.
+wait() 用于等待调用进程的一个子进程的状态变化，并获取状态发生变化的子进程的信息。比如，子进程终止；子进程被信号停止；子进程被信号恢复。如果一个子进程已经改变了状态，那么调用进程调用 wait() 会立即返回。否则，调用进程就会阻塞，直到子进程改变状态或信号处理程序中断调用。
+DESCRIPTION The wait() system call suspends execution of the calling thread until one of its children terminates. The call wait(&amp;wstatus) is equivalent to: waitpid(-1, &amp;wstatus, 0) &hellip;
+wait(&amp;status) 和 waitpid(-1, &amp;status, 0) 是等效的。
+DESCRIPTION If wstatus is not NULL, wait() and waitpid() store status information in the int to which it points. This integer can be inspected with the following macros (which take the integer itself as an argument, not a pointer to it, as is done in wait() and waitpid()!): &hellip;
+wait()、waitpid() 调用成功的时候，返回值是子进程的 pid，传进去的参数 wstatus 会记录子进程的退出信息。退出信息可以用提供的宏函数确定是哪一种。
+示例详见：{demo-c}/demo-in-linux/process/wait.c。
+宏函数 WIFEXITED(wstatus) returns true if the child terminated normally, that is, by calling exit(3) or _exit(2), or by returning from main().
+如果子进程是正常退出的 WIFEXITED(wstatus) 会返回一个非零值。
+WEXITSTATUS(wstatus) returns the exit status of the child. This consists of the least significant 8 bits of the status argument that the child specified in a call to exit(3) or _exit(2) or as the argument for a return statement in main(). This macro should be employed only if WIFEXITED returned true.
+当 WIFEXITED() 返回非零值时，可以用 WEXITSTATUS() 来提取子进程的返回值。如果子进程调用 exit(5) 退出，WEXITSTATUS(status) 就会返回 5。
+示例详见：{demo-c}/demo-in-linux/process/waitpid_macros.c。
+僵尸进程 DESCRIPTION In the case of a terminated child, performing a wait allows the system to release the resources associated with the child; if a wait is not performed, then the terminated child remains in a &ldquo;zombie&rdquo; state (see NOTES below).
+在子进程终止的情况下，调用进程执行等待可以让操作系统释放与子进程相关的资源。如果调用进程不执行等待，那么被终止的子进程就会处于&quot;僵尸&quot;状态，也就是僵尸进程。当父进程也结束的时候，操作系统会把父进程和回收僵尸进程一起回收。
+示例详见：{demo-c}/demo-in-linux/process/for_zombie.c。这里运行一下，下面的是输出到终端上的内容。
+&gt; ./for_zombie.elf [debug]:parent, getpid()=3592 [debug]:parent, getpid()=3592, forkResult=3593 [debug]:child, getpid()=3593, forkResult=0 然后通过 ps 命令看一下 for_zombie 的运行情况。进程 3593 后面那个 &ldquo;Z+&rdquo; 就表示，它已经是一个僵尸进程了。
+qqq 3592 0.0 0.0 2772 944 pts/0 S+ 20:14 0:00 ./for_zombie.elf qqq 3593 0.0 0.0 0 0 pts/0 Z+ 20:14 0:00 [for_zombie.elf] &lt;defunct&gt; 当进程变成僵尸进程时，它的内存数据还驻留在内存中，/proc 目录下的相关文件也不会移除，这些东西依然在占用系统资源。如果僵尸进程过多，会导致系统资源紧张，会影响操作系统的运行。所以必须要回收退出的子进程。
+]]></content></entry><entry><title>ELF 文件</title><url>/post/computer-science/operating-system/linux/elf/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+前言 先看：什么是程序资料 {demo-c}/demo-in-linux/elf/ ELF 之前提到过，c 源码文件通过 gcc 编译得到可执行文件，这里的可执行文件就是 elf 文件的一种。关于 elf 具体的细节可以看 elf(5) - format of Executable and Linking Format (ELF) files。
 elf 文件格式有四种：
 normal executable files（普通可执行文件） relocatable object files（可重定位文件） core files（核心文件） shared objects（共享目标文件、共享库、动态库） objdump 这里观察一下 demo02 文件。命令具体的输出放在 {demo-c}/demo-in-linux/elf/objdump.md 里面。
 readelf 通过 readelf 命令可以查看 elf 文件的具体信息。关于 readelf 命令具体怎么用可以看：readelf(1) - display information about ELF files。
@@ -830,31 +1005,34 @@ Name（符号名）：ga Ndx（段 id）：25，表示符号属于第 25 段。�
 nm 命令 nm 也可以输出符号表。nm demo02 命令输出的内容在文件 {demo-c}/demo-in-linux/elf/nm.md 中。关于 gcc 命令具体怎么用可以看：nm(1) - list symbols from object files。
 使用符号表的地址直接访问数据 在程序中可以直接使用符号表中的 Value 值去访问对应的内存数据。同样的源文件，每次编译得到的符号表的地址是一样的。如果只是修改了某个变量的值，没有大规模的修改代码的话，重新编译的时候，变量的地址一般也是不会变得。可以通过这种方式验证这个结论。
 进程虚拟地址空间映射 在上面的输出中，与地址有关的数据，都不是程序跑起来的时候，在内存中真正的地址。程序在进程里跑起来的时候，操作系统会把真正的内存地址和 elf 文件中的虚拟地址做映射。
-]]></content></entry><entry><title>Linux C 编程的注意点</title><url>/post/computer-science/operating-system/linux/notice/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html">其实就一个注意点，编程的时候，要注意代码运行的目标环境。同一段代码，在 Ubuntu 和 Centos 上运行的时候，整体的系统调用过程应该是差不多的，但是细节可能不一样。
-举个例子，在 Ubuntu 22.04 和 Centos 7 上分别跑 helloworld。加载 libc.so.6 文件的这个步骤，在Ubuntu 22.04 上加载的是 /lib/x86_64-linux-gnu/libc.so.6，在 Centos 7 上加载的是 /lib64/libc.so.6。</content></entry><entry><title>Linux 文档</title><url>/post/computer-science/operating-system/linux/man-pages/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
-搞 linux c 编程，一定要学会看 linux 的文档，遇到问题，仔细看看文档，一般都能解决。
-man 可以在 linux 系统中使用 man 命令或者使用在线文档（
-man7.org
-或者 Linux man pages online
-）查看 linux 相关文档。
-关于 man 命令具体怎么用可以看：
-man(1) - an interface to the system reference manuals
-。
-在 centos 的 docker 容器中无法使用 man 命令 因为 centos 的 docker 的镜像，它将一些东西精简了，所以不能够使用一些常用的命令，比如 man 等等。
-需要在 /etc/yum.conf 配置文件里面修改一下，注释掉：tsflags=nodocs，这个配置禁用了一些软件包。注释完成之后重新安装 man 即可使用。
-yum -y install man yum -y install man-pages Linux man pages online 在线文档从 man7.org
-或者 Linux man pages online
-都能进的去。
-man7.org 页面点击 Online manual pages 可以进到 Linux man pages online 页面。Linux man pages online 页面点击 by section 可以进到列表页面，在列表页面比较好找。</content></entry><entry><title>运行 ELF 文件</title><url>/post/computer-science/operating-system/linux/exec_elf/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+]]></content></entry><entry><title>搞 Linux C 编程的注意点</title><url>/post/computer-science/operating-system/linux/notice/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[正文 学会看 linux 文档 搞 linux c 编程，一定要学会看 linux 的文档。遇到问题，仔细看看文档，一般都能解决。
+man 在 linux 系统中，可以使用 man 命令查看 linux 文档。
+关于 man 命令具体怎么用可以看：man(1) - an interface to the system reference manuals。
+Linux man pages online 在线文档从 man7.org或者 Linux man pages online都能进的去。
+man7.org 页面点击 Online manual pages 可以进到 Linux man pages online 页面。
+Linux man pages online 页面点击 by section 链接可以进到列表页面，在列表页面比较好找。
+在 centos 的 docker 容器中无法使用 man 命令 因为 centos 的 docker 的镜像，它把一些东西精简了，所以有一些命令不能使用。比如，man。
+需要修改 &ldquo;/etc/yum.conf&rdquo; 配置文件。注释掉 tsflags=nodocs 这一行。这个配置禁用了一些软件包。修改配置文件后，重新安装 man，即可使用。
+yum -y install man yum -y install man-pages 笔记中出现的文档 错误信息：
+errno(3) - number of last error进程的标识：
+getpid(2) - get process identificationgetppid(2) - get process identification进程的创建：
+fork(2) - create a child processvfork(2) - create a child process and block parent进程的运行：
+execve(2) - execute programexec(3) - execute a file进程的运行顺序：
+nice(1) - run a program with modified scheduling priorityrenice(1) - alter priority of running processesgetpriority(2) - get/set program scheduling prioritysetpriority(2) - get/set program scheduling prioritynice(2) - change process priority进程的内存资源：
+proc(5) - process information pseudo-filesystemgetrlimit(2) - get/set resource limitssetrlimit(2) - get/set resource limits进程的退出：
+exit(2) - terminate the calling process_Exit(2) - terminate the calling process_exit(2) - terminate the calling processexit(3) - cause normal process terminationexit_group(2) - exit all threads in a process进程的回收：
+wait(2) - wait for process to change statewaitpid(2) - wait for process to change state注意代码运行的目标环境 编程的时候，要注意代码运行的目标环境。同一段代码，在 Ubuntu 和 Centos 上运行的时候，整体的系统调用过程应该是差不多的，但是细节可能不一样。
+举个例子，在 Ubuntu 22.04 和 Centos 7 上分别跑 helloworld 程序。加载 libc.so.6 文件的这个步骤。在 Ubuntu 22.04 上加载的是 &ldquo;/lib/x86_64-linux-gnu/libc.so.6&rdquo;；而在 Centos 7 上加载的是 &ldquo;/lib64/libc.so.6&rdquo;。
+]]></content></entry><entry><title>运行 ELF 文件</title><url>/post/computer-science/operating-system/linux/exec_elf/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
 前言 在看这篇之前，建议先看一下：
-什么是程序什么是程序ELF 文件资料 {demo-c}/demo-in-linux/helloworld/ {demo-c}/demo-in-linux/process/ 进程是什么 简单的理解，程序启动起来就变成进程，直到程序运行结束。程序是静态的，进程是动态的。
+ELF 文件资料 {demo-c}/demo-in-linux/process/ 进程是什么 简单的理解，程序启动起来就变成进程，直到程序运行结束。程序是静态的，进程是动态的。
 怎么观察进程 strace 通过 strace 命令可以来跟踪进程执行时的系统调用和进程接收的信号。关于 strace 命令具体怎么用可以看：strace(1) - trace system calls and signals。这里会用到 -f、-i、-t、-T、-p、-s、-o 几个参数。
 大概是：-f 跟踪子进程；-i 打印系统调用的地址；-t 每一行打印时间；-T 显示系统调用花费的时间；-p {pid} 指定跟踪的进程号；-s {length} 每一行的长度，默认 32，一般设置 65535；-o {file name} 输出到文件。
 在 centos 的 docker 容器中使用 strace 命令报错 使用 strace -p 命令跟踪进程时报错：
 attach: ptrace(PTRACE_SEIZE): Operation not permitted 参考官方文档：The solution for enabling of ptrace and PTRACE_ATTACH in Docker Containers。
 启动容器的时候使用 –-privileged 参数，让容器内的 root 用户拥有真正的 root 权限。
 docker run -it -p 127.0.0.1:9501:9501 -v {local path}:{docker path} --name={container name} --privileged centos:centos7 进入容器，然后使用命令：echo 0 &gt; /proc/sys/kernel/yama/ptrace_scope。将 /proc/sys/kernel/yama/ptrace_scope 文件中的值修改成0。然后就可以使用 strace -p 命令跟踪进程了。
-观察一下执行 helloworld 的过程 可以直接用 strace -f -i -T -s 65535 ./helloworld 直接跟踪 ./helloworld 运行的过程，但是这样观察不到全部的细节。这里用另外一种观察方式，观察输入 ./helloworld 的那个终端对应的进程。
+观察一下 helloworld 程序运行的过程 可以直接用 strace -f -i -T -s 65535 ./helloworld 直接跟踪 ./helloworld 运行的过程，但是这样观察不到全部的细节。这里用另外一种观察方式，观察输入 ./helloworld 的那个终端对应的进程。
 其实用户的输入，内也是有一个进程来处理的，这个进程会接收并分析用户输入的容，然后做出相应的动作。这里这个进程，会接收到用户输入的 ./helloworld，然后执行 helloworld 这个可执行文件。
 假设有两个终端黑窗口（进程），进程 a 负责进行上面的操作。进程 b 负责观察进程 a。在进程 b 进行跟踪之前，需要现在进程 a 里面，使用 echo $$ 命令获取当前进程的 pid。然后进程 b 使用 strace -f -i -T -s 65535 -p {pid} -o strace.log 命令观察进程 a。
 命令输出的结果：
@@ -880,13 +1058,12 @@ libc.so.6 是共享目标文件，也叫共享库、运行库、动态库。用�
 write 下一个关键的步骤是，是调用 write 函数。
 ... 5333 [00007f06cfcf1a37] write(1, &#34;hello, world\n&#34;, 13) = 13 &lt;0.000096&gt; ... 调用 write 函数输出 hello, world\n 到屏幕上。返回值 13 表示 hello, world\n 有 13 个字节。
 在源码里面，用的是 printf 函数。这个函数声明在 stdio.h 头文件里面。它的底层实现最终调用的就是 write 函数，而 write 函数的具体实现就在 libc.so.6 库里。write 函数就是暴露出来的最底层的函数了，再往下就是驱动和硬件相关了。
-另外，系统调用函数是可以直接写在程序里的。
+另外，程序是可以直接调用系统调用函数的。
 #include &lt;unistd.h&gt; int main() { write(1, &#34;hello, world\n&#34;, 13); return 0; } exit_group 下一个关键的步骤是，是调用 exit_group 函数。关于 exit_group 函数具体怎么用可以看：exit_group(2) - exit all threads in a process。
 ... 5333 [00007f06cfcc7ca1] exit_group(0) = ? 5333 [????????????????] +++ exited with 0 +++ ... 进程 5333 调用 exit_group(0) 函数退出进程，参数值 0 是进程退出状态码，就是程序里 return 的 0。
 wait4 下一个关键的步骤是，是进程 5148 从 wait4 函数的阻塞状态中被唤醒。
 ... 5148 [00007ff14a0a845a] &lt;... wait4 resumed&gt;[{WIFEXITED(s) &amp;&amp; WEXITSTATUS(s) == 0}], WSTOPPED|WCONTINUED, NULL) = 5333 &lt;0.036896&gt; ... 父进程 5148 知道子进程 5333 退出了，前面调用的 wait4 函数会回收退出的子进程 5333，并回收子进程的内存资源。WIFEXITED(s) 和 WEXITSTATUS(s) 是宏函数，WEXITSTATUS(s) 可以拿到退出状态码。
-至此整个 helloworld 程序执行结束。
-]]></content></entry><entry><title>什么是程序</title><url>/post/computer-science/operating-system/linux/program/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+至此整个 helloworld 程序执行结束。 ]]></content></entry><entry><title>什么是程序</title><url>/post/computer-science/operating-system/linux/program/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
 资料 {demo-c}/demo-in-linux/helloworld/ 程序 存储在磁盘上的静态代码文件或者由静态代码文件编译出来的可执行文件都可以说是程序。
 编译 通常说的编译指的是：c 源码文件通过 gcc 编译得到可执行文件（elf）。通常使用 gcc 命令 gcc xxx.c -o xxx 一步就完成了。但是，这一步里面其实有四个步骤：预处理、编译、汇编、链接。
 关于 gcc 命令具体怎么用可以看：gcc(1) - GNU project C and C++ compiler。这里会用到 -E、-S、-c、-o 几个参数。
