@@ -26,13 +26,10 @@ tags:
 
 在看这篇之前，建议先看一下：
 
-- [什么是程序](/post/computer-science/operating-system/linux/program)
-- [什么是程序](/post/computer-science/operating-system/linux/program)
 - [ELF 文件](/post/computer-science/operating-system/linux/elf)
 
 ### 资料
 
-- [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/helloworld/
 - [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/process/
 
 ### 进程是什么
@@ -65,7 +62,7 @@ docker run -it -p 127.0.0.1:9501:9501 -v {local path}:{docker path} --name={cont
 
 进入容器，然后使用命令：`echo 0 > /proc/sys/kernel/yama/ptrace_scope`。将 `/proc/sys/kernel/yama/ptrace_scope` 文件中的值修改成0。然后就可以使用 `strace -p` 命令跟踪进程了。
 
-### 观察一下执行 helloworld 的过程
+### 观察一下 helloworld 程序运行的过程
 
 可以直接用 `strace -f -i -T -s 65535 ./helloworld` 直接跟踪 `./helloworld` 运行的过程，但是这样观察不到全部的细节。这里用另外一种观察方式，观察输入 `./helloworld` 的那个终端对应的进程。
 
@@ -180,7 +177,7 @@ libc.so.6 是共享目标文件，也叫共享库、运行库、动态库。用�
 
 在源码里面，用的是 printf 函数。这个函数声明在 stdio.h 头文件里面。它的底层实现最终调用的就是 write 函数，而 write 函数的具体实现就在 libc.so.6 库里。write 函数就是暴露出来的最底层的函数了，再往下就是驱动和硬件相关了。
 
-另外，系统调用函数是可以直接写在程序里的。
+另外，程序是可以直接调用系统调用函数的。
 
 ```
 #include <unistd.h>
@@ -216,4 +213,4 @@ int main() {
 
 父进程 5148 知道子进程 5333 退出了，前面调用的 wait4 函数会回收退出的子进程 5333，并回收子进程的内存资源。`WIFEXITED(s)` 和 `WEXITSTATUS(s)` 是宏函数，`WEXITSTATUS(s)` 可以拿到退出状态码。
 
-至此整个 helloworld 程序执行结束。
+#### 至此整个 helloworld 程序执行结束。

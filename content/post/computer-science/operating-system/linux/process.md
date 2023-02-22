@@ -1,0 +1,465 @@
+---
+draft: false
+date: 2021-12-08 08:00:00 +0800
+lastmod: 2023-02-15 08:00:00 +0800
+title: "进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收"
+summary: "进程的创建、进程的运行、进程的运行顺序、进程的内存资源、进程的资源限制、进程的退出、进程的回收"
+toc: true
+
+categories:
+- operating-system(操作系统)
+
+tags:
+- computer-science(计算机科学)
+- operating-system(操作系统)
+- linux
+- linux-c
+---
+
+## 前言
+
+实践的环境：
+
+- CPU AMD64(x86_64)
+- Windows 11 家庭版
+- VMware Workstation Pro 16
+- Ubuntu 22.04
+- gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+
+## 资料
+
+- [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/process/
+
+## 正文
+
+### 进程的创建
+
+笔记主要涉及 fock()、vfock()。
+
+#### fock()
+
+> DESCRIPTION</br>
+> fork() creates a new process by duplicating the calling process.</br>
+> The new process is referred to as the child process.</br>
+> The calling process is referred to as the parent process.</br>
+> ...</br>
+
+fork() 通过复制调用进程创建一个新进程，新进程为子进程，调用进程为父进程。
+
+> RETURN VALUE</br>
+> On success, the PID of the child process is returned in the parent, and 0 is returned in the child.</br>
+> On failure, -1 is returned in the parent, no child process is created, and errno is set to indicate the error.
+
+- 成功时，父进程拿到子进程的 pid，子进程拿到 0。可以根据这个判断哪个是父进程，哪个是子进程。
+- 失败时，父进程拿到-1，子进程不会被创建，errno 会被设置用于表示错误。
+
+示例详见：{demo-c}/demo-in-linux/process/fork.c。
+
+#### pid 和 ppid
+
+在终端里使用 `echo $$` 命令，可以打印上当前进程的 pid。
+
+getpid() 返回调用进程的 pid，getppid() 返回调用进程的父进程的 pid。在使用时需要注意，必须让子进程先执行，父进程后执行，打印出来的 ppid 才是正确的。
+
+示例详见：{demo-c}/demo-in-linux/process/pid_and_ppid.c。
+
+如果父进程在子进程执行前先跑完了，那么子进程打印出来的 ppid 就会变成 1。因为父进程已经没了，子进程变成了孤儿进程。孤儿进程会被 1 号进程接管，有可能会变成后台进程。
+
+1 号进程就是 init 进程。init 进程是所有其他进程的祖先进程，它是 linux 系统启动过程中的第一个进程，也是系统在运行时的第一个用户级进程。init 进程的 pid（进程标识符）是就是 1。
+
+#### 子进程和父进程的内存空间
+
+> DESCRIPTION</br>
+> ...</br>
+> The child process and the parent process run in separate memory spaces.</br>
+> At the time of fork() both memory spaces have the same content.</br>
+> Memory writes, file mappings (mmap(2)), and unmappings (munmap(2)) performed by one of the processes do not affect the other.</br>
+> ...
+
+两个进程运行在不同的内存空间，进程间是隔离的。在 fork() 时，两个进程的内存空间的内容是一样的（程序数据和程序指令）。两个进程进行写内存操作（定义新的变量并赋值，修改已定义的变量的值，定义新的函数）或者文件映射（进程间通信）时互不影响。
+
+示例详见：{demo-c}/demo-in-linux/process/fork_separate_memory.c。
+
+在 fork() 时，子进程和父进程代码是一样的，子进程会从 fork() 的下一行代码开始继续执行。一般是父进程先被调度，除非父进程被阻塞了。
+
+#### copy on write（写时复制）
+
+在 fork() 执行之后 exec() 执行之前，两个进程用的是相同的物理空间，子进程的代码段、数据段、堆栈都是指向父进程的物理空间。两者的虚拟空间不同，但其对应的物理空间是同一个。当父子进程中有更改相应段的行为发生时，再为子进程相应的段分配物理空间。
+
+如果没有执行 exec()，内核会给子进程的数据段、堆栈段分配相应的物理空间（两者有各自的进程空间，互不影响）。而代码段继续共享父进程的物理空间（两者的代码完全相同）。而如果执行了 exec()，由于两者执行的代码不同，子进程的代码段也会被分配单独的物理空间。
+
+#### 子进程和父进程的区别
+
+> DESCRIPTION</br>
+> ...</br>
+> \* The child has its own unique process ID, and this PID does not match the ID of any existing process group (setpgid(
+> 2)) or session.</br>
+> \* The child's parent process ID is the same as the parent's process ID.</br>
+> \* The child does not inherit its parent's memory locks (mlock(2), mlockall(2)).</br>
+> ...
+
+- 子进程有自己独立的唯一的进程标识（pid）。
+- 子进程的父进程的 pid（ppid）和父进程的 pid 是一样的。
+- 子进程不会继承父进程的内存锁。
+
+#### vfork()
+
+> Linux description</br>
+> vfork(), just like fork(2), creates a child process of the calling process.</br>
+> For details and return value and errors, see fork(2).</br>
+> ...</br>
+> vfork() differs from fork(2) in that the calling thread is suspended until the child terminates (either normally, by calling_exit(2), or abnormally, after delivery of a fatal signal), or it makes a call to execve(2).</br>
+> Until that point, the child shares all memory with its parent, including the stack.</br>
+> ...
+
+vfork() 和 fork() 用法一样。区别在于，vfork() 创建子进程后，父进程会被阻塞，直到子进程退出。
+
+示例详见：{demo-c}/demo-in-linux/process/vfork.c。
+
+而且 vfork() 创建出来的子进程和父进程共享内存，包括栈。
+
+示例详见：{demo-c}/demo-in-linux/process/vfork_share_memory.c。
+
+vfork() 有 bug。当使用 `return 0` 结束或者执行到最后一行代码结束时，有可能会报 "Segmentation fault (core dumped)" 错误。但是使用 `exit(0)`或者 `_exit(0)` 结束的时候不会。
+
+通过 strace 命令追踪可以发现：报错时，子进程调用 `exit_group(0)` 退出，但是父进程没有调用 `exit_group(0)`；不报错时，两个进程都调用 `exit_group(0)` 退出。
+
+这里猜测应该是共享内存的问题，如果子进程退出的时候把栈干碎了，那父进程被拉起来的时候，就没有栈，肯定会报错。
+
+### 进程的运行
+
+笔记主要涉及 execve()、exec 家族的六个函数。
+
+程序被 execve() 加载到内存中时，需要操作系统分配内存资源。准备工作做完后，下一步就是找到程序入口并开始执行。主进程默认会启动一个主线程去执行 main() 入口函数。
+
+#### execve()
+
+> DESCRIPTION</br>
+> execve() executes the program referred to by pathname.</br>
+> ...</br>
+> pathname must be either a binary executable, or a script starting with a line of the form: `#!interpreter [optional-arg]`</br>
+> ...
+
+在当前正在运行的程序里，可以调用 execve() 通过另外一个新的程序的路径名执行它。这个新的程序必须是一个二进制的可执行文件。或者是一个以 `#!interpreter [optional-arg]` 形式开始的脚本，比如，shell 脚本文件开头的 `#!/bin/bash`。
+
+> DESCRIPTION</br>
+> ...</br>
+> This causes the program that is currently being run by the calling process to be replaced with a new program, with newly initialized stack, heap, and (initialized and uninitialized) data segments.</br>
+> ...</br>
+> execve() does not return on success, and the text, initialized data, uninitialized data (bss), and stack of the calling process are overwritten according to the contents of the newly loaded program.
+
+execve() 在成功时不会返回。而是会导致当前正在运行的程序被另外一个新的程序所取代。当前程序的 .test 段、.data 段、.bss 段、栈、堆等，都会被新的程序的数据覆盖。
+
+#### exec
+
+> DESCRIPTION</br>
+> The exec() family of functions replaces the current process image with a new process image.</br>
+> The functions described in this manual page are layered on top of execve(2).
+
+简单理解，exec 家族的六个函数底层都是基于 execve() 实现的。
+
+用 execl() 举例，示例详见：
+
+- {demo-c}/demo-in-linux/process/execl.c
+- {demo-c}/demo-in-linux/process/call_by_exec.c
+
+用 execv() 举例，示例详见：
+
+- {demo-c}/demo-in-linux/process/execv.c
+- {demo-c}/demo-in-linux/process/call_by_exec.c
+
+这个例子在 Ubuntu 22.04 环境中执行，会返回 Bad Address，不知道为什么。
+
+### 进程的运行顺序
+
+> DESCRIPTION</br>
+> The scheduling priority of the process, process group, or user, as indicated by which and who is obtained with the getpriority() call and set with the setpriority() call.</br>
+> The process attribute dealt with by these system calls is the same attribute (also known as the "nice" value) that is dealt with by nice(2).</br>
+> ...</br>
+> The prio argument is a value in the range -20 to 19 (but see NOTES below), with -20 being the highest priority and 19 being the lowest priority.</br>
+> Attempts to set a priority outside this range are silently clamped to the range.</br>
+> The default priority is 0; lower values give a process a higher scheduling priority.</br>
+> ...
+
+进程的运行（执行、调度）顺序受到 PRI（priority）值和 NI（nice）值控制，这两个值对应进程的同一个属性。值的范围是 -20~19，值越小，进程优先级越高。这两个值可以通过 ps 命令（`ps -ely`）查看（PRI 和 NI 参数），也可以通过 top 命令查看（PR 和 NI 参数）。
+
+在系统中，可以使用 nice 命令和 renice 命令调整进程的优先级。nice 命令用于进程启动之前，renice 命令用于进程启动之后。在代码中，getpriority() 可以查看进程优先级，setpriority()、nice() 可以调整进程优先级。getpriority() 和 setpriority() 使用的时候需要注意的是，who 参数要和 which 参数对应。
+
+示例详见：{demo-c}/demo-in-linux/process/nice.c。
+
+### 进程的内存数据
+
+进程通过 execve() 将程序加载到内存中去执行，此时操作系统会它们分配相应的内存资源。分配的内存资源主要用于存储程序指令和程序数据。还有额外的进程内存数据、进程标识、进程状态、哪个用户启动的、打开的文件等。这些数据主要存储在 /proc 目录中。
+
+#### /proc 目录
+
+> DESCRIPTION</br>
+> The proc filesystem is a pseudo-filesystem which provides an interface to kernel data structures. It is commonly mounted at /proc.</br>
+> Typically, it is mounted automatically by the system, but it can also be mounted manually using a command such as: `mount -t proc proc /proc`</br>
+> Most of the files in the proc filesystem are read-only, but some files are writable, allowing kernel variables to be changed.</br>
+> ...
+
+proc 文件系统是一个伪文件系统，它提供了一个观察内核数据结构的接口。一般来说，它会被操作系统自动挂载到 /proc 目录。proc 文件系统中的大多数文件都是只读的。但有些文件是可写的，允许通过这些可写的文件改变内核变量。
+
+> DESCRIPTION</br>
+> ...</br>
+> /proc/\[pid\] subdirectories</br>
+Each one of these subdirectories contains files and subdirectories exposing information about the process with the corresponding process ID.</br>
+> ...
+
+/proc 目录存储了操作系统上所有进程的内存数据。进程对应的目录用进程标识（pid）命名。比如，进程标识（pid）为 42 的进程，对应的目录就是 /proc/42。
+
+#### /proc/\[pid\] 目录
+
+> cmdline</br>
+> This read-only file holds the complete command line for the process, unless the process is a zombie.
+
+cmdline，记录进程是用什么命令启动的。如果进程已经变成僵尸进程了，那么这个文件就是空的。
+
+> environ</br>
+> This file contains the initial environment that was set when the currently executing program was started via execve(2).
+
+environ，记录进程启动的时候的环境参数。就是调用 execve() 启动程序的时候，传给 execve() 的环境参数。
+
+> exe</br>
+> Under Linux 2.2 and later, this file is a symbolic link containing the actual pathname of the executed command.</br>
+> This symbolic link can be dereferenced normally; attempting to open it will open the executable.</br>
+> You can even type /proc/\[pid\]/exe to run another copy of the same executable that is being run by process \[pid\].
+
+exe，包含被执行命令的实际路径名的软连接。可以直接通过它启动程序。
+
+> fd/</br>
+> This is a subdirectory containing one entry for each file which the process has open, named by its file descriptor, and which is a symbolic link to the actual file.</br>
+> Thus, 0 is standard input, 1 standard output, 2 standard error, and so on.
+
+fd 目录，记录进程打开的文件。这里面的内容就是常说的文件标识符。程序启动的时候一般都会打开 0（标准输入）、1（标准输出）、2（标准错误）这三个。也就是说，程序里通过代码打开的文件的文件标识符一般都是从 3 开始的。
+
+> limits</br>
+> This file displays the soft limit, hard limit, and units of measurement for each of the process's resource limits (see getrlimit(2)).
+
+limits，记录进程的资源限制。
+
+> maps</br>
+> A file containing the currently mapped memory regions and their access permissions.</br>
+> See mmap(2) for some further information about memory mappings.
+
+maps，记录进程的内存映射和对内存的访问权限。在里面可以找到，进程的堆栈对应的内存地址到底在哪。
+
+> net/</br>
+> This directory contains various files and subdirectories containing information about the networking layer.</br>
+> The files contain ASCII structures and are, therefore, readable with cat(1).</br>
+> However, the standard netstat(8) suite provides much cleaner access to these files.
+
+net 目录，记录进程和网络有关的数据。比如，和 socket 有关的东西。
+
+> stat</br>
+> Status information about the process. This is used by ps(1).
+
+stat，记录进程状态信息。比如，进程状态、线程、信号等。这个文件是给 ps 命令用的。
+
+> statm</br>
+> Provides information about memory usage, measured in pages.
+
+statm，以页为单位提供关于内存使用的信息。
+
+> status </br>
+> Provides much of the information in /proc/\[pid\]/stat and /proc/\[pid\]/statm in a format that's easier for humans to parse.
+
+status，整合了 stat 和 statm 的内容。不过这个文件是给人看的，可读性更强。
+
+#### 进程内存布局
+
+> todo hkn linux 内存相关的会单独开一篇
+
+进程的内存空间被分为内核空间（kernel space）和用户空间。用户空间里面主要关注：栈（stack）、文件映射（里面有动态库的映射）、堆（heap）、读写数据区（主要是程序数据，.bss 段、.data 段等）、只读数据区（主要是程序指令，.text 段；也有程序数据 .rodata 段等。
+
+### 进程的资源限制
+
+> DESCRIPTION</br>
+> The getrlimit() and setrlimit() system calls get and set resource limits.</br>
+> Each resource has an associated soft and hard limit,
+> ...
+> The soft limit is the value that the kernel enforces for the corresponding resource.
+> The hard limit acts as a ceiling for the soft limit: an unprivileged process may set only its soft limit to a value in the range from 0 up to the hard limit, and (irreversibly) lower its hard limit.
+> A privileged process (under Linux: one with the CAP_SYS_RESOURCE capability in the initial user namespace) may make arbitrary changes to either limit value.
+> ...</br>
+
+getrlimit() 可以查看资源限制， setrlimit() 可以调整资源限制。进程的资源限制包括软限制、硬限制等。其中软限制必须小于等于硬限制。
+
+> The resource argument must be one of:</br>
+> ...</br>
+> RLIMIT_NOFILE</br>
+> This specifies a value one greater than the maximum file descriptor number that can be opened by this process.</br>
+> Attempts (open(2), pipe(2), dup(2), etc.) to exceed this limit yield the error EMFILE. (Historically, this limit was named RLIMIT_OFILE on BSD.)</br>
+> ...</br>
+
+可以通过资源参数指定需要操作的资源。比如 RLIMIT_NOFILE 对应进程可以打开的文件个数。这个参数很重要，因为 linux 上一切皆文件。
+
+示例详见：{demo-c}/demo-in-linux/process/rlimit.c。
+
+另外，在生产环境中，应该优先在程序中动态修改资源限制，不要轻易修改操作系统的资源限制。
+
+### 进程的退出
+
+笔记主要涉及：exit()、_exit()、_Exit()、exit_group()、abort()。
+
+示例详见：{demo-c}/demo-in-linux/process/exit.c。
+
+#### 进程退出的方式
+
+- 程序运行到最后一行代码。
+- 主动调用 exit()、_exit()、_Exit()、exit_group()
+- 主动 `return 0`。
+- 主动调用 abort()，会导致进程异常终止，报 "Aborted (core dumped)" 错误。
+- 进程收到了中断信号。
+
+#### exit()
+
+> DESCRIPTION</br>
+> The exit() function causes normal process termination and the least significant byte of status (i.e., status & 0xFF)
+> is returned to the parent (see wait(2)).</br>
+> All functions registered with atexit(3) and on_exit(3) are called, in the reverse order of their registration.</br>
+> ...</br>
+> If one of these functions does not return (e.g., it calls _exit(2), or kills itself with a signal), then none of the
+> remaining functions is called, and further exit processing (in particular, flushing of stdio(3) streams) is
+> abandoned.</br>
+> All open stdio(3) streams are flushed and closed.</br>
+> Files created by tmpfile(3) are removed.</br>
+> ...
+
+exit() 会让进程正常终止，退出状态码会先和 0xFF 做与运算，然后返回给父进程。所有打开的 stdio(3) 流会被刷新然后关闭
+
+#### _exit()、_Exit()
+
+> DESCRIPTION</br>
+> _exit() terminates the calling process "immediately".</br>
+> Any open file descriptors belonging to the process are closed.</br>
+> Any children of the process are inherited by init(1) (or by the nearest "subreaper" process as defined through the use
+> of the prctl(2) PR_SET_CHILD_SUBREAPER operation).</br>
+> The process's parent is sent a SIGCHLD signal.</br>
+> The value status & 0xFF is returned to the parent process as the process's exit status, and can be collected by the
+> parent using one of the wait(2) family of calls.</br>
+> The function _Exit() is equivalent to _exit().
+
+> NOTES</br>
+> ...</br>
+> The function _exit() is like exit(3), but does not call any
+> functions registered with atexit(3) or on_exit(3).</br>
+> Open stdio(3) streams are not flushed.</br>
+> ...
+
+_exit() （_Exit()和 _exit() 是等价的）会让进程立即终止，退出状态码会先和 0xFF 做与运算，然后返回给父进程。打开的 stdio(3) 流不会被刷新。
+
+#### exit_group()
+
+> SYNOPSIS         
+> Note: glibc provides no wrapper for exit_group(), necessitating the use of syscall(2).
+
+> DESCRIPTION
+> This system call is equivalent to _exit(2) except that it terminates not only the calling thread, but all threads in
+> the calling process's thread group.
+
+#### 退出状态码
+
+```
+[00007fdf9e51ea3d] exit_group(0)        = ?
+[????????????????] +++ exited with 0 +++
+```
+
+退出状态码会先和 0xFF 做与运算。这个的意思是说，加入退出状态码设置的是 300，那实际返回的是 300 & 255 的结果，也就是 44。
+
+```
+[00007fb290aeaca1] exit_group(300)      = ?
+[????????????????] +++ exited with 44 +++
+```
+
+在终端里使用 `echo $?` 命令，可以打印上一个程序的退出状态码。
+
+#### 不同退出方式下 printf() 的区别
+
+上面提到，过不同的退出方式，对打开的 stdio(3) 流的处理方式不一样。
+
+程序运行到最后一行代码、主动 `return 0`、主动调用 exit() 时，会输出输出缓冲区内的内容。而主动调用 _exit()、_Exit()、exit_group 时不会。
+
+也就是对于 `printf("hello, world")` （注意，没有 \n）来说，前面三个方式会输出 hello, world，而前面三个方式不会输出。
+
+### 进程的回收
+
+笔记主要涉及：wait()、waitpid()
+
+#### wait()、waitpid()
+
+> SYNOPSIS</br>
+> pid_t wait(int *wstatus);</br>
+> pid_t waitpid(pid_t pid, int *wstatus, int options);
+
+> DESCRIPTION</br>
+> All of these system calls are used to wait for state changes in a child of the calling process, and obtain information about the child whose state has changed.</br>
+> A state change is considered to be: the child terminated; the child was stopped by a signal; or the child was resumed by a signal.</br>
+> </br>
+> If a child has already changed state, then these calls return immediately.</br>
+> Otherwise, they block until either a child changes state or a signal handler interrupts the call (assuming that system calls are not automatically restarted using the SA_RESTART flag of sigaction(2)).</br>
+> ...
+
+> RETURN VALUE</br>
+> wait(): on success, returns the process ID of the terminated child; on failure, -1 is returned.</br>
+> waitpid(): on success, returns the process ID of the child whose state has changed; if WNOHANG was specified and one or more child(ren) specified by pid exist, but have not yet changed state, then 0 is returned. On failure, -1 is returned.
+
+wait() 用于等待调用进程的一个子进程的状态变化，并获取状态发生变化的子进程的信息。比如，子进程终止；子进程被信号停止；子进程被信号恢复。如果一个子进程已经改变了状态，那么调用进程调用 wait() 会立即返回。否则，调用进程就会阻塞，直到子进程改变状态或信号处理程序中断调用。
+
+> DESCRIPTION</br>
+> The wait() system call suspends execution of the calling thread until one of its children terminates.</br>
+> The call `wait(&wstatus)` is equivalent to: `waitpid(-1, &wstatus, 0)`</br>
+> ...</br>
+
+`wait(&status)` 和 `waitpid(-1, &status, 0)` 是等效的。
+
+> DESCRIPTION</br>
+> If wstatus is not NULL, wait() and waitpid() store status information in the int to which it points.</br>
+> This integer can be inspected with the following macros (which take the integer itself as an argument, not a pointer to it, as is done in wait() and waitpid()!):</br>
+> ...
+
+wait()、waitpid() 调用成功的时候，返回值是子进程的 pid，传进去的参数 wstatus 会记录子进程的退出信息。退出信息可以用提供的宏函数确定是哪一种。
+
+示例详见：{demo-c}/demo-in-linux/process/wait.c。
+
+#### 宏函数
+
+> WIFEXITED(wstatus)</br>
+> returns true if the child terminated normally, that is, by calling exit(3) or _exit(2), or by returning from main().</br>
+
+如果子进程是正常退出的 `WIFEXITED(wstatus)` 会返回一个非零值。
+
+> WEXITSTATUS(wstatus)</br>
+> returns the exit status of the child.</br>
+> This consists of the least significant 8 bits of the status argument that the child specified in a call to exit(3) or _exit(2) or as the argument for a return statement in main().</br>
+> This macro should be employed only if WIFEXITED returned true.
+
+当 WIFEXITED() 返回非零值时，可以用 WEXITSTATUS() 来提取子进程的返回值。如果子进程调用 `exit(5)` 退出，`WEXITSTATUS(status)` 就会返回 5。
+
+示例详见：{demo-c}/demo-in-linux/process/waitpid_macros.c。
+
+#### 僵尸进程
+
+> DESCRIPTION</br>
+> In the case of a terminated child, performing a wait allows the system to release the resources associated with the child; if a wait is not performed, then the terminated child remains in a "zombie" state (see NOTES below).</br>
+
+在子进程终止的情况下，调用进程执行等待可以让操作系统释放与子进程相关的资源。如果调用进程不执行等待，那么被终止的子进程就会处于"僵尸"状态，也就是僵尸进程。当父进程也结束的时候，操作系统会把父进程和回收僵尸进程一起回收。
+
+示例详见：{demo-c}/demo-in-linux/process/for_zombie.c。这里运行一下，下面的是输出到终端上的内容。
+
+```
+> ./for_zombie.elf
+[debug]:parent, getpid()=3592
+[debug]:parent, getpid()=3592, forkResult=3593
+[debug]:child, getpid()=3593, forkResult=0
+```
+
+然后通过 ps 命令看一下 for_zombie 的运行情况。进程 3593 后面那个 "Z+" 就表示，它已经是一个僵尸进程了。
+
+```
+qqq         3592  0.0  0.0   2772   944 pts/0    S+   20:14   0:00 ./for_zombie.elf
+qqq         3593  0.0  0.0      0     0 pts/0    Z+   20:14   0:00 [for_zombie.elf] <defunct>
+```
+
+当进程变成僵尸进程时，它的内存数据还驻留在内存中，/proc 目录下的相关文件也不会移除，这些东西依然在占用系统资源。如果僵尸进程过多，会导致系统资源紧张，会影响操作系统的运行。所以必须要回收退出的子进程。
