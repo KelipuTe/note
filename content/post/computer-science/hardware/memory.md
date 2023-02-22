@@ -1,7 +1,7 @@
 ---
 draft: false
-date: 2023-02-20 08:00:00 +0800
-lastmod: 2023-02-20 08:00:00 +0800
+date: 2023-02-21 08:00:00 +0800
+lastmod: 2023-02-21 08:00:00 +0800
 title: "Memory（内存）"
 summary: "锁存器；门锁；寄存器；内存；"
 toc: true
@@ -48,7 +48,7 @@ and-or latch（锁存器）由与门、或门、非门组成（见图：**memory
 
 ### 二维的平面结构
 
-如果需要存储的数据容量很大的话，寄存器这种一维的线性的结构就不合适了，需要排列更紧密的结构。比如，二维的平面结构，或者三维的立体结构。但是这会带来新的问题，怎么找到众多门锁中的某一个门锁？这里用二维的平面结构举例。
+如果需要存储的数据容量很大的话，寄存器这种一维的线性的结构就不合适了，导线数量太多。所以需要排列更紧密的结构，减少导线的数量。比如，二维的平面结构，或者三维的立体结构。但是这会带来新的问题，怎么找到众多门锁中的某一个门锁？这里用二维的平面结构举例。
 
 门锁是没有位置信息的，但是二维的平面结构是可以放到坐标系里去的，这样二维的平面结构里的门锁就可以用行列坐标表示了。把行列坐标和 write enable 线组合起来，就可以控制二维的平面结构里的某一个门锁了（见图：**memory.drawio.html 8-2**）。
 
@@ -69,6 +69,6 @@ and-or latch（锁存器）由与门、或门、非门组成（见图：**memory
 ## reference（参考）
 
 - Crash Course Computer Science（计算机科学速成课）
-    - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)
-    - [CrashCourse 字幕组](https://github.com/1c7/crash-course-computer-science-chinese)
-    - [Youtube 原视频](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulI)
+  - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)
+  - [CrashCourse 字幕组](https://github.com/1c7/crash-course-computer-science-chinese)
+  - [Youtube 原视频](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulI)

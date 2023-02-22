@@ -2,7 +2,7 @@
 draft: false
 date: 2023-02-20 08:00:00 +0800
 lastmod: 2023-02-20 08:00:00 +0800
-title: "ALU（arithmetic and logic unit、算术逻辑单元）"
+title: "ALU（Arithmetic and Logic Unit、算术逻辑单元）"
 summary: "什么是 ALU；什么是逻辑门；逻辑门的原理；ALU 的原理；"
 toc: true
 
