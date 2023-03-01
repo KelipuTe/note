@@ -13,6 +13,10 @@ tags:
 - computer-science(计算机科学)
 - linux
 ---
+## 资料
+
+- <a href="/drawio/computer-science/terminal_console.drawio.html">terminal_console.drawio.html</a>
+
 ## 正文
 
 ### 终端
@@ -63,15 +67,17 @@ tags:
 
 这里用 xterm 终端模拟器为例，画了基本的软件结构和交互。见图：**terminal_console.drawio.html 40-2**。
 
-伪终端在内核中分为两部分：分别是不在 TTY 驱动中 PTY master side 和在 TTY 驱动中的 PTY slave side。master side 是接近用户的一端；slave side 是在虚拟终端上运行的 CLI（Command Line Interface，命令行接口）程序。
+伪终端在操作系统内核中分为两部分：分别是不在 TTY 驱动中 PTY master side 和在 TTY 驱动中的 PTY slave side。master side 是接近用户的一端；slave side 是在虚拟终端上运行的 CLI（Command Line Interface，命令行接口）程序。
 
-连接 master side 和 slave side 的是伪终端驱动。伪终端驱动会把写入 master side 的数据转发给 slave side 作为程序的输入。程序输出时会写入 slave side。伪终端驱动会把写入 slave side 的数据转发给 master side 作为可以读取的数据。见图：**terminal_console.drawio.html 40-4**。
+连接 master side 和 slave side 的是伪终端驱动。见图：**terminal_console.drawio.html 40-4**。
+
+伪终端驱动会把写入 master side 的数据转发给 slave side 作为程序的输入。程序输出时会写入 slave side。伪终端驱动会把写入 slave side 的数据转发给 master side 作为可以读取的数据。
 
 在 linux 系统中，当创建一个伪终端时。会调用 posix_openpt() 请求 ptmx 创建一个 pts。ptmx 就是 "/dev/ptmx"，对应 master side。创建出来的 pts 在 "/dev/pts/" 目录下，对应 slave side。
 
 #### ssh
 
-类似 PuTTY 这类通过 SSH 的方式远程连接到 linux 系统的终端模拟程序。如果从 linux 系统这边看的话，连接上来之后产生的用户进程，就是图 **terminal_console.drawio.html 40-4** 中 xterm process 的位置，它和 master side 交互。见图：**terminal_console.drawio.html 40-6**。
+类似 PuTTY 这类通过 SSH 的方式远程连接到 linux 系统的终端模拟程序。如果从 linux 系统这边看的话，连接上来之后产生的用户进程，就是图 **terminal_console.drawio.html 40-4** 中 xterm process 的位置，它和 master side 交互。
 
 建立连接的过程：
 
@@ -100,11 +106,17 @@ sshd    1191  dev    8u   CHR    5,2      0t0 6531 /dev/ptmx
 - ptmx 收到 pts 的数据后，从自己管理的关系里找到该 pts 对应的 fd，然后将数据写入 fd。
 - sshd 收到 fd 的数据后，从自己管理的会话里找到该 fd 对应的客户端，然后将数据发往客户端。
 
+见图：**terminal_console.drawio.html 40-6**。
+
 #### 键盘和显示器
 
 图形界面出现之后，键盘和显示器的组合演变成了伪终端，整个结构和 ssh 的差不多。只不过没有远程连接了，图形客户端需要把 ssh 客户端的功能也实现，然后直接和 master side 交互。见图：**terminal_console.drawio.html 40-8**。
 
 ### TTY
+
+TTY 也泛指计算机的终端设备，说 TTY 的时候可能是 tty 也可能是 pts，大部分情况下是 pts。
+
+对于用户空间来说，这两个没有区别。对于内核来说，tty 的另一端连接的是终端模拟器，pts 的另一端连接的是 ptmx，终端模拟器和 ptmx 都只负责维护会话和转发数据。终端模拟器的另一端连接的是键盘和显示器这样等硬件。ptmx 的另一端连接的是用户空间的 xterm、sshd 等应用程序。
 
 如果有多个终端连接上来的话，终端驱动会创建多个 TTY 与这些终端一一对应。见图：**terminal_console.drawio.html 12-2**。
 
