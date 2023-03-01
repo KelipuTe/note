@@ -15,16 +15,22 @@ tags:
 - linux
 - linux-c
 ---
+## 前言
 
-> CPU AMD64(x86_64)<br/>
-> Windows 11 家庭版<br/>
-> VMware Workstation Pro 16<br/>
-> Ubuntu 22.04<br/>
-> gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+实践的环境：
 
-### 资料
+- CPU AMD64(x86_64)
+- Windows 11 家庭版
+- VMware Workstation Pro 16
+- Ubuntu 22.04
+- Linux 5.19.0-32-generic x86_64
+- gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+
+## 资料
 
 - [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/helloworld/
+
+## 正文
 
 ### 程序
 

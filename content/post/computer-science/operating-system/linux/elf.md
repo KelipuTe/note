@@ -3,7 +3,7 @@ draft: false
 date: 2021-12-06 08:00:00 +0800
 lastmod: 2023-02-07 08:00:00 +0800
 title: "ELF 文件"
-summary: "可执行文件；字节序；符号表；"
+summary: "可执行文件；字节序；符号表；权限；"
 toc: true
 
 categories:
@@ -15,20 +15,24 @@ tags:
 - linux
 - linux-c
 ---
+## 前言
 
-> CPU AMD64(x86_64)<br/>
-> Windows 11 家庭版<br/>
-> VMware Workstation Pro 16<br/>
-> Ubuntu 22.04<br/>
-> gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+实践的环境：
 
-### 前言
+- CPU AMD64(x86_64)
+- Windows 11 家庭版
+- VMware Workstation Pro 16
+- Ubuntu 22.04
+- Linux 5.19.0-32-generic x86_64
+- gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
 
-先看：[什么是程序](/post/computer-science/operating-system/linux/program)
+前置笔记：[什么是程序](/post/computer-science/operating-system/linux/program)
 
-### 资料
+## 资料
 
 - [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/elf/
+
+## 正文
 
 ### ELF
 
@@ -261,3 +265,38 @@ Symbol table '.symtab' contains 42 entries:
 #### 进程虚拟地址空间映射
 
 在上面的输出中，与地址有关的数据，都不是程序跑起来的时候，在内存中真正的地址。程序在进程里跑起来的时候，操作系统会把真正的内存地址和 elf 文件中的虚拟地址做映射。
+
+### 权限
+
+#### 读写执行权限
+
+在命令行中，使用 `ls -l` 命令，就可以看到文件的权限。
+
+```
+> ls -l
+-rwxrwxrwx 1 root root    79  2月 15 15:19 helloworld.c*
+-rwxrwxrwx 1 root root 15968  2月  7 12:52 helloworld.elf*
+```
+
+第一列是文件的权限，第三列是文件的所有者，第四列是文件的所有群组。这里以 "-rwxrwxrwx" 为例：第一位表示文件的类型；第 2~4 位分别表示 user 的读、写、执行权限；第 5~7 位分别表示 group 的读、写、执行权限；第 8~10 位分别表示 other 的读、写、执行权限。
+
+"-rwxrwxrwx" 表示：所有的用户都拥有这个文件的读、写、执行权限。如果是 "-rwxr-xr-x"，则表示：user 有读、写、执行权限，而 group 和 other 只有读、执行权限，没有写权限。
+
+#### 特权权限
+
+"/etc/shadow" 文件用于记录 linux 上所有用户的账号和密码，只有超级管理员有读写权限，普通用户是没有读写权限的。但是没有写权限的普通用户却可以通过 `passwd` 命令修改自己的密码。这是因为 "passwd" 命令对应的 "/bin/passwd" 文件的权限是 "-rwsr-xr-x"。
+
+```
+# /etc/shadow
+-rw-r-----   1 root shadow  1462  2月  6 12:38 shadow
+# /bin/passwd
+-rwsr-xr-x  1 root root       59976 11月 24 20:05 passwd
+```
+
+可以注意到 user 的执行权限位上是 s，这称为特权权限（Set User ID，SUID）。如果 group 的执行权限位上是 s，就是（Set Group ID，SGID）。文件所有者可以通过 `chmod u+s` 命令设置特权权限。有特权权限的文件通过 "ls" 命令看的时候是红色的。
+
+在程序中，可以通过 getuid() 获取用户 id，通过 geteuid() 获取有效用户 id。通过 setuid() 设置用户 id，通过 seteuid() 设置有效用户 id。如果是文件的所有者，那么 getuid() 和 geteuid() 得到的结果是一样的。如果不是文件的所有者，那么 geteuid() 就能拿到文件的所有者的 id。如果文件所有者设置了特权权限，那么其他用户调用 seteuid() 的时候，就可以拥有文件所有者的权限。
+
+一般来说，程序主要是以普通用户运行的，以较低的权限执行程序，可以保证安全性。但是有时需要操作一些比较重要的数据，这个时候就需要提权。提权后，可以短暂地拥有该可执行文件所有者的权限，然后就可以修改数据了。特别需要注意的是，使用完之后一定要降权。
+
+代码示例：{demo-c}/demo-in-linux/elf/setuid.c。

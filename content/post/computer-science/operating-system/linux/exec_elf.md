@@ -15,22 +15,24 @@ tags:
 - linux
 - linux-c
 ---
+## 前言
 
-> CPU AMD64(x86_64)<br/>
-> Windows 11 家庭版<br/>
-> VMware Workstation Pro 16<br/>
-> Ubuntu 22.04<br/>
-> gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+实践的环境：
 
-### 前言
+- CPU AMD64(x86_64)
+- Windows 11 家庭版
+- VMware Workstation Pro 16
+- Ubuntu 22.04
+- Linux 5.19.0-32-generic x86_64
+- gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
 
-在看这篇之前，建议先看一下：
+前置笔记：[ELF 文件](/post/computer-science/operating-system/linux/elf)
 
-- [ELF 文件](/post/computer-science/operating-system/linux/elf)
-
-### 资料
+## 资料
 
 - [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/process/
+
+## 正文
 
 ### 进程是什么
 
@@ -142,7 +144,7 @@ clone 函数的作用是创建一个进程，这里进程 5148 创建了进程 5
 
 execve 函数会加载可执行文件的 `.text` （程序指令）和 `.data` （程序数据）到当前进程，并覆盖当前进程。`["./helloworld"]` 是参数值。`0x564eeda28ec0 /* 55 vars */` 是环境参数值。
 
-在 linux 中，环境参数是供所有应用程序使用的公共数据。
+环境参数是供所有应用程序使用的公共数据。
 
 #### libc.so.6
 
