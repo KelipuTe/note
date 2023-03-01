@@ -2,7 +2,7 @@
 draft: false
 date: 2023-02-21 08:00:00 +0800
 lastmod: 2023-02-21 08:00:00 +0800
-title: "Memory（内存）"
+title: "内存（Memory）"
 summary: "锁存器；门锁；寄存器；内存；"
 toc: true
 
@@ -22,7 +22,7 @@ tags:
 
 ### 锁存器
 
-and-or latch（锁存器）由与门、或门、非门组成。（见图：**memory.drawio.html 2-2**）可以存储 1 bit 的数据。
+锁存器（and-or latch）由与门、或门、非门组成。（见图：**memory.drawio.html 2-2**）可以存储 1 bit 的数据。
 
 初始状态，set 线不通电，reset 线不通电（见图：**memory.drawio.html 2-4-2**），此时输出 0。没有输入，整个结构也能持续输出 0，换句话说就是锁存器存储了 0。
 
@@ -70,7 +70,7 @@ and-or latch（锁存器）由与门、或门、非门组成。（见图：**mem
 
 假设，有一个字节的数据 0b10001000 要存储进去。这里用到的思路是拆开，把 0b10001000 拆成 1、0、0、0、1、0、0、0 分别存储。第 0 位，放到第一块；第 1 位，放到第二块；以此类推。这样就可以让一个地址对应 8 块内存里相同的位置都存储了这个数据的一部分。取数据的时候，把取出来的 8 个 1 bit 的数据，按照拆分规则再组合起来就可以了。
 
-## reference（参考）
+## 参考（reference）
 
 - Crash Course Computer Science（计算机科学速成课）
   - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)

@@ -2,7 +2,7 @@
 draft: false
 date: 2023-02-22 08:00:00 +0800
 lastmod: 2023-02-22 08:00:00 +0800
-title: "CPU（Central Processing Unit，中央处理器）"
+title: "中央处理器（Central Processing Unit，CPU）"
 summary: "程序；指令；指令集；控制单元；CPU；CPU 执行程序的过程；"
 toc: true
 
@@ -40,7 +40,7 @@ ALU 可以进行算数运算，内存可以存储数据。如果能把两个结�
 
 ### CPU
 
-ALU 和 控制单元就组成了 CPU（Central Processing Unit，中央处理器）的核心。除了这两个玩意，CPU 里面还有寄存器和 cache（高速缓存）等其他的组件。
+ALU 和控制单元就组成了中央处理器（Central Processing Unit，CPU）的核心。除了这两个玩意，CPU 里面还有寄存器和高速缓存（cache）等其他的组件。
 
 上文的那个一次加法操作的整个程序是可以存储在内存中的，比如，内存篇里面提到的那块可以存储 256 个字节的内存。但是跑这个程序的时候，直接操作内存搞，搞起来会很复杂，所以会需要一些额外的空间临时存储一些数据，这些额外的空间通常由寄存器来实现。这里继续使用上文的一次加法操作来说明。
 
@@ -76,7 +76,7 @@ ALU 和 控制单元就组成了 CPU（Central Processing Unit，中央处理器
 
 到这里，这个程序就已经执行结束了，后面的内存地址上如果存储了指令，那属于另外一个程序。
 
-## reference（参考）
+## 参考（reference）
 
 - Crash Course Computer Science（计算机科学速成课）
   - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)

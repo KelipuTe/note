@@ -1,5 +1,5 @@
 ---
-draft: false
+draft: true
 date: 2021-12-12 08:00:00 +0800
 lastmod: 2023-02-27 08:00:00 +0800
 title: "进程间关系、守护进程"
@@ -26,10 +26,9 @@ tags:
 - Linux 5.19.0-32-generic x86_64
 - gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
 
-前置笔记：
+前置笔记：[进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收](/post/computer-science/operating-system/linux/process)
 
-- [进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收](/post/computer-science/operating-system/linux/process)
-- [终端和控制台](/post/computer-science/terminal_console)
+交叉笔记：[终端和控制台](/post/computer-science/terminal_console)
 
 ## 资料
 
