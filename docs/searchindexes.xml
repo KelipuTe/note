@@ -12,7 +12,24 @@
 关于项目的代码中的符号命名，详见 符号命名 这一篇。
 实际开发中符号命名规则应该和团队的风格保持统一，这套符号命名规则是本人的个人喜好。
 如果访客您非要说不符合哪里哪里的规范，怎么怎么有问题，那么访客您说的都对。
-如果是类似 xxx.drawio.html 这种格式的，就是 draw.io 生成的 html，直接打开就可以预览。 参考到的外部资料通常在文本的最后面会有一个标题为 reference（参考） 的部分。</content></entry><entry><title>终端和控制台</title><url>/post/computer-science/terminal_console/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>linux</tag></tags><content type="html"><![CDATA[资料 terminal_console.drawio.html 正文 终端 计算机终端（computer terminal）是与计算机相连的一种输入输出设备。
+如果是类似 xxx.drawio.html 这种格式的，就是 draw.io 生成的 html，直接打开就可以预览。 参考到的外部资料通常在文本的最后面会有一个标题为 reference（参考） 的部分。</content></entry><entry><title>计算机系统系列笔记的导航</title><url>/post/computer-science/computer_system/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag></tags><content type="html">正文 本篇是计算机系统系列笔记的导航。计算机系统系列笔记是一个持续更新的板块。
+硬件系统 这个部分，从二极管开始一直到 CPU。主要是为了：了解 CPU 的原理、了解指令集是什么。
+指令集是计算机的灵魂，整个计算机都是围绕指令集构建起来的。它一方面指导硬件系统（比如CPU）怎么设计，另一方面指导 BIOS 怎么设计。
+算术逻辑单元（Arithmetic and Logic Unit、ALU）
+内存（Memory）
+中央处理器（Central Processing Unit、CPU）
+软件系统 这个部分，主要涉及操作系统和程序。借助&amp;quot;在 Linux 系统中使用 C 语言进行编程&amp;quot;搞清楚程序是如何运行的。主要是为了：了解操作系统是什么、了解操作系统的内核和系统调用、了解程序是什么、了解程序的运行过程。
+程序代码经过编译后最终会变成可执行文件。可执行文件里包括了程序指令和程序数据。可执行文件是操作系统提供的一种对于程序的抽象。操作系统在拿到可执行文件之后就可以把程序指令（指令集里包含的指令）和程序数据拿出来，然后放到硬件上去运行了。
+在 Linux 系统中使用 C 语言进行编程的注意点
+什么是程序
+ELF 文件
+运行 ELF 文件
+进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收
+终端和控制台
+init 进程、进程间关系、作业、会话、守护进程
+本人的一家之言，看不看随意 计算机系统是一个完整的体系，可分为硬件系统和软件系统。软件系统里面还可以分为下层的操作系统和上层的应用程序。应用程序里面还可以分：最下面的各种编程语言；中间层的各种中间件和支持服务；最上层的业务程序。
+大多数程序员的日常工作其实是局限于软件系统上层的应用程序的最上层的业务程序的部分。这个部分的特点是内容很多，各种眼花缭乱的有意思的新技术层出不穷。但是再多内容，再新的技术也是需要下层提供支持的。因为最终的程序是要跑在计算机上的，它无法脱离计算机系统。
+话说回来，人的精力有限，以有涯逐无涯，殆已。虽然不能掌握全部的细节，但是大概了解每个部分在干什么，还是可以的。要不然，应用层写出来的程序再花哨它也是无源之水，无本之木，它只是恰好跑起来了而已。</content></entry><entry><title>终端和控制台</title><url>/post/computer-science/terminal_console/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>linux</tag></tags><content type="html"><![CDATA[前言 交叉笔记：init 进程、进程间关系、作业、会话、守护进程资料 terminal_console.drawio.html 正文 终端 计算机终端（computer terminal）是与计算机相连的一种输入输出设备。
 早期有一种叫电传打字机的设备，它是一台独立于计算机的机器，通过物理线缆与计算机连接，可以完成计算机的输入输出功能。电传打字机的英文是 Teletype 或 Teletypewriter，缩写是 TTY，所以 TTY 也泛指计算机的终端设备。后来，电传打字机被键盘和显示器取代。
 但是不管是电传打字机还是键盘和显示器，都是作为计算机的终端设备存在的。电传打字机属于物理终端。现在物理终端基本上已经不用了。图形界面出现之前，键盘和显示器的组合属于软件仿真终端，也就是软件模拟出来的终端。图形界面出现之后，键盘和显示器的组合演变成了伪终端，但是软件仿真终端还是可以用的。
 控制台 这里以数控机床为例。数控机床可能有一个独立出来一整块，然后上面有很多按钮的地方，这些按钮可以直接控制机床上的设备。如果这地方是直接在机床表面的，就叫控制面板。如果这地方是被一个柜子锁起来的，就叫控制箱。如果这地方看上去像个台子，就叫控制台（console）。
@@ -25,7 +42,7 @@ UART（通用异步接收器和发射器）和 UART driver（UART 驱动）的�
 差别在于用键盘驱动、显示器驱动、终端模拟器替换了 UART 和 UART 驱动。基本流程不变，只是输入输出从一个设备变成两个设备了。
 在 linux 系统中，软件仿真终端在文件系统中的表示就是 /dev/tty1 ~ /dev/tty6。见图：terminal_console.drawio.html 20-4。
 在 ubuntu 系统中，在图形界面的桌面按下 &ldquo;CTRL&rdquo; + &ldquo;ALT&rdquo; + &ldquo;F1&rdquo; ~ &ldquo;F6&rdquo; 就可以分别进入 tty1 ~ tty6 对应的软件仿真终端。软件仿真终端的界面是操作系统内核直接提供的，这种叫虚拟控制台（virtual console）。
-按下 &ldquo;CTRL&rdquo; + &ldquo;ALT&rdquo; + &ldquo;F7&rdquo; 或者重新启动系统，就可以回到图形界面。在图形界面也可以打开终端，这种叫终端窗口（terminal window），属于伪终端。
+按下 &ldquo;CTRL&rdquo; + &ldquo;ALT&rdquo; + &ldquo;F7&rdquo; 或者重新启动系统，就可以回到图形界面。在图形界面也可以打开终端，这种叫终端窗口（terminal window），属于伪终端。终端窗口就是常用的那个控制台黑窗口。
 这两中终端在功能上其实没啥区别，如果哪天操作系统的图形界面炸掉了，但是别的地方没问题，那倒是可以切到软件仿真终端去救火。
 伪终端 物理终端和软件模拟终端都需要直接连接外部设备，这两种方式对物理距离都是有限制的，伪终端（pseudo terminal，pty）的出现解决了这个问题。伪终端就是由终端模拟器提供的虚拟终端，终端模拟器是一种运行在用户空间的应用程序。
 这里用 xterm 终端模拟器为例，画了基本的软件结构和交互。见图：terminal_console.drawio.html 40-2。
@@ -45,13 +62,16 @@ TTY TTY 也泛指计算机的终端设备，说 TTY 的时候可能是 tty 也�
 在 linux 的终端窗口里使用 tty 命令可以查看当前 bash 关联到哪个 tty 或者 pts。
 &gt; tty /dev/pts/0 然后用 lsof 命令可以查看这个 tty 或者 pts 被哪些进程打开了。
 &gt; lsof /dev/pts/0 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME bash 2150 qqq 0u CHR 136,0 0t0 3 /dev/pts/0 bash 2150 qqq 1u CHR 136,0 0t0 3 /dev/pts/0 bash 2150 qqq 2u CHR 136,0 0t0 3 /dev/pts/0 bash 2150 qqq 255u CHR 136,0 0t0 3 /dev/pts/0 lsof 2163 qqq 0u CHR 136,0 0t0 3 /dev/pts/0 lsof 2163 qqq 1u CHR 136,0 0t0 3 /dev/pts/0 lsof 2163 qqq 2u CHR 136,0 0t0 3 /dev/pts/0 上面的 FD 这一列是文件描述符，0u、1u、2u 就是 stdin(0u)、stdout(1u)、stderr(2u)，即标准输入、标准输出、标准错误输出。
-参考（reference） Linux 终端(TTY)Linux 伪终端(pty)Linux TTY/PTS概述终端、虚拟终端、shell、控制台、tty的区别]]></content></entry><entry><title>中央处理器（Central Processing Unit，CPU）</title><url>/post/computer-science/hardware/cpu/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html">资料 cpu.drawio.html 正文 程序 ALU 可以进行算数运算，内存可以存储数据。如果能把两个结合起来，那就可以处理复杂的逻辑了。ALU 有三个输入，这里假设有两个 8 bit 的二进制数和一个操作码，但是一个内存地址只能存储 8 bit，显然不可能把所有的东西都存在一个内存地址上，然后一股脑的扔给 ALU。
+参考（reference） Linux 终端(TTY)Linux 伪终端(pty)Linux TTY/PTS概述终端、虚拟终端、shell、控制台、tty的区别]]></content></entry><entry><title>中央处理器（Central Processing Unit、CPU）</title><url>/post/computer-science/hardware/cpu/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html">前言 前置笔记：
+算术逻辑单元（Arithmetic and Logic Unit、ALU）
+内存（Memory）
+资料 cpu.drawio.html 正文 程序 ALU 可以进行算数运算，内存可以存储数据。如果能把两个结合起来，那就可以处理复杂的逻辑了。ALU 有三个输入，这里假设有两个 8 bit 的二进制数和一个操作码，但是一个内存地址只能存储 8 bit，显然不可能把所有的东西都存在一个内存地址上，然后一股脑的扔给 ALU。
 所以这里就需要一种方式把需要执行的逻辑转化成一个一个的小步骤，每个内存地址存一个小步骤，然后依次执行。这里就可以引出指令的概念了，一个小步骤就是一次指令操作，操作码就是指令码，两个 8 bit 的二进制数就是操作数。指令明确 ALU 要干什么，数据就是 ALU 要处理的数据，指令和数据合起来就是程序了。
 指令集 程序就是由程序指令和程序数据构成的。下面把一次加法操作，比如，0b1 + 0b1 = 0b10，转换成程序。首先需要依次加载两个数字，然后需要知道是加法，然后需要进行运算，最后需要存储运算结果。
 这里面有几种不同的操作：加载、加法、存储。这三个操作囊括了一次加法操作所需要的全部操作，构成了一个操作集合。实际的运行过程中需要给每个操作设计对应的电路来实现，这些不同的电路可以用指令码来进行标记。那么和操作一样，这些指令码也属于一个指令码集合，这就是指令集的概念。
 控制单元 有了指令集之后，就可以设计电路来识别这些指令了。比如，0b0001 表示加载、0b0010 表示加法、0b0011 表示存储。每一个指令码对应一个电路（见图：cpu.drawio.html 2-2），当输入一个指令码的时候，整个电路只有和这个指令码匹配的那一处电路会导通（见图：cpu.drawio.html 2-4）。
 识别出指令码是哪一个之后，就可以进行后续的操作了。比如，让电路连接内存，写入或者读取数据；或者让电路连接 ALU 进行运算并得到运算结果。这块的电路可以和 ALU、内存等组件独立开来成为单独一个模块，这就是控制单元。
-CPU ALU 和控制单元就组成了中央处理器（Central Processing Unit，CPU）的核心。除了这两个玩意，CPU 里面还有寄存器和高速缓存（cache）等其他的组件。
+CPU ALU 和控制单元就组成了中央处理器（Central Processing Unit、CPU）的核心。除了这两个玩意，CPU 里面还有寄存器和高速缓存（cache）等其他的组件。
 上文的那个一次加法操作的整个程序是可以存储在内存中的，比如，内存篇里面提到的那块可以存储 256 个字节的内存。但是跑这个程序的时候，直接操作内存搞，搞起来会很复杂，所以会需要一些额外的空间临时存储一些数据，这些额外的空间通常由寄存器来实现。这里继续使用上文的一次加法操作来说明。
 首先，构成一次加法操作的每一步指令是需要分析的。但是把内存线路直接接到控制单元上直接产生依赖显然不是一个好设计。可以从内存里把指令拿出来，暂存在控制单元里，然后再进行分析，这就是指令寄存器的概念。然后，程序跑到哪一步了也是需要记录的，这就是指令地址寄存器的概念。
 两个操作数肯定是放在两个内存地址上的，这里肯定需要一个一个取出来，也就是需要两个能暂存操作数的地方。这里就是很普通的，用于存数据的寄存器，叫寄存器 A 和寄存器 B 好了。另外，ALU 计算的结果和标志位也需要处理。
@@ -68,7 +88,9 @@ CPU 执行程序的过程 定义指令集和程序 这里假设这个 CPU 一次
 到这里，这个程序就已经执行结束了，后面的内存地址上如果存储了指令，那属于另外一个程序。
 参考（reference） Crash Course Computer Science（计算机科学速成课） bilibili
 CrashCourse 字幕组
-Youtube 原视频</content></entry><entry><title>内存（Memory）</title><url>/post/computer-science/hardware/memory/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html">资料 memory.drawio.html 正文 锁存器 锁存器（and-or latch）由与门、或门、非门组成。（见图：memory.drawio.html 2-2）可以存储 1 bit 的数据。
+Youtube 原视频</content></entry><entry><title>内存（Memory）</title><url>/post/computer-science/hardware/memory/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html">前言 前置笔记：
+算术逻辑单元（Arithmetic and Logic Unit、ALU）
+资料 memory.drawio.html 正文 锁存器 锁存器（and-or latch）由与门、或门、非门组成。（见图：memory.drawio.html 2-2）可以存储 1 bit 的数据。
 初始状态，set 线不通电，reset 线不通电（见图：memory.drawio.html 2-4-2），此时输出 0。没有输入，整个结构也能持续输出 0，换句话说就是锁存器存储了 0。
 当 set 线通电，reset 线不通电时（见图：memory.drawio.html 2-4-4-2），此时输出 1。如果这个时候 set 线从通电变成不通电（见图：memory.drawio.html 2-4-4-4），没有输入，整个结构依然能持续输出 1，换句话说就是锁存器存储了 1。
 想要把锁存器里面恢复成 0，只需要 reset 线通电即可。这个时候 set 线通不通电是无所谓的，都会输出 0。（见图：memory.drawio.html 2-4-6-2、2-4-6-4、2-4-8-2、2-4-8-2）
@@ -90,7 +112,7 @@ Youtube 原视频</content></entry><entry><title>内存（Memory）</title><url>
 假设，有一个字节的数据 0b10001000 要存储进去。这里用到的思路是拆开，把 0b10001000 拆成 1、0、0、0、1、0、0、0 分别存储。第 0 位，放到第一块；第 1 位，放到第二块；以此类推。这样就可以让一个地址对应 8 块内存里相同的位置都存储了这个数据的一部分。取数据的时候，把取出来的 8 个 1 bit 的数据，按照拆分规则再组合起来就可以了。
 参考（reference） Crash Course Computer Science（计算机科学速成课） bilibili
 CrashCourse 字幕组
-Youtube 原视频</content></entry><entry><title>算术逻辑单元（ALU，Arithmetic and Logic Unit）</title><url>/post/computer-science/hardware/alu/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html"><![CDATA[资料 alu.drawio.html 正文 机械继电器 早期的计算机用机械结构来控制电路的状态，这个部件叫机械继电器。机械继电器主要由机械开关和电磁铁组成（见图：alu.drawio.html 2-2）。
+Youtube 原视频</content></entry><entry><title>算术逻辑单元（Arithmetic and Logic Unit、ALU）</title><url>/post/computer-science/hardware/alu/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html"><![CDATA[资料 alu.drawio.html 正文 机械继电器 早期的计算机用机械结构来控制电路的状态，这个部件叫机械继电器。机械继电器主要由机械开关和电磁铁组成（见图：alu.drawio.html 2-2）。
 当控制线不通电时，电磁铁不产生磁性，开关断开，输出端没有电，表示输出 0；当控制线通电时，电磁铁产生磁性，开关闭合，输出端有电，表示输出 1。（见图：alu.drawio.html 2-4-2、2-4-4）
 二极管 随着技术的发展，后来用二极管替换了机械继电器来控制电路的状态。二极管通常由半导体材料制造，半导体是指在常温下导电性范围介于导体和绝缘体之间的材料，最关键的特点就是导电性可控。
 这里画一个简单的二极管的示意图（见图：alu.drawio.html 4-2），里面最关键的部分是控制线和半导体。下文的逻辑电路都会用到这个简单的二极管。
@@ -99,7 +121,7 @@ Youtube 原视频</content></entry><entry><title>算术逻辑单元（ALU，Arit
 输入 1 输入 2 运算结果 示意图 0 0 0 alu.drawio.html 22-4-2 1 0 0 alu.drawio.html 22-4-4 0 1 0 alu.drawio.html 22-4-6 1 1 1 alu.drawio.html 22-4-8 或门 或门（OR gate）就是实现了或运算的逻辑电路，并联两个二极管就可以实现（见图：alu.drawio.html 24-2）。
 输入 1 输入 2 运算结果 示意图 0 0 0 alu.drawio.html 24-4-2 1 0 1 alu.drawio.html 24-4-4 0 1 1 alu.drawio.html 24-4-6 1 1 1 alu.drawio.html 24-4-8 非门 非门（NOT gate）就是实现了非运算的逻辑电路，一个二极管加上短路的设计就可以实现（见图：alu.drawio.html 26-2）。
 输入 运算结果 示意图 0 1 alu.drawio.html 26-4-2 1 0 alu.drawio.html 26-4-4 异或门 异或门（XOR gate，Exclusive-OR gate）就是实现了异或运算的逻辑电路，异或门由与门、或门、非门组成（见图：alu.drawio.html 28-2）。
-输入 1 输入 2 运算结果 示意图 0 0 0 alu.drawio.html 28-4-2 1 0 1 alu.drawio.html 28-4-4 0 1 1 alu.drawio.html 28-4-6 1 1 0 alu.drawio.html 28-4-8 ALU 算术逻辑单元（ALU，arithmetic and logic unit）由算术单元（AU）和逻辑单元（LU）组成。
+输入 1 输入 2 运算结果 示意图 0 0 0 alu.drawio.html 28-4-2 1 0 1 alu.drawio.html 28-4-4 0 1 1 alu.drawio.html 28-4-6 1 1 0 alu.drawio.html 28-4-8 ALU 算术逻辑单元（arithmetic and logic unit、ALU）由算术单元（AU）和逻辑单元（LU）组成。
 算术单元 算术单元由逻辑门、半加器、全加器、加法器等部件组成，主要的功能是进行算术运算。
 半加器 半加器（half adder）由异或门、与门组成（见图：alu.drawio.html 42-2）。可以处理两个 1 位二进制数的加法运算，产生 2 个输出：一个 carry（进位）、一个 sum（和）。
 输入 1 输入 2 运算结果 carry sum 示意图 0 0 00 0 0 alu.drawio.html 42-4-2 1 0 01 0 1 alu.drawio.html 42-4-4 0 1 01 0 1 alu.drawio.html 42-4-6 1 1 10 1 0 alu.drawio.html 42-4-8 全加器 全加器（full adder）由半加器、或门组成（见图：alu.drawio.html 44-2）。可以处理三个 1 位二进制数的加法运算，产生 2 个输出：一个 carry、1 个 sum。
@@ -197,7 +219,7 @@ CAS CAS（Compare And Swap）操作是原子操作，包含三个操作数：内
 如果并发量很大，也就是冲突明显的时候。锁一次不成功，就会阻塞，然后进入通知队列等着被唤醒了，CPU 就可以空出来干别的事情。但是 CAS 一次不成功，会不停的重试，直到成功。
 这个时候问题就来了，假设并发数量是 10000，那么 1 个成功了，那么剩下来的 9999 个，一定是不可能成功的。但是它们依然在不停的重试，一直消耗 CPU 的资源。
 并发安全 不会出现并发问题，那就可以说是并发安全的。
-]]></content></entry><entry><title>队列（Golang 实现）</title><url>/post/computer-science/programming-language/golang/queue/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag><tag>queue(队列)</tag><tag>concurrent(并发)</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+参考（reference） 极客时间Go实战训练营 并发等待队列实现 ]]></content></entry><entry><title>队列（Golang 实现）</title><url>/post/computer-science/programming-language/golang/queue/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag><tag>queue(队列)</tag><tag>concurrent(并发)</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 资料 {demo-golang}/demo/queue/ queue.drawio.html 并发安全队列 并发安全队列就是不会出现并发问题的队列。
 关于并发问题的一些东西在这篇里：并发问题阻塞队列和非阻塞队列 个人认为，一个队列是阻塞队列还是非阻塞队列，应该根据队列本身的设计判断。队列需不需要阻塞，是设计上决定的，和用锁还是用 CAS 是没关系的，这两个结构是为了解决并发问题的。
 如果设计队列的时候，队列有最大容量。而且队列本身的设计中有阻塞的逻辑。这样的队列就是阻塞队列。比如，在入队阶段，判断队列容量已满的时候，不是直接返回入队失败，而是等待队列空出位置后在入队，那么这里就需要设计阻塞的逻辑。
@@ -232,7 +254,7 @@ func (p7this *Queue) Dequeue(ctx context.Context) (data, error) { for { // 检�
 首先，阻塞固定的时间是肯定不行的，在这段时间里面，队头元素说不定已经到时间了。所以阻塞的时间肯定要根据队头元素来，队头元素还有多久到时间，那就阻塞多久。这种思路可以解决队列元素不变的情况。但是如果等待过程中，入队了一个优先级更高的元素。那么这个思路也是有问题的，阻塞之后来不及出来了。
 所以这里需要监听两种信号，一种是队头元素到时间的信号，另一种是入队信号。监听到入队信号之后，检查一下入队的元素的优先级，如果优先级更高就需要调整阻塞的时间。
 整体思路和前面的那个&quot;并发安全的有最大容量的队列&quot;是一样的，就是队列数据的存储结构不一样，然后就是增加了针对延时的逻辑。大概的过程见图：queue.drawio.html 6-2、6-4
-reference（参考） 极客时间Go实战训练营 并发等待队列实现 ]]></content></entry><entry><title>Golang 的 context 包的使用</title><url>/post/computer-science/programming-language/golang/context/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+参考（reference） 极客时间Go实战训练营 并发等待队列实现 ]]></content></entry><entry><title>Golang 的 context 包的使用</title><url>/post/computer-science/programming-language/golang/context/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag></tags><content type="html"> CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 资料 {demo-golang}
 /demo/context/ context 也叫上下文，可用于携带数据或者控制调度流程。在常见的设计中，会把 context.Context 作为方法的第一个参数。
 五个常用的方法 Background() 这个方法用于创建流程的第一个上下文。后续的上下文，如果没有特殊的情况，都是由它派生出来的。
@@ -495,10 +517,10 @@ func (p7this *ServiceManager) Shutdown() { ... log.Println(&#34;停止接收新�
 比如：系统里如果有缓存的话，可能需要把缓存进行持久化处理；系统关闭时，需要上报数据其他服务等。
 这个可以通过回调实现，和中间件的用法类似。不过最后执行的时候，是所有的回调是并发执行的，而不是像中间件一样套起来，一次执行的。
 func (p7this *ServiceManager) Shutdown() { ... log.Println(&#34;开始执行子服务的关闭回调。。。&#34;) for _, p7hs := range p7this.s5p7HTTPService { log.Printf(&#34;执行子服务 %s 的关闭回调，限制 %d 秒内完成。。。&#34;, p7hs.name, p7this.shutdownCallbackTimeOut/time.Second) for _, f4cb := range p7hs.s5f4shutdownCallback { t4f4cb := f4cb wg.Add(1) go func() { defer wg.Done() t4ctx, t4cancel := context.WithTimeout(context.Background(), p7this.shutdownCallbackTimeOut) defer t4cancel() t4f4cb(t4ctx) }() } } wg.Wait() ... } 到这里核心的部分就差不多了，细节上的实现可以看代码。
-]]></content></entry><entry><title>程序员的定位</title><url>/post/computer-science/programmer/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag></tags><content type="html">程序员的自我修养 原则一： 技术、语言、框架，本质都是工具。工具的价值，在于提升使用者的效率。
+]]></content></entry><entry><title>程序员的定位</title><url>/post/computer-science/programmer/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag></tags><content type="html">正文 程序员的自我修养 原则一： 技术、语言、框架，本质都是工具。工具的价值，在于提升使用者的效率。
 原则二: 如果一种语言或者一个框架很牛逼，那么荣耀属于创造它的人，与使用者没有半毛钱关系。 针对恰当的需求，使用恰当的技术、语言、框架，并且做到按时交付以及高质量，才是使用者的荣耀。
-原则三: 大部分人并不是天生有选择恐惧症，也不是天生的杠精。所有关于选择的迷惑或者争吵，大都因为：1、标准不唯一，没有设定清晰的标准；2、标准之间没有优先级或者权重。
-慕课网，隔壁王校长
+原则三: 大部分人并不是天生有选择恐惧症，也不是天生的杠精。所有关于选择的迷惑或者争吵，大都因为： 1、标准不唯一，没有设定清晰的标准；2、标准之间没有优先级或者权重。
+参考（reference） 慕课网，隔壁王校长
 Go语言框架：Beego vs Gin</content></entry><entry><title>使用 Hugo 和 GitHub Pages 搭建站点</title><url>/post/computer-science/application/hugo/install_publish/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>application(应用)</tag><tag>Hugo</tag><tag>GitHub-Pages</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 hugo 0.103.1
 Hugo 文档 gohugoio/hugo英文文档中文文档安装 Hugo 在 Hugo Releases页面下载对应操作系统的版本。这里下载的是 hugo_0.103.1_windows-amd64.zip。
 下载完成后，解压到想要的位置。这里使用的目录是 D:\hugo\bin。然后将这个目录添加到 系统变量 path 中（我的电脑 -&gt; 属性 -&gt; 高级系统设置 -&gt; 环境变量 -&gt; 系统变量 -&gt; path）。
@@ -908,13 +930,58 @@ magnet：为协议名。 xt：exact topic，资源定位点。 urn：Uniform Res
 copy /b 1.jpg+2.rar 3.jpg copy /b 是一个基础的 DOS 命令，作用是合并文件。
 把图片、压缩文件、批处理文件放在同一个目录。然后执行批处理文件，执行完成后就会得到一张图片 3.jpg。
 这个图片实际上同时文件含了图片和压缩文件。如果把图片 3.jpg 的后缀名改成 .rar，这个时候图片就变成了压缩文件。
-这个压缩文件是可以解压的，压缩文件的内容就是 2.rar 的内容。</content></entry><entry><title>进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收</title><url>/post/computer-science/operating-system/linux/process/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+这个压缩文件是可以解压的，压缩文件的内容就是 2.rar 的内容。</content></entry><entry><title>init 进程、进程间关系、作业、会话、守护进程</title><url>/post/computer-science/operating-system/linux/process02/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 Linux 5.19.0-32-generic x86_64 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0 前置笔记：进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收交叉笔记：终端和控制台资料 {demo-c}/demo-in-linux/process02/ 正文 init 进程 init 程序是 Linux 操作系统中不可缺少的程序之一，它是一个由内核启动的用户级进程。内核会在过去曾使用过 init 程序的几个地方查找它，它的正确位置（对 Linux 系统来说）是 &ldquo;/sbin/init&rdquo;。如果内核找不到 init，它就会试着运行 &ldquo;/bin/sh&rdquo;。如果这两个都运行失败了，操作系统的启动也会失败。
+Linux 操作系统的启动首先从 BIOS 开始，接下来进入 boot loader，由 boot loader 载入内核，进行内核初始化。内核启动之后（被载入内存，开始运行，初始化所有的设备驱动程序和数据结构之后），就会通过启动一个用户级程序 init 的方式，完成引导进程。
+内核初始化的最后一步就是启动 init 进程，这个进程是系统的第一个进程，它负责产生其他所有的用户进程。所以，init 进程始终是第一个进程，其进程编号始终为 1。其他所有的用户进程每个进程都有父进程，一直上溯的话，所有的进程会形成一个以 init 进程为根结点的树状结构。
+进程树 这里简单的验证一下。先打开一个终端，使用 &ldquo;echo $$&rdquo; 命令，打印当前进程的 pid。再打开一个终端，使用 &ldquo;echo $$&rdquo; 命令，打印当前进程的 pid。然后使用 &ldquo;pstree -p&rdquo; 命令，观察一下进程树。
+&gt; echo $$ 1963 &gt; echo $$ 2166 &gt; pstree -p systemd(1)─┬... ├─systemd(1074)─┬─... │ ├─gnome-terminal-(1945)─┬─bash(1963) │ │ ├─bash(2166)───pstree(2173) 这里从进程树里截取了有关的片段。可以看到，打开的两个终端，bash(1963) 和 bash(2166) 的父进程都是 gnome-terminal-(1945)。终端 bash(2166) 执行 pstree 命令的时候，又创建了一个子进程 pstree(2173)。
+进程组 进程组（process group）是一个或者多个进程的集合。每个进程必须而且只能属于一个进程组。集合里的这些进程并不是孤立的，它们之间会存在父子或者兄弟的关系。进程有自己的唯一标识，称为进程 id（process id、pid），进程组也有自己的唯一标识，称为进程组 id（process group id、pgid）。
+每个进程组都有一个组长进程，组长进程的 pid 与其 pgid 相同。组长进程可以创建一个进程组，一般是进程变成组长进程的时候。
+进程组的生命周期从被创建开始，直到进程组内所有进程终止或离开该组。无论组长进程是否终止，只要进程组中存在未终止的进程，这个进程组就不会消失。组长进程终止后，进程组中便不存在组长进程，剩下的进程也不会自动推选新的组长进程。
+进程组的作用是为了方便对进程进行管理。假设有一个任务需要好多进程一起协作完成，现在出于某种原因需要终止这个任务。如果没有进程组，就需要用 pid 一个一个杀掉这些进程，而且还要考虑顺序，先杀子进程再杀父进程。如果有进程组的话，就可以搞一个杀进程组的操作。
+通过 getpgid() 或者 getpgrp() 可以获取进程所属的进程组 id。通过 setpgid() 可以设置进程的进程组 id。进程通过 setpgid() 只能设置它自己和它的子进程的 ppid。如果它的子进程调用了 exec 家族的函数，那么它也无法更改这个子进程的 ppid 了。
+创建出来的子进程一开始是和父进程是一组的，会继承父进程的 pgid。可以通过把子进程的 pgid 设置成子进程的 pid，来创建以子进程为组长进程的新进程组。
+作业 Linux 是一个多用户多任务的分时操作系统。多用户是指多个用户可以在同一时间使用计算机系统。多任务是指 Linux 可以同时执行多个任务，可以在一个任务还未执行完的同时执行另一项任务。多个用户和多个任务都由操作系统进行管理。分时是指计算机采用时间片轮转的方式同时为几个、几十个、甚至几百个用户服务。
+作业控制 Shell 是操作系统的用户界面，提供了用户与内核进行交互操作的一种接口。它实际上是一个命令解释器，接收并解释用户输入的命令，然后把命令送入内核去执行。Shell 有多种不同的版本，常用的 BASH 就是其中一种。
+Shell 控制的不是进程而是作业。正在执行的一个或多个相关进程被称为作业（job），也有叫任务的。作业是计算机操作者（可以是人也可以是程序）交给操作系统的执行单位。作业控制指的是控制正在运行的进程的行为。比如，在 Shell 控制终端控制多个作业。
+前台作业和后台作业 作业还分为前台作业和后台作业。用户直接操作的那个终端窗口就属于前台作业，前台作业独占终端窗口。它可以直接接收用户输入的命令，而且一旦命令开始运行，除非命令运行结束或者强制终止命令，要不然是不能执行其他命令的。
+前台作业运行结束，Shell 就会把自己提到前台。比如，在终端窗输入 &ldquo;ls&rdquo; 命令之后，Shell 会启动一个进程去执行 &ldquo;ls&rdquo; 命令，&ldquo;ls&rdquo; 命令执行完之后会输出结果，然后这个进程退出，然后 Shell 把自己提到前台。
+除了表面上看得到的前台作业的进程，还有很多正在运行的进程是表面上看不到的。比如，那个直接和用户交互的作业背后，是需要操作系统做很多工作来提供支撑的。这些进程就属于后台作业。Shell 可以运行一个前台作业和任意多个后台作业。
+子进程 如果作业中的某个进程又创建了子进程，则子进程不属于作业。作业运行结束时，如果这个子进程还没终止，那么它会变为后台进程。比如，用 fork() 创建了一个子进程之后，父进程直接退出，这个时候子进程并不会终止，而是变成孤儿进程。
+会话 Linux 是一个多用户多任务的分时操作系统。多用户是指多个用户可以在同一时间使用计算机系统。一个用户登录一次系统就形成一个会话。
+会话（session）是多个进程组的集合，一个会话中可以包含一个前台进程组以及一个或多个后台进程组。每个会话都有会话 id（session id、sid）。每个会话都有一个会话首进程（session leader），即创建会话的进程。
+一个会话可以关联终端，也可以不关联终端，关联终端的时候只能关联一个。这个终端一般由会话首进程建立连接。此时，会话首进程也叫控制进程，这个终端也叫控制终端。
+一个会话关联了一个终端后，它至少有一个前台进程组，其它都是后台进程组。在终端输入特殊字符，如：中断键（&ldquo;ctrl + c&rdquo;）、暂停键（&ldquo;ctrl + z&rdquo;）、退出键（&ldquo;ctrl + \&quot;）时，会产生中断信号。中断信号会往前台进程组里的所有进程发送，但是不会给后台进程组里的进程发送。
+通过 getsid() 可以获取会话 id，通过 setsid() 可以设置会话 id。当一个进程调用 setsid() 时，会发生三件事：该进程会变成会话首进程（session leader）；该进程会变成进程组的组长；该进程不会关联终端，就算父进程有终端也会断开（后面可以再关联终端）。必须注意的是，只有当前进程不是进程组的组长时，才能创建一个新的会话，成为新会话的会话首进程。
+控制进程 控制进程就是关联了终端的进程。比如，控制台黑窗口。可以通过 ps -l 命令看一下。
+&gt; ps -l UID PID PPID C PRI NI ADDR SZ WCHAN TTY TIME CMD 0 S 1000 2643 2625 0 80 0 - 3557 do_wai pts/0 00:00:00 bash 0 R 1000 2650 2643 0 80 0 - 3939 - pts/0 00:00:00 psF S 进程（PID）2643，是由 bash（/bin/bash）文件启动的，同时该进程关联了终端设备（TTY），这个终端设备是 pts/0（伪终端）。
+切换前台作业和后台作业 这里准备了一个程序 for_job.c。程序每 5 秒，用 printf() 输出一次 pid。
+想启动前台作业很简单，在终端窗口里直接执行命令就好了。比如，在终端窗口里直接运行这个程序。这样程序就是一个前台作业，会占着终端窗口一直输出 pid。
+&gt; ./for_job.elf [debug]:getpid()=11959 [debug]:getpid()=11959 一直输出。。。 这个时候可以按下 &ldquo;ctrl + z&rdquo;，可以停止进程并放入后台。这个时候，这个前台作业就变成后台作业了。
+^Z [1]+ Stopped ./for_job.elf job 命令可以查看当前 Shell 环境中已启动的作业状态，这里用 &ldquo;job -l&rdquo; 命令查看一下。可以看到刚才的 11959 进程，现在在后台而且处于停止状态。
+&gt; jobs -l [1]+ 11962 Stopped ./for_job.elf &ldquo;[1]&rdquo; 表示作业号为 1。 &ldquo;+&rdquo; 表示最近一个放入后台的作业。如果这里是 &ldquo;-&rdquo; 则表示倒数第二个放入后台的工作，倒数第三个以后的工作就没有 &ldquo;+&rdquo; 或者 &ldquo;-&rdquo; 标志了。 11962 就是 pid；Stopped 表示进程现在是停止状态。 最后的 &ldquo;./for_job.elf&rdquo; 表示进程是这个命令启动起来的。 bg 命令可以让最近一个暂停的后台任务继续执行。这里也可以用 &ldquo;bg %1&rdquo;，&quot;%1&rdquo; 就是指定了作业号。
+&gt; bg [1]+ ./for_job.elf &amp; [debug]:getpid()=11962 [debug]:getpid()=11962 一直输出，而且不受控制 这里就要提到后台作业的两个特点：
+继承当前会话的标准输出（stdout）和标准错误输出（stderr）。因此，后台任务的所有输出依然会同步地打到终端窗口，也就是上面一直输出的原因。 不继承当会话的标准输入（stdin）。因此，无法再向这个任务输入指令了，也就是上面不受控制的原因。如果后台作业试图读取标准输入，终端驱动会检测后台进程的这种举动并向后台作业发送一个 SIGTTIN 信号。SIGTTIN 信号通常会暂停（halt）后台作业的执行。 所以，前台任务和后台任务的区别只有一个：是否继承标准输入。
+如果这个时候继续在终端窗口里面输入命令，它是可以被执行的。虽然这个时候后台任务的所有输出会同步地打到终端窗口，让窗口看上去非常的混乱，但是这并不影响输入的命令。输入和输出的内容并不在一个地方，只是都显示到了一个地方。
+比如，使用 fg 命令将后台运行的或挂起的作业切换到前台运行。这里也可以用 &ldquo;fg %1&rdquo;，&quot;%1&quot; 同样是指定了作业号。
+&gt; fg %1 ./for_job.elf [debug]:getpid()=11962 一直输出。。。 另外，可以通过在命令的后面加一个 &ldquo;&amp;&rdquo; 符号，让程序直接以后台作业的方式启动。
+&gt;./for_job.elf &amp; [1] 2228 这种方式启动起来的作业就是直接处于后台并且是运行状态的。
+&gt; jobs -l [1]+ 2249 Running ./for_job.elf &amp; 守护进程 守护进程（Daemon 进程）最基本的特点就是运行在后台，并且不和终端关联。这里的运行在后台和上文的后台作业或者后台进程组是有区别的。上文的后台作业或者后台进程组，进程依然是和会话进程关联的。而守护进程的父进程是 1 号 init 进程，和启动它的会话进程不关联。这里的不和终端关联的意思是，守护进程不接受标准输入也不会产生标准输出或者标准错误输出。
+从终端开始运行的进程都会依附于这个终端，这个终端称为这些进程的控制终端。当控制终端被关闭时，相应的进程都会被自动关闭。对于一般的前台进程，可以用 &ldquo;ctrl + c&rdquo; 的方式来停止运行，也可以直接关闭终端。但是对于守护进程来说它的生命周期需要突破这种限制，它会一直运行直到整个系统关闭才会退出，因此守护进程不能依赖于终端。
+编写守护进程的步骤 创建一个子进程 b，父进程 a 退出。因为调用 setsid() 的进程不能是组长进程。 子进程 b 调用 setsid() ，创建一个新的会话。调用进程调用 setsid() 时，该调用进程会变成会话首进程，变成组长进程，而且不关联终端。 有些时候，在子进程 b 调用 setsid() 后，还会再创建一个子进程 c ，然后自己（会话首进程）退出。 修改子进程的工作目录，一般为根目录。fork() 使得子进程继承了父进程的工作目录。 调用 umask() 重设文件权限掩码。fork() 使得子进程继承了父进程的文件权限掩码，这会给子进程使用文件带来麻烦。 关闭不必要的文件描述符（主要是 0、1、2）。fork() 使得子进程继承了父进程一些打开的文件，但是子进程可能不需要，这会消耗系统资源。 打开黑洞文件（/dev/null），彻底的断开控制终端。 代码示例：{demo-c}/demo-in-linux/process02/daemon.c。
+程序运行之后会变成守护进程，不会在终端有输出。可以通过 &ldquo;ps -ely&rdquo; 命令查看进程状态。
+&gt; ps -ely S UID PID PPID C PRI NI RSS SZ WCHAN TTY TIME CMD S 0 1 0 0 80 0 2824 2961 - pts/0 00:00:00 bash S 0 16 0 0 80 0 3064 2961 - pts/1 00:00:00 bash S 0 45 1 0 80 0 88 1058 - ? 00:00:00 daemon S 0 46 45 0 80 0 88 1058 - ? 00:00:00 daemon R 0 50 16 0 80 0 3076 12406 - pts/1 00:00:00 ps 可以看到进程 45 运行的 daemon 程序，它的父进程变成 1 号 init 进程了，这时进程 45 它就是一个守护进程。从进程关联的标准输入设备（TTY）也可以看到进程 45 它值是 &ldquo;?&quot;，表示没有关联终端。进程 45 还创建了一个子进程 46，这个虽然是后台进程，但是它的父进程不是1 号 init 进程，所以不算守护进程。
+另外，也可以通过 daemon() 创建守护进程。
+nohup 最常用的创建守护进程的方式是使用 &ldquo;nohup&rdquo; 命令加上 &ldquo;&amp;&rdquo; 符号。nohup ./for_job.elf &amp;。
+&ldquo;nohup&rdquo; 命令的作用有：阻止 SIGHUP 信号发送给这个进程；关闭 stdin 使得该进程不再能接收任何输入，即使进程是运行在前台的（没有加 &ldquo;&amp;&rdquo; 符号）；重定向 stdout 和 stderr 到 nohup.out。
+参考（reference） 百度百科-initLinux初始化init系统百度百科-Linux Shell百度百科-Linux进程管理及作业控制Linux-进程、进程组、作业、会话、控制终端详解APUE 2 - 进程组（process group） 会话（session） jobLinux会话、终端与进程组]]></content></entry><entry><title>进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收</title><url>/post/computer-science/operating-system/linux/process/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[前言 实践的环境：
 CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 Linux 5.19.0-32-generic x86_64 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0 前置笔记：运行 ELF 文件资料 {demo-c}/demo-in-linux/process/ 正文 进程的创建 笔记主要涉及 fock()、vfock()。
 fock() DESCRIPTION fork() creates a new process by duplicating the calling process. The new process is referred to as the child process. The calling process is referred to as the parent process. &hellip;
 fork() 通过复制调用进程创建一个新进程，新进程为子进程，调用进程为父进程。
 RETURN VALUE On success, the PID of the child process is returned in the parent, and 0 is returned in the child. On failure, -1 is returned in the parent, no child process is created, and errno is set to indicate the error.
 成功时，父进程拿到子进程的 pid，子进程拿到 0。可以根据这个判断哪个是父进程，哪个是子进程。 失败时，父进程拿到-1，子进程不会被创建，errno 会被设置用于表示错误。 代码示例：{demo-c}/demo-in-linux/process/fork.c。
-pid 和 ppid 在终端里使用 echo $$ 命令，可以打印上当前进程的 pid。
+pid 和 ppid 在终端里使用 echo $$ 命令，可以打印当前进程的 pid。
 getpid() 返回调用进程的 pid，getppid() 返回调用进程的父进程的 pid。在使用时需要注意，必须让子进程先执行，父进程后执行，打印出来的 ppid 才是正确的。
 代码示例：{demo-c}/demo-in-linux/process/pid_and_ppid.c。
 如果父进程在子进程执行前先跑完了，那么子进程打印出来的 ppid 就会变成 1。因为父进程已经没了，子进程变成了孤儿进程。孤儿进程会被 1 号进程接管，有可能会变成后台进程。
@@ -988,13 +1055,13 @@ The resource argument must be one of: &hellip; RLIMIT_NOFILE This specifies a va
 exit() 会让进程正常终止，退出状态码会先和 0xFF 做与运算，然后返回给父进程。所有打开的 stdio(3) 流会被刷新然后关闭
 _exit()、_Exit() DESCRIPTION _exit() terminates the calling process &ldquo;immediately&rdquo;. Any open file descriptors belonging to the process are closed. Any children of the process are inherited by init(1) (or by the nearest &ldquo;subreaper&rdquo; process as defined through the use of the prctl(2) PR_SET_CHILD_SUBREAPER operation). The process&rsquo;s parent is sent a SIGCHLD signal. The value status &amp; 0xFF is returned to the parent process as the process&rsquo;s exit status, and can be collected by the parent using one of the wait(2) family of calls. The function _Exit() is equivalent to _exit().
 NOTES &hellip; The function _exit() is like exit(3), but does not call any functions registered with atexit(3) or on_exit(3). Open stdio(3) streams are not flushed. &hellip;
-_exit() （_Exit()和 _exit() 是等价的）会让进程立即终止，退出状态码会先和 0xFF 做与运算，然后返回给父进程。打开的 stdio(3) 流不会被刷新。
+_exit() （_Exit()和 _exit() 是等价的）会让进程立即终止，子进程退出时会向父进程发送 SIGCHLD 中断信号，退出状态码会先和 0xFF 做与运算，然后返回给父进程。打开的 stdio(3) 流不会被刷新。
 exit_group() SYNOPSIS Note: glibc provides no wrapper for exit_group(), necessitating the use of syscall(2).
 DESCRIPTION This system call is equivalent to _exit(2) except that it terminates not only the calling thread, but all threads in the calling process&rsquo;s thread group.
 退出状态码 [00007fdf9e51ea3d] exit_group(0) = ? [????????????????] +++ exited with 0 +++ 退出状态码会先和 0xFF 做与运算。这个的意思是说，加入退出状态码设置的是 300，那实际返回的是 300 &amp; 255 的结果，也就是 44。
 [00007fb290aeaca1] exit_group(300) = ? [????????????????] +++ exited with 44 +++ 在终端里使用 echo $? 命令，可以打印上一个程序的退出状态码。
 不同退出方式下 printf() 的区别 上面提到，过不同的退出方式，对打开的 stdio(3) 流的处理方式不一样。
-程序运行到最后一行代码、主动 return 0、主动调用 exit() 时，会输出输出缓冲区内的内容。而主动调用 _exit()、_Exit()、exit_group 时不会。
+程序运行到最后一行代码、主动 return 0、主动调用 exit() 时，会检查文件的打开情况，处理 I/O 缓冲区内的内容。而主动调用 _exit()、_Exit()、exit_group 时不会。
 也就是对于 printf(&quot;hello, world&quot;) （注意，没有 \n）来说，前面三个方式会输出 hello, world，而前面三个方式不会输出。
 进程的回收 笔记主要涉及：wait()、waitpid()
 wait()、waitpid() SYNOPSIS pid_t wait(int *wstatus); pid_t waitpid(pid_t pid, int *wstatus, int options);
@@ -1016,7 +1083,7 @@ WEXITSTATUS(wstatus) returns the exit status of the child. This consists of the 
 代码示例：{demo-c}/demo-in-linux/process/for_zombie.c。这里运行一下，下面的是输出到终端上的内容。
 &gt; ./for_zombie.elf [debug]:parent, getpid()=3592 [debug]:parent, getpid()=3592, forkResult=3593 [debug]:child, getpid()=3593, forkResult=0 然后通过 ps 命令看一下 for_zombie 的运行情况。进程 3593 后面那个 &ldquo;Z+&rdquo; 就表示，它已经是一个僵尸进程了。
 qqq 3592 0.0 0.0 2772 944 pts/0 S+ 20:14 0:00 ./for_zombie.elf qqq 3593 0.0 0.0 0 0 pts/0 Z+ 20:14 0:00 [for_zombie.elf] &lt;defunct&gt; 当进程变成僵尸进程时，它的内存数据还驻留在内存中，/proc 目录下的相关文件也不会移除，这些东西依然在占用系统资源。如果僵尸进程过多，会导致系统资源紧张，会影响操作系统的运行。所以必须要回收退出的子进程。
-]]></content></entry><entry><title>ELF 文件</title><url>/post/computer-science/operating-system/linux/elf/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+参考（reference） Linux进程控制]]></content></entry><entry><title>ELF 文件</title><url>/post/computer-science/operating-system/linux/elf/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[前言 实践的环境：
 CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 Linux 5.19.0-32-generic x86_64 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0 前置笔记：什么是程序资料 {demo-c}/demo-in-linux/elf/ 正文 ELF 之前提到过，c 源码文件通过 gcc 编译得到可执行文件，这里的可执行文件就是 elf 文件的一种。关于 elf 具体的细节可以看 elf(5) - format of Executable and Linking Format (ELF) files。
 elf 文件格式有四种：
 normal executable files（普通可执行文件） relocatable object files（可重定位文件） core files（核心文件） shared objects（共享目标文件、共享库、动态库） objdump 这里观察一下 demo02 文件。命令具体的输出放在 {demo-c}/demo-in-linux/elf/objdump.md 里面。
@@ -1049,19 +1116,14 @@ nm 命令 nm 也可以输出符号表。nm demo02 命令输出的内容在文件
 &ldquo;-rwxrwxrwx&rdquo; 表示：所有的用户都拥有这个文件的读、写、执行权限。如果是 &ldquo;-rwxr-xr-x&rdquo;，则表示：user 有读、写、执行权限，而 group 和 other 只有读、执行权限，没有写权限。
 特权权限 &ldquo;/etc/shadow&rdquo; 文件用于记录 linux 上所有用户的账号和密码，只有超级管理员有读写权限，普通用户是没有读写权限的。但是没有写权限的普通用户却可以通过 passwd 命令修改自己的密码。这是因为 &ldquo;passwd&rdquo; 命令对应的 &ldquo;/bin/passwd&rdquo; 文件的权限是 &ldquo;-rwsr-xr-x&rdquo;。
 # /etc/shadow -rw-r----- 1 root shadow 1462 2月 6 12:38 shadow # /bin/passwd -rwsr-xr-x 1 root root 59976 11月 24 20:05 passwd 可以注意到 user 的执行权限位上是 s，这称为特权权限（Set User ID，SUID）。如果 group 的执行权限位上是 s，就是（Set Group ID，SGID）。文件所有者可以通过 chmod u+s 命令设置特权权限。有特权权限的文件通过 &ldquo;ls&rdquo; 命令看的时候是红色的。
-在程序中，可以通过 getuid() 获取用户 id，通过 geteuid() 获取有效用户 id。通过 setuid() 设置用户 id，通过 seteuid() 设置有效用户 id。如果是文件的所有者，那么 getuid() 和 geteuid() 得到的结果是一样的。如果不是文件的所有者，那么 geteuid() 就能拿到文件的所有者的 id。如果文件所有者设置了特权权限，那么其他用户调用 seteuid() 的时候，就可以拥有文件所有者的权限。
+在程序中，可以通过 getuid() 获取用户 id，通过 geteuid() 获取有效用户 id。通过 setuid() 设置用户 id，通过 seteuid() 设置有效用户 id。如果是文件的所有者，那么 getuid() 和 geteuid() 得到的结果是一样的。如果不是文件的所有者，那么 geteuid() 就能拿到文件的所有者的 id。
+如果文件所有者设置了特权权限，那么其他用户调用 seteuid() 并传入文件的所有者的 id 的时候，就可以拥有文件所有者的权限。想要改回来，可以调用 seteuid() 并传入自己的有效用户 id，这样就没有文件所有者的权限了。
 一般来说，程序主要是以普通用户运行的，以较低的权限执行程序，可以保证安全性。但是有时需要操作一些比较重要的数据，这个时候就需要提权。提权后，可以短暂地拥有该可执行文件所有者的权限，然后就可以修改数据了。特别需要注意的是，使用完之后一定要降权。
 代码示例：{demo-c}/demo-in-linux/elf/setuid.c。
-]]></content></entry><entry><title>搞 Linux C 编程的注意点</title><url>/post/computer-science/operating-system/linux/notice/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[正文 学会看 linux 文档 搞 linux c 编程，一定要学会看 linux 的文档。遇到问题，仔细看看文档，一般都能解决。
-Linux man pages online 在线文档从 man7.org或者 Linux man pages online都能进的去。
-man7.org 页面点击 Online manual pages 可以进到 Linux man pages online 页面。Linux man pages online 页面点击 by section 链接可以进到列表页面。列表页面有所有的条目，虽然东西多，但是可以全文搜索，找起来比较容易，不需要知道要找的条目到底在哪个 page。
-man 在 linux 系统中，可以使用 man 命令查看 linux 文档。但是用 man 命令的时候，需要知道要找的条目到底在哪个 page。比如 &ldquo;man 2 exccve&rdquo; 和 &ldquo;man 3 exec&rdquo;。
-在 centos 的 docker 容器中无法使用 man 命令 因为 centos 的 docker 的镜像，它把一些东西精简了，所以有一些命令不能使用。比如，man 命令。
-需要修改 &ldquo;/etc/yum.conf&rdquo; 配置文件。注释掉 tsflags=nodocs 这一行。这个配置禁用了一些软件包。修改配置文件后，重新安装 man，即可使用。
-yum -y install man yum -y install man-pages 笔记中出现的文档 文档 man(1) - an interface to the system reference manuals错误信息 errno(3) - number of last error终端 tty(1) - print the file name of the terminal connected to standard inputtty(4) - controlling terminalpty(7) - pseudoterminal interfacespts(4) - pseudoterminal master and slaveptmx(4) - pseudoterminal master and slaveposix_openpt(3) - open a pseudoterminal device进程的标识 getuid(2) - get user identitygeteuid(2) - get user identitygetpid(2) - get process identificationgetppid(2) - get process identificationgetpgid(2) - set/get process group进程的创建 fork(2) - create a child processvfork(2) - create a child process and block parent进程的运行 execve(2) - execute programexec(3) - execute a file进程的运行顺序 nice(1) - run a program with modified scheduling priorityrenice(1) - alter priority of running processesgetpriority(2) - get/set program scheduling prioritysetpriority(2) - get/set program scheduling prioritynice(2) - change process priority进程的内存资源 proc(5) - process information pseudo-filesystemgetrlimit(2) - get/set resource limitssetrlimit(2) - get/set resource limits进程的退出 exit(2) - terminate the calling process_Exit(2) - terminate the calling process_exit(2) - terminate the calling processexit(3) - cause normal process terminationexit_group(2) - exit all threads in a process进程的回收 wait(2) - wait for process to change statewaitpid(2) - wait for process to change state注意代码运行的目标环境 编程的时候，要注意代码运行的目标环境。同一段代码，在 Ubuntu 和 Centos 上运行的时候，整体的系统调用过程应该是差不多的，但是细节可能不一样。
-举个例子，在 Ubuntu 22.04 和 Centos 7 上分别跑 helloworld 程序。加载 libc.so.6 文件的这个步骤。在 Ubuntu 22.04 上加载的是 &ldquo;/lib/x86_64-linux-gnu/libc.so.6&rdquo;；而在 Centos 7 上加载的是 &ldquo;/lib64/libc.so.6&rdquo;。
 ]]></content></entry><entry><title>运行 ELF 文件</title><url>/post/computer-science/operating-system/linux/exec_elf/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[前言 实践的环境：
-CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 Linux 5.19.0-32-generic x86_64 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0 前置笔记：ELF 文件资料 {demo-c}/demo-in-linux/process/ 正文 进程是什么 简单的理解，程序启动起来就变成进程，直到程序运行结束。程序是静态的，进程是动态的。
+CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 Linux 5.19.0-32-generic x86_64 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0 前置笔记：ELF 文件资料 {demo-c}/demo-in-linux/process/ 正文 进程是什么 简单的理解，程序启动起来就变成进程，直到程序运行结束。程序是静态的，进程是动态的。进程不仅局限于程序（那段可执行代码），还包含其他资源。例如，文件、内存、线程、信号等。
+当一个程序启动时，操作系统就会创建一个进程。与此同时，一个线程也会被立刻启动起来去执行 main 函数，这个线程就叫主线程，后续创建的线程都是这个主线程的子线程。
+线程被称作轻量级进程，它是操作系统调度的最小单元，通常一个进程可以拥有多个线程。进程拥有独立的资源空间，线程共享进程的资源空间。
 怎么观察进程 strace 通过 strace 命令可以来跟踪进程执行时的系统调用和进程接收的信号。关于 strace 命令具体怎么用可以看：strace(1) - trace system calls and signals。这里会用到 -f、-i、-t、-T、-p、-s、-o 几个参数。
 大概是：-f 跟踪子进程；-i 打印系统调用的地址；-t 每一行打印时间；-T 显示系统调用花费的时间；-p {pid} 指定跟踪的进程号；-s {length} 每一行的长度，默认 32，一般设置 65535；-o {file name} 输出到文件。
 在 centos 的 docker 容器中使用 strace 命令报错 使用 strace -p 命令跟踪进程时报错：
@@ -1099,7 +1161,15 @@ write 下一个关键的步骤是，是调用 write 函数。
 ... 5333 [00007f06cfcc7ca1] exit_group(0) = ? 5333 [????????????????] +++ exited with 0 +++ ... 进程 5333 调用 exit_group(0) 函数退出进程，参数值 0 是进程退出状态码，就是程序里 return 的 0。
 wait4 下一个关键的步骤是，是进程 5148 从 wait4 函数的阻塞状态中被唤醒。
 ... 5148 [00007ff14a0a845a] &lt;... wait4 resumed&gt;[{WIFEXITED(s) &amp;&amp; WEXITSTATUS(s) == 0}], WSTOPPED|WCONTINUED, NULL) = 5333 &lt;0.036896&gt; ... 父进程 5148 知道子进程 5333 退出了，前面调用的 wait4 函数会回收退出的子进程 5333，并回收子进程的内存资源。WIFEXITED(s) 和 WEXITSTATUS(s) 是宏函数，WEXITSTATUS(s) 可以拿到退出状态码。
-至此整个 helloworld 程序执行结束。 ]]></content></entry><entry><title>什么是程序</title><url>/post/computer-science/operating-system/linux/program/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+至此整个 helloworld 程序执行结束。 参考（reference） 百度百科-主线程]]></content></entry><entry><title>在 Linux 系统中使用 C 语言进行编程的注意点</title><url>/post/computer-science/operating-system/linux/notice/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[正文 学会看 Linux 文档 搞 Linux C 编程，一定要学会看 Linux 的文档。遇到问题，仔细看看文档，一般都能解决。
+Linux man pages online 在线文档从 man7.org或者 Linux man pages online都能进的去。
+man7.org 页面点击 Online manual pages 可以进到 Linux man pages online 页面。Linux man pages online 页面点击 by section 链接可以进到列表页面。列表页面有所有的条目，虽然东西多，但是可以全文搜索，找起来比较容易，不需要知道要找的条目到底在哪个 page。
+man 在 Linux 操作系统中，可以使用 man 命令查看 Linux 文档。但是用 man 命令的时候，需要知道要找的条目到底在哪个 page。比如：man 2 exccve、man 3 exec。
+在 centos 的 docker 容器中无法使用 man 命令 因为 centos 的 docker 的镜像，它把一些东西精简了，所以有一些命令不能使用。比如，man 命令。
+需要修改 &ldquo;/etc/yum.conf&rdquo; 配置文件。注释掉 tsflags=nodocs 这一行。这个配置禁用了一些软件包。修改配置文件后，重新安装 man，即可使用。
+yum -y install man yum -y install man-pages 笔记中出现的文档 文档 man(1) - an interface to the system reference manuals错误信息 errno(3) - number of last error终端 tty(1) - print the file name of the terminal connected to standard inputtty(4) - controlling terminalpty(7) - pseudoterminal interfacespts(4) - pseudoterminal master and slaveptmx(4) - pseudoterminal master and slaveposix_openpt(3) - open a pseudoterminal device进程的标识 getuid(2) - get user identitygeteuid(2) - get user identitygetpid(2) - get process identificationgetppid(2) - get process identificationgetpgid(2) - set/get process group进程的创建 fork(2) - create a child processvfork(2) - create a child process and block parent进程的运行 execve(2) - execute programexec(3) - execute a file进程的运行顺序 nice(1) - run a program with modified scheduling priorityrenice(1) - alter priority of running processesgetpriority(2) - get/set program scheduling prioritysetpriority(2) - get/set program scheduling prioritynice(2) - change process priority进程的内存资源 proc(5) - process information pseudo-filesystemgetrlimit(2) - get/set resource limitssetrlimit(2) - get/set resource limits进程的退出 exit(2) - terminate the calling process_Exit(2) - terminate the calling process_exit(2) - terminate the calling processexit(3) - cause normal process terminationexit_group(2) - exit all threads in a process进程的回收 wait(2) - wait for process to change statewaitpid(2) - wait for process to change state注意代码运行的目标环境 编程的时候，要注意代码运行的目标环境。同一段代码，在 Ubuntu 和 Centos 上运行的时候，整体的系统调用过程应该是差不多的，但是细节可能不一样。
+举个例子，在 Ubuntu 22.04 和 Centos 7 上分别跑 hello world 程序。加载 libc.so.6 文件的这个步骤。在 Ubuntu 22.04 上加载的是 &ldquo;/lib/x86_64-linux-gnu/libc.so.6&rdquo;；而在 Centos 7 上加载的是 &ldquo;/lib64/libc.so.6&rdquo;。
+]]></content></entry><entry><title>什么是程序</title><url>/post/computer-science/operating-system/linux/program/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>linux-c</tag></tags><content type="html"><![CDATA[前言 实践的环境：
 CPU AMD64(x86_64) Windows 11 家庭版 VMware Workstation Pro 16 Ubuntu 22.04 Linux 5.19.0-32-generic x86_64 gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0 资料 {demo-c}/demo-in-linux/helloworld/ 正文 程序 存储在磁盘上的静态代码文件或者由静态代码文件编译出来的可执行文件都可以说是程序。
 编译 通常说的编译指的是：c 源码文件通过 gcc 编译得到可执行文件（elf）。通常使用 gcc 命令 gcc xxx.c -o xxx 一步就完成了。但是，这一步里面其实有四个步骤：预处理、编译、汇编、链接。
 关于 gcc 命令具体怎么用可以看：gcc(1) - GNU project C and C++ compiler。这里会用到 -E、-S、-c、-o 几个参数。
