@@ -170,7 +170,7 @@ func (p7this *Queue) Dequeue(ctx context.Context) (data, error) {
 
 整体思路和前面的那个"并发安全的有最大容量的队列"是一样的，就是队列数据的存储结构不一样，然后就是增加了针对延时的逻辑。大概的过程见图：**queue.drawio.html 6-2、6-4**
 
-### reference（参考）
+## 参考（reference）
 
 - [极客时间](https://time.geekbang.org/)
   - Go实战训练营

@@ -2,7 +2,7 @@
 draft: false
 date: 2023-02-20 08:00:00 +0800
 lastmod: 2023-02-20 08:00:00 +0800
-title: "算术逻辑单元（ALU，Arithmetic and Logic Unit）"
+title: "算术逻辑单元（Arithmetic and Logic Unit、ALU）"
 summary: "什么是 ALU；什么是逻辑门；逻辑门的原理；ALU 的原理；"
 toc: true
 
@@ -80,7 +80,7 @@ tags:
 
 ### ALU
 
-算术逻辑单元（ALU，arithmetic and logic unit）由算术单元（AU）和逻辑单元（LU）组成。
+算术逻辑单元（arithmetic and logic unit、ALU）由算术单元（AU）和逻辑单元（LU）组成。
 
 ### 算术单元
 
