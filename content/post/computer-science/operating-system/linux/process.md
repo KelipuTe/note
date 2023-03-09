@@ -59,7 +59,7 @@ fork() 通过复制调用进程创建一个新进程，新进程为子进程，�
 
 #### pid 和 ppid
 
-在终端里使用 `echo $$` 命令，可以打印上当前进程的 pid。
+在终端里使用 `echo $$` 命令，可以打印当前进程的 pid。
 
 getpid() 返回调用进程的 pid，getppid() 返回调用进程的父进程的 pid。在使用时需要注意，必须让子进程先执行，父进程后执行，打印出来的 ppid 才是正确的。
 
@@ -336,8 +336,7 @@ exit() 会让进程正常终止，退出状态码会先和 0xFF 做与运算，�
 > DESCRIPTION</br>
 > _exit() terminates the calling process "immediately".</br>
 > Any open file descriptors belonging to the process are closed.</br>
-> Any children of the process are inherited by init(1) (or by the nearest "subreaper" process as defined through the use
-> of the prctl(2) PR_SET_CHILD_SUBREAPER operation).</br>
+> Any children of the process are inherited by init(1) (or by the nearest "subreaper" process as defined through the use of the prctl(2) PR_SET_CHILD_SUBREAPER operation).</br>
 > The process's parent is sent a SIGCHLD signal.</br>
 > The value status & 0xFF is returned to the parent process as the process's exit status, and can be collected by the
 > parent using one of the wait(2) family of calls.</br>
@@ -350,7 +349,7 @@ exit() 会让进程正常终止，退出状态码会先和 0xFF 做与运算，�
 > Open stdio(3) streams are not flushed.</br>
 > ...
 
-_exit() （_Exit()和 _exit() 是等价的）会让进程立即终止，退出状态码会先和 0xFF 做与运算，然后返回给父进程。打开的 stdio(3) 流不会被刷新。
+_exit() （_Exit()和 _exit() 是等价的）会让进程立即终止，子进程退出时会向父进程发送 SIGCHLD 中断信号，退出状态码会先和 0xFF 做与运算，然后返回给父进程。打开的 stdio(3) 流不会被刷新。
 
 #### exit_group()
 
@@ -358,8 +357,7 @@ _exit() （_Exit()和 _exit() 是等价的）会让进程立即终止，退出�
 > Note: glibc provides no wrapper for exit_group(), necessitating the use of syscall(2).
 
 > DESCRIPTION
-> This system call is equivalent to _exit(2) except that it terminates not only the calling thread, but all threads in
-> the calling process's thread group.
+> This system call is equivalent to _exit(2) except that it terminates not only the calling thread, but all threads in the calling process's thread group.
 
 #### 退出状态码
 
@@ -381,7 +379,7 @@ _exit() （_Exit()和 _exit() 是等价的）会让进程立即终止，退出�
 
 上面提到，过不同的退出方式，对打开的 stdio(3) 流的处理方式不一样。
 
-程序运行到最后一行代码、主动 `return 0`、主动调用 exit() 时，会输出输出缓冲区内的内容。而主动调用 _exit()、_Exit()、exit_group 时不会。
+程序运行到最后一行代码、主动 `return 0`、主动调用 exit() 时，会检查文件的打开情况，处理 I/O 缓冲区内的内容。而主动调用 _exit()、_Exit()、exit_group 时不会。
 
 也就是对于 `printf("hello, world")` （注意，没有 \n）来说，前面三个方式会输出 hello, world，而前面三个方式不会输出。
 
@@ -465,3 +463,7 @@ qqq         3593  0.0  0.0      0     0 pts/0    Z+   20:14   0:00 [for_zombie.e
 ```
 
 当进程变成僵尸进程时，它的内存数据还驻留在内存中，/proc 目录下的相关文件也不会移除，这些东西依然在占用系统资源。如果僵尸进程过多，会导致系统资源紧张，会影响操作系统的运行。所以必须要回收退出的子进程。
+
+## 参考（reference）
+
+- [Linux进程控制](https://www.cnblogs.com/cpsmile/p/4382106.html)

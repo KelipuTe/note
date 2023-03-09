@@ -13,6 +13,9 @@ tags:
 - computer-science(计算机科学)
 - hardware(硬件)
 ---
+## 前言
+
+前置笔记：[算术逻辑单元（Arithmetic and Logic Unit、ALU）](/post/computer-science/hardware/alu)
 
 ## 资料
 

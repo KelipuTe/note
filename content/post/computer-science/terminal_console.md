@@ -13,6 +13,10 @@ tags:
 - computer-science(计算机科学)
 - linux
 ---
+## 前言
+
+交叉笔记：[init 进程、进程间关系、作业、会话、守护进程](/post/computer-science/operating-system/linux/process02)
+
 ## 资料
 
 - <a href="/drawio/computer-science/terminal_console.drawio.html">terminal_console.drawio.html</a>
@@ -57,7 +61,7 @@ tags:
 
 在 ubuntu 系统中，在图形界面的桌面按下 "CTRL" + "ALT" + "F1" ~ "F6" 就可以分别进入 tty1 ~ tty6 对应的软件仿真终端。软件仿真终端的界面是操作系统内核直接提供的，这种叫虚拟控制台（virtual console）。
 
-按下 "CTRL" + "ALT" + "F7" 或者重新启动系统，就可以回到图形界面。在图形界面也可以打开终端，这种叫终端窗口（terminal window），属于伪终端。
+按下 "CTRL" + "ALT" + "F7" 或者重新启动系统，就可以回到图形界面。在图形界面也可以打开终端，这种叫终端窗口（terminal window），属于伪终端。终端窗口就是常用的那个控制台黑窗口。
 
 这两中终端在功能上其实没啥区别，如果哪天操作系统的图形界面炸掉了，但是别的地方没问题，那倒是可以切到软件仿真终端去救火。
 

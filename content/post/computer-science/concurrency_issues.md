@@ -98,3 +98,9 @@ CAS（Compare And Swap）操作是原子操作，包含三个操作数：内存�
 ### 并发安全
 
 不会出现并发问题，那就可以说是并发安全的。
+
+## 参考（reference）
+
+- [极客时间](https://time.geekbang.org/)
+  - Go实战训练营
+    - 并发等待队列实现
