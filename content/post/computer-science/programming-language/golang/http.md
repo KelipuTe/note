@@ -15,23 +15,28 @@ tags:
 - golang
 - http
 ---
+## 前言
 
-> CPU AMD64(x86_64)<br/>
-> Windows 11 家庭版<br/>
-> go version go1.19 windows/amd64
+实践的环境：
 
-### 资料
+- CPU AMD64(x86_64)
+- Windows 11 家庭版
+- go version go1.19 windows/amd64
+
+## 资料
 
 - [{demo-golang}](https://github.com/KelipuTe/demo-golang)/demo/web/http/
+
+## 正文
 
 ### 开启 HTTP 服务
 
 在 Go 中有多种方式，可以开启 HTTP 服务。但是总的来说基本就下面两大类思路（本质上其实是一类）。
 
-- 直接使用 `net` 包从 TCP 开始自行实现。
-- 使用官方提供的封装好的 `net/http` 包。
+- 直接使用 net 包从 TCP 开始自行实现。
+- 使用官方提供的封装好的 "net/http`" 包。
 
-使用 `net/http` 包的时候，需要关注的最核心的部分，就是 Handler 接口 (src/net/http/server.go)。
+使用 "net/http" 包的时候，需要关注的最核心的部分，就是 Handler 接口 (src/net/http/server.go)。
 
 ```
 type Handler interface {

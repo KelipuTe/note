@@ -175,6 +175,8 @@ func ServeHTTP(http.ResponseWriter, *http.Request) {
 
 ### 中间件的设计（Golang）
 
+#### 代码结构设计
+
 上面有两个部分需要定义：前置（后置）工作和处理逻辑。全链路通用的数据结构，上面已经定义过了，这里直接用。
 
 ```
@@ -228,7 +230,7 @@ func BMiddleware() HTTPMiddleware {
 假设，具体的处理逻辑，定义成下面这样。
 
 ```
-func UserId (*HTTPContext) {
+func UserId (p7ctx *HTTPContext) {
     // get user by id
 }
 ```
@@ -257,6 +259,64 @@ chain(ctx)
     // after BMiddleware
 // after AMiddleware
 ```
+
+#### 测试用例设计
+
+这种结构没办法直接进行测试，可以使用一些间接方法。比如，让每个中间件都输出一个全局唯一的而且没有前缀冲突的字符串到全链路通用的数据结构里面。整个链路运行之后，从全链路通用的数据结构里面取出字符串，和测试用例相比较。下面举个例子。
+
+```
+func UserId (p7ctx *HTTPContext) {
+    p7ctx.TestString = append(p7ctx.TestString, "UserId;")
+}
+```
+
+```
+func AMiddleware() HTTPMiddleware {
+	return func(next HTTPHandleFunc) HTTPHandleFunc {
+		return func(p7ctx *HTTPContext) {
+		    p7ctx.TestString = append(p7ctx.TestString, "beforeA;")
+			next(p7ctx)
+			p7ctx.TestString = append(p7ctx.TestString, "afterA;")
+		}
+	}
+}
+
+func BMiddleware() HTTPMiddleware {
+	return func(next HTTPHandleFunc) HTTPHandleFunc {
+		return func(p7ctx *HTTPContext) {
+			p7ctx.TestString = append(p7ctx.TestString, "beforeB;")
+			next(p7ctx)
+			p7ctx.TestString = append(p7ctx.TestString, "afterB;")
+		}
+	}
+}
+```
+
+##### 测试用例 2
+
+```
+chain := func UserId()
+mb := BMiddleware()
+chain = mb(chain)
+ma := AMiddleware()
+chain = ma(chain)
+chain(ctx)
+```
+
+结果："beforeA;beforeB;UserId;afterB;afterA;"
+
+##### 测试用例 4
+
+```
+chain := func UserId()
+ma := AMiddleware()
+chain = ma(chain)
+mb := BMiddleware()
+chain = mb(chain)
+chain(ctx)
+```
+
+结果："beforeB;beforeA;UserId;afterA;afterB;"
 
 ### 可路由的中间件
 
