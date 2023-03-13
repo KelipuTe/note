@@ -1,8 +1,8 @@
 ---
 draft: false
-date: 2023-02-11 08:00:00 +0800
-lastmod: 2023-02-11 08:00:00 +0800
-title: "Golang 实现简单的 Web 框架 -- middleware(中间件)"
+date: 2023-03-12 08:00:00 +0800
+lastmod: 2023-03-12 08:00:00 +0800
+title: "【实验性质，带图片】Golang 实现简单的 Web 框架 -- middleware(中间件)"
 summary: "中间件是什么；"
 toc: true
 
@@ -31,7 +31,7 @@ tags:
 - [{demo-golang}](https://github.com/KelipuTe/demo-golang)/demo/web/middleware/
 - <a href="/drawio/computer-science/programming-language/framework/web/web.drawio.html">web.drawio.html</a>
 
-前置笔记：[Golang 实现简单的 Web 框架 -- router(路由)](/post/computer-science/programming-language/framework/web/golang/router_v2)
+前置笔记：[【实验性质，带图片】Golang 实现简单的 Web 框架 -- router(路由)](/post/computer-science/programming-language/framework/web/golang/router_v4)
 
 ## 正文
 
@@ -50,7 +50,7 @@ type 全链路通用的数据结构 struct {
 }
 ```
 
-这里沿用上一篇中，访问 "/user/id" 的时候的结果。结合上面说的全链路通用的数据结构，最终地执行逻辑可以总结成下面这样。注意一定是引用传递，值传递进去的是一个副本，方法里面修改副本是不会影响外面的这个本体的。这里画个代码块的示意图，见图：**web.drawio.html 6-6-2**，下面要用。
+这里沿用上一篇中，访问 "/user/id" 的时候的结果。结合上面说的全链路通用的数据结构，最终地执行逻辑可以总结成下面这样。注意一定是引用传递，值传递进去的是一个副本，方法里面修改副本是不会影响外面的这个本体的。
 
 ```
 func ServeHTTP(http.ResponseWriter, *http.Request) {
@@ -61,6 +61,10 @@ func ServeHTTP(http.ResponseWriter, *http.Request) {
 	// 后置工作 user (引用传递全链路通用的数据结构)
 }
 ```
+
+这里画个代码块的示意图，见图：**web.drawio.html 6-6-2**，下面要用。
+
+![图片](/image/computer-science/programming-language/framework/web/web.6-6-2.drawio.png)
 
 这个结构可以解决需要互相传递数据的问题。比如，如果 "后置工作 user" 需要使用 "前置工作 user" 生成的数据，那就可以借助全链路通用的数据结构，"前置工作 user" 在执行的时候往里面塞点东西，这样后面的流程就可以用了。看上去没有什么大的漏洞。
 
@@ -111,6 +115,8 @@ func ServeHTTP(http.ResponseWriter, *http.Request) {
 
 那么这里需要的，就是以一整个方法作为参数的结构。代码（伪代码）就会变成类似下面这样的结构。这样的话，前面需要放到全链路通用的数据结构里的值是不是就不要了。上面那个代码块示意图会变成这样，见图：**web.drawio.html 6-6-4**。
 
+![图片](/image/computer-science/programming-language/framework/web/web.6-6-4.drawio.png)
+
 ```
 func ServeHTTP(http.ResponseWriter, *http.Request) {
 	// 构造一个全链路通用的数据结构，封装 ServeHTTP 方法的两个参数
@@ -150,6 +156,8 @@ func 剩下的 (引用传递全链路通用的数据结构) {
 
 然后，整个代码就可以变成这样了，一个类似套娃的结构。上面那个代码块示意图会变成这样，见图：**web.drawio.html 6-6-6**。
 
+![图片](/image/computer-science/programming-language/framework/web/web.6-6-6.drawio.png)
+
 ```
 func ServeHTTP(http.ResponseWriter, *http.Request) {
 	// 构造一个全链路通用的数据结构，封装 ServeHTTP 方法的两个参数
@@ -170,6 +178,12 @@ func ServeHTTP(http.ResponseWriter, *http.Request) {
 ### 中间件
 
 上面这玩意就是所谓的中间件（Middleware）的概念了，见图：**web.drawio.html 6-2-2**。也就是常听到的洋葱模型，见图：**web.drawio.html 6-2-4**。或者同心圆模型，见图：**web.drawio.html 6-2-6**。
+
+![图片](/image/computer-science/programming-language/framework/web/web.6-2-2.drawio.png)
+
+![图片](/image/computer-science/programming-language/framework/web/web.6-2-4.drawio.png)
+
+![图片](/image/computer-science/programming-language/framework/web/web.6-2-6.drawio.png)
 
 本人更喜欢同心圆模型。前面两个模型的示意图，都没有明显的把嵌套的关系展现出来，更多的展示的是层层递进的关系。而同心圆模型，精准地反映了嵌套的关系，一层一层的进去之后，不管怎么走，都要再一层一层的原路出来。
 
@@ -251,6 +265,8 @@ chain(ctx)
 ```
 
 怎么装起来的见图：**web.drawio.html 6-4**。最后的效果等价于下面这样的伪代码。
+
+![图片](/image/computer-science/programming-language/framework/web/web.6-4.drawio.png)
 
 ```
 // before AMiddleware

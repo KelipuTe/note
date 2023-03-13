@@ -1,8 +1,8 @@
 ---
 draft: false
-date: 2023-02-09 08:00:00 +0800
-lastmod: 2023-02-11 08:00:00 +0800
-title: "Golang 实现简单的 Web 框架 -- router(路由)"
+date: 2023-03-12 08:00:00 +0800
+lastmod: 2023-03-12 08:00:00 +0800
+title: "【实验性质，带图片】Golang 实现简单的 Web 框架 -- router(路由)"
 summary: "Web 框架是什么；路由是什么；路由树是怎么来的；"
 toc: true
 
@@ -67,7 +67,13 @@ tags:
 
 别看见 TCP 就紧张，这里不要求深入了解 TCP 的细节，只需要知道 TCP 是一个字节流协议就可以了。字节流协议，它的意思就是说，传输数据的时候，它是以字节为单位的，传输的过程像流水一样，一个字节接着一个字节的。见图：**web.drawio.html 2-2**。
 
+![图片](/image/computer-science/programming-language/framework/web/web.2-2.drawio.png)
+
 HTTP 1.1 是基于 TCP 协议实现的，所以 HTTP 1.1 也可以说是一种字节流协议。这里为什么要说这个呢？主要是想强调一下，在计算机的 "眼里"，HTTP 报文它不是一个整体，而是一个一个字符。HTTP 1.1 报文大概的格式见图：**web.drawio.html 2-4-2、2-4-4**。
+
+![图片](/image/computer-science/programming-language/framework/web/web.2-4-2.drawio.png)
+
+![图片](/image/computer-science/programming-language/framework/web/web.2-4-4.drawio.png)
 
 既然发出去的 HTTP 报文就是一串字符，那么如果不说明这串字符怎么解读，那这串字符就毫无意义。所以客户端和服务端会通过约定请求行的 method 和 url 来区分不同的报文，method 和 url 的组合就是路由。
 
@@ -245,7 +251,13 @@ func handleGet(){
 
 设想一个场景，图书馆里有大量的书需要分类管理。那么可以先按书内容的类别，分到不同的楼层去。然后再按书的作者，分到不同的书架上去。如果想处理某一类的书，可以只在某个楼层内操作，不会影响到别的楼层。如果想处理某一类的某个作者的书，可以只在某个楼层的某个书架上操作，不会影响到这个楼层的别的书架，更不会影响到别的楼层。
 
-这里把这种结构画出来就很直观了。见图：**web.drawio.html 4-2**。这种结构在数据结构里对应的就是树形结构。把上面的 method、url、前置（后置）工作对应进去再画一张图。见图：**web.drawio.html 4-4**。
+这里把这种结构画出来就很直观了。见图：**web.drawio.html 4-2**。
+
+![图片](/image/computer-science/programming-language/framework/web/web.4-2.drawio.png)
+
+这种结构在数据结构里对应的就是树形结构。把上面的 method、url、前置（后置）工作对应进去再画一张图。见图：**web.drawio.html 4-4**。
+
+![图片](/image/computer-science/programming-language/framework/web/web.4-4.drawio.png)
 
 ### 路由树
 
@@ -253,9 +265,13 @@ func handleGet(){
 
 到这里，所谓的路由树的概念就呼之欲出了。上面的那棵树的结点中记录了全路径，但是这其实是不需要的。当命中 'like "/user/%"' 分支往下走的时候，后面的 url 最前面的那段就肯定是 "/user/"。所以这里就可以借助前缀的思路，用 "/" 作为分隔标志，将上面的那棵树转化成前缀树。见图：**web.drawio.html 4-6-2**。注意有个根结点（"/" 结点）。
 
+![图片](/image/computer-science/programming-language/framework/web/web.4-6-2.drawio.png)
+
 这样当一个 HTTP 请求过来的时候，先通过 method 判断应该到哪一棵路由树里去找。然后用 "/" 将 url 分开，依次去路由树里匹配，如果结点上有前置（后置）工作就需要记录下来。最后找到目标结点时，按照前置工作、处理逻辑、后置工作的顺序依次执行。
 
 比如，在 **web.drawio.html 4-6-2** 这颗树里，访问 "/user/id" 的时候。依次会访问："/" 结点；"user" 结点，记录下 "前置工作 user" 和 "后置工作 user"；id 结点，记录下 "前置工作 user-id" 和 "/user/id" 的处理逻辑。见图：**web.drawio.html 4-6-4**。
+
+![图片](/image/computer-science/programming-language/framework/web/web.4-6-4.drawio.png)
 
 执行的时候，从逻辑上考虑的话，应该是前面的结点的前置任务应该在前面，前面的结点的后置任务应该在后面。所以上面就应该按照 "前置工作 user"、"前置工作 user-id"、"/user/id" 的处理逻辑、"后置工作 user" 的顺序依次执行。
 
@@ -311,9 +327,13 @@ type routingNode struct {
 
 对于这种 ":id" 的位置可以变的路由。if-else 分支或者 map 是无解的。因为，":id" 对应的位置可变，意味着这里会对应无穷多个 if-else 分支。路由树有没有解呢？路由树可以解决，路由树只需要在 user 结点上增加一个特殊的 ":id" 结点，专门用于处理路径参数路由即可。见图：**web.drawio.html 4-8-2**。
 
+![图片](/image/computer-science/programming-language/framework/web/web.4-8-2.drawio.png)
+
 访问 "/user/1" 的时候。依次会访问："/" 结点；"user" 结点。到了 "user" 结点之后，按照默认逻辑下面要找的是 1 结点，但是 "user" 结点下面只有 "info" 结点、"id" 结点，无法匹配。这个时候就可以尝试匹配 ":id" 结点，看看 1 符不符合 ":id" 结点的要求。
 
 这里 ":id" 的位置可以是任意的字符串，所以 1 是符合要求的，所以 "/user/1" 最终调用的就应该是 ":id" 结点的处理逻辑。见图：**web.drawio.html 4-8-4**。
+
+![图片](/image/computer-science/programming-language/framework/web/web.4-8-4.drawio.png)
 
 但是需要注意的是，这三个玩意匹配的时候可能都能匹配上，所以需要人为的定义这三个特殊的路由，哪个优先匹配，哪个最后匹配。
 
@@ -390,4 +410,4 @@ type routingNode struct {
 
 ### 前置（后置）工作成对出现
 
-上面讨论前置（后置）工作的时候，都是以 "前置（后置）工作是可以独立执行的整体" 为前提讨论的。如果它们之间有合作关系，也就是需要相互传递数据，那么怎么办呢？这个放到下一篇里说：[Golang 实现简单的 Web 框架 -- middleware(中间件)](/post/computer-science/programming-language/framework/web/golang/middleware_v2)
+上面讨论前置（后置）工作的时候，都是以 "前置（后置）工作是可以独立执行的整体" 为前提讨论的。如果它们之间有合作关系，也就是需要相互传递数据，那么怎么办呢？这个放到下一篇里说：[【实验性质，带图片】Golang 实现简单的 Web 框架 -- middleware(中间件)](/post/computer-science/programming-language/framework/web/golang/middleware_v4)
