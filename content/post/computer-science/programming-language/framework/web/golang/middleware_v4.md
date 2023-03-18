@@ -113,9 +113,7 @@ func ServeHTTP(http.ResponseWriter, *http.Request) {
 
 那么这里怎么优化呢？"前置工作 user" 和 "后置工作 user" 不是想要进行沟通嘛，那么能不能直接把这两个部分直接连起来呢？可以的，把中间的 "前置工作 user-id" 和 '"/user/id" 的处理逻辑' 看作一个整体的代码块。
 
-那么这里需要的，就是以一整个方法作为参数的结构。代码（伪代码）就会变成类似下面这样的结构。这样的话，前面需要放到全链路通用的数据结构里的值是不是就不要了。上面那个代码块示意图会变成这样，见图：**web.drawio.html 6-6-4**。
-
-![图片](/image/computer-science/programming-language/framework/web/web.6-6-4.drawio.png)
+那么这里需要的，就是以一整个方法作为参数的结构。代码（伪代码）就会变成类似下面这样的结构。这样的话，前面需要放到全链路通用的数据结构里的值是不是就不要了。
 
 ```
 func ServeHTTP(http.ResponseWriter, *http.Request) {
@@ -131,7 +129,11 @@ func ServeHTTP(http.ResponseWriter, *http.Request) {
 }
 ```
 
-这个结构怎么实现呢？首先需要注意到，这里需要传进去的已经不是那个全链路通用的数据结构了。需要传进去的是上面的伪代码中，中间的那个 "func 剩下的" 部分，也就是下面这部分.它是一个整体的代码块，或者说是一个完整的方法。
+上面那个代码块示意图会变成这样，见图：**web.drawio.html 6-6-4**。
+
+![图片](/image/computer-science/programming-language/framework/web/web.6-6-4.drawio.png)
+
+这个结构怎么实现呢？首先需要注意到，这里需要传进去的已经不是那个全链路通用的数据结构了。需要传进去的是上面的伪代码中，中间的那个 "func 剩下的" 部分，也就是下面这部分。它是一个整体的代码块，或者说是一个完整的方法。
 
 ```
 func 剩下的 (引用传递全链路通用的数据结构) {
