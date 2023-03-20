@@ -15,14 +15,19 @@ tags:
 - Hugo
 - GitHub-Pages
 ---
+## 前言
 
-> CPU AMD64(x86_64)<br/>
-> Windows 11 家庭版<br/>
-> hugo 0.103.1
+实践的环境：
+
+- CPU AMD64(x86_64)
+- Windows 11 家庭版
+- hugo 0.103.1
+
+## 正文
 
 ### Hugo 文档
 
-- [gohugoio/hugo](https://github.com/gohugoio/hugo)
+- [github - gohugoio/hugo](https://github.com/gohugoio/hugo)
 - [英文文档](https://gohugo.io/)
 - [中文文档](https://www.gohugo.org/)
 
@@ -151,6 +156,6 @@ tags:
 - categories：文本分类，一般一个 
 - tags：文本标签，可以多个
 
-### reference（参考）
+## 参考（reference）
 
 - [hugo个人博客搭建并部署到GitHub【 for Windows】](https://www.jianshu.com/p/cc73559fea2c)
