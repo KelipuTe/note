@@ -7,7 +7,7 @@ summary: "Redis"
 toc: true
 
 categories:
-- data-structure(数据结构)
+- cache(缓存)
 
 tags:
 - computer-science(计算机科学)

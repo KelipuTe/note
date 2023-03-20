@@ -7,7 +7,7 @@ summary: "缓存一致性"
 toc: true
 
 categories:
-- data-structure(数据结构)
+- cache(缓存)
 
 tags:
 - computer-science(计算机科学)
@@ -36,17 +36,21 @@ tags:
 
 缓存刷新策略：更新数据库后删除缓存。
 
-<div style="text-align: center; margin: 5px auto">
-<img src="/image/computer-science/cache/cache-coherence_incoherence-01.drawio.png">
-</div>
+[//]: # (<div style="text-align: center; margin: 5px auto">)
+
+[//]: # (<img src="/image/computer-science/cache/cache-coherence_incoherence-01.drawio.png">)
+
+[//]: # (</div>)
 
 当两个请求分别由 service a 和 service b 处理时，如果 service a 的第三步比 service b 的第二步慢，缓存最终就会是错误的。
 
 缓存刷新策略：更新数据库后更新缓存。
 
-<div style="text-align: center; margin: 5px auto">
-<img src="/image/computer-science/cache/cache-coherence_incoherence-02.drawio.png">
-</div>
+[//]: # (<div style="text-align: center; margin: 5px auto">)
+
+[//]: # (<img src="/image/computer-science/cache/cache-coherence_incoherence-02.drawio.png">)
+
+[//]: # (</div>)
 
 当两个请求分别由 service a 和 service b 处理时，如果 service a 的第三步比 service b 的第二步慢，缓存最终就会是错误的。
 
