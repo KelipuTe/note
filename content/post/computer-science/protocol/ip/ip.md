@@ -2,8 +2,8 @@
 draft: false
 date: 2022-05-04 08:00:00 +0800
 lastmod: 2022-05-04 08:00:00 +0800
-title: "IP"
-summary: "IP"
+title: "IP 协议"
+summary: "IP 协议；"
 toc: true
 
 categories:
@@ -11,6 +11,7 @@ categories:
 
 tags:
 - computer-science(计算机科学)
+- network(网络)
 - protocol(协议)
 - ip
 ---
@@ -44,12 +45,6 @@ High Order Bits   Format                           Class
       110         21 bits of net,  8 bits of host    c
       111         escape to extended addressing mode
 ```
-
-[//]: # (<div style="text-align: center; margin: 5px auto">)
-
-[//]: # (<img src="/image/computer-science/protocol/ip/ip_address.drawio.png">)
-
-[//]: # (</div>)
 
 IPv4 地址由 32 位二进制数表示，分为网络号和主机号。最多可以表示 $2^{32}$ 个主机。
 
@@ -127,26 +122,6 @@ D、E 类地址没有主机号。D 类地址常用于组播（多播），E 类�
 
 #### unicast（单播）、broadcast（广播）、multicast（组播）
 
-[//]: # (<div style="text-align: center; margin: 5px auto">)
-
-[//]: # (<img src="/image/computer-science/protocol/ip/unicast.drawio.png">)
-
-[//]: # (</div>)
-
-[//]: # ()
-[//]: # (<div style="text-align: center; margin: 5px auto">)
-
-[//]: # (<img src="/image/computer-science/protocol/ip/broadcast.drawio.png">)
-
-[//]: # (</div>)
-
-[//]: # ()
-[//]: # (<div style="text-align: center; margin: 5px auto">)
-
-[//]: # (<img src="/image/computer-science/protocol/ip/multicast.drawio.png">)
-
-[//]: # (</div>)
-
 #### 回环地址
 
 回环地址是在同一台计算机上的程序之间进行网络通信时所使用的一个默认地址。
@@ -215,11 +190,6 @@ IPv6（Internet Protocol version 6、互联网通信协议第 6 版）由 IETF�
 
 #### IPv6 地址
 
-[//]: # (<div style="text-align: center; margin: 5px auto">)
-
-[//]: # (<img src="/image/computer-science/protocol/ip/ipv6_address.drawio.png">)
-
-[//]: # (</div>)
 
 IPv6 地址由 128 位二进制数表示。最多可以表示 $2^{128}$ 个主机。
 
