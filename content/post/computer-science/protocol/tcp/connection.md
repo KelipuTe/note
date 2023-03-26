@@ -338,8 +338,3 @@ MSL（Maximum Segment Lifetime、报文最大生存时间）：指的是任何�
 
 ### 参考
 
-- [小林coding](https://xiaolincoding.com/)
-  - [图解网络](https://xiaolincoding.com/network/)
-- [51CTO](https://edu.51cto.com/)
-  - [可用行师](https://edu.51cto.com/lecturer/14934648.html)
-    - [Linux C核心技术](https://edu.51cto.com/course/28903.html)

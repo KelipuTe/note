@@ -1,9 +1,9 @@
 ---
 draft: true
 date: 2021-11-10 08:00:00 +0800
-lastmod: 2021-11-10 08:00:00 +0800
+lastmod: 2023-03-25 08:00:00 +0800
 title: "计算机网络（computer network）"
-summary: "计算机网络；"
+summary: "计算机网络；局域网；以太网；MAC；交换机；冲突域；路由；分组交换；"
 toc: true
 
 categories:
@@ -75,7 +75,7 @@ tags:
 
 #### 报文交换
 
-另一种传输数据的方式是报文交换（message switching）。它的运行方式有点像邮政系统。两个设备之间的线路上会有多个类似站点的东西，每个站点都知道数据的下一站需要发到哪里。
+另一种传输数据的方式是报文交换（message switching）。它的运行方式有点像邮政系统。两个设备之间的线路上会有多个类似站点的东西，每个站点都知道数据的下一站需要发到哪里。见图：network.drawio.html 6-2。
 
 计算机连成网络之后，两个点之间通常会有不止一条路线，这些不同的路线就叫路由（routing）。报文交换的好处是，有多个不同的路由可以使用，这样相比较专线而言，可靠程度更高。
 
@@ -89,11 +89,60 @@ tags:
 
 分组交换将整个消息分成很多的小块，叫数据包（packet），每个数据包都需要包含目标地址（目标的位置）。这种消息的格式由网际互连协议（IP、internet protocol）定义。IP 协议规定，每台计算机都需要一个 IP 地址。这样，路由器（站点）就可以知道需要将数据包发到哪里去。
 
-路由器还会平衡与其他路由器之间的负载，如果有一个大消息，可能会造成单挑路由阻塞，那就可以通过多个路由进行发送。这也叫拥塞控制（congestion control），可以保证网络传输的可靠性和速率。
+路由器还会平衡与其他路由器之间的负载，如果有一个大消息，可能会造成单挑路由阻塞，那就可以通过多个路由进行发送。见图：network.drawio.html 8-2-2、8-2-4。这也叫拥塞控制（congestion control），可以保证网络传输的可靠性和速率。
 
 #### 去中心化
 
 报文交换和分组交换这样的网状结构就是去中心化（decentralization）的结构，网络中的两个点之间存在多条路由。如果一条路由因为某些原因失效了，也可以使用别的路由继续进行消息的传输。
+
+### 互联网
+
+想接入互联网，首先需要和互联网服务商（internet service provider、ISP）打交道。比如，去中国电信办理一个宽带服务。然后工作人员会上门安装一个光猫，通过光猫就可以接入互联网了。如果家里有多台设备需要上网的话，还需要安装一个路由器。这个路由器连接的家里的所有的设备构成了一个局域网。
+
+然后，路由器通过光猫再连接到广域网（wide area network、WAN）。广域网也有路由器，它们一般属于互联网服务商。在广域网里，会先连接到一个区域性路由器，这个路由器可能覆盖一个小区或者一个街道。然后，再连接到一个更大的广域网，可能覆盖一个城市。
+
+可能再跳几次，最终到达互联网主干。互联网主干由一群超大型、超高带宽的路由器组成。在 Linux 或者 Windows 操作系统中可以使用 traceroute 命令来看网络跳了几次。
+
+比如，在 Windows 的 Power Shell 里面用 tracert 命令，跟踪一下 www.baidu.com 的访问过程。
+
+```
+> tracert www.baidu.com
+
+通过最多 30 个跃点跟踪
+到 www.a.shifen.com [180.101.50.242] 的路由:
+
+  1     1 ms    <1 毫秒   <1 毫秒 XiaoQiang [192.168.31.1]
+  2     3 ms     1 ms     1 ms  192.168.1.1
+  3     9 ms     7 ms    11 ms  100.65.0.1
+  4     4 ms     7 ms     7 ms  61.152.5.173
+  5     *        *        *     请求超时。
+  6     *        *        9 ms  202.97.72.206
+  7    10 ms    88 ms     9 ms  58.213.95.26
+  8     *        *        *     请求超时。
+  9    11 ms    10 ms    10 ms  58.213.96.66
+ 10     *        *        *     请求超时。
+ 11     *        *        *     请求超时。
+ 12     *        *        *     请求超时。
+ 13    11 ms     9 ms     9 ms  180.101.50.242
+
+跟踪完成。
+```
+
+### 数据包是如何传输的
+
+上文提到，数据包里有 IP 地址。IP 协议负责把数据包送到正确的计算机。但是，计算机上同时在运行的程序一般不止一个。计算机收到数据包后，应该交给那个程序呢？
+
+因此，需要在 IP 协议之上，开发更高级的协议。比如，传输控制协议（transmission control protocol、TCP） 和用户数据报协议（user datagram protocol、UDP）。TCP 和 UDP 规定，数据包里还需要有端口号。
+
+每个想访问网络的程序都需要向操作系统申请一个端口号。这样，操作系统在接收到数据包之后，就可以根据端口号，把数据包送到正确的程序。
+
+### 域名系统
+
+数据包是通过 IP 地址和端口号进行传输的。但是，在使用浏览器时，输入的并不是 IP 地址，而是网址（域名）。这个功能由域名系统（domain name system、DNS）提供，它负责把域名和 IP 地址一一对应。
+
+当在浏览器里输入一个网址的时候，会先去 DNS 服务器找这个网址对应的 IP 地址。DNS 服务器一般由互联网服务商提供。如果网址有效，则会返回 IP 地址。如果网址无效，则会返回 DNS 解析错误。
+
+域名的数量是非常多的，用一个超长的列表存储全部的域名和对应的 IP 地址是不合适的，DNS 用的是树状结构。最上面是顶级域名，顶级域名下面是二级域名，二级域名下面是子域名。这样，数据就可以散布在很多的 DNS 服务器上，不同的服务器负责树的不同部分。
 
 ### 网络分层模型
 
@@ -103,21 +152,21 @@ tags:
 
 这就类似于，位于两地的人（比如，人 a 和 人 b）需要进行交流的时候，只需要写封信，然后，交给邮递员，由邮政系统完成信的邮递工作，写信的人是不需要关心信是怎么被邮递过去的。应用层常见的协议有 HTTP、FTP、DNS。
 
-TCP（transmission control protocol、传输控制协议）位于传输层。位于传输层的还有 UDP（user datagram protocol、用户数据报协议）。IP 位于网络层。
+TCP 位于传输层。位于传输层的还有 UDP。IP 位于网络层。
 
-  - WAN（wide area network、广域网）
-  - ISP（internet service provider、互联网服务商）
-  - 互联网主干网络
-  - traceroute
-    - TCP（transmission control protocol、传输控制协议）
-    - UDP（user datagram protocol、用户数据报协议）
-    - checksum（校验和）
-  - ICMP（internet control message protocol、internet 控制报文协议）
-  - BGP（border gateway protocol、边界网关协议）
-  - DNS（domain name system、域名系统）
-- www（world wide web、万维网）
-  - hyperlink（超链接）
-  - URL（uniform resource locator、统一资源定位系统）
-  - HTTP（hyper text transfer protocol、超文本传输协议）
-  - HTML（hypertext mark-up language、超文本标记语言）
-  - 网络中立性
+- ICMP（internet control message protocol、internet 控制报文协议）
+- BGP（border gateway protocol、边界网关协议）
+
+### 万维网
+
+万维网（world wide web、WWW）可以用浏览器来访问，它运行在互联网之上，和互联网是不同的东西。在计算机组成的网络中，互联网是传输数据的工具，二万维网是其中传输数据最多的程序。
+
+万维网的最基本的单位是单个页面。页面上有内容，也有其他页面的链接，这些链接也叫超链接（hyperlink）。这些超链接形成巨大的互联网络，这也是万维网名字的由来。
+
+没有超链接的时候，想要访问某个文件，需要准确地知道这个文件在计算机的哪个目录下面。有了超链接之后，为了使网页能互相连接，每个网页需要一个唯一的地址，这地址就是统一资源定位器（uniform resource locator、URL）。
+
+如果网页的数据只有纯文本，那么是无法表明什么是链接什么不是链接的，所以需要定义一套规则来进行标记，这就是超文本标记语言（hypertext mark-up language、HTML）。随之一起的，还有基于 TCP 协议开发的超文本传输协议（hyper text transfer protocol、HTTP）
+
+- [小林coding](https://xiaolincoding.com/)
+  - [图解系统](https://xiaolincoding.com/os/)
+- [ChatGPT](https://chat.openai.com/chat)
