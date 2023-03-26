@@ -1,9 +1,9 @@
 ---
 draft: true
-date: 2021-11-10 08:00:00 +0800
+date: 2023-03-25 08:00:00 +0800
 lastmod: 2023-03-25 08:00:00 +0800
 title: "计算机网络（computer network）"
-summary: "计算机网络；局域网；以太网；MAC；交换机；冲突域；路由；分组交换；"
+summary: "计算机网络；局域网；以太网；MAC；交换机；冲突域；路由；分组交换；互联网；DNS；网络分层模型；万维网；"
 toc: true
 
 categories:
@@ -167,6 +167,6 @@ TCP 位于传输层。位于传输层的还有 UDP。IP 位于网络层。
 
 如果网页的数据只有纯文本，那么是无法表明什么是链接什么不是链接的，所以需要定义一套规则来进行标记，这就是超文本标记语言（hypertext mark-up language、HTML）。随之一起的，还有基于 TCP 协议开发的超文本传输协议（hyper text transfer protocol、HTTP）
 
-- [小林coding](https://xiaolincoding.com/)
-  - [图解系统](https://xiaolincoding.com/os/)
-- [ChatGPT](https://chat.openai.com/chat)
+## 参考（reference）
+
+- [计算机科学相关笔记的参考](/post/computer-science/reference)

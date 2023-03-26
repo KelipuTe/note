@@ -25,3 +25,4 @@ tags:
     - [Linux C核心技术](https://edu.51cto.com/course/28903.html)
 - [小林coding](https://xiaolincoding.com/)
     - [图解网络](https://xiaolincoding.com/network/)
+- [ChatGPT](https://chat.openai.com/chat)
