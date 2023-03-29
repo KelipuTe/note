@@ -49,7 +49,7 @@ tags:
 
 ### 寄存器
 
-把 n 个门锁线性排列起来，就可以存储 n 个 bit 的数据了，register（寄存器）就是这种结构。这里简单画一个 8 位的寄存器。（见图：**memory.drawio.html 6-2**）
+把 n 个门锁线性排列起来，就可以存储 n 个 bit 的数据了，寄存器（register）就是这种结构。这里简单画一个 8 位的寄存器。（见图：**memory.drawio.html 6-2**）
 
 ### 二维的平面结构
 
@@ -75,7 +75,4 @@ tags:
 
 ## 参考（reference）
 
-- Crash Course Computer Science（计算机科学速成课）
-  - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)
-  - [CrashCourse 字幕组](https://github.com/1c7/crash-course-computer-science-chinese)
-  - [Youtube 原视频](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulI)
+- [计算机科学相关笔记的参考](/post/computer-science/reference)

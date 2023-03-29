@@ -13,7 +13,6 @@ tags:
 - computer-science(计算机科学)
 - hardware(硬件)
 ---
-
 ## 资料
 
 - <a href="/drawio/computer-science/hardware/alu.drawio.html">alu.drawio.html</a>
@@ -80,7 +79,15 @@ tags:
 
 ### ALU
 
-算术逻辑单元（arithmetic and logic unit、ALU）由算术单元（AU）和逻辑单元（LU）组成。
+算术逻辑单元（arithmetic and logic unit、ALU）由算术单元（arithmetic unit、AU）和逻辑单元（logic unit、LU）组成。
+
+ALU 一般都会支持的 8 个操作：加法（add）、带进位的加法（add with carry）、减法（subtract）、带借位的减法（subtract with borrow）、取消（negate）、增量（increment、可以理解为 +1）、减量（decrement、可以理解为 -1）、数字无改变通过（pass through）
+
+简单的 ALU 没有乘法和除法，乘法就是多次加法。高级的 ALU 有专门做乘法的算术单元。
+
+ALU 有三个输入：两个数据，一个操作码。操作码用于指示 ALU 做什么操作。
+
+ALU 有多个输出：一个数据输出；多个标志（flag）输出。标志输出有很多。比如：溢出标志（OVERFLOW）、零测试电路（ZERO）、负标志（NEGATIVE），这三个是普遍使用的。
 
 ### 算术单元
 
@@ -145,6 +152,8 @@ tags:
 
 参考"两个 2 位二进制数加法"的实现方式，就可以设计出"两个 n 位二进制数加法"的运算电路。比如，8 位行波进位加法器（8 bit ripple carry adder）。（见图：**alu.drawio.html 48-2**）可以处理两个 8 位二进制数的加法运算，产生 9 个输出：一个 carry、8 个 sum（注意顺序）。
 
+现代计算机的加法器是超前进位加法器，超前进位加法器的电路结构和行波进位加法器不同，速度更快。
+
 ### 逻辑单元
 
 逻辑单元由大量逻辑门组成，主要的功能是判断输入到底是哪一种输入。
@@ -157,19 +166,22 @@ tags:
 
 ALU 就是由算术单元和逻辑单元组成的，这里画一个简单的 ALU 的抽象示意图（见图：**alu.drawio.html 80-2**），真正的 ALU 会有更多的东西。
 
-这里的抽象示意图对应的是一个可以处理两个 8 位二进制数的算术运算的 ALU。它有，两个数据输入（两个二进制数）、一个 operation code（操作码）输入（加法还是减法）、一个数据输出（算数运算的结果）、3 个 flag（标志位）输出（overflow 是否溢出、zero 是否为 0、negative 是否为负）。
+这里的抽象示意图对应的是一个可以处理两个 8 位二进制数的算术运算的 ALU。它有，两个数据输入（两个二进制数）、一个操作码（operation code）输入（加法还是减法）、一个数据输出（算数运算的结果）、3 个标志位（flag）输出（overflow 是否溢出、zero 是否为 0、negative 是否为负）。
 
 下面举几个例子：
 
+加法器的进位输出连接到溢出标志，如果溢出标志输出 true，表示有溢出。
+
 计算 0b11111111 + 0b11111111。两个数据输入是 0b11111111 和 0b11111111、操作码输入假设是 0b0001（表示加法）。这个时候，因为 0b11111111 + 0b11111111 = 0b111111110，溢出了。所以数据输出会是 0b11111110、overflow 会是 1。
 
+计算 A-B 时，如果零测试电路输出 true，表示 A 和 B 相等。
+
 计算 0b11111111 == 0b11111111。计算机不会直接比较两个数字哪个大哪个小，计算机用的思路是让两个数字相减，然后和 0 比较。两个数据输入是 0b11111111 和 0b11111111、操作码输入假设是 0002（表示减法）。这个时候，因为 0b11111111 - 0b11111111 = 0b00000000，为 0。所以数据输出会是 0b00000000、zero 会是 1。
+
+计算 A-B 时，如果负标志输出 true，表示 A 小于 B。
 
 计算 0b11111111 < 0b11111110。和上面那个例子的思路一样。两个数据输入是 0b11111111 和 0b11111110、操作码输入假设是 0002（表示减法）。这个时候，因为 0b11111111 - 0b11111110 = 0b00000001，大于 0。所以数据输出会是 0b00000001、negative 会是 0（表示 0b11111111 - 0b11111110 > 0，0b11111111 更大）。
 
 ## 参考（reference）
 
-- Crash Course Computer Science（计算机科学速成课）
-  - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)
-  - [CrashCourse 字幕组](https://github.com/1c7/crash-course-computer-science-chinese)
-  - [Youtube 原视频](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulI)
+- [计算机科学相关笔记的参考](/post/computer-science/reference)
