@@ -1,7 +1,7 @@
 ---
-draft: true
+draft: false
 date: 2023-03-25 08:00:00 +0800
-lastmod: 2023-03-25 08:00:00 +0800
+lastmod: 2021-11-10 08:00:00 +0800
 title: "计算机网络（computer network）"
 summary: "计算机网络；局域网；以太网；MAC；交换机；冲突域；路由；分组交换；互联网；DNS；网络分层模型；万维网；"
 toc: true

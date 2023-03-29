@@ -26,3 +26,5 @@ tags:
 - [小林coding](https://xiaolincoding.com/)
     - [图解网络](https://xiaolincoding.com/network/)
 - [ChatGPT](https://chat.openai.com/chat)
+- 微信公众号
+  - 北风计算机编程
