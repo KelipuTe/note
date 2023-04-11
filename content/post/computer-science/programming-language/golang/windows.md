@@ -1,3 +1,21 @@
+---
+draft: false
+date: 2021-11-17 08:00:00 +0800
+lastmod: 2023-04-11 08:00:00 +0800
+title: "在 Visual Studio Code 中，配置 golang 开发环境"
+summary: "在 Visual Studio Code 中，配置 golang 开发环境"
+toc: true
+
+categories:
+- golang
+
+tags:
+- computer-science(计算机科学)
+- programming-language(编程语言)
+- golang
+---
+## 正文
+
 ## windows环境安装和配置golang开发环境
 
 ### 下载

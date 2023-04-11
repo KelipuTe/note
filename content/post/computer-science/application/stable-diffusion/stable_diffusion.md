@@ -44,7 +44,86 @@ tags:
 
 {web UI} 界面左上角，Stable Diffusion 模型(ckpt)，在下拉列表里选择需要启用的模型。
 
-#### 个人比较喜欢的 CheckPoint 模型
+#### LoRA
+
+- {bilibili}/{秋葉aaaki}/[【AI绘画】全新的微调模型！LoRA模型使用教程 插件安装 NovelAI](https://www.bilibili.com/video/BV1Py4y1d7eJ/)
+
+把下载下来的模型 {Stable Diffusion}\extensions\sd-webui-additional-networks\models\lora\ 目录。
+
+正常的写 Tag。然后，设置 "可选附加网络(LoRA 插件)" 选项。勾选 "启用"，然后，选择需要的附加网络类型，设置权重。
+
+### Tag 语法
+
+- ','：用于分隔不同的关键词。比如：white hair,red eyes。
+- '|'：用于等比例混合。在 web UI 才可以用。比如：white|black hair。
+- "(tag,权重数值)"：用于设置 tag 的权重。权重数值 0.1~100。
+- "(tag)"、"((tag))"：用于增加权重。一层小括号，权重增加 1.1 倍。
+- "\[tag\]"、"\[\[tag\]\]"：用于减少权重。一层中括号，权重减少 1.1 倍。
+- "\[tag1:tag2:数字\]"：用于渐变。数字大于 1 表示，第{数字}步之前 tag 1，第{数字}步之后 tag 2。数字小于 1 表示，总步数百分之{数字}之前 tag 1，总步数百分之{数字}之后 tag 2。比如：\[white hair:black hair:5\]。
+- "\[tag1|tag2\]"：用于交替。比如：\[white hair|black hair\]。
+
+### Prompt（提示词）
+
+Tag 不是越多越好，控制在 100 个以内。只写最关键的 Tag，别的 Tag 有需要的时候在加。注意 Tag 之间的冲突，比如：全身+上半身、长腿+短腿、等。
+
+注意 Tag 的顺序，基本按照画面从上到下的顺序。同类的 Tag 里面，越关键的 Tag，越往前放。但是，有的时候，需要越级调整；有的时候，LoRA 模型有 Tag 要求。
+
+### Negative prompt（反向提示词）
+
+### 常用 Negative prompt
+
+EasyNegative,
+(worst quality, low quality:1.4),
+(poorly drawn face:1.4),(extra limbs:1.35),
+(malformed hands:1.4),(poorly drawn hands:1.4),(mutated fingers:1.4),
+
+### 异常
+
+#### 报错 1
+
+```
+NansException: A tensor with all NaNs was produced in VAE. This could be because there's not enough precision to represent the picture. Try adding --no-half-vae commandline argument to fix this. Use --disable-nan-check commandline argument to disable this check.
+```
+
+打开启动器，在左侧菜单栏找到高级选项，在高级选项界面，勾选 "不使用半精度 VAE(--no-half-vae)" 和 "关闭数值溢出检查(--disable-nan-check)"。
+
+### ControlNet
+
+#### 安装
+
+- {bilibili}/{秋葉aaaki}/[【AI绘画】完美控制画面！告别抽卡时代 人物动作控制/景深/线稿上色 Controlnet安装使用教程](https://www.bilibili.com/video/BV1Wo4y1i77v/)
+
+大佬提供了整合包。这里假设，整合包解压之后的目录路径是 {controlnet}，方便下面的说明。
+
+`{web UI} --> 扩展 --> 从网址安装`。在 "扩展的 git 仓库网址" 里，输入 https://jihulab.com/hunter0725/sd-webui-controlnet，然后点击下面的安装按钮。
+
+等待安装，安装成功后，会在安装按钮的下面输出 `Installed into D:\stable-diffusion\extensions\sd-webui-controlnet. Use Installed tab to restart.`
+
+把 {controlnet}\安装\openpose\ 目录下面的文件，放到 {Stable Diffusion}\extensions\sd-webui-controlnet\annotator\openpose\ 目录。
+
+把 {controlnet}\安装\midas\ 目录下面的文件，放到 {Stable Diffusion}\extensions\sd-webui-controlnet\annotator\midas\ 目录。
+
+把 {controlnet}\模型\ 目录下面的文件，放到 {Stable Diffusion}\extensions\sd-webui-controlnet\models\ 目录。
+
+这些都搞定之后，`{web UI} --> 扩展 --> 已安装`。点击应用并重启用户界面按钮。重启完成后，应该就可以在文生图（别的也行）左下方的设置区域的最下面，看见 ControlNet 的选项。
+
+#### 使用
+
+正常的写 Tag。然后，设置 "扩散控制网络(ControlNet)" 选项。勾选 "启用"，如果显存低于 8G，还需要勾选 "低显存优化"。然后，选择预处理器和模型，这两个要匹配着选。
+
+- 预处理器选 "canny"，模型选 "control_canny"，实现边缘检测，达到上色的效果。
+- 预处理器选 "depth"，模型选 "control_depth"，实现深度图，达到指定的画面结构。
+- 预处理器选 "hed"，模型选 "control_hed"，实现 hed 边缘检测，没有 canny 那么精准的控制，AI 可以自由发挥。
+- 预处理器选 "openpose"，模型选 "control_openpose"，实现人体动作控制。可以用其他软件做出骨骼图。
+- 还有很多其他的。
+
+比如，预处理器选 "openpose 姿态及手部检测"，模型选 "control_openpost"。然后，给 ControlNet 一张图片（最好是真人的）。然后，就可以开始生成图片了。
+
+预处理器会参考给的图片生成对应的生成条件图，ControlNet 会用生成条件图去指导 AI 生成图片。这里是可以自己造生成条件图，然后，直接给 ControlNet 的。
+
+### 个人比较喜欢的模型
+
+#### CheckPoint 模型
 
 ##### 4468
 
@@ -70,15 +149,7 @@ tags:
 
 二次元、涩涩。
 
-#### LoRA
-
-- {bilibili}/{秋葉aaaki}/[【AI绘画】全新的微调模型！LoRA模型使用教程 插件安装 NovelAI](https://www.bilibili.com/video/BV1Py4y1d7eJ/)
-
-把下载下来的模型 {Stable Diffusion}\extensions\sd-webui-additional-networks\models\lora\ 目录。
-
-正常的写 Tag。然后，设置 "可选附加网络(LoRA 插件)" 选项。勾选 "启用"，然后，选择需要的附加网络类型，设置权重。
-
-#### 个人比较喜欢的 LoRA 模型
+#### LoRA 模型
 
 ##### 3938
 
@@ -155,81 +226,11 @@ HK416。Tag：gun、weapons、holding weapon、assault rifle。
 {civitai}/[Incoming hug/kiss](https://civitai.com/models/21388/incoming-hugkiss)
 
 二次元、抱过来、亲过来。Tag：incoming hug(抱过来)、incoming kiss(亲过来)。Nagative：EasyNegative、bad-hands-5。
-
 ##### 18194
 
 {civitai}/[Murky's After Sex Lying LoRA](https://civitai.com/models/18194/murkys-after-sex-lying-lora)
 
 二次元、事后。Tag：after sex(性爱后)。
-
-### Tag 语法
-
-- ','：用于分隔不同的关键词。比如：white hair,red eyes。
-- '|'：用于等比例混合。在 web UI 才可以用。比如：white|black hair。
-- "(tag,权重数值)"：用于设置 tag 的权重。权重数值 0.1~100。
-- "(tag)"、"((tag))"：用于增加权重。一层小括号，权重增加 1.1 倍。
-- "\[tag\]"、"\[\[tag\]\]"：用于减少权重。一层中括号，权重减少 1.1 倍。
-- "\[tag1:tag2:数字\]"：用于渐变。数字大于 1 表示，第{数字}步之前 tag 1，第{数字}步之后 tag 2。数字小于 1 表示，总步数百分之{数字}之前 tag 1，总步数百分之{数字}之后 tag 2。比如：\[white hair:black hair:5\]。
-- "\[tag1|tag2\]"：用于交替。比如：\[white hair|black hair\]。
-
-### Prompt（提示词）
-
-Tag 不是越多越好，控制在 100 个以内。只写最关键的 Tag，别的 Tag 有需要的时候在加。注意 Tag 之间的冲突，比如：全身+上半身、长腿+短腿、等。
-
-注意 Tag 的顺序，基本按照画面从上到下的顺序。同类的 Tag 里面，越关键的 Tag，越往前放。但是，有的时候，需要越级调整；有的时候，LoRA 模型有 Tag 要求。
-
-### Negative prompt（反向提示词）
-
-### 常用 Negative prompt
-
-EasyNegative,
-(worst quality, low quality:1.4),
-(poorly drawn face:1.4),(extra limbs:1.35),
-(malformed hands:1.4),(poorly drawn hands:1.4),(mutated fingers:1.4),
-
-### 异常
-
-#### 报错 1
-
-```
-NansException: A tensor with all NaNs was produced in VAE. This could be because there's not enough precision to represent the picture. Try adding --no-half-vae commandline argument to fix this. Use --disable-nan-check commandline argument to disable this check.
-```
-
-打开启动器，在左侧菜单栏找到高级选项，在高级选项界面，勾选 "不使用半精度 VAE(--no-half-vae)" 和 "关闭数值溢出检查(--disable-nan-check)"。
-
-### ControlNet
-
-#### 安装
-
-- {bilibili}/{秋葉aaaki}/[【AI绘画】完美控制画面！告别抽卡时代 人物动作控制/景深/线稿上色 Controlnet安装使用教程](https://www.bilibili.com/video/BV1Wo4y1i77v/)
-
-大佬提供了整合包。这里假设，整合包解压之后的目录路径是 {controlnet}，方便下面的说明。
-
-`{web UI} --> 扩展 --> 从网址安装`。在 "扩展的 git 仓库网址" 里，输入 https://jihulab.com/hunter0725/sd-webui-controlnet，然后点击下面的安装按钮。
-
-等待安装，安装成功后，会在安装按钮的下面输出 `Installed into D:\stable-diffusion\extensions\sd-webui-controlnet. Use Installed tab to restart.`
-
-把 {controlnet}\安装\openpose\ 目录下面的文件，放到 {Stable Diffusion}\extensions\sd-webui-controlnet\annotator\openpose\ 目录。
-
-把 {controlnet}\安装\midas\ 目录下面的文件，放到 {Stable Diffusion}\extensions\sd-webui-controlnet\annotator\midas\ 目录。
-
-把 {controlnet}\模型\ 目录下面的文件，放到 {Stable Diffusion}\extensions\sd-webui-controlnet\models\ 目录。
-
-这些都搞定之后，`{web UI} --> 扩展 --> 已安装`。点击应用并重启用户界面按钮。重启完成后，应该就可以在文生图（别的也行）左下方的设置区域的最下面，看见 ControlNet 的选项。
-
-#### 使用
-
-正常的写 Tag。然后，设置 "扩散控制网络(ControlNet)" 选项。勾选 "启用"，如果显存低于 8G，还需要勾选 "低显存优化"。然后，选择预处理器和模型，这两个要匹配着选。
-
-- 预处理器选 "canny"，模型选 "control_canny"，实现边缘检测，达到上色的效果。
-- 预处理器选 "depth"，模型选 "control_depth"，实现深度图，达到指定的画面结构。
-- 预处理器选 "hed"，模型选 "control_hed"，实现 hed 边缘检测，没有 canny 那么精准的控制，AI 可以自由发挥。
-- 预处理器选 "openpose"，模型选 "control_openpose"，实现人体动作控制。可以用其他软件做出骨骼图。
-- 还有很多其他的。
-
-比如，预处理器选 "openpose 姿态及手部检测"，模型选 "control_openpost"。然后，给 ControlNet 一张图片（最好是真人的）。然后，就可以开始生成图片了。
-
-预处理器会参考给的图片生成对应的生成条件图，ControlNet 会用生成条件图去指导 AI 生成图片。这里是可以自己造生成条件图，然后，直接给 ControlNet 的。
 
 ## 程序本体
 
