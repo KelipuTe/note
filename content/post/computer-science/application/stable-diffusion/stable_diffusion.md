@@ -70,11 +70,14 @@ Tag 不是越多越好，控制在 100 个以内。只写最关键的 Tag，别�
 
 ### Negative prompt（反向提示词）
 
+反向提示词就是不想出现在画面里的 Tag。这个也不是越多越好，画面有问题的时候在加。
+
 ### 常用 Negative prompt
 
 EasyNegative,
 (worst quality, low quality:1.4),
-(poorly drawn face:1.4),(extra limbs:1.35),
+(poorly drawn face:1.4),
+(extra limbs:1.35),
 (malformed hands:1.4),(poorly drawn hands:1.4),(mutated fingers:1.4),
 
 ### 异常
@@ -125,112 +128,35 @@ NansException: A tensor with all NaNs was produced in VAE. This could be because
 
 #### CheckPoint 模型
 
-##### 4468
-
-{civitai}/[Counterfeit-V2.5](https://civitai.com/models/4468/counterfeit-v25)
-
-二次元。
-
-##### 6424
-
-{civitai}/[ChilloutMix](https://civitai.com/models/6424/chilloutmix)
-
-写实、涩涩。
-
-##### 6755
-
-{civitai}/[Cetus-Mix](https://civitai.com/models/6755/cetus-mix)
-
-二次元。
-
-##### 9942
-
-{civitai}/[AbyssOrangeMix3 (AOM3)](https://civitai.com/models/9942/abyssorangemix3-aom3)
-
-二次元、涩涩。
+| 名字 | 平台 | id | 链接 | 描述 |
+| --- | --- | --- | --- | --- |
+| AbyssOrangeMix2 - Hardcore | civitai | 4451 | https://civitai.com/models/4451/abyssorangemix2-hardcore | 二次元、涩涩 |
+| Counterfeit-V2.5 | civitai | 4468 | https://civitai.com/models/4468/counterfeit-v25 | 二次元 |
+| AnyHentai | civitai | 5706 | https://civitai.com/models/5706/anyhentai | 二次元、涩涩 |
+| ChilloutMix | civitai | 6424 | https://civitai.com/models/6424/chilloutmix | 写实、涩涩 |
+| Cetus-Mix | civitai | 6755 | https://civitai.com/models/6755/cetus-mix | 二次元 |
+| MeinaMix | civitai | 7240 | https://civitai.com/models/7240/meinamix | 二次元、涩涩 |
+| AbyssOrangeMix3 (AOM3) | civitai | 9942 | https://civitai.com/models/9942/abyssorangemix3-aom3 | 二次元、涩涩 |
+| MeinaHentai | civitai | 12606 | https://civitai.com/models/12606/meinahentai | 二次元、涩涩 |
+| AOAOKO \[PVC Style Model\] | civitai | 15509 | https://civitai.com/models/15509/aoaoko-pvc-style-model | 二次元、PVC 模型 |
 
 #### LoRA 模型
 
-##### 3938
-
-{civitai}/[X-Ray Hentai 2.5](https://civitai.com/models/3938/x-ray-hentai-25)
-
-二次元、x-射线视图。Tag：x-ray、x-ray view、cross-section。采样方法：Euler、Euler A。
-
-##### 5529
-
-{civitai}/[Eye - LoRa](https://civitai.com/models/5529/eye-lora)
-
-二次元、眼睛。Tag：loraeyes。
-
-##### 8185
-
-{civitai}/[明日方舟-年 Arknights-Nian](https://civitai.com/models/8185/arknights-nian)
-
-明日方舟、年。Tag：origen(普通年)、china dress(旗袍年)。
-
-##### 8723
-
-{civitai}/[POV Doggystyle LoRA \[1 MB\]](https://civitai.com/models/8723/pov-doggystyle-lora-1-mb)
-
-二次元、后背位。Tag：`<lora:POVDoggy:0.9>`。权重 0.9~1.0。
-
-penis，如果有一般是浅入，如果没有一般是深入。
-
-##### 9025
-
-{civitai}/[breastInClass: Better Bodies](https://civitai.com/models/9025/breastinclass-better-bodies)
-
-写实、身体。Tag：`<lora:breastinclassbetter_v141:0.5>`
-
-##### 10364
-
-{civitai}/[Innies: Better vulva](https://civitai.com/models/10364/innies-better-vulva)
-
-写实、阴部。Tag：`<lora:inniesbettervaginas_v11:1.0>`
-
-##### 11886
-
-{civitai}/[\[NSFW\]Tentacles LoRA | 触手](https://civitai.com/models/11886/nsfwtentacles-lora-or)
-
-二次元、触手。Tag：tentacles。
-
-##### 12519
-
-{civitai}/[H&K HK416 LoRA](https://civitai.com/models/12519/handk-hk416-lora)
-
-HK416。Tag：gun、weapons、holding weapon、assault rifle。
-
-##### 12682
-
-{civitai}/[站立后背位/立ちバック/standing doggystyle](https://civitai.com/models/12682/standing-doggystyle)
-
-二次元、后背位。权重 0.5~0.7。
-
-共通的 tag 为 1girl,1boy,sex。配合 from normal 可以生成后背的视角、配合 from front 可以生成正对的视角、配合 from side 可以生成侧面的视角、配合 from behind,pov 可以生成后背的 pov 视角。
-
-##### 12961
-
-{civitai}/[Doggystyle from side view](https://civitai.com/models/12961/doggystyle-from-side-view)
-
-二次元、后背位、侧面的视角。采样方法：DPM SDE Karras。
-
-##### 17610
-
-{civitai}/[Corruption/悪堕ち/恶堕](https://civitai.com/models/17610/corruption)
-
-二次元、恶堕。Tag：corruption、empty eyes、half-closed eyes、evil smile、no pupils、crazy smile。权重 0.3~0.7。
-
-##### 21388
-
-{civitai}/[Incoming hug/kiss](https://civitai.com/models/21388/incoming-hugkiss)
-
-二次元、抱过来、亲过来。Tag：incoming hug(抱过来)、incoming kiss(亲过来)。Nagative：EasyNegative、bad-hands-5。
-##### 18194
-
-{civitai}/[Murky's After Sex Lying LoRA](https://civitai.com/models/18194/murkys-after-sex-lying-lora)
-
-二次元、事后。Tag：after sex(性爱后)。
+| 名字 | 平台 | id | 链接 | 描述 | 额外说明 |
+| --- | --- | --- | --- | --- | --- |
+| X-Ray Hentai 2.5 | civitai | 3938 | https://civitai.com/models/3938/x-ray-hentai-25 | 二次元、x-射线透视 | Tag：x-ray、x-ray view、cross-section。采样方法：Euler、Euler A。 |
+| Eye - LoRa | civitai | 5529 | https://civitai.com/models/5529/eye-lora | 二次元、眼睛 | Tag：loraeyes。 |
+| 明日方舟-年 Arknights-Nian | civitai | 8185 | https://civitai.com/models/8185/arknights-nian | 明日方舟-年 | Tag：origen(普通年)、china dress(旗袍年)。 |
+| POV Doggystyle LoRA \[1 MB\] | civitai | 8723 | https://civitai.com/models/8723/pov-doggystyle-lora-1-mb | 二次元、后背位 | Tag：`<lora:POVDoggy:0.9>`。权重 0.9~1.0。Tag penis，如果有一般是浅入，如果没有一般是深入。 |
+| breastInClass: Better Bodies | civitai | 9025 | https://civitai.com/models/9025/breastinclass-better-bodies | 写实、身体 | Tag：`<lora:breastinclassbetter_v141:0.5>` |
+| Innies: Better vulva | civitai | 10364 | https://civitai.com/models/10364/innies-better-vulva | 写实、阴部 | Tag：`<lora:inniesbettervaginas_v11:1.0>` |
+| \[NSFW\]Tentacles LoRA \| 触手 | civitai | 11886 | https://civitai.com/models/11886/nsfwtentacles-lora-or | 二次元、触手 | Tag：tentacles。 |
+| H&K HK416 LoRA | civitai | 12519 | https://civitai.com/models/12519/handk-hk416-lora | HK416 | Tag：gun、weapons、holding weapon、assault rifle。 |
+| 站立后背位/立ちバック/standing doggystyle | civitai | 12682 | https://civitai.com/models/12682/standing-doggystyle | 二次元、后背位 | 权重 0.5~0.7。共通的 tag 为 1girl,1boy,sex。配合 from normal 可以生成后背的视角、配合 from front 可以生成正对的视角、配合 from side 可以生成侧面的视角、配合 from behind,pov 可以生成后背的 pov 视角。 |
+| Doggystyle from side view | civitai | 12961 | https://civitai.com/models/12961/doggystyle-from-side-view | 二次元、后背位、侧面的视角 | 采样方法：DPM SDE Karras。 |
+| Corruption/悪堕ち/恶堕 | civitai | 17610 | https://civitai.com/models/17610/corruption | 二次元、恶堕 | Tag：corruption、empty eyes、half-closed eyes、evil smile、no pupils、crazy smile。权重 0.3~0.7。 |
+| Incoming hug/kiss | civitai | 21388 | https://civitai.com/models/21388/incoming-hugkiss | 二次元、抱过来、亲过来 | Tag：incoming hug(抱过来)、incoming kiss(亲过来)。Nagative：EasyNegative、bad-hands-5。 |
+| Murky's After Sex Lying LoRA | civitai | 18194 | https://civitai.com/models/18194/murkys-after-sex-lying-lora | 二次元、事后 | Tag：after sex。 |
 
 ## 程序本体
 

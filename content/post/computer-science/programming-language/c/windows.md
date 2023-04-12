@@ -2,8 +2,8 @@
 draft: false
 date: 2022-05-09 08:00:00 +0800
 lastmod: 2023-04-10 08:00:00 +0800
-title: "在 Windows 11 中配置 C 语言开发环境"
-summary: "在 Windows 11 中配置 C 语言开发环境"
+title: "在 Windows 11 中，配置 C 语言开发环境"
+summary: "在 Windows 11 中，配置 C 语言开发环境"
 toc: true
 
 categories:
