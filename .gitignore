@@ -4,6 +4,9 @@
 # Visual Studio Code 的配置
 .vscode/
 
+Obsidian 的配置
+*.obsidian/
+
 # draw.io 的备份文件
 *.bkp
 

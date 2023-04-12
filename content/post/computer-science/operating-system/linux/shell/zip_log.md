@@ -2,8 +2,8 @@
 draft: false
 date: 2020-10-19 08:00:00 +0800
 lastmod: 2020-10-19 08:00:00 +0800
-title: "Linux 压缩每日日志 shell 脚本"
-summary: "Linux 压缩每日日志 shell 脚本"
+title: "【Linux Shell 脚本】压缩日志"
+summary: "【Linux Shell 脚本】压缩日志"
 toc: true
 
 categories:
@@ -15,8 +15,9 @@ tags:
 - linux
 - shell
 ---
+## 正文
 
-这段脚本用于每天压缩前一天的日志文件。
+#### 每天压缩前一天的日志
 
 ```shell
 #!/bin/bash
