@@ -261,6 +261,34 @@ C:\cygwin64\bin\gcc.exe -fdiagnostics-color=always -g D:\workspace\demo-c\hello_
 
 ### 代码格式化
 
+#### LLVM
+
+先安装 LLVM。去 [官网](https://llvm.org/) 页面左边 Download 那里，点击 "All Releases"，进入 [发布页面] (https://releases.llvm.org/)。
+
+发布页面往下滑，就直接点最新的版本后面的 download 链接，这里是 16.0.0 版本的 [链接](https://github.com/llvm/llvm-project/releases/tag/llvmorg-16.0.0)。它会跳到 github 的发布页面。找对应的版本就好了，我这里是 LLVM-16.0.0-win64.exe。
+
+安装结束后，需要配置环境变量。这里和安装 GCC 的时候一样，就不重复了。
+
+- 在环境变量窗口下面的 "系统变量" 里找到 path，然后点击 "编辑，打开 "编辑环境变量" 窗口"。
+- 添加 "LLVM 的安装目录下的 bin 目录的路径"。我这里，这个目录是 "C:\Program Files\LLVM\bin"。
+
+#### 配置 VSCode
+
+打开设置标签页。设置 Editor: Default Formatter 为 Clang-Format。
+
+然后在扩展工具栏中，选择 Clang-Format。在弹出的 Clang-Format 组件的描述标签页，会介绍怎么配置，主要是下面这个部分。
+
+> Specifying the location of clang-format</br>
+> This extension will attempt to find clang-format on your PATH. Alternatively, the clang-format executable can be specified in your vscode settings.json file:</br>
+
+```
+{
+    "clang-format.executable": "/absolute/path/to/clang-format"
+}
+```
+
+我这里就是在 settings.json 里，把这个配置改成 "C:\Program Files\LLVM\bin\clang-format.exe。
+
 打开 C/C++ 组件的设置标签页。下面这两个方式都可以。
 
 - 在扩展工具栏中，选择 C/C++。在弹出的 C/C++ 组件的描述标签页，点击的标题下面的设置图标，在弹出的下拉菜单中，选择扩展设置。
@@ -268,19 +296,29 @@ C:\cygwin64\bin\gcc.exe -fdiagnostics-color=always -g D:\workspace\demo-c\hello_
 
 在 C/C++ 组件的设置标签页中。
 
-- 检查一下 C_Cpp: Formatting 设置项是不是 clangFormat，这个是默认配置一般不会变。
+- 检查一下 C_Cpp: Formatting 设置项是不是 default 或者 clangFormat，这个是默认配置一般不会变。
 - 检查一下 C_Cpp: Clang_format_style 设置项是不是 file，设置为 file 表示格式化的时候会先寻找 Clang-Format 组件的格式化配置文件。
+
+最后，我的 settings.json 是下面这样的。
+
+```
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "xaver.clang-format",
+    "clang-format.executable": "C:\\Program Files\\LLVM\\bin\\clang-format.exe"
+}
+```
 
 接着在项目根目录新建一个 ".clang-format" 文件，这个文件就是上面说的格式化配置文件。详细的配置方式可以去 Clang-Format 的文档里去看，Clang-Format 组件的描述标签页就可以找到链接。
 
 ```
-# 每行字符的限制，0 表示没有限制
+#每行字符的限制，0表示没有限制
 ColumnLimit: 0
-# 缩进宽度
-IndentWidth: 4
-# 连续空行的最大数量
+#缩进宽度
+IndentWidth: 2
+#连续空行的最大数量
 MaxEmptyLinesToKeep: 1
-# 缩进 case 标签
+#缩进case标签
 IndentCaseLabels: true
 ```
 

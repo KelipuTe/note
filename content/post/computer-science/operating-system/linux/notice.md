@@ -106,6 +106,15 @@ yum -y install man-pages
 - [wait(2) - wait for process to change state](https://man7.org/linux/man-pages/man2/wait.2.html)
 - [waitpid(2) - wait for process to change state](https://man7.org/linux/man-pages/man2/waitpid.2.html)
 
+#### 信号
+
+- [signal(7) - overview of signals](https://man7.org/linux/man-pages/man7/signal.7.html)
+- [sigaction(2) - examine and change a signal action](https://man7.org/linux/man-pages/man2/sigaction.2.html)
+- [sigprocmask(2) - examine and change blocked signals](https://man7.org/linux/man-pages/man2/sigprocmask.2.html)
+- [sigpending(2) - examine pending signals](https://man7.org/linux/man-pages/man2/sigpending.2.html)
+- [sigsetops(3) - POSIX signal set operations](https://man7.org/linux/man-pages/man3/sigsetops.3.html)
+- [alarm(2) - set an alarm clock for delivery of a signal](https://man7.org/linux/man-pages/man2/alarm.2.html)
+
 ### 注意代码运行的目标环境
 
 编程的时候，要注意代码运行的目标环境。同一段代码，在 Ubuntu 和 Centos 上运行的时候，整体的系统调用过程应该是差不多的，但是细节可能不一样。
