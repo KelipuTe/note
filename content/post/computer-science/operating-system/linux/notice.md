@@ -115,6 +115,52 @@ yum -y install man-pages
 - [sigsetops(3) - POSIX signal set operations](https://man7.org/linux/man-pages/man3/sigsetops.3.html)
 - [alarm(2) - set an alarm clock for delivery of a signal](https://man7.org/linux/man-pages/man2/alarm.2.html)
 
+#### 进程间通信
+
+管道：
+
+- [pipe(7) - overview of pipes and FIFOs](https://man7.org/linux/man-pages/man7/pipe.7.html)
+- [pipe(2) - create pipe](https://man7.org/linux/man-pages/man2/pipe.2.html)
+- [mkfifo(3) - make a FIFO special file (a named pipe)](https://man7.org/linux/man-pages/man3/mkfifo.3.html)
+
+System V IPC：
+
+- [ipc(2) - System V IPC system calls](https://man7.org/linux/man-pages/man2/ipc.2.html)
+
+System V 消息队列：
+
+- [msgget(2) - get a System V message queue identifier](https://man7.org/linux/man-pages/man2/msgget.2.html)
+- [msgsnd(2) - System V message queue operations](https://man7.org/linux/man-pages/man2/msgsnd.2.html)
+- [msgrcv(2) - System V message queue operations](https://man7.org/linux/man-pages/man2/msgrcv.2.html)
+- [msgctl(2) - System V message control operations](https://man7.org/linux/man-pages/man2/msgctl.2.html)
+
+System V 信号量：
+
+- [semget(2) - get a System V semaphore set identifier](https://man7.org/linux/man-pages/man2/semget.2.html)
+- [semctl(2) - System V semaphore control operations](https://man7.org/linux/man-pages/man2/semctl.2.html)
+- [semop(2) - System V semaphore operations](https://man7.org/linux/man-pages/man2/semop.2.html)
+
+System V 共享内存：
+
+- [shmget(2) - allocates a System V shared memory segment](https://man7.org/linux/man-pages/man2/shmget.2.html)
+- [shmat(2) - System V shared memory operations](https://man7.org/linux/man-pages/man2/shmat.2.html)
+- [shmdt(2) - System V shared memory operations](https://man7.org/linux/man-pages/man2/shmdt.2.html)
+
+POSIX IPC：
+
+- [mq_overview(7) - overview of POSIX message queues](https://man7.org/linux/man-pages/man7/mq_overview.7.html)
+- [sem_overview(7) - overview of POSIX semaphores](https://man7.org/linux/man-pages/man7/sem_overview.7.html)
+- [shm_overview(7) - overview of POSIX shared memory](https://man7.org/linux/man-pages/man7/shm_overview.7.html)
+
+#### 网络间进程间通信
+
+#### 文件
+
+- [access(2) - check user's permissions for a file](https://man7.org/linux/man-pages/man2/access.2.html)
+- [open(2) - open and possibly create a file](https://man7.org/linux/man-pages/man2/open.2.html)
+- [read(2) - read from a file descriptor](https://man7.org/linux/man-pages/man2/read.2.html)
+- [write(2) - write to a file descriptor](https://man7.org/linux/man-pages/man2/write.2.html)
+
 ### 注意代码运行的目标环境
 
 编程的时候，要注意代码运行的目标环境。同一段代码，在 Ubuntu 和 Centos 上运行的时候，整体的系统调用过程应该是差不多的，但是细节可能不一样。

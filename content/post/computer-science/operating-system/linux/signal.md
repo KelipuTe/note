@@ -1,9 +1,9 @@
 ---
 draft: false
 date: 2021-12-12 08:00:00 +0800
-lastmod: 2022-01-14 08:00:00 +0800
-title: "中断信号"
-summary: "中断信号"
+lastmod: 2022-04-16 08:00:00 +0800
+title: "信号"
+summary: "硬件中断；软件中断；中断处理例程和中断处理程序；信号对进程的影响；信号的产生；信号的使用；信号屏蔽和未决信号；"
 toc: true
 
 categories:
@@ -32,9 +32,9 @@ tags:
 
 硬件中断（hardware interrupt）是一个由硬件设备产生的信号，它需要 CPU 关注。硬件中断用于允许硬件设备与 CPU 进行通信，而不需要一直轮询或者等待 CPU 关注。
 
-当一个硬件设备产生一个中断时，它向中断控制器发送一个信号，然后中断控制器（interrupt controller）向 CPU 发送一个信号，中断其当前任务并处理该设备的请求。然后，CPU 将停止执行其当前任务并处理中断，这包括暂时保存 CPU 的状态和执行中断处理例程。
+当一个硬件设备产生一个中断时，它向中断控制器发送一个信号，然后中断控制器（interrupt controller）向 CPU 发送一个信号，中断其当前任务并处理该设备的请求。然后，CPU 将停止执行其当前任务并处理中断，这包括暂时保存 CPU 的状态和执行中断处理例程（interrupt handler routine）。
 
-中断处理例程（interrupt handler routine）是一段由 CPU 响应中断而执行的代码。它负责确定是哪个设备产生了中断，处理来自该设备的请求，并恢复 CPU 的状态，以便它能够恢复其先前的任务。
+中断处理例程是一段由 CPU 响应中断而执行的代码。它负责确定是哪个设备产生了中断，处理来自该设备的请求，并恢复 CPU 的状态，以便它能够恢复其先前的任务。
 
 硬件中断对于计算机系统的正常运行至关重要，因为它们允许硬件设备与 CPU 进行交互，而不会垄断 CPU 的资源。产生中断的硬件设备的常见例子包括键盘、鼠标、网卡和硬盘。
 
@@ -42,9 +42,9 @@ tags:
 
 比如，CPU 正在跑一个程序。这时，按一下键盘（产生中断请求）。这个中断请求被发给 CPU 之后，CPU 会做出反应（中断响应）。
 
-这时，CPU 会先停下正在跑的程序，把程序现在的状态记下来（保护现场）。然后，过来处理这个中断请求（中断处理）。这个时候 CPU 里跑的是另外一个程序（中断处理程序）。
+这时，CPU 会先停下正在跑的程序，把程序现在的状态记下来（保护现场）。然后，过来处理这个中断请求（中断处理）。这个时候 CPU 里跑的是另外一个程序（中断处理例程）。
 
-中断处理程序执行结束之后，需要把状态恢复到刚才停下的那个时候（恢复现场）。这次中断就完事了，从处理流程中退出来（中断返回）。然后，就可以继续执行程序了。
+中断处理例程执行结束之后，需要把状态恢复到刚才停下的那个时候（恢复现场）。这次中断就完事了，从中断处理例程中退出来（中断返回）。然后，就可以继续执行程序了。
 
 ### 软件中断
 
@@ -56,7 +56,11 @@ tags:
 
 中断处理完毕后，CPU 恢复程序的保存状态，并在被中断的地方恢复执行。软件中断是程序与操作系统进行通信和执行需要特权访问的任务的重要机制，比如，系统调用或中断另一个进程。
 
-#### 中断信号对进程的影响
+### 中断处理例程和中断处理程序的区别
+
+中断处理例程（interrupt handler routine）和中断处理程序（interrupt handler）的关键区别在于，中断处理例程是响应硬件设备的中断信号而执行的代码，而中断处理程序是管理中断信号并调用适当的中断处理例程的代码。
+
+#### 信号对进程的影响
 
 > signal(7)</br>
 > Linux supports both POSIX reliable signals (hereinafter "standard signals") and POSIX real-time signals.</br>
@@ -70,17 +74,11 @@ tags:
 > -- Cont:Default action is to continue the process if it is currently stopped.</br>
 > A process can change the disposition of a signal using sigaction(2) or signal(2). (The latter is less portable when establishing a signal handler; see signal(2) for details.)  Using these system calls, a process can elect one of the following behaviors to occur on delivery of the signal: perform the default action; ignore the signal; or catch the signal with a signal handler, a programmer-defined function that is automatically invoked when the signal is delivered.
 
-每个信号都有一个当前处置，它决定了进程在收到信号时如何进程在收到信号时的行为。下面是每种信号的默认处理方式：
-
-- Term：进程终止
-- Ign：进程忽略
-- Core：进程终止并产生 "core dump" 文件
-- Stop：进程停止
-- Cont：进程继续执行
+每个信号都有一个当前处置，它决定了进程在收到信号时如何进程在收到信号时的行为。下面是每种信号的默认处理方式：Term：进程终止；Ign：进程忽略；Core：进程终止并产生 "core dump" 文件；Stop：进程停止；Cont：进程继续执行
 
 进程可以更改信号的设置，信号发生时可以选择下面三种行为。执行默认动作（default action，SIG_DFL）；忽略信号（ignore，SIG_IGN）；使用信号处理程序捕捉信号（signal hanlder）
 
-#### 中断信号的产生
+#### 信号的产生
 
 - 终端按下 Ctrl+C，产生 SIGINT 信号；终端按下 Ctrl+\ 产生 SIGQUIT 信号；终端按下 Ctrl+Z 产生 SIGSTOP 信号。
 - 进程访问一些不存在的内存或是非法内存，会产生 SIGSEGV 中断信号
@@ -88,7 +86,7 @@ tags:
 - 在进程中，使用 raise()、kill()、alarm() 等发送中断信号
 - 子进程退出时会产生中断信号
 
-#### 中断信号
+#### Linux 中的信号
 
 在 Linux 中，中断信号有64个，分位标准信号和实时信号。可以通过 "kill -l" 命令可以查看 Linux 中的 64 个中断信号。其中，带 RT（real time）的就是实时信号。
 
@@ -108,9 +106,9 @@ tags:
 63) SIGRTMAX-1  64) SIGRTMAX
 ```
 
-### 中断信号的使用
+### 信号的使用
 
-进程可以更改信号的设置。进程在收到中断信号后，如果编写了信号处理函数就执行信号处理函数，如果没有编写信号处理函数就会执行默认动作。
+进程可以更改信号的设置。进程在收到信号后，如果编写了信号处理函数就执行信号处理函数，如果没有编写信号处理函数就会执行默认动作。
 
 代码示例：{demo-c}/demo-in-linux/signal/signal.c。
 
@@ -120,20 +118,18 @@ tags:
 - 如果向程序发送 SIGUSR2，进程会忽略信号，什么反应都没有。
 - 如果向程序发送 SIGINT，进程会执行处理函数，输出 "\[info\]:signal_no=2"，然后继续执行。
 
-### 系统调用时中断
+### 信号和系统调用
 
 > signal(7)</br>
-> ...</br>
 > Interruption of system calls and library functions by signal handlers If a signal handler is invoked while a system call or library function call is blocked, then either:</br>
 > -- the call is automatically restarted after the signal handler returns; or</br>
 > -- the call fails with the error EINTR.
 > ...</br>
 > If a blocked call to one of the following interfaces is interrupted by a signal handler, then the call is automatically restarted after the signal handler returns if the SA_RESTART flag was used; otherwise the call fails with the error EINTR:</br>
-> ...
 
-中断系统调用是指当前进程正在执行一些系统调用，此时进程收到了一个中断信号，此时该系统调用将会停止并返回错误，错误码（errno）一般是 -1，错误（error）一般是 EINTR。
+如果进程正在执行一些系统调用，此时进程收到了一个信号，则该系统调用将会停止并返回错误，错误码（errno）一般是 -1，错误（error）一般是 EINTR。
 
-进程正在执行系统调用，而且这个系统调用被阻塞。这时来了一个中断信号，结果会有两种。第一种，进程的信号处理函数已经执行返回，但是系统调用返回错误，错误码时 EINTR。第二种，进程的信号处理函数已经执行返回，这时系统调用会重新开始。
+如果进程正在执行系统调用，而且这个系统调用被阻塞。这时来了一个信号，结果会有两种。第一种，进程的信号处理函数已经执行返回，但是系统调用返回错误，错误码为 EINTR。第二种，进程的信号处理函数已经执行返回，这时系统调用会重新开始。
 
 #### 系统调用返回错误
 
@@ -195,11 +191,9 @@ tags:
 ### 信号屏蔽和未决信号
 
 > signal(7)</br>
-> ...</br>
 > A signal may be blocked, which means that it will not be delivered until it is later unblocked.  Between the time when it is generated and when it is delivered a signal is said to be pending.</br>
-> ...
 
-信号可以被阻塞，这时信号不会交付（交给信号处理函数），直到它不被阻塞。信号处于生成和交付之间的状态，被称为未决。
+信号可以被阻塞，这时信号不会交付（执行默认动作或者被交给信号处理函数），直到它不被阻塞。信号处于生成和交付之间的状态，被称为未决。
 
 代码示例：{demo-c}/demo-in-linux/signal/signal_block.c。
 
@@ -236,9 +230,7 @@ tags:
 #### SIGKILL、SIGSTOP
 
 > signal(7)</br>
-> ...</br>
 > The signals SIGKILL and SIGSTOP cannot be caught, blocked, or ignored.</br>
-> ...</br>
 
 SIGKILL 和 SIGSTOP 这两个信号不能被捕捉、阻止、忽略。
 
@@ -249,9 +241,7 @@ SIGKILL 和 SIGSTOP 这两个信号不能被捕捉、阻止、忽略。
 ### 观察进程数据
 
 > signal(7)</br>
-> ...</br>
 > The /proc/\[pid\]/task/\[tid\]/status file contains various fields that show the signals that a thread is blocking (SigBlk), catching (SigCgt), or ignoring (SigIgn). (The set of signals that are caught or ignored will be the same across all threads in a process.) Other fields show the set of pending signals that are directed to the thread (SigPnd) as well as the set of pending signals that are directed to the process as a whole (ShdPnd). The corresponding fields in /proc/\[pid\]/status show the information for the main thread.</br>
-> ...
 
 和信号有关系的进程数据，可以通过 "/proc/{pid}/status" 文件观察。SigQ：当前进程待处理信号数。SigPnd；线程的未决信号。ShnPnd；线程组的未决信号。SigBlk；阻塞的信号。SigIgn；忽略的信号。SigCgt；捕捉的信号。
 
@@ -293,5 +283,5 @@ SigCgt:	0000000000000002
 ## 参考
 
 - {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-  - 进程部分、中断部分
+  - 进程部分、信号部分
 - ChatGPT + DeepL
