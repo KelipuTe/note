@@ -30,7 +30,7 @@ tags:
 
 ### 安装 C/C++ 编译器
 
-先把 C 语言开发环境装好：[在 Windows 11 中配置 C 语言开发环境](/post/computer-science/programming-language/c/windows)
+先把 C 语言开发环境装好：[在 Windows 11 中，配置 C 语言开发环境](/post/computer-science/programming-language/c/windows)
 
 ### 安装 VSCode 扩展
 

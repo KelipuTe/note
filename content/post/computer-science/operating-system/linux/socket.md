@@ -1,12 +1,32 @@
 ---
-title: "计算机科学--操作系统--Linux--网络间进程间通信"
-create_date: 2021-12-16 08:00:00 +0800
-date: 2022-01-24 08:00:00 +0800
-tags: computer-science operating-system linux socket
-comment: false
-show_author_profile: true
-show_subscribe: false
+draft: false
+date: 2021-12-16 08:00:00 +0800
+lastmod: 2022-01-24 08:00:00 +0800
+title: "网络间进程间通信"
+summary: "网络间进程间通信"
+toc: true
+
+categories:
+- operating-system(操作系统)
+
+tags:
+- computer-science(计算机科学)
+- operating-system(操作系统)
+- linux
+- linux-c
 ---
+## 前言
+
+实践的环境：
+
+- CPU AMD64(x86_64)
+- Windows 11 家庭版
+- VMware Workstation Pro 16
+- Ubuntu 22.04
+- Linux 5.19.0-32-generic x86_64
+- gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+
+## 正文
 
 ### Socket
 
