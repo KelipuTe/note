@@ -52,6 +52,10 @@ tags:
 
 ### 笔记中出现的文档
 
+笔记中出现的 Linux 文档，都会统一写在这里。直接 by section 页面搜就可以。不会散步到每一篇笔记中去，每一个都贴链接，太麻烦了。
+
+笔记中出现的会是从文档中节选的关键的部分，或者和实践过程有关的部分。有可能是全的，有可能是省略的，这不一定。所以，看的时候稍微注意一点。
+
 #### 进程
 
 | 标题 | 描述 |
@@ -131,19 +135,20 @@ tags:
 
 #### 网络间进程间通信
 
-| 标题 | 描述 |
-| --- | --- |
-| socket(7) - Linux socket interface | --- |
-| socket(2) - create an endpoint for communication | 怎么创建 socket |
-| ip(7) | --- |
-| tcp(7) | --- |
-| udp(7) | --- |
-| bind(2) | --- |
-| listen(2) | --- |
-| accept(2) | --- |
-| connect(2) | --- |
-| recv(2) | --- |
-| send(2)| --- |
+| 标题                                                     | 描述                      |
+|--------------------------------------------------------|-------------------------|
+| socket(7) - Linux socket interface                     | socket 概述               |
+| socket(2) - create an endpoint for communication       | 怎么创建 socket             |
+| ip(7)                                                  | ipv4 的 tcp、udp 等，怎么用    |
+| tcp(7)                                                 | ---                     |
+| udp(7)                                                 | ---                     |
+| bind(2)                                                | ---                     |
+| listen(2)                                              | ---                     |
+| accept(2)                                              | ---                     |
+| connect(2)                                             | ---                     |
+| recv(2)                                                | ---                     |
+| send(2)                                                | ---                     |
+| inet_addr(3) - Internet address manipulation routines  | 点分十进制和二进制网络字节顺序的转换 |
 
 #### 文件
 
@@ -167,7 +172,8 @@ tags:
 
 #### 其他
 
-| 标题 | 描述 |
-| --- | --- |
-| man(1) - an interface to the system reference manuals | man 命令怎么用 |
-| errno(3) - number of last error | errno 怎么用 |
+| 标题 | 描述             |
+| --- |----------------|
+| man(1) - an interface to the system reference manuals | man 命令怎么用      |
+| errno(3) - number of last error | errno 怎么用      |
+| htons(3) - convert values between host and network byte order | 主机字节序和网络字节序的转换 |

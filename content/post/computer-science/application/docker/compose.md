@@ -69,6 +69,6 @@ services:
 
 打开 powershell，进入 docker-compose.yaml 文件所在的目录。
 
-执行 `docker compose up` 或者 `docker compose up -v` 命令就可以启动了。
+执行命令 `docker compose up` 或者命令 `docker compose up -v` 就可以启动了。
 
-带 `-v` 参数表示命令在后台运行，不会再控制台输出日志。想要关闭的时候直接 Ctrl+C 就可以了。
+带 "-v" 参数表示命令在后台运行，不会再控制台输出日志。想要关闭的时候直接 Ctrl+C 就可以了。

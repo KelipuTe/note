@@ -1,7 +1,7 @@
 ---
 draft: false
-date: 2021-12-16 08:00:00 +0800
-lastmod: 2022-01-24 08:00:00 +0800
+create_date: 2021-12-16 08:00:00 +0800
+date: 2023-05-15 08:00:00 +0800
 title: "网络间进程间通信"
 summary: "网络间进程间通信"
 toc: true
@@ -26,31 +26,159 @@ tags:
 - Linux 5.19.0-32-generic x86_64
 - gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
 
+## 资料
+
+- [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/socket/
+
 ## 正文
 
-### Socket
+### socket
 
-Socket（套接字），就是对网络中不同主机上的应用进程之间进行双向通信的端点的抽象。
+socket（套接字），就是对 "网络中不同主机上的应用进程之间进行双向通信的端点" 的抽象。
 
-套接字（在一些资料里还称为套接口，数据接口）其实就是一个文件，它是套接字文件描述符。文件描述符就是进程已经打开的文件。
+套接字（在一些资料里还称为套接口、数据接口）其实就是一个文件，这个文件是套接字文件描述符。
 
-详见linux文档：
+详细的内容在 Linux 文档 socket(7) 里面。文档中详细描述了，使用 socket 的步骤。
 
-- `socket(7) - Linux socket interface`
-- `ip(7) - Linux IPv4 protocol implementation`
+> socket(7)
+> </br></br>
+> socket(2) creates a socket, 
+> connect(2) connects a socket to a remote socket address, 
+> the bind(2) function binds a socket to a local socket address, 
+> listen(2) tells the socket that new connections shall be accepted, 
+> and accept(2) is used to get a new socket with a new incoming connection.
+> </br></br>
+> send(2), sendto(2), and sendmsg(2) send data over a socket, 
+> and recv(2), recvfrom(2), recvmsg(2) receive data from a socket. 
+> poll(2) and select(2) wait for arriving data or a readiness to send data.
+> In addition, the standard I/O operations like write(2), writev(2), sendfile(2), 
+> read(2), and readv(2) can be used to read and write data.
+> </br></br>
+> getsockopt(2) and setsockopt(2) are used to set or get socket layer or protocol options.
+> </br></br>
+> close(2) is used to close a socket.
+
+### 创建 socket
+
+> socket(2)</br>
+> </br>
+> AF_INET      IPv4 Internet protocols                    ip(7)</br>
+> AF_INET6     IPv6 Internet protocols                    ipv6(7)</br>
+> </br>
+> SOCK_STREAM</br>
+> Provides sequenced, reliable, two-way, connection-based byte streams. 
+> An out-of-band data transmission mechanism may be supported.</br>
+> </br>
+> SOCK_DGRAM</br>
+> Supports datagrams (connectionless, unreliable messages of a fixed maximum length).</br>
+> </br>
+> SOCK_NONBLOCK</br>
+> Set the O_NONBLOCK file status flag on the open file description 
+> (see open(2)) referred to by the new file descriptor. 
+> Using this flag saves extra calls to fcntl(2) to achieve the same result.
+
+创建 socket 的时候，可以选择创建 ipv4 还是 ipv6 的（还有 UNIX 等），TCP 还是 UDP 的（还有 RAW 等）。
+
+SOCK_STREAM 就是 TCP，提供有顺序、可靠、双向、基于连接的字节流。
+
+SOCK_DGRAM 就是 UDP，支持数据包（最大长度固定的无连接、不可靠的消息）
+
+OCK_NONBLOCK 表示非阻塞模式，调用 recv() 等的时候，不会阻塞。
 
 ### TCP
 
 TCP（Transmission Control Protocol，传输控制协议），可靠。
 
-详见linux文档：`tcp(7) - TCP protocol`。
+详细的内容在 Linux 文档 tcp(7) 里面。文档中详细描述了，使用 TCP 的步骤。
 
-示例代码：
+注意 bind() 系统调用的参数 "const struct sockaddr *addr"。这玩意在 socket 的 family 参数不一样的时候，是有区别的。
 
-- 一次性的tcp服务端：`demo_c/demo_linux_c/socket/tcp/server_once.c`
-- 一次性的tcp客户端：`demo_c/demo_linux_c/socket/tcp/client_once.c`
-- 一次性的http服务端：`demo_c/demo_linux_c/socket/http/server_once.c`
-- 可重用的http服务端：`demo_c/demo_linux_c/socket/http/server_multiple.c`
+> bind(2)</br>
+> The rules used in name binding vary between address families.
+> Consult the manual entries in Section 7 for detailed information. 
+> For AF_INET, see ip(7); for AF_INET6, see ipv6(7); for AF_UNIX, see unix(7);
+
+ipv4 用的数据结构长这样。
+
+```c
+struct sockaddr_in {
+    sa_family_t    sin_family; /* address family: AF_INET */
+    in_port_t      sin_port;   /* port in network byte order */
+    struct in_addr sin_addr;   /* internet address */
+};
+```
+
+用的时候这样用。
+
+```c
+struct sockaddr_in serverAddr;
+serverAddr.sin_family = AF_INET;
+serverAddr.sin_port = 0x1d25;
+serverAddr.sin_addr.s_addr = INADDR_ANY;
+
+bind(sockfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr));
+```
+
+#### 主机字节序和点分十进制
+
+上面在设置 socket 的时候，地址是 INADDR_ANY，端口是 0x1d25。这里用的是系统提供的常量和十六进制。
+
+sin_port 参数，它是网络字节序的，这里的 0x1d25 设置的是 9501 端口。INADDR_ANY 就是点分十进制的 0.0.0.0。
+
+9501（十进制）、00100101 00011101（二进制）、0x251d（十六进制）、0x1d25（网络字节序）
+
+如果想直观的直接用 0.0.0.0 和 9501 进行设置。需要用到 htons() 和 inet_addr()。
+
+htons() 把 16 位的主机字节序转换为网络字节序的。inet_addr() 把点分十进制的 ipv4 地址转换为二进制网络字节顺序的。
+
+```c
+serverAddr.sin_port = htons(9501);
+serverAddr.sin_addr.s_addr = inet_addr("0.0.0.0");
+```
+
+#### 端口占用
+
+再重复测试的时候，可能会遇到端口占用的报错，"errno=98, error=Address already in use"。
+
+这个时候可以通过 setsockopt()，设置 socket 选项为 SO_REUSEPORT，来复用端口。
+
+> socket(2)</br>
+> </br>
+> The socket options listed below can be set by using setsockopt(2) 
+> and read with getsockopt(2) with the socket level set to SOL_SOCKET for all sockets.</br>
+> </br>
+> SO_REUSEPORT</br>
+> Permits multiple AF_INET or AF_INET6 sockets to be bound to an identical socket address.
+> This option must be set on each socket (including the first socket) prior to calling bind(2) on the socket.
+
+在调用 bind() 之前先调用 setsockopt() 对 socket 进行设置。
+
+```c
+int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+setsockopt(sockfd, SOL_SOCKET, SO_REUSEPORT, &report, sizeof(report));
+bind(sockfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr));
+```
+
+> listen(2)</br>
+> The backlog argument defines the maximum length to which the queue of pending connections for sockfd may grow.
+
+listen() 的 backlog 参数定义 sockfd 的挂起连接队列的最大长度。
+
+代码示例：
+
+- 一次性的 TCP 服务端：{demo-c}/demo-in-linux/socket/tcp/server_once.c
+- 一次性的 TCP 客户端：{demo-c}/demo-in-linux/socket/tcp/client_once.c
+
+### HTTP
+
+HTTP（Hyper Text Transfer Protocol，超文本传输协议），是一个简单的 "请求-响应" 协议，它通常运行在 TCP 之上。
+
+在 TCP 的基础之上，对连接上来的客户端响应符合 HTTP 协议格式的数据，就可以实现简单的 HTTP 响应。
+
+代码示例：
+
+- 一次性的 HTTP 服务端：{demo-c}/demo-in-linux/socket/http/server_once.c
+- 可重用的 HTTP 服务端：{demo-c}/demo-in-linux/socket/http/server_multiple.c
 
 ### 进程的tcp socket网络表
 

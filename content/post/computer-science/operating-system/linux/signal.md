@@ -26,6 +26,10 @@ tags:
 - Linux 5.19.0-32-generic x86_64
 - gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
 
+## 资料
+
+- [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/signal/
+
 ## 正文
 
 ### 硬件中断
