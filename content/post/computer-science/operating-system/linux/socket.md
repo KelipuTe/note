@@ -6,9 +6,6 @@ title: "网络间进程间通信"
 summary: "网络间进程间通信"
 toc: true
 
-categories:
-- operating-system(操作系统)
-
 tags:
 - computer-science(计算机科学)
 - operating-system(操作系统)
@@ -38,20 +35,20 @@ socket（套接字），就是对 "网络中不同主机上的应用进程之间
 
 套接字（在一些资料里还称为套接口、数据接口）其实就是一个文件，这个文件是套接字文件描述符。
 
-详细的内容在 Linux 文档 socket(7) 里面。文档中详细描述了，使用 socket 的步骤。
+详细的内容在 Linux 文档 socket(7) 里面。
 
 > socket(7)
 > </br></br>
-> socket(2) creates a socket, 
-> connect(2) connects a socket to a remote socket address, 
-> the bind(2) function binds a socket to a local socket address, 
-> listen(2) tells the socket that new connections shall be accepted, 
+> socket(2) creates a socket,
+> connect(2) connects a socket to a remote socket address,
+> the bind(2) function binds a socket to a local socket address,
+> listen(2) tells the socket that new connections shall be accepted,
 > and accept(2) is used to get a new socket with a new incoming connection.
 > </br></br>
-> send(2), sendto(2), and sendmsg(2) send data over a socket, 
-> and recv(2), recvfrom(2), recvmsg(2) receive data from a socket. 
+> send(2), sendto(2), and sendmsg(2) send data over a socket,
+> and recv(2), recvfrom(2), recvmsg(2) receive data from a socket.
 > poll(2) and select(2) wait for arriving data or a readiness to send data.
-> In addition, the standard I/O operations like write(2), writev(2), sendfile(2), 
+> In addition, the standard I/O operations like write(2), writev(2), sendfile(2),
 > read(2), and readv(2) can be used to read and write data.
 > </br></br>
 > getsockopt(2) and setsockopt(2) are used to set or get socket layer or protocol options.
@@ -66,15 +63,15 @@ socket（套接字），就是对 "网络中不同主机上的应用进程之间
 > AF_INET6     IPv6 Internet protocols                    ipv6(7)</br>
 > </br>
 > SOCK_STREAM</br>
-> Provides sequenced, reliable, two-way, connection-based byte streams. 
+> Provides sequenced, reliable, two-way, connection-based byte streams.
 > An out-of-band data transmission mechanism may be supported.</br>
 > </br>
 > SOCK_DGRAM</br>
 > Supports datagrams (connectionless, unreliable messages of a fixed maximum length).</br>
 > </br>
 > SOCK_NONBLOCK</br>
-> Set the O_NONBLOCK file status flag on the open file description 
-> (see open(2)) referred to by the new file descriptor. 
+> Set the O_NONBLOCK file status flag on the open file description
+> (see open(2)) referred to by the new file descriptor.
 > Using this flag saves extra calls to fcntl(2) to achieve the same result.
 
 创建 socket 的时候，可以选择创建 ipv4 还是 ipv6 的（还有 UNIX 等），TCP 还是 UDP 的（还有 RAW 等）。
@@ -89,13 +86,13 @@ OCK_NONBLOCK 表示非阻塞模式，调用 recv() 等的时候，不会阻塞�
 
 TCP（Transmission Control Protocol，传输控制协议），可靠。
 
-详细的内容在 Linux 文档 tcp(7) 里面。文档中详细描述了，使用 TCP 的步骤。
+详细的内容在 Linux 文档 tcp(7) 里面。
 
 注意 bind() 系统调用的参数 "const struct sockaddr *addr"。这玩意在 socket 的 family 参数不一样的时候，是有区别的。
 
 > bind(2)</br>
 > The rules used in name binding vary between address families.
-> Consult the manual entries in Section 7 for detailed information. 
+> Consult the manual entries in Section 7 for detailed information.
 > For AF_INET, see ip(7); for AF_INET6, see ipv6(7); for AF_UNIX, see unix(7);
 
 ipv4 用的数据结构长这样。
@@ -144,7 +141,7 @@ serverAddr.sin_addr.s_addr = inet_addr("0.0.0.0");
 
 > socket(2)</br>
 > </br>
-> The socket options listed below can be set by using setsockopt(2) 
+> The socket options listed below can be set by using setsockopt(2)
 > and read with getsockopt(2) with the socket level set to SOL_SOCKET for all sockets.</br>
 > </br>
 > SO_REUSEPORT</br>
@@ -180,11 +177,9 @@ HTTP（Hyper Text Transfer Protocol，超文本传输协议），是一个简单
 - 一次性的 HTTP 服务端：{demo-c}/demo-in-linux/socket/http/server_once.c
 - 可重用的 HTTP 服务端：{demo-c}/demo-in-linux/socket/http/server_multiple.c
 
-### 进程的tcp socket网络表
+### 进程的 TCP socket 网络表
 
-启动tcp服务端`server_multiple.c`，得到进程号。
-
-查看`/proc/{pid}/fd/`目录。
+启动 server_multiple.c 服务端，得到进程号。然后，查看进程的内存目录里的 "/proc/{pid}/fd/"。
 
 ```
 total 0
@@ -194,9 +189,9 @@ lrwx------ 1 root root 64 Dec 18 05:53 2 -> /dev/pts/1
 lrwx------ 1 root root 64 Dec 18 05:53 3 -> socket:[20443]
 ```
 
-这个`3 -> socket:[20443]`，是`socket()`函数创建的。
+这个 "3 -> socket:\[20443\]"，就是 socket() 创建的。
 
-查看`/proc/{pid}/net/tcp`文件。
+然后，再查看 "/proc/{pid}/net/tcp" 文件。这个就是 TCP 的 socket 网络表。
 
 ```
 sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode
@@ -204,13 +199,11 @@ sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid 
 0: 00000000:251D 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 20443 1 0000000000000000 100 0 0 10 0
 ```
 
-重要字段对应的解释：
+- local_address，前面是本地 ip，网络字节序，后面是本地端口，主机字节序。
+- rem_address，前面是远端 ip，网络字节序，后面是远端端口，主机字节序。
+- st（connection state），套接字状态，16 进制，具体解释看下面。
 
-- local_address，前面是本地ip，网络字节序，后面是本地端口，主机字节序
-- rem_address，前面是远端ip，网络字节序，后面是远端端口，主机字节序
-- st（connection state），套接字状态，16进制，具体解释看下面
-
-st字段的状态（10进制）：
+st 字段的状态（10 进制）：
 
 - TCP_ESTABLISHED:1   
 - TCP_SYN_SENT:2
@@ -224,9 +217,9 @@ st字段的状态（10进制）：
 - TCP_LISTEN:10
 - TCP_CLOSING:11
 
-使用`telnet`命令创建一个连接，`telnet 127.0.0.1 9501`。
+使用 telnet 命令创建一个连接，`telnet 127.0.0.1 9501`。
 
-查看`/proc/{pid}/fd/`目录。
+然后，再去查看 "/proc/{pid}/fd/" 目录。
 
 ```
 total 0
@@ -237,62 +230,81 @@ lrwx------ 1 root root 64 Dec 18 05:53 3 -> socket:[20443]
 lrwx------ 1 root root 64 Dec 18 05:53 4 -> socket:[20444]
 ```
 
-这里多了一个`4 -> socket:[20444]`，是`accept()`函数创建的。
+和之前比，这里多了一个 "4 -> socket:\[20444\]"，这就是 accept() 创建的，对应连接上来的 TCP。
 
-查看`/proc/{pid}/net/tcp`文件。
+再看一眼 "/proc/{pid}/net/tcp" 文件。
 
 ```
 sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode
 
 0: 00000000:251D 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 20443 1 0000000000000000 100 0 0 10 0
-1: 020011AC:C8D0 9D3A78CA:0050 06 00000000:00000000 03:00000E1B 00000000     0        0 0 3 0000000000000000
 2: 0100007F:251D 0100007F:DA50 01 00000000:00000000 00:00000000 00000000     0        0 20444 1 0000000000000000 20 0 0 10 -1
-3: 020011AC:A90E 03821CD2:0050 06 00000000:00000000 03:00000E1B 00000000     0        0 0 3 0000000000000000
-4: 0100007F:DA50 0100007F:251D 01 00000000:00000000 00:00000000 00000000     0        0 20779 1 0000000000000000 20 0 0 10 -1
-5: 020011AC:C8CE 9D3A78CA:0050 06 00000000:00000000 03:00000E1A 00000000     0        0 0 3 0000000000000000
-6: 020011AC:8722 FB006F3B:0050 06 00000000:00000000 03:00000CB2 00000000     0        0 0 3 0000000000000000
 ```
 
-这里多了`telnet`命令连接上来之后的一些数据，通过local_address和rem_address字段可以判断服务端和客户端
+和之前比，这里多了 telnet 命令连接上来之后的一些数据，通过 local_address 和 rem_address 字段可以判断服务端和客户端。
+
+用 uid 也可以对上，上面的 "socket:\[20443\]" 和 "socket:\[20444\]" 就是这里的 20443 和 20444。
 
 ### UDP
 
 UDP（User Datagram Protocol，用户数据包协议），不可靠，而且数据报会被重新排序。
 
-详见linux文档：`udp(7) - User Datagram Protocol for IPv4`。
+详细的内容在 Linux 文档 udp(7) 里面。
 
-注意udp服务端不能调用`listen()`、`connect()`、`accept()`函数，因为udp是不建立连接的。
+注意，UDP 服务端不需要调用 listen()、connect()、accept()，因为 UDP 是不建立连接的。
 
-示例代码：
+代码示例：
 
-- 一次性的udp服务端：`demo_c/demo_linux_c/socket/udp/server_once.c`
-- 一次性的udp客户端：`demo_c/demo_linux_c/socket/udp/client_once.c`
-- 可重用的udp服务端：`demo_c/demo_linux_c/socket/udp/server_multiple.c`
+- 一次性的 UDP 服务端：{demo-c}/demo-in-linux/socket/udp/server_once.c
+- 一次性的 UDP 客户端：{demo-c}/demo-in-linux/socket/udp/client_once.c
+- 可重用的 UDP 服务端：{demo-c}/demo-in-linux/socket/udp/server_multiple.c
 
-### 进程的udp socket网络表
+### 进程的 UDP socket 网络表
 
-基本和tcp那里差不多，区别是udp的文件是`/proc/{pid}/net/udp`。
+基本和 TCP 那里差不多，区别是 UDP 的文件是 "/proc/{pid}/net/udp"。
 
-### TCP和UDP的区别
+### TCP 和 UDP 的区别
 
-tcp调用`recv()`函数时，如果对端发送了多次，缓冲区有多少数据就读多少，不会丢失数据。
+TCP 调用 recv() 时，如果对端发送了多次，缓冲区有多少数据就读多少，不会丢失数据。
 
-udp调用`recvfrom()`函数时，如果对端发送了多次，后面的数据会被丢弃。当发送端调用`sendto()`函数次数和接收端调用`recvfrom()`函数次数一样时才有可能获取完整的数据。
+UDP 调用 recvfrom() 时，如果对端发送了多次，后面的数据会被丢弃。当发送端调用 sendto() 的次数和接收端调用 recvfrom() 的次数一样时才有可能获取完整的数据。
 
-### UNIX Socket
+### UNIX socket
 
-unix socket只能用于同一台机器上的进程间通信。ipv4的tcp和udp需要走网卡，unix socket不需要。
+UNIX socket 只能用于同一台机器上的进程间通信。ipv4 的 TCP 和 UDP 需要走网卡，UNIX socket 不需要。
 
-unix socket的类型也有tcp和udp两种，但是unix socket的udp是可靠的，而且数据报不会重新排序。
+UNIX socket 的类型也有 TCP 和 UDP 两种，但是 UNIX socket 的 UDP 是可靠的，而且数据报不会重新排序。
 
-unix socket还分匿名的和命名的，这两个创建方式不一样，命名的还需要绑定。
+详细的内容在 Linux 文档 unix(7) 里面。
 
-详见linux文档：`unix(7) - sockets for local interprocess communication`。
+注意，UNIX socket 还分匿名的和命名的，这两个创建方式不一样。
 
-示例代码：
+匿名的，要用 socketpair() 创建一对 socket。命名的，和 ipv4 的 TCP、UDP 使用起来差不多。
 
-- 匿名unix socket：`demo_c/demo_linux_c/unix_socket/unnamed/unnamed.c`
-- 一次性的tcp服务端：`demo_c/demo_linux_c/unix_socket/tcp/server_once.c`
-- 一次性的tcp客户端：`demo_c/demo_linux_c/unix_socket/tcp/client_once.c`
-- 一次性的udp服务端：`demo_c/demo_linux_c/unix_socket/udp/server_once.c`
-- 一次性的udp客户端：`demo_c/demo_linux_c/unix_socket/udp/client_once.c`
+代码示例：
+
+- 匿名 UNIX socket：{demo-c}/demo-in-linux/unix-socket/unnamed/unnamed.c
+
+
+> socket(2)</br>
+> AF_LOCAL     Synonym for AF_UNIX
+
+命名的，创建 socket 的时候，socket() 的 domain 参数和上面 ipv4 的也不一样了，UNIX socket 是 AF_LOCAL。
+
+绑定的时候也不是绑端口了，而是绑定文件描述符。而且如果想交互的话，服务端和客户端，需要各自创建自己的文件描述符。
+
+注意，一定是，服务端和客户端各一个。在 ipv4 的 TCP 和 UDP 里面，这两个文件描述符，分别是 socket() 和 accept() 创建的。
+
+代码示例：
+
+- 一次性的 TCP 服务端：{demo-c}/demo-in-linux/unix-socket/tcp/server_once.c
+- 一次性的 TCP 客户端：{demo-c}/demo-in-linux/unix-socket/tcp/client_once.c
+- 一次性的 UDP 服务端：{demo-c}/demo-in-linux/unix-socket/udp/server_once.c
+- 一次性的 UDP 客户端：{demo-c}/demo-in-linux/unix-socket/udp/client_once.c
+
+## 参考（reference）
+
+- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
+  - 网络间进程间通信部分、socket 部分、TCP 部分、UDP 部分
+- [linux /proc/net/tcp 文件分析](https://blog.csdn.net/whatday/article/details/100693051)
+- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

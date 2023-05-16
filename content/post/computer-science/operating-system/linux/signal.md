@@ -1,7 +1,7 @@
 ---
 draft: false
-date: 2021-12-12 08:00:00 +0800
-lastmod: 2022-04-16 08:00:00 +0800
+create_date: 2021-12-12 08:00:00 +0800
+date: 2022-04-16 08:00:00 +0800
 title: "信号"
 summary: "硬件中断；软件中断；中断处理例程和中断处理程序；信号对进程的影响；信号的产生；信号的使用；信号屏蔽和未决信号；"
 toc: true
@@ -288,4 +288,4 @@ SigCgt:	0000000000000002
 
 - {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
   - 进程部分、信号部分
-- ChatGPT + DeepL
+- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

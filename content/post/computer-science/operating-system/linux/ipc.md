@@ -1,7 +1,7 @@
 ---
 draft: false
-date: 2021-12-13 08:00:00 +0800
-lastmod: 2022-01-24 08:00:00 +0800
+create_date: 2021-12-13 08:00:00 +0800
+date: 2022-01-24 08:00:00 +0800
 title: "进程间通信（IPC）"
 summary: "管道；匿名管道；命名管道；IPC；消息队列；信号量；共享内存；"
 toc: true
@@ -262,4 +262,4 @@ key        shmid      owner      perms      bytes      nattch     status
 - {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
   - 进程间通信部分
 - {CSDN}/{富贵的编程日记}/[Linux快速入门之 管道（11）](https://blog.csdn.net/weixin_49730048/article/details/123595404)
-- ChatGPT + DeepL
+- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

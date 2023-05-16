@@ -1,7 +1,7 @@
 ---
 draft: false
-date: 2021-12-06 08:00:00 +0800
-lastmod: 2023-02-10 08:00:00 +0800
+create_date: 2021-12-06 08:00:00 +0800
+date: 2023-05-16 08:00:00 +0800
 title: "在 Linux 系统中使用 C 语言进行编程的注意点"
 summary: "学会看 Linux 文档；注意代码运行的目标环境；笔记中出现的文档；"
 toc: true
@@ -135,20 +135,22 @@ tags:
 
 #### 网络间进程间通信
 
-| 标题                                                     | 描述                      |
-|--------------------------------------------------------|-------------------------|
-| socket(7) - Linux socket interface                     | socket 概述               |
-| socket(2) - create an endpoint for communication       | 怎么创建 socket             |
-| ip(7)                                                  | ipv4 的 tcp、udp 等，怎么用    |
-| tcp(7)                                                 | ---                     |
-| udp(7)                                                 | ---                     |
-| bind(2)                                                | ---                     |
-| listen(2)                                              | ---                     |
-| accept(2)                                              | ---                     |
-| connect(2)                                             | ---                     |
-| recv(2)                                                | ---                     |
-| send(2)                                                | ---                     |
-| inet_addr(3) - Internet address manipulation routines  | 点分十进制和二进制网络字节顺序的转换 |
+| 标题                                                          | 描述                  |
+|-------------------------------------------------------------|---------------------|
+| socket(7) - Linux socket interface                          | socket 概述           |
+| socket(2) - create an endpoint for communication            | 创建 socket           |
+| ip(7) - Linux IPv4 protocol implementation                  | 设置 ipv4 的 tcp、udp 等 |
+| tcp(7) - TCP protocol                                       | TPC 概述              |
+| udp(7) - User Datagram Protocol for IPv4                    | UDP 概述              |
+| unix(7) - sockets for local interprocess communication      | UNIX Socket         |
+| bind(2) - bind a name to a socket                           | 绑定地址和端口             |
+| listen(2) - listen for connections on a socket              | 监听 socket           |
+| accept(2) - accept a connection on a socket                 | 接受连接                |
+| connect(2) - initiate a connection on a socket              | 发起连接                |
+| recv(2) - receive a message from a socket                   | 从 socket 读取数据       |
+| recvfrom(2) - receive a message from a socket               | 从 socket 读取数据       |
+| send(2) - send a message on a socket                        | 向 socket 发送数据       |
+| inet_addr(3) - Internet address manipulation routines       | 点分十进制和二进制网络字节顺序的转换  |
 
 #### 文件
 
