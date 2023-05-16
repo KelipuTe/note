@@ -332,11 +332,10 @@ tags:
 
 - 费曼技巧
 - [实践论](https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193707.htm)
-- [bilibili-YJango](https://space.bilibili.com/344849038)
+- {bilibili}/[YJango](https://space.bilibili.com/344849038)
   - 学习观系列视频
 - [一款硬核解密游戏，一个“疯子”的第九艺术朝圣之路](https://www.bilibili.com/video/BV1VK4y1s7bq)
 - [诗篇46的秘密【重译版】](https://zhuanlan.zhihu.com/p/121816366)
-- [北风计算机编程-为什么要学习底层](https://mp.weixin.qq.com/s/6sCtd6Ap8XGtvRb1YjXAfw)
-- [bilibili-渤海小吏](https://space.bilibili.com/504934876)
-  - 缓慢进化的人性系列视频
-  - 楚汉双雄系列视频
+- {北风计算机编程}/[为什么要学习底层](https://mp.weixin.qq.com/s/6sCtd6Ap8XGtvRb1YjXAfw)
+- {bilibili}/[渤海小吏](https://space.bilibili.com/504934876)
+  - 缓慢进化的人性系列视频、楚汉双雄系列视频

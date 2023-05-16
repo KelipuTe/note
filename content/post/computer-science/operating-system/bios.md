@@ -100,4 +100,4 @@ BIOS 程序干的第一件事情是进行检查，检查计算机硬件能不能
 - {CSDN}/{JerkWisdom}/[操作系统引导过程](https://blog.csdn.net/jonathan321/article/details/51987680)
 - {阮一峰的网络日志}/[计算机是如何启动的？](http://www.ruanyifeng.com/blog/2013/02/booting.html)
 - {百度百科}/\[bios、扩展引导记录\]
-- ChatGPT + DeepL
+- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

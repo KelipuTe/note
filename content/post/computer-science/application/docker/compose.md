@@ -1,9 +1,9 @@
 ---
 draft: false
+create_date: 2023-01-08 08:00:00 +0800
 date: 2023-01-08 08:00:00 +0800
-lastmod: 2023-01-08 08:00:00 +0800
 title: "Docker Compose 怎么用"
-summary: "编辑 docker-compose.yaml，启动 Docker Compose"
+summary: "编辑 docker-compose.yaml；启动 Docker Compose；"
 toc: true
 
 categories:
@@ -15,11 +15,15 @@ tags:
 - docker
 - docker-compose
 ---
+## 前言
 
-> CPU AMD64(x86_64)<br/>
-> Windows 11 家庭版<br/>
-> Docker version v20.10.17<br/>
-> Docker Compose version v2.7.0
+实践的环境：
+
+- CPU AMD64(x86_64)
+- Windows 11 家庭版
+- Docker v20.10.17
+
+## 正文
 
 ### Docker Compose 是什么
 
@@ -42,7 +46,7 @@ services:
 #    volumes:
 #      - ./script/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - "13306:3306"
+      - "3306:3306"
 
   redis7:
     image: redis:7.0
@@ -50,15 +54,21 @@ services:
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
-      - '16379:6379'
+      - '6379:6379'
 
 ```
 
 - image：指定用哪个 docker 镜像，如果本地没有的话，启动的时候会去 DockerHub 拉。
-- container_name：指定容器名称。如果不指定的话，当多个 docker compose 都需要创建同一个容器的时候，会报重名的错误。如果指定的话，多个 docker compose 会共享那个指定了名称的容器。
+- container_name：指定容器名称。
+  如果不指定的话，当多个 docker compose 都需要创建同一个容器的时候，会报重名的错误。
+  如果指定的话，多个 docker compose 会共享那个指定了名称的容器。
 - restart：需不需要重启容器。
 - ports：指定端口映射。冒号前面的是本机的端口，冒号后面的是容器内的端口。
 
 #### 第二步：启动
 
-打开 PowerShell，进入 docker-compose.yaml 文件所在的目录，执行 `docker compose up` 或者 `docker compose up -v` 命令就可以启动了。带 `-v` 参数表示命令在后台运行，不会再控制台输出日志。想要关闭的时候直接 Ctrl+C 就可以了。
+打开 powershell，进入 docker-compose.yaml 文件所在的目录。
+
+执行命令 `docker compose up` 或者命令 `docker compose up -v` 就可以启动了。
+
+带 "-v" 参数表示命令在后台运行，不会再控制台输出日志。想要关闭的时候直接 Ctrl+C 就可以了。
