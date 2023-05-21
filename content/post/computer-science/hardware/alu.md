@@ -184,4 +184,11 @@ ALU 就是由算术单元和逻辑单元组成的，这里画一个简单的 ALU
 
 ## 参考（reference）
 
-- [计算机科学相关笔记的参考](/post/computer-science/reference)
+- Crash Course Computer Science（计算机科学速成课）
+  - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)
+  - [CrashCourse 字幕组](https://github.com/1c7/crash-course-computer-science-chinese)
+  - [Youtube 原视频](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulI)
+  - 2、电子计算机-Electronic Computing
+  - 3、布尔逻辑 和 逻辑门-Boolean Logic & Logic Gates
+  - 4、二进制-Representing Numbers and Letters with Binary
+  - 5、算术逻辑单元-How Computers Calculate-the ALU

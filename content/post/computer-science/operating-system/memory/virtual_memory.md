@@ -1,5 +1,5 @@
 ---
-draft: false
+draft: true
 date: 2022-08-01 08:00:00 +0800
 lastmod: 2022-08-01 08:00:00 +0800
 title: "Virtual Memory（虚拟内存）"
@@ -168,4 +168,8 @@ tags:
 
 ### reference（参考）
 
-- [计算机科学相关笔记的参考](/post/computer-science/reference)
+- Crash Course Computer Science（计算机科学速成课）
+  - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)
+  - [CrashCourse 字幕组](https://github.com/1c7/crash-course-computer-science-chinese)
+  - [Youtube 原视频](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulI)
+  - 19、内存&储存介质-Memory & Storage

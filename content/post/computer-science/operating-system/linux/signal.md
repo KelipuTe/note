@@ -114,7 +114,7 @@ tags:
 
 进程可以更改信号的设置。进程在收到信号后，如果编写了信号处理函数就执行信号处理函数，如果没有编写信号处理函数就会执行默认动作。
 
-代码示例：{demo-c}/demo-in-linux/signal/signal.c。
+代码示例：**{demo-c}/demo-in-linux/signal/signal.c**
 
 程序运行起来之后，我们通过 "kill -s" 命令向进程发送信号。
 
@@ -137,7 +137,7 @@ tags:
 
 #### 系统调用返回错误
 
-代码示例：{demo-c}/demo-in-linux/signal/sigaction_default.c。
+代码示例：**{demo-c}/demo-in-linux/signal/sigaction_default.c**
 
 ```
 [debug]:getpid()=4475
@@ -167,7 +167,7 @@ tags:
 
 #### 系统调用重新开始
 
-代码示例：{demo-c}/demo-in-linux/signal/sigaction_restart.c。
+代码示例：**{demo-c}/demo-in-linux/signal/sigaction_restart.c**
 
 ```
 [debug]:getpid()=4491
@@ -199,7 +199,7 @@ tags:
 
 信号可以被阻塞，这时信号不会交付（执行默认动作或者被交给信号处理函数），直到它不被阻塞。信号处于生成和交付之间的状态，被称为未决。
 
-代码示例：{demo-c}/demo-in-linux/signal/signal_block.c。
+代码示例：**{demo-c}/demo-in-linux/signal/signal_block.c**
 
 程序大体的逻辑是，在 10 秒之内阻塞 SIGINT 信号，第 10 秒的时候解开 SIGINT 信号的阻塞。然后，分别在 10 秒之内和 10 秒以后向进程发送 SIGINT 信号。
 

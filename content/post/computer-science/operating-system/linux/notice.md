@@ -7,14 +7,15 @@ summary: "学会看 Linux 文档；注意代码运行的目标环境；笔记中
 toc: true
 
 categories:
-- operating-system(操作系统)
+  - operating-system(操作系统)
 
 tags:
-- computer-science(计算机科学)
-- operating-system(操作系统)
-- linux
-- linux-c
+  - computer-science(计算机科学)
+  - operating-system(操作系统)
+  - linux
+  - linux-c
 ---
+
 ## 正文
 
 ### 学会看 Linux 文档
@@ -23,21 +24,26 @@ tags:
 
 #### Linux man pages online
 
-在线文档可以从 [man7.org](https://man7.org/index.html) 进去。在 man7.org 页面，点击 Online manual pages，可以进到 [Linux man pages online](https://man7.org/linux/man-pages/index.html) 页面。
+在线文档可以从 [man7.org](https://man7.org/index.html) 进去。在 man7.org 页面，点击 Online manual
+pages，可以进到 [Linux man pages online](https://man7.org/linux/man-pages/index.html) 页面。
 
-在 Linux man pages online 页面，点击 by section 链接，可以进到一个列表页面。在这个列表页面，有所有的条目。虽然，东西多，但是，可以用浏览器进行全文搜索。找起来比较容易，不需要知道要找的条目到底在哪个 page。
+在 Linux man pages online 页面，点击 by section
+链接，可以进到一个列表页面。在这个列表页面，有所有的条目。虽然，东西多，但是，可以用浏览器进行全文搜索。找起来比较容易，不需要知道要找的条目到底在哪个
+page。
 
 #### man 命令
 
 在 Linux 操作系统中，可以使用 man 命令查看 Linux 文档。但是用 man 命令的时候，需要知道要找的条目到底在哪个 page。
 
-比如：页面上的 "execve(2) - execute program" 用 man 命令就是 "man 2 execve"。页面上的 "exec(3) - execute a file" 用 man 命令就是 "man 3 exec"。
+比如：页面上的 "execve(2) - execute program" 用 man 命令就是 "man 2 execve"。页面上的 "exec(3) - execute a file" 用 man
+命令就是 "man 3 exec"。
 
 #### 在 docker 的 centos 中无法使用 man 命令
 
 因为，docker 的 centos，它把一些东西精简了，所以，有一些命令不能使用。比如，man 命令。
 
-需要修改 "/etc/yum.conf" 配置文件。注释掉 `tsflags=nodocs` 这一行。这个配置禁用了一些软件包。修改配置文件后，重新安装 man 命令，即可使用。
+需要修改 "/etc/yum.conf" 配置文件。注释掉 `tsflags=nodocs` 这一行。这个配置禁用了一些软件包。修改配置文件后，重新安装 man
+命令，即可使用。
 
 ```
 > yum -y install man
@@ -48,7 +54,8 @@ tags:
 
 编程的时候，要注意代码运行的目标环境。同一段代码，在 Ubuntu 和 Centos 上运行的时候，整体的系统调用过程应该是差不多的，但是细节可能不一样。
 
-举个例子，在 Ubuntu 22.04 和 Centos 7 上分别跑 hello world 程序。加载 libc.so.6 文件的这个步骤。在 Ubuntu 22.04 上加载的是 "/lib/x86_64-linux-gnu/libc.so.6"；而在 Centos 7 上加载的是 "/lib64/libc.so.6"。
+举个例子，在 Ubuntu 22.04 和 Centos 7 上分别跑 hello world 程序。加载 libc.so.6 文件的这个步骤。在 Ubuntu 22.04
+上加载的是 "/lib/x86_64-linux-gnu/libc.so.6"；而在 Centos 7 上加载的是 "/lib64/libc.so.6"。
 
 ### 笔记中出现的文档
 
@@ -58,8 +65,8 @@ tags:
 
 #### 进程
 
-| 标题                                                        | 描述 |
-|-----------------------------------------------------------| --- |
+| 标题                                                        | 描述  |
+|-----------------------------------------------------------|-----|
 | **进程的标识**                                                 | --- |
 | getuid(2) - get user identity                             | --- |
 | geteuid(2) - get user identity                            | --- |
@@ -95,21 +102,21 @@ tags:
 
 #### 信号
 
-| 标题                                                     | 描述 |
-|--------------------------------------------------------| --- |
-| signal(7) - overview of signals                        | --- |
-| sigaction(2) - examine and change a signal action      | --- |
-| sigprocmask(2) - examine and change blocked signals    | --- |
-| sigpending(2) - examine pending signals                | --- |
-| sigsetops(3) - POSIX signal set operations             | --- |
-| alarm(2) - set an alarm clock for delivery of a signal | --- |
-| kill(2) - send signal to a process | 发送信号给一个过程 |
-| ---                                                    | --- |
+| 标题                                                     | 描述        |
+|--------------------------------------------------------|-----------|
+| signal(7) - overview of signals                        | ---       |
+| sigaction(2) - examine and change a signal action      | ---       |
+| sigprocmask(2) - examine and change blocked signals    | ---       |
+| sigpending(2) - examine pending signals                | ---       |
+| sigsetops(3) - POSIX signal set operations             | ---       |
+| alarm(2) - set an alarm clock for delivery of a signal | ---       |
+| kill(2) - send signal to a process                     | 发送信号给一个过程 |
+| ---                                                    | ---       |
 
 #### 进程间通信
 
-| 标题                                                     | 描述 |
-|--------------------------------------------------------| --- |
+| 标题                                                     | 描述  |
+|--------------------------------------------------------|-----|
 | **管道**                                                 | --- |
 | pipe(7) - overview of pipes and FIFOs                  | --- |
 | pipe(2) - create pipe                                  | --- |
@@ -153,23 +160,54 @@ tags:
 | recvfrom(2) - receive a message from a socket          | 从 socket 读取数据       |
 | send(2) - send a message on a socket                   | 向 socket 发送数据       |
 | sendto(2) - send a message on a socket                 | 向 socket 发送数据       |
-| ---                                                    | --- |
+| ---                                                    | ---                 |
+
+#### 线程
+
+| 标题                                                                 | 描述             |
+|--------------------------------------------------------------------|----------------|
+| **线程**                                                             | ---            |
+| pthreads(7) - POSIX threads                                        | 线程概述           |
+| pthread_create(3) - create a new thread                            | 创建线程         |
+| pthread_join(3) - join with a terminated thread                    | 子线程合入主线程       |
+| pthread_detach(3) - detach a thread                                | 主线程与子线程分离      |
+| pthread_exit(3) - terminate calling thread                         | 线程退出           |
+| **互斥锁**                                                            | ---            |
+| pthread_mutex_init(3p) - destroy and initialize a mutex            | 互斥锁初始化         |
+| pthread_mutex_lock(3p) - lock and unlock a mutex                   | 互斥锁加锁          |
+| pthread_mutex_unlock(3p) - lock and unlock a mutex                 | 互斥锁释放          |
+| **条件变量**                                                           | ---            |
+| pthread_cond_init(3p) - destroy and initialize condition variables | 条件变量初始化        |
+| pthread_cond_wait(3p) - wait on a condition                        | 等待条件变量         |
+| pthread_cond_signal(3p) - signal a condition                       | 唤醒一条被条件变量阻塞的线程 |
+| pthread_cond_broadcast(3p) - broadcast or signal a condition       | 唤醒全部被条件变量阻塞的线程 |
+| ---                                                                | ---            |
+
+#### IO 多路复用
+
+| 标题                                                              | 描述                                 |
+|-----------------------------------------------------------------|------------------------------------|
+| epoll(7) - I/O event notification facility                      | epoll 概述                           |
+| epoll_create(2) - open an epoll file descriptor                 | 创建 epoll 文件描述符                     |
+| epoll_ctl(2) - control interface for an epoll file descriptor   | 添加、修改、删除 epoll 关联的 linux 内核事件 |
+| epoll_wait(2) - wait for an I/O event on an epoll file descriptor                                                             | ---                                |
+| ---                                                             | ---                                |
 
 #### 文件
 
-| 标题                                              | 描述 |
-|-------------------------------------------------| --- |
-| access(2) - check user's permissions for a file | --- |
-| open(2) - open and possibly create a file       | --- |
-| read(2) - read from a file descriptor           | --- |
-| write(2) - write to a file descriptor           | --- |
+| 标题                                              | 描述      |
+|-------------------------------------------------|---------|
+| access(2) - check user's permissions for a file | ---     |
+| open(2) - open and possibly create a file       | ---     |
+| read(2) - read from a file descriptor           | ---     |
+| write(2) - write to a file descriptor           | ---     |
 | fcntl(2) - manipulate file descriptor           | 操作文件描述符 |
-| ---                                             | --- |
+| ---                                             | ---     |
 
 #### 终端
 
-| 标题                                                                       | 描述 |
-|--------------------------------------------------------------------------| --- |
+| 标题                                                                       | 描述  |
+|--------------------------------------------------------------------------|-----|
 | tty(1) - print the file name of the terminal connected to standard input | --- |
 | tty(4) - controlling terminal                                            | --- |
 | pty(7) - pseudoterminal interfaces                                       | --- |
@@ -180,11 +218,11 @@ tags:
 
 #### 其他
 
-| 标题                                                                                | 描述                 |
-|-----------------------------------------------------------------------------------|--------------------|
-| man(1) - an interface to the system reference manuals                             | man 命令怎么用          |
-| errno(3) - number of last error                                                   | errno 怎么用          |
-| htons(3) - convert values between host and network byte order                     | 主机字节序和网络字节序的转换     |
-| inet_addr(3) - Internet address manipulation routines                             | 点分十进制和二进制网络字节顺序的转换 |
-| strncasecmp(3) - compare two strings ignoring case                                | 比较两个字符串，忽略大小写      |
-| ---                                                                               | ---                |
+| 标题                                                            | 描述                 |
+|---------------------------------------------------------------|--------------------|
+| man(1) - an interface to the system reference manuals         | man 命令怎么用          |
+| errno(3) - number of last error                               | errno 怎么用          |
+| htons(3) - convert values between host and network byte order | 主机字节序和网络字节序的转换     |
+| inet_addr(3) - Internet address manipulation routines         | 点分十进制和二进制网络字节顺序的转换 |
+| strncasecmp(3) - compare two strings ignoring case            | 比较两个字符串，忽略大小写      |
+| ---                                                           | ---                |

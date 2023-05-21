@@ -1,7 +1,7 @@
 ---
 draft: false
-date: 2023-03-07 08:00:00 +0800
-lastmod: 2023-03-09 08:00:00 +0800
+create_date: 2023-03-07 08:00:00 +0800
+date: 2023-05-21 08:00:00 +0800
 weight: 110
 title: "计算机系统系列笔记的导航"
 summary: "计算机系统系列笔记的导航"
@@ -42,3 +42,7 @@ tags:
 - [进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收](/post/computer-science/operating-system/linux/process)
 - [终端和控制台](/post/computer-science/terminal_console)
 - [init 进程、进程间关系、作业、会话、守护进程](/post/computer-science/operating-system/linux/process02)
+- [信号](/post/computer-science/operating-system/linux/signal)
+- [线程](/post/computer-science/operating-system/linux/thread)
+- [网络间进程间通信](/post/computer-science/network/socket)
+- [I/O 模型](/post/computer-science/network/io-model)

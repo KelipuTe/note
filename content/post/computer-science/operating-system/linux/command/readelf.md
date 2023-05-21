@@ -1,5 +1,5 @@
 ---
-draft: false
+draft: true
 date: 2022-07-04 08:00:00 +0800
 lastmod: 2022-07-04 08:00:00 +0800
 title: "readelf"
