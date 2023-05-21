@@ -3,7 +3,7 @@ draft: false
 create_date: 2022-01-04 08:00:00 +0800
 date: 2023-05-20 08:00:00 +0800
 title: "线程"
-summary: "主线程；并发和并行；多线程；互斥锁；条件变量；"
+summary: "主线程；并发和并行；多线程；互斥锁；条件变量；惊群问题；"
 toc: true
 
 categories:
@@ -14,6 +14,7 @@ tags:
 - operating-system(操作系统)
 - linux
 - linux-c
+- thread(线程)
 ---
 ## 前言
 
@@ -60,8 +61,8 @@ main() 就是主线程的入口函数。每个线程都会有一个入口函数�
 
 代码示例：
 
-- {demo-c}/demo-in-linux/thread/thread_join.c
-- {demo-c}/demo-in-linux/thread/thread_detach.c
+- **{demo-c}/demo-in-linux/thread/thread_join.c**
+- **{demo-c}/demo-in-linux/thread/thread_detach.c**
 
 编译的时候，如果代码是多线程程序，gcc 命令需要加上 "\-lpthread" 选项。例如：`gcc xxx.c -lpthread -o xxx.elf`
 
@@ -95,7 +96,7 @@ void *mythread() {
 
 互斥锁常用于保护临界区的数据。有互斥锁的保护，在并发场景下，两个线程就会顺序执行，依次输出 y=200，y=300。
 
-代码示例：{demo-c}/demo-in-linux/thread/mutex_lock.c
+代码示例：**{demo-c}/demo-in-linux/thread/mutex_lock.c**
 
 可以使用 pthread_mutex_init() 初始化互斥锁，也可以使用常量 PTHREAD_MUTEX_INITIALIZER 初始化互斥锁。
 
@@ -123,7 +124,7 @@ pthread_mutex_lock() 加不上锁的时候就会阻塞。对同一个锁重复�
 
 另外的线程在释放掉临界资源后，可以使用 pthread_cond_signal() 唤醒一条阻塞的线程。或者使用 pthread_cond_broadcast() 唤醒全部阻塞的线程。
 
-代码示例：{demo-c}/demo-in-linux/thread/cond_wait.c
+代码示例：**{demo-c}/demo-in-linux/thread/cond_wait.c**
 
 ### 惊群问题
 

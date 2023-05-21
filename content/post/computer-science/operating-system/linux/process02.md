@@ -14,6 +14,7 @@ tags:
 - operating-system(操作系统)
 - linux
 - linux-c
+- process(线程)
 ---
 ## 前言
 
@@ -216,7 +217,7 @@ bg 命令可以让最近一个暂停的后台任务继续执行。这里也可�
 - 关闭不必要的文件描述符（主要是 0、1、2）。fork() 使得子进程继承了父进程一些打开的文件，但是子进程可能不需要，这会消耗系统资源。
 - 打开黑洞文件（`/dev/null`），彻底的断开控制终端。
 
-代码示例：{demo-c}/demo-in-linux/process02/daemon.c。
+代码示例：**{demo-c}/demo-in-linux/process02/daemon.c**
 
 程序运行之后会变成守护进程，不会在终端有输出。可以通过 "ps -ely" 命令查看进程状态。
 

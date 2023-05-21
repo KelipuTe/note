@@ -47,4 +47,8 @@ show_subscribe: false
 
 ### 参考
 
-- [计算机科学相关笔记的参考](/post/computer-science/reference)
+- Crash Course Computer Science（计算机科学速成课）
+  - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)
+  - [CrashCourse 字幕组](https://github.com/1c7/crash-course-computer-science-chinese)
+  - [Youtube 原视频](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulI)
+  - 21、压缩-Compression

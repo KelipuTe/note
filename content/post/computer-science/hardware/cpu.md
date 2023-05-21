@@ -164,4 +164,10 @@ CPU 的强大之处在于它是可编程的（programmable），如果写入不�
 
 ## 参考（reference）
 
-- [计算机科学相关笔记的参考](/post/computer-science/reference)
+- Crash Course Computer Science（计算机科学速成课）
+    - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)
+    - [CrashCourse 字幕组](https://github.com/1c7/crash-course-computer-science-chinese)
+    - [Youtube 原视频](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulI)
+    - 7、中央处理器(CPU)-The Central Processing Unit
+    - 8、指令和程序-Instructions & Programs
+    - 9、高级CPU设计-Advanced CPU Designs

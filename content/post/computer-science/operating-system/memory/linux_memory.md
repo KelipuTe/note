@@ -123,7 +123,11 @@ free 函数使用的时候只传入一个内存地址，没有传入内存大小
 
 ### reference（参考）
 
-- [计算机科学相关笔记的参考](/post/computer-science/reference)
+- Crash Course Computer Science（计算机科学速成课）
+  - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)
+  - [CrashCourse 字幕组](https://github.com/1c7/crash-course-computer-science-chinese)
+  - [Youtube 原视频](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulI)
+  - 19、内存&储存介质-Memory & Storage
 - [Linux 文档](https://man7.org/linux/man-pages/index.html)
   - [malloc(3) - allocate and free dynamic memory](https://man7.org/linux/man-pages/man3/malloc.3.html)
   - [proc(5) - process information pseudo-filesystem](https://man7.org/linux/man-pages/man5/proc.5.html)

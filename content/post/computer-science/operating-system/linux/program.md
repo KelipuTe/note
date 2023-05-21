@@ -3,7 +3,7 @@ draft: false
 create_date: 2021-12-04 08:00:00 +0800
 date: 2023-02-06 08:00:00 +0800
 title: "什么是程序"
-summary: "什么是程序；编译的过程；可执行文件"
+summary: "什么是程序；编译的过程；可执行文件；"
 toc: true
 
 categories:

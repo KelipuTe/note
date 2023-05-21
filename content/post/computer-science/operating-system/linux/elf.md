@@ -301,4 +301,4 @@ Symbol table '.symtab' contains 42 entries:
 
 一般来说，程序主要是以普通用户运行的，以较低的权限执行程序，可以保证安全性。但是有时需要操作一些比较重要的数据，这个时候就需要提权。提权后，可以短暂地拥有该可执行文件所有者的权限，然后就可以修改数据了。特别需要注意的是，使用完之后一定要降权。
 
-代码示例：{demo-c}/demo-in-linux/elf/setuid.c。
+代码示例：**{demo-c}/demo-in-linux/elf/setuid.c**

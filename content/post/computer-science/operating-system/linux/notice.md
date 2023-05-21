@@ -168,7 +168,7 @@ page。
 |--------------------------------------------------------------------|----------------|
 | **线程**                                                             | ---            |
 | pthreads(7) - POSIX threads                                        | 线程概述           |
-| pthread_create(3) - create a new thread                            | 创建一个线程         |
+| pthread_create(3) - create a new thread                            | 创建线程         |
 | pthread_join(3) - join with a terminated thread                    | 子线程合入主线程       |
 | pthread_detach(3) - detach a thread                                | 主线程与子线程分离      |
 | pthread_exit(3) - terminate calling thread                         | 线程退出           |
@@ -185,9 +185,13 @@ page。
 
 #### IO 多路复用
 
-| 标题  | 描述  |
-|-----|-----|
-| --- | --- |
+| 标题                                                              | 描述                                 |
+|-----------------------------------------------------------------|------------------------------------|
+| epoll(7) - I/O event notification facility                      | epoll 概述                           |
+| epoll_create(2) - open an epoll file descriptor                 | 创建 epoll 文件描述符                     |
+| epoll_ctl(2) - control interface for an epoll file descriptor   | 添加、修改、删除 epoll 关联的 linux 内核事件 |
+| epoll_wait(2) - wait for an I/O event on an epoll file descriptor                                                             | ---                                |
+| ---                                                             | ---                                |
 
 #### 文件
 

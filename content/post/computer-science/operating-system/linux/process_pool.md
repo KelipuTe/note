@@ -14,6 +14,7 @@ tags:
 - operating-system(操作系统)
 - linux
 - linux-c
+- process(线程)
 ---
 ## 前言
 
@@ -56,8 +57,8 @@ tags:
 
 代码示例：
 
-- {demo-c}/demo-in-linux/process-pool/pool.c。
-- {demo-c}/demo-in-linux/process-pool/write.c。
+- **{demo-c}/demo-in-linux/process-pool/pool.c**
+- **{demo-c}/demo-in-linux/process-pool/write.c**
 
 示例中：
 

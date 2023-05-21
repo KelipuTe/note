@@ -1,7 +1,7 @@
 ---
 draft: false
+create_date: 2021-11-10 08:00:00 +0800
 date: 2023-03-25 08:00:00 +0800
-lastmod: 2021-11-10 08:00:00 +0800
 title: "计算机网络（computer network）"
 summary: "计算机网络；局域网；以太网；MAC；交换机；冲突域；路由；分组交换；互联网；DNS；网络分层模型；万维网；"
 toc: true
@@ -169,4 +169,10 @@ TCP 位于传输层。位于传输层的还有 UDP。IP 位于网络层。
 
 ## 参考（reference）
 
-- [计算机科学相关笔记的参考](/post/computer-science/reference)
+- Crash Course Computer Science（计算机科学速成课）
+    - [bilibili](https://www.bilibili.com/video/BV1EW411u7th)
+    - [CrashCourse 字幕组](https://github.com/1c7/crash-course-computer-science-chinese)
+    - [Youtube 原视频](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulI)
+    - 28、计算机网络-Computer Networks
+    - 29、互联网-The Internet
+    - 30、万维网-The World Wide Web
