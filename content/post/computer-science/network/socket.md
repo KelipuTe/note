@@ -385,6 +385,7 @@ UNIX socket 的类型也有 TCP 和 UDP 两种，但是 UNIX socket 的 UDP 是�
 
 - {小林coding}/[图解系统](https://xiaolincoding.com/os/)
   - 9.2 I/O 多路复用：select/poll/epoll
+- [linux 网络 sk_buff结构](https://blog.csdn.net/wwwlyj123321/article/details/127715903)
 - {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
   - 网络间进程间通信部分、socket 部分、TCP 部分、UDP 部分
 - [linux /proc/net/tcp 文件分析](https://blog.csdn.net/whatday/article/details/100693051)
