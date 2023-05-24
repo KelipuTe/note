@@ -1,5 +1,5 @@
 ---
-draft: false
+draft: true
 create_date: 2021-12-06 08:00:00 +0800
 date: 2023-02-07 08:00:00 +0800
 title: "运行 ELF 文件"
