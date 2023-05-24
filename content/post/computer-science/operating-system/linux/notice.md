@@ -1,5 +1,5 @@
 ---
-draft: false
+draft: true
 create_date: 2021-12-06 08:00:00 +0800
 date: 2023-05-16 08:00:00 +0800
 title: "在 Linux 系统中使用 C 语言进行编程的注意点"
