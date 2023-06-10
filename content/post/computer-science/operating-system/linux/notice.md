@@ -1,9 +1,8 @@
 ---
 draft: true
-create_date: 2021-12-06 08:00:00 +0800
 date: 2023-05-16 08:00:00 +0800
-title: "在 Linux 系统中使用 C 语言进行编程的注意点"
-summary: "学会看 Linux 文档；注意代码运行的目标环境；笔记中出现的文档；"
+title: "在 Linux 中使用 C 语言进行编程的注意点"
+summary: "学会看 linux 文档；注意代码运行的目标环境；笔记中出现的文档；"
 toc: true
 
 categories:
@@ -13,92 +12,90 @@ tags:
   - computer-science(计算机科学)
   - operating-system(操作系统)
   - linux
-  - linux-c
+  - c-programming-language
 ---
 
 ## 正文
 
-### 学会看 Linux 文档
+### 学会看 linux 文档
 
-想在 Linux 系统中使用 C 语言进行编程，一定要学会看 Linux 的文档。第一，不会看文档，那搞个屁的编程。第二，遇到问题，仔细看看文档，一般都能解决。
+想在 linux 系统中使用 c 语言进行编程，一定要学会看 linux 的文档。
 
-#### Linux man pages online
+#### 在线文档
 
-在线文档可以从 [man7.org](https://man7.org/index.html) 进去。在 man7.org 页面，点击 Online manual
-pages，可以进到 [Linux man pages online](https://man7.org/linux/man-pages/index.html) 页面。
+在线文档可以从 [man7.org](https://man7.org/index.html) 进去。
+在 man7.org 页面，点击 "Online manual pages"，可以进到
+[Linux man pages online](https://man7.org/linux/man-pages/index.html) 页面。
 
-在 Linux man pages online 页面，点击 by section
-链接，可以进到一个列表页面。在这个列表页面，有所有的条目。虽然，东西多，但是，可以用浏览器进行全文搜索。找起来比较容易，不需要知道要找的条目到底在哪个
-page。
+在 "Linux man pages online" 页面，点击 "by section" 链接，可以进到一个列表页面。在这个列表页面，有所有的条目。
+虽然，东西多，但是，可以用浏览器进行全文搜索，找起来比较容易，不需要知道要找的条目到底在哪个 page。
 
 #### man 命令
 
-在 Linux 操作系统中，可以使用 man 命令查看 Linux 文档。但是用 man 命令的时候，需要知道要找的条目到底在哪个 page。
+在 linux 操作系统中，可以使用 man 命令查看 linux 文档。但是，用 man 命令的时候，需要知道要找的条目到底在哪个 page。
 
-比如：页面上的 "execve(2) - execute program" 用 man 命令就是 "man 2 execve"。页面上的 "exec(3) - execute a file" 用 man
-命令就是 "man 3 exec"。
+比如：在线文档 by section 页面上的 "execve(2) - execute program"，用 man 命令就是 `man 2 execve`；
+在线文档 by section 页面上的 "exec(3) - execute a file" 用 man 命令就是 `man 3 exec`。
 
-#### 在 docker 的 centos 中无法使用 man 命令
+#### 在 docker 的 centos 容器中无法使用 man 命令
 
-因为，docker 的 centos，它把一些东西精简了，所以，有一些命令不能使用。比如，man 命令。
+因为，docker 的 centos 容器，它把一些东西精简了，所以，有一些命令不能使用。
 
-需要修改 "/etc/yum.conf" 配置文件。注释掉 `tsflags=nodocs` 这一行。这个配置禁用了一些软件包。修改配置文件后，重新安装 man
-命令，即可使用。
-
-```
-> yum -y install man
-> yum -y install man-pages
-```
+需要修改 "/etc/yum.conf" 配置文件。注释掉 `tsflags=nodocs` 这一行。这个配置禁用了一些软件包。
+修改配置文件后，使用 `yum -y install man` 和 `yum -y install man-pages` 命令，重新安装 man 命令，即可使用。
 
 ### 注意代码运行的目标环境
 
-编程的时候，要注意代码运行的目标环境。同一段代码，在 Ubuntu 和 Centos 上运行的时候，整体的系统调用过程应该是差不多的，但是细节可能不一样。
+编程的时候，要注意代码运行的目标环境。
+同一段代码，在 ubuntu 和 centos 上运行的时候，整体的系统调用过程应该是差不多的，但是细节可能不一样。
 
-举个例子，在 Ubuntu 22.04 和 Centos 7 上分别跑 hello world 程序。加载 libc.so.6 文件的这个步骤。在 Ubuntu 22.04
-上加载的是 "/lib/x86_64-linux-gnu/libc.so.6"；而在 Centos 7 上加载的是 "/lib64/libc.so.6"。
+举个例子，在 ubuntu 22.04 和 centos 7 上分别跑 hello world 程序。加载 libc.so.6 文件的这个步骤。
+在 ubuntu 22.04 上加载的是 "/lib/x86_64-linux-gnu/libc.so.6"；而在 centos 7 上加载的是 "/lib64/libc.so.6"。
 
 ### 笔记中出现的文档
 
-笔记中出现的 Linux 文档，都会统一写在这里。直接 by section 页面搜就可以。不会散步到每一篇笔记中去，每一个都贴链接，太麻烦了。
+笔记中出现的 linux 文档，都会统一写在这里。直接在在线文档 by section 页面搜就可以。每一篇笔记都贴链接，太麻烦了。
 
-笔记中出现的会是从文档中节选的关键的部分，或者和实践过程有关的部分。有可能是全的，有可能是省略的，这不一定。所以，看的时候稍微注意一点。
+笔记中出现的是从文档中节选的关键的部分，或者和实践过程有关的部分。有可能是整段的，有可能是节选的，看的时候稍微注意一点。
 
 #### 进程
 
-| 标题                                                        | 描述  |
-|-----------------------------------------------------------|-----|
-| **进程的标识**                                                 | --- |
-| getuid(2) - get user identity                             | --- |
-| geteuid(2) - get user identity                            | --- |
-| getpid(2) - get process identification                    | --- |
-| getppid(2) - get process identification                   | --- |
-| getpgid(2) - set/get process group                        | --- |
-| **进程的创建**                                                 | --- |
-| fork(2) - create a child process                          | --- |
-| vfork(2) - create a child process and block parent        | --- |
-| **进程的运行**                                                 | --- |
-| execve(2) - execute program                               | --- |
-| exec(3) - execute a file                                  | --- |
-| **进程的退出**                                                 | --- |
-| exit(2) - terminate the calling process                   | --- |
-| _Exit(2) - terminate the calling process                  | --- |
-| _exit(2) - terminate the calling process                  | --- |
-| exit(3) - cause normal process termination                | --- |
-| exit_group(2) - exit all threads in a process             | --- |
-| **进程的回收**                                                 | --- |
-| wait(2) - wait for process to change state                | --- |
-| waitpid(2) - wait for process to change state             | --- |
-| **进程的运行顺序**                                               | --- |
-| nice(1) - run a program with modified scheduling priority | --- |
-| renice(1) - alter priority of running processes           | --- |
-| getpriority(2) - get/set program scheduling priority      | --- |
-| setpriority(2) - get/set program scheduling priority      | --- |
-| nice(2) - change process priority                         | --- |
-| **进程的内存资源**                                               | --- |
-| proc(5) - process information pseudo-filesystem           | --- |
-| getrlimit(2) - get/set resource limits                    | --- |
-| setrlimit(2) - get/set resource limits                    | --- |
-| ---                                                       | --- |
+| 标题                                                        | 描述         |
+|-----------------------------------------------------------|------------|
+| **进程的标识**                                                 | ---        |
+| getuid(2) - get user identity                             | ---        |
+| geteuid(2) - get user identity                            | ---        |
+| getpid(2) - get process identification                    | ---        |
+| getppid(2) - get process identification                   | ---        |
+| getpgid(2) - set/get process group                        | ---        |
+| **进程的创建**                                                 | ---        |
+| fork(2) - create a child process                          | 创建子进程      |
+| vfork(2) - create a child process and block parent        | 创建子进程      |
+| clone(2) - create a child process                          | 创建子进程      |
+| **进程的运行**                                                 | ---        |
+| execve(2) - execute program                               | 执行程序       |
+| exec(3) - execute a file                                  | ---        |
+| **进程的退出**                                                 | ---        |
+| exit(2) - terminate the calling process                   | ---        |
+| _Exit(2) - terminate the calling process                  | ---        |
+| _exit(2) - terminate the calling process                  | ---        |
+| exit(3) - cause normal process termination                | ---        |
+| exit_group(2) - exit all threads in a process             | 退出进程中所有的线程 |
+| **进程的回收**                                                 | ---        |
+| wait(2) - wait for process to change state                | ---        |
+| waitpid(2) - wait for process to change state             | ---        |
+| wait4(2) - wait for process to change state, BSD style                | 等待回收进程     |
+| **进程的运行顺序**                                               | ---        |
+| nice(1) - run a program with modified scheduling priority | ---        |
+| renice(1) - alter priority of running processes           | ---        |
+| getpriority(2) - get/set program scheduling priority      | ---        |
+| setpriority(2) - get/set program scheduling priority      | ---        |
+| nice(2) - change process priority                         | ---        |
+| **进程的内存资源**                                               | ---        |
+| proc(5) - process information pseudo-filesystem           | ---        |
+| getrlimit(2) - get/set resource limits                    | ---        |
+| setrlimit(2) - get/set resource limits                    | ---        |
+| ---                                                       | ---        |
 
 #### 信号
 
@@ -168,7 +165,7 @@ page。
 |--------------------------------------------------------------------|----------------|
 | **线程**                                                             | ---            |
 | pthreads(7) - POSIX threads                                        | 线程概述           |
-| pthread_create(3) - create a new thread                            | 创建线程         |
+| pthread_create(3) - create a new thread                            | 创建线程           |
 | pthread_join(3) - join with a terminated thread                    | 子线程合入主线程       |
 | pthread_detach(3) - detach a thread                                | 主线程与子线程分离      |
 | pthread_exit(3) - terminate calling thread                         | 线程退出           |
@@ -185,24 +182,26 @@ page。
 
 #### IO 多路复用
 
-| 标题                                                              | 描述                                 |
-|-----------------------------------------------------------------|------------------------------------|
-| epoll(7) - I/O event notification facility                      | epoll 概述                           |
-| epoll_create(2) - open an epoll file descriptor                 | 创建 epoll 文件描述符                     |
-| epoll_ctl(2) - control interface for an epoll file descriptor   | 添加、修改、删除 epoll 关联的 linux 内核事件 |
-| epoll_wait(2) - wait for an I/O event on an epoll file descriptor                                                             | ---                                |
-| ---                                                             | ---                                |
+| 标题                                                                | 描述                            |
+|-------------------------------------------------------------------|-------------------------------|
+| epoll(7) - I/O event notification facility                        | epoll 概述                      |
+| epoll_create(2) - open an epoll file descriptor                   | 创建 epoll 文件描述符                |
+| epoll_ctl(2) - control interface for an epoll file descriptor     | 添加、修改、删除 epoll 关联的 linux 内核事件 |
+| epoll_wait(2) - wait for an I/O event on an epoll file descriptor | ---                           |
+| ---                                                               | ---                           |
 
 #### 文件
 
-| 标题                                              | 描述      |
-|-------------------------------------------------|---------|
-| access(2) - check user's permissions for a file | ---     |
-| open(2) - open and possibly create a file       | ---     |
-| read(2) - read from a file descriptor           | ---     |
-| write(2) - write to a file descriptor           | ---     |
-| fcntl(2) - manipulate file descriptor           | 操作文件描述符 |
-| ---                                             | ---     |
+| 标题                                                           | 描述         |
+|--------------------------------------------------------------|------------|
+| access(2) - check user's permissions for a file              | ---        |
+| open(2) - open and possibly create a file                    | ---        |
+| read(2) - read from a file descriptor                        | 从文件描述符读取数据 |
+| write(2) - write to a file descriptor                        | 向文件描述符写入数据 |
+| fcntl(2) - manipulate file descriptor                        | 操作文件描述符    |
+| elf(5) - format of Executable and Linking Format (ELF) files | elf 相关     |
+| openat(2) - open and possibly create a file                  | 打开或者创建一个文件 |
+| ---                                                          | ---        |
 
 #### 终端
 
@@ -216,11 +215,24 @@ page。
 | posix_openpt(3) - open a pseudoterminal device                           | --- |
 | ---                                                                      | --- |
 
+#### linux 命令
+
+| 标题                                                          | 描述                         |
+|-------------------------------------------------------------|----------------------------|
+| man(1) - an interface to the system reference manuals       | 查看文档的 man 命令怎么用            |
+| gcc(1) - GNU project C and C++ compiler                     | 用于编译的 gcc 命令怎么用            |
+| file(1) - determine file type                               | 查文件类型的 file 命令怎么用          |
+| objdump(1) - display information from object files          | 查看文件信息的 objdump 命令怎么用      |
+| strace(1) - trace system calls and signals                  | 跟踪系统调用的 strace 命令怎么用       |
+| readelf(1) - display information about ELF files            | 查看 elf 文件内容的 readelf 命令怎么用 |
+| size(1) - list section sizes and total size of binary files | 查看段大小的 size 命令怎么用          |
+| nm(1) - list symbols from object files                      | 查看符号表的 nm 命令怎么用            |
+| ---                                                         | ---                        |
+
 #### 其他
 
 | 标题                                                            | 描述                 |
 |---------------------------------------------------------------|--------------------|
-| man(1) - an interface to the system reference manuals         | man 命令怎么用          |
 | errno(3) - number of last error                               | errno 怎么用          |
 | htons(3) - convert values between host and network byte order | 主机字节序和网络字节序的转换     |
 | inet_addr(3) - Internet address manipulation routines         | 点分十进制和二进制网络字节顺序的转换 |
