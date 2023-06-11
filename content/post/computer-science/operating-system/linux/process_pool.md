@@ -1,6 +1,5 @@
 ---
 draft: true
-create_date: 2023-05-17 08:00:00 +0800
 date: 2023-05-17 08:00:00 +0800
 title: "进程池"
 summary: "进程池；"
@@ -14,7 +13,7 @@ tags:
 - operating-system(操作系统)
 - linux
 - linux-c
-- process(线程)
+- process(进程)
 ---
 ## 前言
 

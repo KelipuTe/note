@@ -217,17 +217,18 @@ tags:
 
 #### linux 命令
 
-| 标题                                                          | 描述                         |
-|-------------------------------------------------------------|----------------------------|
-| man(1) - an interface to the system reference manuals       | 查看文档的 man 命令怎么用            |
-| gcc(1) - GNU project C and C++ compiler                     | 用于编译的 gcc 命令怎么用            |
-| file(1) - determine file type                               | 查文件类型的 file 命令怎么用          |
-| objdump(1) - display information from object files          | 查看文件信息的 objdump 命令怎么用      |
-| strace(1) - trace system calls and signals                  | 跟踪系统调用的 strace 命令怎么用       |
-| readelf(1) - display information about ELF files            | 查看 elf 文件内容的 readelf 命令怎么用 |
-| size(1) - list section sizes and total size of binary files | 查看段大小的 size 命令怎么用          |
-| nm(1) - list symbols from object files                      | 查看符号表的 nm 命令怎么用            |
-| ---                                                         | ---                        |
+| 标题                                                          | 描述          |
+|-------------------------------------------------------------|-------------|
+| man(1) - an interface to the system reference manuals       | 查看文档        |
+| gcc(1) - GNU project C and C++ compiler                     | 用于编译        |
+| file(1) - determine file type                               | 查文件类型       |
+| objdump(1) - display information from object files          | 查看文件信息      |
+| strace(1) - trace system calls and signals                  | 跟踪系统调用      |
+| readelf(1) - display information about ELF files            | 查看 elf 文件内容 |
+| size(1) - list section sizes and total size of binary files | 查看段大小       |
+| nm(1) - list symbols from object files                      | 查看符号表       |
+| ldd(1) - print shared object dependencies                   | 查看文件依赖的动态库  |
+| ---                                                         | ---         |
 
 #### 其他
 
@@ -237,4 +238,5 @@ tags:
 | htons(3) - convert values between host and network byte order | 主机字节序和网络字节序的转换     |
 | inet_addr(3) - Internet address manipulation routines         | 点分十进制和二进制网络字节顺序的转换 |
 | strncasecmp(3) - compare two strings ignoring case            | 比较两个字符串，忽略大小写      |
+| vdso(7) - overview of the virtual ELF dynamic shared object   | ---                |
 | ---                                                           | ---                |

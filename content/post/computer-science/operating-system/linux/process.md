@@ -1,6 +1,5 @@
 ---
-draft: true
-create_date: 2021-12-08 08:00:00 +0800
+draft: false
 date: 2023-02-15 08:00:00 +0800
 title: "进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收"
 summary: "进程的创建、进程的运行、进程的运行顺序、进程的内存资源、进程的资源限制、进程的退出、进程的回收"
@@ -14,7 +13,7 @@ tags:
 - operating-system(操作系统)
 - linux
 - linux-c
-- process(线程)
+- process(进程)
 ---
 ## 前言
 

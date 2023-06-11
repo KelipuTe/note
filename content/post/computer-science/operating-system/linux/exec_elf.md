@@ -2,7 +2,7 @@
 draft: false
 date: 2023-06-10 08:00:00 +0800
 title: "运行 ELF 文件"
-summary: "进程是什么；可执行文件是怎么运行的；"
+summary: "进程是什么；怎么观察进程；hello world 程序运行的过程；"
 toc: true
 
 categories:
@@ -58,6 +58,9 @@ tags:
 "-T" 显示系统调用花费的时间；"-p {pid}"指定跟踪的进程号；
 "-s {length}" 每一行的长度，默认 32，一般设置 65535；"-o {file name}" 输出到文件。
 
+关于系统调用的详细的内容。我放到这篇里面去了。
+[系统调用](/post/computer-science/operating-system/system_call)
+
 这里观察一下 hello_world.elf 可执行文件运行的过程。
 命令的输出我放在 {demo-c}/demo-in-linux/program/ 目录的 hello_world_objdump.md 文件内。
 
@@ -80,10 +83,10 @@ docker run -it -p 127.0.0.1:9501:9501 -v {local path}:{docker path} --name={cont
 进入容器，然后使用命令：`echo 0 > /proc/sys/kernel/yama/ptrace_scope`。
 将 "/proc/sys/kernel/yama/ptrace_scope" 文件中的值修改成 0。然后就可以使用 `strace -p` 命令跟踪进程了。
 
-### 观察一下 hello_world 程序运行的过程
+### 观察一下 hello world 程序运行的过程
 
-可以直接用 `strace -f -i -T -s 65535 ./hello_world.elf` 直接跟踪 `./hello_world.elf` 运行的过程。
-但是，这样观察不到全部的细节。这里用另外一种观察方式，观察输入 `./hello_world.elf` 的那个终端对应的进程。
+可以直接用 `strace -f -i -T -s 65535 ./hello_world.elf` 命令直接跟踪 `./hello_world.elf` 命令运行的过程。
+但是，这样观察不到全部的细节。这里用另外一种观察方式，观察输入 `./hello_world.elf` 并运行程序的那个终端对应的进程。
 
 其实用户的输入，也是有一个进程来处理的，这个进程会接收并分析用户输入的容，然后做出相应的动作。
 这里这个进程，会先接收到用户输入的 `./hello_world.elf` 还有回车符。
@@ -120,7 +123,7 @@ strace: Process 5333 attached
 ...
 ```
 
-这里用上面的第二行 "2222  \[00007f060c914992\] read(0, ".", 1) = 1 <0.000107>" 做一个说明：
+这里用上面的第二行 "2222 \[00007f060c914992\] read(0, ".", 1) = 1 <0.000107>" 做一个说明：
 "2222" 是进程号；'\[00007f060c914992\]' 是地址；'read(0, ".", 1)' 是系统调用和调用的时候传入的参数；
 "= 1" 这里的 1 是前面那个系统调用的返回值；"<0.000107>" 是系统调用消耗的时间。
 
@@ -128,7 +131,7 @@ strace: Process 5333 attached
 这一大段 read 函数和 write 函数，跟踪到的就是用户在终端 a 里用键盘输入 `./helloworld` 的过程。
 read 是读取用户的输入，write 是将用户的输入显示到屏幕上。
 
-关于 read 函数和 write 函数具体怎么用可以看 "read(2) - read from a file descriptor" 
+关于 read 函数和 write 函数具体怎么用可以看 "read(2) - read from a file descriptor"
 和 "write(2) - write to a file descriptor"
 
 #### clone
@@ -179,6 +182,9 @@ clone() 的作用是创建子进程，这里父进程 2222 创建了子进程 35
 execve() 会加载可执行文件的 ".text" （程序指令）和 ".data" （程序数据）到当前进程，并覆盖当前进程。
 '\["./helloworld"\]' 是命令行参数。"0x564eeda28ec0 /* 55 vars */" 是环境参数。环境参数是供所有应用程序使用的公共数据。
 
+关于命令行参数和环境参数的详细的内容。我放到这篇里面去了。
+[命令行参数和环境参数](/post/computer-science/operating-system/cmd_env_param)
+
 #### libc.so.6
 
 下一个关键的步骤是，加载 libc.so.6 文件。
@@ -202,6 +208,9 @@ linux 进程默认情况下会有 3 个缺省打开的文件描述符，分别�
 libc.so.6 是共享目标文件，也叫共享库、运行库、动态库。用户程序会调用运行库（C Runtime Library、CRT）。
 运行库封装了操作系统更底层的系统调用函数。Linux、Windows、Mac，不同的操作系统，底层接口都是不一样的。
 并且这些底层接口都比较 "原始"，如果想直接使用，那是比较复杂的，所以，要封装这些比较底层的系统调用。
+
+关于静态链接和动态链接的详细的内容。我放到这篇里面去了。
+[动态链接和静态链接](/post/computer-science/operating-system/dynamically_statically_linked)
 
 #### write
 
@@ -260,6 +269,14 @@ int main() {
 "WIFEXITED(s)" 和 "WEXITSTATUS(s)" 是宏函数，"WEXITSTATUS(s)" 可以拿到退出状态码。
 
 #### 至此整个 hello world 程序执行结束。
+
+### 进程
+
+上面 hello world 程序执行的过程，就是一个非常典型的进程的生命周期。
+主要包括进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收。
+
+关于这块的详细的内容。我放到这篇里面去了。
+[进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收](/post/computer-science/operating-system/linux/process)
 
 ## 参考
 
