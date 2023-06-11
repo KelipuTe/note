@@ -26,7 +26,7 @@ tags:
 - linux version 5.19.0-41-generic
 - gcc version 11.3.0
 
-前置笔记：[什么是程序](/post/computer-science/operating-system/program)
+前置笔记：[程序](/post/computer-science/operating-system/program)
 
 ## 资料
 

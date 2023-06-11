@@ -1,30 +1,31 @@
 ---
-draft: true
+draft: false
 date: 2023-05-17 08:00:00 +0800
 title: "进程池"
 summary: "进程池；"
 toc: true
 
 categories:
-- operating-system(操作系统)
+  - operating-system(操作系统)
 
 tags:
-- computer-science(计算机科学)
-- operating-system(操作系统)
-- linux
-- linux-c
-- process(进程)
+  - computer-science(计算机科学)
+  - operating-system(操作系统)
+  - linux
+  - c-programming-language
+  - process(进程)
 ---
+
 ## 前言
 
 实践的环境：
 
-- CPU AMD64(x86_64)
-- Windows 11 家庭版
-- VMware Workstation Pro 16
-- Ubuntu 22.04
-- Linux 5.19.0-32-generic x86_64
-- gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+- amd64（x86_64）
+- windows 11
+- vmware workstation pro 16
+- ubuntu 22.04
+- linux version 5.19.0-41-generic
+- gcc version 11.3.0
 
 前置笔记：
 
@@ -69,7 +70,7 @@ tags:
 - 父进程通过命名管道从外部接收数据。
 - 父进程通过信号和特殊的输入 "exit" 退出。
 
-## 参考（reference）
+## 参考
 
 - {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-  - 进程池部分
+    - 核心基础的，进程池部分；

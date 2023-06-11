@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 date: 2023-05-16 08:00:00 +0800
 title: "在 Linux 中使用 C 语言进行编程的注意点"
 summary: "学会看 linux 文档；注意代码运行的目标环境；笔记中出现的文档；"
@@ -71,7 +71,7 @@ tags:
 | **进程的创建**                                                 | ---        |
 | fork(2) - create a child process                          | 创建子进程      |
 | vfork(2) - create a child process and block parent        | 创建子进程      |
-| clone(2) - create a child process                          | 创建子进程      |
+| clone(2) - create a child process                         | 创建子进程      |
 | **进程的运行**                                                 | ---        |
 | execve(2) - execute program                               | 执行程序       |
 | exec(3) - execute a file                                  | ---        |
@@ -84,7 +84,7 @@ tags:
 | **进程的回收**                                                 | ---        |
 | wait(2) - wait for process to change state                | ---        |
 | waitpid(2) - wait for process to change state             | ---        |
-| wait4(2) - wait for process to change state, BSD style                | 等待回收进程     |
+| wait4(2) - wait for process to change state, BSD style    | 等待回收进程     |
 | **进程的运行顺序**                                               | ---        |
 | nice(1) - run a program with modified scheduling priority | ---        |
 | renice(1) - alter priority of running processes           | ---        |

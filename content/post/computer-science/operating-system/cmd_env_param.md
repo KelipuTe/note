@@ -6,14 +6,15 @@ summary: "命令行参数；环境参数；"
 toc: true
 
 categories:
-- operating-system(操作系统)
+  - operating-system(操作系统)
 
 tags:
-- computer-science(计算机科学)
-- operating-system(操作系统)
-- linux
-- c-programming-language
+  - computer-science(计算机科学)
+  - operating-system(操作系统)
+  - linux
+  - c-programming-language
 ---
+
 ## 前言
 
 实践的环境：

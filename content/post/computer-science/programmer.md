@@ -1,17 +1,17 @@
 ---
 draft: false
 date: 2022-09-20 08:00:00 +0800
-lastmod: 2022-09-20 08:00:00 +0800
 title: "程序员的定位"
 summary: "程序员的定位"
 toc: true
 
 categories:
-- computer-science(计算机科学)
+  - computer-science(计算机科学)
 
 tags:
-- computer-science(计算机科学)
+  - computer-science(计算机科学)
 ---
+
 ## 正文
 
 ### 程序员的自我修养
@@ -30,4 +30,4 @@ tags:
 ## 参考（reference）
 
 - [慕课网，隔壁王校长](https://www.imooc.com/u/6901397/courses)
-  - [Go语言框架：Beego vs Gin](https://www.imooc.com/learn/602)
+    - [Go语言框架：Beego vs Gin](https://www.imooc.com/learn/602)
