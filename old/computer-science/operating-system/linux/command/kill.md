@@ -1,5 +1,0 @@
-
-
-kill -l
-
-kill -s

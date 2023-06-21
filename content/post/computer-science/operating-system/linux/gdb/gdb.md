@@ -94,3 +94,31 @@ Mapped address spaces:
       0x7ffffffde000     0x7ffffffff000    0x21000        0x0  rw-p   [stack]
   0xffffffffff600000 0xffffffffff601000     0x1000        0x0  --xp   [vsyscall]
 ```
+
+### 查看变量或者函数的地址
+
+(gdb) help p
+print, inspect, p
+Print value of expression EXP.
+Usage: print [[OPTION]... --] [/FMT] [EXP
+
+p 是 print（打印）的缩写，用于打印变量的值或表达式的结果。
+
+`p [expression]` expression 是要打印的变量或表达式
+
+### 查看地址上的值
+
+(gdb) help x
+
+Examine memory: x/FMT ADDRESS.
+ADDRESS is an expression for the memory address to examine.
+FMT is a repeat count followed by a format letter and a size letter.
+Format letters are o(octal), x(hex), d(decimal), u(unsigned decimal),
+t(binary), f(float), a(address), i(instruction), c(char), s(string)
+and z(hex, zero padded on the left).
+Size letters are b(byte), h(halfword), w(word), g(giant, 8 bytes).
+
+x/nfu address n=数据数量 f=显示格式 u=数据长度
+
+"x" 表示以十六进制格式输出
+"b"（字节）、"h"（半字，即 2 字节）和 "g"（双字，即 8 字节）
