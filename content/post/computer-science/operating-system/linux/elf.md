@@ -141,14 +141,14 @@ elf 文件头总是在文件的最前面，其他的数据都在后面。这很�
 数据存储方式有两种：小端字节序（little endian）和大端字节序（big endian）。
 小端字节序又叫主机字节序，大端字节序又叫网络字节序。
 
-上面 `readelf -h symbol.elf` 命令的结果里面，在 Data 字段里可以看见 "little endian"。
+上面 `readelf -h` 命令的结果里面，在 Data 字段里可以看见 "little endian"。
 意思就是在 symbol.elf 里面，数据的存储格式是小端字节序。下面来验证一下这个结论。
 
 在 symbol.c 的源码里面，全局变量 globalIntB 是一开始就明确的给了值的。
-在 `readelf -s symbol.elf` 命令输出的符号表里，找到 globalIntB 在的那一行。
+在 `readelf -s` 命令输出的符号表里，找到 globalIntB 在的那一行。
 然后，就可以知道到 globalIntB 对应的内存地址是 0x4010。
 
-在 `objdump -s symbol.elf` 命令输出的结果里面，找到 ".data" 段，进而找到地址 0x4010 对应的数据。
+在 `objdump -s` 命令输出的结果里面，找到 ".data" 段，进而找到地址 0x4010 对应的数据。
 通过地址，就可以找到 0x4010 地址上对应的数据是什么。
 
 这里截取一下 ".data" 段的内容。
@@ -334,8 +334,8 @@ globalIntB 的数据保存在地址从 0x4010 开始往后的 4 个字节上，�
 
 ## 参考
 
+- [ChatGPT](https://chat.openai.com/)
+- [Bito](https://bito.ai/)
+- [DeepL](https://www.deepl.com/translator)
 - {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-    - 核心基础的，elf 部分；高级部分的，elf 部分；
 - {51CTO学堂}/{可用行师}/[Golang核心高级](https://edu.51cto.com/course/29852.html)
-    - 核心高级部分的，elf 文件部分；
-- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

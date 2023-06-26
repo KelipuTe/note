@@ -97,10 +97,12 @@ Mapped address spaces:
 
 ### 查看变量或者函数的地址
 
+```text
 (gdb) help p
 print, inspect, p
 Print value of expression EXP.
 Usage: print [[OPTION]... --] [/FMT] [EXP
+```
 
 p 是 print（打印）的缩写，用于打印变量的值或表达式的结果。
 
@@ -108,6 +110,7 @@ p 是 print（打印）的缩写，用于打印变量的值或表达式的结果
 
 ### 查看地址上的值
 
+```text
 (gdb) help x
 
 Examine memory: x/FMT ADDRESS.
@@ -117,8 +120,16 @@ Format letters are o(octal), x(hex), d(decimal), u(unsigned decimal),
 t(binary), f(float), a(address), i(instruction), c(char), s(string)
 and z(hex, zero padded on the left).
 Size letters are b(byte), h(halfword), w(word), g(giant, 8 bytes).
+```
 
 x/nfu address n=数据数量 f=显示格式 u=数据长度
 
 "x" 表示以十六进制格式输出
 "b"（字节）、"h"（半字，即 2 字节）和 "g"（双字，即 8 字节）
+
+## 参考
+
+- [ChatGPT](https://chat.openai.com/)
+- [Bito](https://bito.ai/)
+- [DeepL](https://www.deepl.com/translator)
+- `gdb help`
