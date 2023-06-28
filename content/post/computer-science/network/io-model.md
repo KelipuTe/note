@@ -382,6 +382,4 @@ proactor 可以理解为来了事件操作系统来处理，处理完再通知�
   - 9.2 I/O 多路复用：select/poll/epoll
   - 9.3 高性能网络模式：Reactor 和 Proactor
 - [100%弄明白5种IO模型](https://zhuanlan.zhihu.com/p/115912936)
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-  - epoll 部分
 - [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

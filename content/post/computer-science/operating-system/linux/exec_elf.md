@@ -17,16 +17,9 @@ tags:
 
 ## 前言
 
-实践的环境：
-
-- amd64（x86_64）
-- windows 11
-- vmware workstation pro 16
-- ubuntu 22.04
-- linux version 5.19.0-41-generic
-- gcc version 11.3.0
-
 前置笔记：[ELF 文件](/post/computer-science/operating-system/linux/elf)
+
+实践的环境：同 [程序]()
 
 ## 资料
 
@@ -41,6 +34,7 @@ tags:
 当一个程序被交给操作系统执行时，操作系统首先会创建一个进程。
 与此同时，一个线程也会被立刻启动起来去执行程序中的 main 函数。
 这个线程就叫主线程，后续创建的线程都是这个主线程的子线程。
+
 线程被称作轻量级进程，它是操作系统调度的最小单元，通常一个进程可以拥有多个线程。
 
 进程不仅局限于程序（那段可执行代码），还包含其他资源。例如，文件、内存、线程、信号等。
@@ -72,7 +66,8 @@ tags:
 attach: ptrace(PTRACE_SEIZE): Operation not permitted
 ```
 
-参考官方文档：[The solution for enabling of ptrace and PTRACE_ATTACH in Docker Containers](https://bitworks.software/en/2017-07-24-docker-ptrace-attach.html)。
+参考官方文档：
+[The solution for enabling of ptrace and PTRACE_ATTACH in Docker Containers](https://bitworks.software/en/2017-07-24-docker-ptrace-attach.html)。
 
 启动容器的时候使用 "–-privileged" 参数，让容器内的 root 用户拥有真正的 root 权限。
 
@@ -257,15 +252,23 @@ int main() {
 
 #### wait4
 
-下一个关键的步骤是，是父进程从 wait4() 的阻塞状态中被唤醒。
+下一个关键的步骤是，是父进程从 wait4() 的阻塞状态中被唤醒。但是，父进程怎么被唤醒的呢。
+
+> Topic 2 Multiprocessing (4)<br/>
+> A SIGCHLD is sent automatically by the kernel to a process, telling the process that one of its child process terminates or stops.
+
+子进程退出的时候，操作系统先知道。然后，操作系统会给父进程发一个 SIGCHLD 信号。
+然后，父进程知道子进程退出了，前面调用的 wait4() 会回收退出的子进程，并回收子进程的内存资源。
 
 ```
 ...
 2222  [00007f060c8ea45a] <... wait4 resumed>[{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WSTOPPED|WCONTINUED, NULL) = 3579 <0.035522>
 ...
+2222  [00007f060c89bc9b] --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=3579, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+2222  [00007f060c8ea45a] wait4(-1, 0x7ffdb295ab90, WNOHANG|WSTOPPED|WCONTINUED, NULL) = -1 ECHILD (No child processes) <0.000005>
+...
 ```
 
-父进程知道子进程退出了，前面调用的 wait4() 会回收退出的子进程，并回收子进程的内存资源。
 "WIFEXITED(s)" 和 "WEXITSTATUS(s)" 是宏函数，"WEXITSTATUS(s)" 可以拿到退出状态码。
 
 #### 至此整个 hello world 程序执行结束。
@@ -280,7 +283,5 @@ int main() {
 
 ## 参考
 
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-    - 核心基础的，加载 elf 文件部分、程序执行流程部分；
 - [百度百科-主线程](https://baike.baidu.com/item/%E4%B8%BB%E7%BA%BF%E7%A8%8B/9600138?fr=aladdin)
-- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)
+- [Topic 2 Multiprocessing (4)](http://web.stanford.edu/~hhli/CS110Notes/CS110NotesCollection/Topic%202%20Multiprocessing%20(4).html)

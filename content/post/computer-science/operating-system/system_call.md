@@ -17,16 +17,9 @@ tags:
 
 ## 前言
 
-实践的环境：
-
-- amd64（x86_64）
-- windows 11
-- vmware workstation pro 16
-- ubuntu 22.04
-- linux version 5.19.0-41-generic
-- gcc version 11.3.0
-
 前置笔记：[运行 ELF 文件](/post/computer-science/operating-system/linux/exec_elf)
+
+实践的环境：同 [运行 ELF 文件]()
 
 ## 正文
 
@@ -94,11 +87,3 @@ __attr_access ((__read_only__, 2, 3));
 > write - write to a file descriptor<br/>
 > #include <unistd.h><br/>
 > ssize_t write(int fd, const void *buf, size_t count);
-
-## 参考
-
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-    - 核心基础的，系统调用部分；
-- {51CTO学堂}/{可用行师}/[Golang核心高级](https://edu.51cto.com/course/29852.html)
-    - 核心高级部分的，系统调用部分；
-- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

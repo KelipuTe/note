@@ -17,16 +17,9 @@ tags:
 
 ## 前言
 
-实践的环境：
-
-- amd64（x86_64）
-- windows 11
-- vmware workstation pro 16
-- ubuntu 22.04
-- linux version 5.19.0-41-generic
-- gcc version 11.3.0
-
 前置笔记：[程序](/post/computer-science/operating-system/program)
+
+实践的环境：同 [程序]()
 
 ## 资料
 
@@ -36,15 +29,17 @@ tags:
 
 ### elf 文件是什么文件
 
-在 [什么是程序]() 中提到过，c 源码文件通过 gcc 编译器编译可以得到可执行文件，这里的可执行文件就是 elf 文件的一种。
+在 [程序]() 中提到过，c 源码文件通过 gcc 编译器编译可以得到可执行文件，这里的可执行文件就是 elf 文件的一种。
 关于 elf 具体的细节可以看 "elf(5) - format of Executable and Linking Format (ELF) files"
 
 > elf(5)<br/>
 > Amongst these files are normal executable files, relocatable object files, core files, and shared objects.
 
 elf 文件格式有四种：
-普通可执行文件（normal executable files）、可重定位文件（relocatable object files）、
-核心文件（core files）、共享目标文件、共享库、动态库（shared objects）。
+普通可执行文件（normal executable files）；
+可重定位文件（relocatable object files）；
+核心文件（core files）；
+共享目标文件、共享库、动态库（shared objects）。
 
 我在 {demo-c}/demo-in-linux/elf/ 目录下，准备了三个程序：
 symbol.c、0b_0_10_0x.c、address.c。分别用于讨论不同的问题。
@@ -148,10 +143,8 @@ elf 文件头总是在文件的最前面，其他的数据都在后面。这很�
 在 `readelf -s` 命令输出的符号表里，找到 globalIntB 在的那一行。
 然后，就可以知道到 globalIntB 对应的内存地址是 0x4010。
 
-在 `objdump -s` 命令输出的结果里面，找到 ".data" 段，进而找到地址 0x4010 对应的数据。
-通过地址，就可以找到 0x4010 地址上对应的数据是什么。
-
-这里截取一下 ".data" 段的内容。
+在 `objdump -s` 命令输出的结果里面，找到内存地址 0x4010，地址上存储的就是全局变量 globalIntB 的数据。
+内存地址 0x4010 在 ".data" 段里面，这里截取一下 ".data" 段的内容。
 
 ```
 Contents of section .data:
@@ -191,8 +184,8 @@ c 语言的 int 变量由 4 个字节组成，每个字节由 8 个 bit 位组�
 
 ### 程序的入口地址
 
-从 `objdump -s symbol.elf` 命令输出的结果里可以知道 symbol.elf 程序的入口地址是 0x1060。
-然后在 `objdump -s symbol.elf` 命令输出的结果里面。找到 ".text" 段，然后找到地址 0x1060 对应的数据。
+从 `objdump -s` 命令输出的结果里可以知道 symbol.elf 程序的入口地址是 0x1060。
+然后在 `objdump -s` 命令输出的结果里面。找到 ".text" 段，然后找到地址 0x1060 对应的数据。
 这里截取了 ".text" 段前三行的内容。
 
 ```
@@ -205,7 +198,7 @@ Contents of section .text:
 - 左边第 1 列是虚拟地址；中间的 4 列是指令码；最右边 1 列是 ASCII 码。
 - "0x1060" 是起始地址；"f30f1efa" 是起始指令；指令是 16 进制的："0xf3 0x0f 0x1e 0xfa"；大小为 4 个字节。
 
-在命令 `objdump -d symbol.elf` 输出的结果中，可以找到对应的汇编代码。
+在 `objdump -d` 命令输出的结果中，可以找到对应的汇编代码。
 这里截取了程序的入口地址对应的部分。通过虚拟地址的值和指令的值可以对应起来。
 
 ```
@@ -236,7 +229,7 @@ Contents of section .text:
 
 ### 符号表
 
-通过命令 `readelf -s symbol.elf` 可以输出符号表。
+通过命令 `readelf -s` 可以输出符号表。
 这里截取了 "_start" 对应的数据和 symbol.elf 代码里直接出现的几个。
 
 ```
@@ -264,7 +257,7 @@ Contents of section .text:
 globalIntB 的数据保存在地址从 0x4010 开始往后的 4 个字节上，也就是上面的 "2c010000"，值就是 300。
 
 命令 nm 也可以输出符号表。关于 gcc 命令具体怎么用可以看 "nm(1) - list symbols from object files"。
-`nm symbol.elf` 命令输出的内容在文件 {demo-c}/demo-in-linux/elf/symbol_elf_nm.md 中。
+nm 命令输出的内容在文件 {demo-c}/demo-in-linux/elf/symbol_elf_nm.md 中。
 
 ### 使用符号表的地址直接访问数据
 
@@ -303,6 +296,7 @@ globalIntB 的数据保存在地址从 0x4010 开始往后的 4 个字节上，�
 
 "/etc/shadow" 文件用于记录 linux 上所有用户的账号和密码。
 只有超级管理员有读写权限，普通用户是没有读写权限的。
+
 但是，没有写权限的普通用户却可以通过 passwd 命令修改自己的密码。
 这是因为 passwd 命令对应的 "/bin/passwd" 文件的权限是 "-rwsr-xr-x"。
 
@@ -319,6 +313,7 @@ globalIntB 的数据保存在地址从 0x4010 开始往后的 4 个字节上，�
 
 在程序中，可以通过 getuid() 获取用户 id，通过 geteuid() 获取有效用户 id。
 通过 setuid() 设置用户 id，通过 seteuid() 设置有效用户 id。
+
 如果是文件的所有者，那么 getuid() 和 geteuid() 得到的结果是一样的。
 如果不是文件的所有者，那么 geteuid() 就能拿到文件的所有者的 id。
 
@@ -327,15 +322,8 @@ globalIntB 的数据保存在地址从 0x4010 开始往后的 4 个字节上，�
 
 一般来说，程序主要是以普通用户运行的，以较低的权限执行程序，可以保证安全性。
 但是，有时需要操作一些比较重要的数据，这个时候就需要提权。
+
 提权后，可以短暂地拥有该可执行文件所有者的权限，然后就可以修改数据了。
 特别需要注意的是，使用完之后一定要降权。
 
-代码示例：**{demo-c}/demo-in-linux/elf/setuid.c**
-
-## 参考
-
-- [ChatGPT](https://chat.openai.com/)
-- [Bito](https://bito.ai/)
-- [DeepL](https://www.deepl.com/translator)
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-- {51CTO学堂}/{可用行师}/[Golang核心高级](https://edu.51cto.com/course/29852.html)
+代码示例：{demo-c}/demo-in-linux/elf/setuid.c

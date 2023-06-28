@@ -17,17 +17,10 @@ tags:
 
 ## 前言
 
-实践的环境：
-
-- CPU AMD64(x86_64)
-- Windows 11 家庭版
-- VMware Workstation Pro 16
-- Ubuntu 22.04
-- Linux 5.19.0-32-generic x86_64
-- gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
-
 前置笔记：
 [进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收](/post/computer-science/operating-system/linux/process)
+
+实践的环境：同 [程序]()
 
 ## 资料
 
@@ -81,7 +74,7 @@ tags:
 中断处理例程（interrupt handler routine）和中断处理程序（interrupt handler）的关键区别在于，
 中断处理例程是响应硬件设备的中断信号而执行的代码，而中断处理程序是管理中断信号并调用适当的中断处理例程的代码。
 
-#### 信号对进程的影响
+### 信号对进程的影响
 
 > signal(7)</br>
 > Linux supports both POSIX reliable signals (hereinafter "standard signals")
@@ -110,7 +103,7 @@ Core：进程终止并产生 "core dump" 文件；Stop：进程停止；Cont：�
 进程可以更改信号的设置，信号发生时可以选择下面三种行为。
 执行默认动作（default action，SIG_DFL）；忽略信号（ignore，SIG_IGN）；使用信号处理程序捕捉信号（signal hanlder）
 
-#### 信号的产生
+### 信号的产生
 
 - 终端按下 Ctrl+C，产生 SIGINT 信号；终端按下 Ctrl+\ 产生 SIGQUIT 信号；终端按下 Ctrl+Z 产生 SIGSTOP 信号。
 - 进程访问一些不存在的内存或是非法内存，会产生 SIGSEGV 中断信号
@@ -118,7 +111,7 @@ Core：进程终止并产生 "core dump" 文件；Stop：进程停止；Cont：�
 - 在进程中，使用 raise()、kill()、alarm() 等发送中断信号
 - 子进程退出时会产生中断信号
 
-#### Linux 中的信号
+### Linux 中的信号
 
 在 Linux 中，中断信号有64个，分位标准信号和实时信号。
 可以通过 "kill -l" 命令可以查看 Linux 中的 64 个中断信号。其中，带 RT（real time）的就是实时信号。
@@ -143,13 +136,37 @@ Core：进程终止并产生 "core dump" 文件；Stop：进程停止；Cont：�
 
 进程可以更改信号的设置。进程在收到信号后，如果编写了信号处理函数就执行信号处理函数，如果没有编写信号处理函数就会执行默认动作。
 
-代码示例：**{demo-c}/demo-in-linux/signal/signal.c**
+代码示例：{demo-c}/demo-in-linux/signal/signal_handler.c
 
 程序运行起来之后，我们通过 "kill -s" 命令向进程发送信号。
 
 - 如果向程序发送 SIGUSR1，进程会执行默认动作，输出 "User defined signal 1"，然后停止。
 - 如果向程序发送 SIGUSR2，进程会忽略信号，什么反应都没有。
 - 如果向程序发送 SIGINT，进程会执行处理函数，输出 "\[info\]:signal_no=2"，然后继续执行。
+
+测试信号处理函数时，当测试的是信号是 SIGSTOP 时，并不会像预期的那样输出 SIGSTOP 信号的值。
+因为进程收到 SIGSTOP 后已经停止作业（并没有退出）。
+如果这时再向进程发送 SIGCONT 信号。这时进程会恢复作业，并输出`signal no=18`，也就是收到的 SIGCONT 信号的值。
+
+通过 strace 命令追踪，可以得到下面的内容。进程确实收到了 SIGSTOP 信号和 SIGCONT 信号。
+
+```
+--- SIGSTOP {si_signo=SIGSTOP, si_code=SI_USER, si_pid=84, si_uid=0} ---
+--- stopped by SIGSTOP ---
+--- SIGCONT {si_signo=SIGCONT, si_code=SI_USER, si_pid=84, si_uid=0} ---
+write(1, "signal no=18\r\n", 14)        = 14
+```
+
+### 信号和 waitpid()
+
+父进程调用 waitpid() 的时候可以获得子进程推出的状态码。
+
+把状态码传给宏函数 WIFSIGNALED()，可以判断子进程是不是被信号终止的。
+如果子进程是被信号终止的，WIFSIGNALED() 会返回一个非零值。
+
+当 WIFSIGNALED() 返回非零值时，可以用宏函数 WTERMSIG() 宏来提取信号的编号。
+
+代码示例：{demo-c}/demo-in-linux/signal/signal_and_waitpid.c
 
 ### 信号和系统调用
 
@@ -172,7 +189,7 @@ Core：进程终止并产生 "core dump" 文件；Stop：进程停止；Cont：�
 
 #### 系统调用返回错误
 
-代码示例：**{demo-c}/demo-in-linux/signal/sigaction_default.c**
+代码示例：{demo-c}/demo-in-linux/signal/sigaction_default.c
 
 ```
 [debug]:getpid()=4475
@@ -204,7 +221,7 @@ Core：进程终止并产生 "core dump" 文件；Stop：进程停止；Cont：�
 
 #### 系统调用重新开始
 
-代码示例：**{demo-c}/demo-in-linux/signal/sigaction_restart.c**
+代码示例：{demo-c}/demo-in-linux/signal/sigaction_restart.c
 
 ```
 [debug]:getpid()=4491
@@ -239,7 +256,7 @@ Core：进程终止并产生 "core dump" 文件；Stop：进程停止；Cont：�
 信号可以被阻塞，这时信号不会交付（执行默认动作或者被交给信号处理函数），直到它不被阻塞。
 信号处于生成和交付之间的状态，被称为未决。
 
-代码示例：**{demo-c}/demo-in-linux/signal/signal_block.c**
+代码示例：{demo-c}/demo-in-linux/signal/signal_block.c
 
 程序大体的逻辑是，在 10 秒之内阻塞 SIGINT 信号，第 10 秒的时候解开 SIGINT 信号的阻塞。
 然后，分别在 10 秒之内和 10 秒以后向进程发送 SIGINT 信号。
@@ -271,7 +288,7 @@ Core：进程终止并产生 "core dump" 文件；Stop：进程停止；Cont：�
 
 10 秒以后向进程发送 SIGINT 信号的时候，信号不会被阻塞，信号处理函数直接开始工作，未决信号里面不会有数据。
 
-### 其他信号
+### 小的知识点
 
 #### SIGKILL、SIGSTOP
 
@@ -333,9 +350,3 @@ SigBlk:	0000000000000000
 SigIgn:	0000000000000000
 SigCgt:	0000000000000002
 ```
-
-## 参考
-
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-    - 核心基础的，进程部分、信号部分；
-- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

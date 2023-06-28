@@ -121,9 +121,3 @@ envp=_=./env_param.elf
 ```
 
 main() 的 envp 参数的值就是环境参数，环境参数也可以通过 env 命令输出。
-
-## 参考
-
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-    - 核心基础的，命令行参数和环境参数部分；
-- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

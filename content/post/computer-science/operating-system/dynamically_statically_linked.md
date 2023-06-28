@@ -109,7 +109,7 @@ linux 系统中，c 库的命名规则通常遵循 libc.so.<版本> 的模式，
 dynamically_library.c 是动态库本体。里面准备了一个 print_hello_world()。
 编码完成后使用 `gcc -fPIC -shared dynamically_library.c -o dynamically_library.so` 命令，编译成动态库。
 
-动态库一般有两种使用方式：编译时链接动态库、程序中显示调用动态库。
+动态库一般有两种使用方式：编译时链接动态库（写代码的时候引入头文件，头文件里面是声明和定义）；程序中显示调用动态库。
 
 首先是编译时使用动态库，我们在 use_when_gcc.c 里面直接声明然后调用 print_hello_world()。
 这个时候直接使用 gcc 编译肯定是不行的，因为标准库里面没有 print_hello_world()。
@@ -199,11 +199,3 @@ Contents of section .text:
 
 静态链接器会将输入的目标文件进行合并，把 ".text" 段、".data" 段等进行合并，合并后会重新计算段的大小、偏移位置。
 同时静态链接器还要完成符号解析（确保所有的符号被正确地连接）、重新定位（调整内存地址和引用）等操作。
-
-## 参考
-
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-    - 核心基础的，动态链接和静态链接部分；
-- {51CTO学堂}/{可用行师}/[Golang核心高级](https://edu.51cto.com/course/29852.html)
-    - 核心高级部分的，动态链接和静态链接部分；
-- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

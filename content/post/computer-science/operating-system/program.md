@@ -60,7 +60,7 @@ tags:
 ### 从源代码到可执行文件
 
 对于应用软件的开发人员来说，一般都是基于操作系统进行开发的。所以，我这里的讨论，到操作系统就为止了。
-不是说下层就不重要了，而是由于抽象层的存在，我们规避掉下层茫茫多的细节，专心讨论上层的问题。
+不是说下层就不重要了，而是由于抽象层的存在，我们可以规避掉下层茫茫多的细节，专心讨论上层的问题。
 
 上面提到过，开发人员开发的应用程序，使用的是操作系统提供的系统接口。系统接口也叫系统调用（system call）。
 这个玩意，现在就解释有点太早了，在 [运行 ELF 文件]() 这篇里面会详细的说。
@@ -79,7 +79,16 @@ ubuntu 22.04 的 linux 版本是 linux version 5.19.0-41-generic。这个可以�
 
 #### 编译
 
-想从源代码变成可执行文件，通常要进行编译。在 linux 系统中就是，c 源码文件通过 gcc 编译器的编译得到 elf 可执行文件。
+可执行文件是操作系统提供的对于程序的抽象，内容包括程序指令和程序数据。
+程序指令就是前面说过的指令集里面的指令，程序数据就是二进制的数据。
+按照操作系统提供的对于程序的抽象编写出来的程序，操作系统才看得懂。
+
+可执行文件就相当于一个操作手册，操作手册上记录了每一步要干什么。
+手册上是用文字描述要干什么的，实际操作的时候，是一个个具体动作，指令集记录的就是文字描述和具体动作的对应关系。
+操作系统拿着操作手册，再对照指令集，就可以知道需要在硬件系统上做什么具体动作。
+
+想从源代码变成可执行文件，通常要进行编译。
+在 linux 系统中就是，c 源码文件通过 gcc 编译器的编译得到 elf 可执行文件。
 在 windows 系统中就是，c 源码文件通过 gcc 编译器的编译得到 exe 可执行文件。这里讨论的是在 linux 系统中的情况。
 
 通常使用 gcc 命令 `gcc xxx.c -o xxx` 一步就完成了。但是，这一步里面其实有四个步骤：预处理、编译、汇编、链接。
@@ -119,11 +128,14 @@ hello_world.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not strippe
 hello_world.elf: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=6d49e18a785eb53d246ca89c5dbce54472ed1584, for GNU/Linux 3.2.0, not stripped
 ```
 
-这里解释一下：
-hello_world.c 和 hello_world.i 都是 c 源码文件（C source）；hello_world.s 是汇编源码文件（assembler source）；
-hello_world.o 是可重定位文件（relocatable）；hello_world.elf 是可执行文件（executable）。
+这里解释一下。
+hello_world.c 和 hello_world.i 都是 c 源码文件（C source）；
+hello_world.s 是汇编源码文件（assembler source）；
+hello_world.o 是可重定位文件（relocatable）；
+hello_world.elf 是可执行文件（executable）。
 
-特别注意一下 hello_world.elf，它的内容有点多的。"dynamically linked" 表示它是动态链接的；
+特别注意一下 hello_world.elf，它的内容有点多的。
+"dynamically linked" 表示它是动态链接的。
 "interpreter /lib64/ld-linux-x86-64.so.2" 表示它有一个解释器，解释器的路径是 "/lib64/ld-linux-x86-64.so.2"。
 这两个玩意，现在就解释有点太早了，在 [运行 ELF 文件]() 这篇里面会详细的说。
 
@@ -174,27 +186,26 @@ Disassembly of section .text:
 ```
 
 "Disassembly of section .text"，表示程序指令的内容，以及对应的汇编代码。这里和 "-s" 输出的结果对应。
-上面 "-s" 输出的结果里的 "Contents of section .text" 里，第一行第二段的 "f30f1efa"。就对应这里的 "0:    f3 0f 1e fa"。
+上面 "-s" 输出的结果里的 "Contents of section .text" 里，第一行第二段的 "f30f1efa"，就对应这里的 "0:    f3 0f 1e fa"。
 下面一行的 "4:    55" 和后面的 "push %rbp"，就表示 "55"（0x55）反汇编后对应的汇编指令就是 "push %rbp"。
 
 然后，再用 objdump 命令观察一下 hello_world.elf 文件。命令的输出也放在 hello_world_objdump.md 文件里面。
-这里可以看到，hello_world.elf 的内容是比 hello_world.o 要多出不少的。而且，通过 hello_world.elf 的内容，我们可以发现。
+这里可以看到，hello_world.elf 的内容是比 hello_world.o 要多出不少的。
+
+而且，通过 hello_world.elf 的内容，我们可以发现。
 
 第一点：hello_world.elf 的 ".text" 段的第一个函数不是 main 函数，而是 "_start" 函数。
-"_start" 函数会调用 "__libc_start_main" 函数进行一些必要的初始化操作，然后再调用 main 函数。也就是说，main 函数并不是程序的入口。
+"_start" 函数会调用 "__libc_start_main" 函数进行一些必要的初始化操作，然后再调用 main 函数。
+也就是说，main 函数并不是程序的入口。
 
 第二点：一个简单的 hello world 程序没有看上去的那么简单。
+
+### 可执行文件
 
 关于 elf 可执行文件的详细的内容。我放到这篇里面去了。
 [ELF 文件](/post/computer-science/operating-system/linux/elf)
 
 ### 程序的运行过程是怎样的
 
-关于 elf 可执行文件运行过程的详细的内容。我放到这篇里面去了。
+关于 elf 可执行文件的运行过程的详细的内容。我放到这篇里面去了。
 [运行 ELF 文件](/post/computer-science/operating-system/linux/exec_elf)
-
-## 参考
-
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-    - 核心基础的，程序部分；
-- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

@@ -18,19 +18,12 @@ tags:
 
 ## 前言
 
-实践的环境：
-
-- amd64（x86_64）
-- windows 11
-- vmware workstation pro 16
-- ubuntu 22.04
-- linux version 5.19.0-41-generic
-- gcc version 11.3.0
-
 前置笔记：
 [进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收](/post/computer-science/operating-system/linux/process)
 
 交叉笔记：[终端和控制台](/post/computer-science/terminal_console)
+
+实践的环境：同 [程序]()
 
 ## 资料
 
@@ -272,7 +265,7 @@ bg 命令可以让最近一个暂停的后台任务继续执行。这里也可�
 - 关闭不必要的文件描述符（主要是 0、1、2）。fork() 使得子进程继承了父进程一些打开的文件，但是子进程可能不需要，这会消耗系统资源。
 - 打开黑洞文件（`/dev/null`），彻底的断开控制终端。
 
-代码示例：**{demo-c}/demo-in-linux/process02/daemon.c**
+代码示例：{demo-c}/demo-in-linux/process02/daemon.c
 
 程序运行之后会变成守护进程，不会在终端有输出。可以通过 "ps -ely" 命令查看进程状态。
 

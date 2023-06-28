@@ -133,9 +133,3 @@ pthread_mutex_lock() 加不上锁的时候就会阻塞。对同一个锁重复�
 惊群问题，可以使用互斥锁、信号量、或者其他同步原语，来调节对共享资源的访问。
 
 缓存可以用来减少对共享资源的访问需求，提高系统的整体性能。负载均衡可以将共享资源分散出去，避免单点争夺。
-
-## 参考（reference）
-
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-    - 核心基础的，线程部分；
-- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

@@ -1,27 +1,32 @@
 ---
 draft: false
-date: 2023-06-11 08:00:00 +0800
+date: 2023-06-27 08:00:00 +0800
 weight: 110
-title: "计算机系统系列笔记的导航"
-summary: "计算机系统系列笔记的导航"
+title: "计算机科学相关笔记的导航"
+summary: "计算机科学相关笔记的导航"
 toc: true
 
 categories:
-- computer-science(计算机科学)
+  - computer-science(计算机科学)
 
 tags:
-- computer-science(计算机科学)
+  - computer-science(计算机科学)
 ---
+
 ## 正文
 
-本篇是计算机系统系列笔记的导航。计算机系统系列笔记是一个持续更新的板块。
+本篇是计算机科学相关笔记的导航。
+
+如果某篇笔记有前置笔记，会统一写在前言里面，如果某篇笔记有后置笔记，会直接写在正文里面。
 
 ### 硬件系统
 
-这个部分，从二极管开始一直到 CPU。主要是为了：了解 CPU 的原理、了解指令集是什么。
+这个部分，主要涉及硬件系统的几个基本的硬件单元。
+主要是为了，了解 CPU 的基本原理，了解指令集是什么。
 
 指令集是计算机的灵魂，整个计算机都是围绕指令集构建起来的。
-它一方面指导硬件系统（比如CPU）怎么设计，另一方面指导 BIOS 怎么设计。
+它一方面指导硬件系统（比如 CPU）怎么设计，另一方面指导软件系统（比如 BIOS）怎么设计。
+指令集就是一个抽象层，是连接硬件系统和软件系统的桥梁。
 
 - [算术逻辑单元（Arithmetic and Logic Unit、ALU）](/post/computer-science/hardware/alu)
 - [内存（Memory）](/post/computer-science/hardware/memory)
@@ -29,15 +34,10 @@ tags:
 
 ### 软件系统
 
-这个部分，主要涉及操作系统和程序。
-借助 "在 linux 系统中使用 c 语言进行编程" 搞清楚程序是如何运行的。
-主要是为了：了解操作系统是什么、了解操作系统的内核和系统调用、了解程序是什么、了解程序的运行过程。
+这个部分，主要涉及操作系统、程序、在 linux 系统中使用 c 语言进行编程。
+了解操作系统是什么、了解操作系统的系统调用、了解程序是什么、了解程序的基本运行过程。
 
 - [基本输入输出系统（Basic Input/Output System、BIOS）](/post/computer-science/operating-system/bios)
-
-程序代码经过编译后最终会变成可执行文件。
-可执行文件里包括了程序指令和程序数据。可执行文件是操作系统提供的一种对于程序的抽象。
-操作系统在拿到可执行文件之后就可以把程序指令（指令集里包含的指令）和程序数据拿出来，然后放到硬件上去运行了。
 
 - [程序](/post/computer-science/operating-system/program)
 - [在 Linux 中使用 C 语言进行编程的注意点](/post/computer-science/operating-system/linux/notice)
@@ -53,3 +53,16 @@ tags:
 - [线程](/post/computer-science/operating-system/linux/thread)
 - [网络间进程间通信](/post/computer-science/network/socket)
 - [I/O 模型](/post/computer-science/network/io-model)
+
+## 参考
+
+频繁出现的外部引用不会每一篇笔记里都写，太烦了。
+如果是某一篇或者某几篇笔记里引用的，就写在最后的参考里面。
+
+- [ChatGPT](https://chat.openai.com/)
+- [Bito](https://bito.ai/)
+- [DeepL](https://www.deepl.com/translator)
+- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
+- {51CTO学堂}/{可用行师}/[Golang核心高级](https://edu.51cto.com/course/29852.html)
+- {51CTO学堂}/{可用行师}/[内存与数据精讲](https://edu.51cto.com/course/29937.html)
+- {51CTO学堂}/{可用行师}/[内存与数据二](https://edu.51cto.com/course/30487.html)

@@ -18,16 +18,9 @@ tags:
 
 ## 前言
 
-实践的环境：
-
-- amd64（x86_64）
-- windows 11
-- vmware workstation pro 16
-- ubuntu 22.04
-- linux version 5.19.0-41-generic
-- gcc version 11.3.0
-
 前置笔记：[运行 ELF 文件](/post/computer-science/operating-system/linux/exec_elf)
+
+实践的环境：同 [程序]()
 
 ## 资料
 
@@ -56,7 +49,7 @@ fork() 通过复制调用进程创建一个新进程，新进程为子进程，�
 - 成功时，父进程拿到子进程的 pid，子进程拿到 0。可以根据这个判断哪个是父进程，哪个是子进程。
 - 失败时，父进程拿到-1，子进程不会被创建，errno 会被设置用于表示错误。
 
-代码示例：**{demo-c}/demo-in-linux/process/fork.c**
+代码示例：{demo-c}/demo-in-linux/process/fork.c
 
 #### pid 和 ppid
 
@@ -65,7 +58,7 @@ fork() 通过复制调用进程创建一个新进程，新进程为子进程，�
 getpid() 返回调用进程的 pid，getppid() 返回调用进程的父进程的 pid。
 在使用时需要注意，必须让子进程先执行，父进程后执行，打印出来的 ppid 才是正确的。
 
-代码示例：**{demo-c}/demo-in-linux/process/pid_and_ppid.c**
+代码示例：{demo-c}/demo-in-linux/process/pid_and_ppid.c
 
 如果父进程在子进程执行前先跑完了，那么子进程打印出来的 ppid 就会变成 1。
 因为父进程已经没了，子进程变成了孤儿进程。孤儿进程会被 1 号进程接管，有可能会变成后台进程。
@@ -87,7 +80,7 @@ init 进程的 pid（进程标识符）是就是 1。
 两个进程运行在不同的内存空间，进程间是隔离的。在 fork() 时，两个进程的内存空间的内容是一样的（程序数据和程序指令）。
 两个进程进行写内存操作（定义新的变量并赋值，修改已定义的变量的值，定义新的函数）或者文件映射（进程间通信）时互不影响。
 
-代码示例：**{demo-c}/demo-in-linux/process/fork_separate_memory.c**
+代码示例：{demo-c}/demo-in-linux/process/fork_separate_memory.c
 
 在 fork() 时，子进程和父进程代码是一样的，子进程会从 fork() 的下一行代码开始继续执行。
 一般是父进程先被调度，除非父进程被阻塞了。
@@ -129,11 +122,11 @@ init 进程的 pid（进程标识符）是就是 1。
 
 vfork() 和 fork() 用法一样。区别在于，vfork() 创建子进程后，父进程会被阻塞，直到子进程退出。
 
-代码示例：**{demo-c}/demo-in-linux/process/vfork.c**
+代码示例：{demo-c}/demo-in-linux/process/vfork.c
 
 而且 vfork() 创建出来的子进程和父进程共享内存，包括栈。
 
-代码示例：**{demo-c}/demo-in-linux/process/vfork_share_memory.c**
+代码示例：{demo-c}/demo-in-linux/process/vfork_share_memory.c
 
 vfork() 有 bug。当使用 `return 0` 结束或者执行到最后一行代码结束时，
 有可能会报 "Segmentation fault (core dumped)" 错误。但是使用 `exit(0)`或者 `_exit(0)` 结束的时候不会。
@@ -184,13 +177,13 @@ execve() 在成功时不会返回。而是会导致当前正在运行的程序�
 
 用 execl() 举例，代码示例：
 
-- **{demo-c}/demo-in-linux/process/execl.c**
-- **{demo-c}/demo-in-linux/process/call_by_exec.c**
+- {demo-c}/demo-in-linux/process/execl.c
+- {demo-c}/demo-in-linux/process/call_by_exec.c
 
 用 execv() 举例，代码示例：
 
-- **{demo-c}/demo-in-linux/process/execv.c**
-- **{demo-c}/demo-in-linux/process/call_by_exec.c**
+- {demo-c}/demo-in-linux/process/execv.c
+- {demo-c}/demo-in-linux/process/call_by_exec.c
 
 这个例子在 Ubuntu 22.04 环境中执行，会返回 Bad Address，不知道为什么。
 
@@ -214,10 +207,11 @@ execve() 在成功时不会返回。而是会导致当前正在运行的程序�
 
 在系统中，可以使用 nice 命令和 renice 命令调整进程的优先级。
 nice 命令用于进程启动之前，renice 命令用于进程启动之后。
+
 在代码中，getpriority() 可以查看进程优先级，setpriority()、nice() 可以调整进程优先级。
 getpriority() 和 setpriority() 使用的时候需要注意的是，who 参数要和 which 参数对应。
 
-代码示例：**{demo-c}/demo-in-linux/process/nice.c**
+代码示例：{demo-c}/demo-in-linux/process/nice.c
 
 ### 进程的内存数据
 
@@ -237,7 +231,7 @@ getpriority() 和 setpriority() 使用的时候需要注意的是，who 参数�
 
 proc 文件系统是一个伪文件系统，它提供了一个观察内核数据结构的接口。
 一般来说，它会被操作系统自动挂载到 /proc 目录。proc 文件系统中的大多数文件都是只读的。
-但有，些文件是可写的，允许通过这些可写的文件改变内核变量。
+但是，有些文件是可写的，允许通过这些可写的文件改变内核变量。
 
 > DESCRIPTION</br>
 > ...</br>
@@ -354,7 +348,7 @@ getrlimit() 可以查看资源限制， setrlimit() 可以调整资源限制。
 可以通过资源参数指定需要操作的资源。比如 RLIMIT_NOFILE 对应进程可以打开的文件个数。
 这个参数很重要，因为 linux 上一切皆文件。
 
-代码示例：**{demo-c}/demo-in-linux/process/rlimit.c**
+代码示例：{demo-c}/demo-in-linux/process/rlimit.c
 
 另外，在生产环境中，应该优先在程序中动态修改资源限制，不要轻易修改操作系统的资源限制。
 
@@ -362,7 +356,7 @@ getrlimit() 可以查看资源限制， setrlimit() 可以调整资源限制。
 
 笔记主要涉及：exit()、_exit()、_Exit()、exit_group()、abort()。
 
-代码示例：**{demo-c}/demo-in-linux/process/exit.c**
+代码示例：{demo-c}/demo-in-linux/process/exit.c
 
 #### 进程退出的方式
 
@@ -494,7 +488,7 @@ wait() 用于等待调用进程的一个子进程的状态变化，并获取状�
 wait()、waitpid() 调用成功的时候，返回值是子进程的 pid，传进去的参数 wstatus 会记录子进程的退出信息。
 退出信息可以用提供的宏函数确定是哪一种。
 
-代码示例：**{demo-c}/demo-in-linux/process/wait.c**
+代码示例：{demo-c}/demo-in-linux/process/wait.c
 
 #### 宏函数
 
@@ -514,7 +508,7 @@ wait()、waitpid() 调用成功的时候，返回值是子进程的 pid，传进
 当 WIFEXITED() 返回非零值时，可以用 WEXITSTATUS() 来提取子进程的返回值。
 如果子进程调用 `exit(5)` 退出，`WEXITSTATUS(status)` 就会返回 5。
 
-代码示例：**{demo-c}/demo-in-linux/process/waitpid_macros.c**
+代码示例：{demo-c}/demo-in-linux/process/waitpid_macros.c
 
 #### 僵尸进程
 
@@ -527,7 +521,7 @@ wait()、waitpid() 调用成功的时候，返回值是子进程的 pid，传进
 如果调用进程不执行等待，那么被终止的子进程就会处于"僵尸"状态，也就是僵尸进程。
 当父进程也结束的时候，操作系统会把父进程和回收僵尸进程一起回收。
 
-代码示例：**{demo-c}/demo-in-linux/process/for_zombie.c**。
+代码示例：{demo-c}/demo-in-linux/process/for_zombie.c
 
 这里运行一下，下面的是输出到终端上的内容。
 
@@ -550,6 +544,4 @@ qqq         3593  0.0  0.0      0     0 pts/0    Z+   20:14   0:00 [for_zombie.e
 
 ## 参考
 
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-    - 核心基础的，进程部分；
 - [Linux进程控制](https://www.cnblogs.com/cpsmile/p/4382106.html)

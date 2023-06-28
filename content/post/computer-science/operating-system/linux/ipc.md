@@ -17,14 +17,9 @@ tags:
 
 ## 前言
 
-实践的环境：
+前置笔记：[运行 ELF 文件](/post/computer-science/operating-system/linux/exec_elf)
 
-- amd64（x86_64）
-- windows 11
-- vmware workstation pro 16
-- ubuntu 22.04
-- linux version 5.19.0-41-generic
-- gcc version 11.3.0
+实践的环境：同 [程序]()
 
 ## 正文
 
@@ -278,7 +273,4 @@ key        shmid      owner      perms      bytes      nattch     status
 
 ## 参考
 
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-    - 核心基础的，进程间通信部分；
 - {CSDN}/{富贵的编程日记}/[Linux快速入门之 管道（11）](https://blog.csdn.net/weixin_49730048/article/details/123595404)
-- [ChatGPT](https://chat.openai.com/) + [DeepL](https://www.deepl.com/translator)

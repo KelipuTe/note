@@ -34,6 +34,16 @@ heap 区（堆区）。
 
 可执行文件运行的时候，代码和数据会被读取到内存中。
 
+### linux 进程的内存布局
+
+- 内核空间（kernel space）
+- 栈（stack）
+- 动态库的映射
+- 堆（heap）
+- 读写数据区，主要是程序数据，`.data`、`.bss` 等
+- 只读数据区，主要是程序指令，`.text`、`.init`、`.rodata` 等
+- 保留区
+
 ### 起始地址（首地址、基地址、基址）
 
 起始地址指的是函数代码或者变量所占内存空间的第一个存储单元的地址。
@@ -449,11 +459,3 @@ p7b->name=0x5555555596f0
 然后是 4 个字节的 int。然后是 1 个字节的 char。最后 3 个字节填充的 0 用于对齐。
 
 0x5555555596f0 上的 0x62 就是 b 的 ascii 码（10 进制是 98）。
-
-## 参考
-
-- [ChatGPT](https://chat.openai.com/)
-- [Bito](https://bito.ai/)
-- [DeepL](https://www.deepl.com/translator)
-- {51CTO学堂}/{可用行师}/[内存与数据精讲](https://edu.51cto.com/course/29937.html)
-- {51CTO学堂}/{可用行师}/[内存与数据二](https://edu.51cto.com/course/30487.html)
