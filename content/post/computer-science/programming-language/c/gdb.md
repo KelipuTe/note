@@ -2,18 +2,18 @@
 draft: true
 date: 2022-07-04 08:00:00 +0800
 lastmod: 2022-07-04 08:00:00 +0800
-title: "GDB（GDB 调试工具）"
-summary: "GDB（GDB 调试工具）"
+title: "GDB 调试工具"
+summary: "GDB 调试工具"
 toc: true
 
 categories:
-- linux
+  - linux
 
 tags:
-- computer-science(计算机科学)
-- operating-system(操作系统)
-- linux
-- gdb
+  - computer-science(计算机科学)
+  - programming-language(操作系统)
+  - c-programming-language
+  - gdb
 ---
 
 > 操作系统架构：x86_64 AMD Ryzen
@@ -129,7 +129,4 @@ x/nfu address n=数据数量 f=显示格式 u=数据长度
 
 ## 参考
 
-- [ChatGPT](https://chat.openai.com/)
-- [Bito](https://bito.ai/)
-- [DeepL](https://www.deepl.com/translator)
 - `gdb help`

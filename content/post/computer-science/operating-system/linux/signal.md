@@ -11,8 +11,7 @@ categories:
 tags:
   - computer-science(计算机科学)
   - operating-system(操作系统)
-  - linux
-  - c-programming-language
+  - signal(信号)
 ---
 
 ## 前言

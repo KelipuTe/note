@@ -1,58 +1,49 @@
 ---
 draft: false
-date: 2022-06-18 08:00:00 +0800
-title: "指令和数据"
+date: 2023-06-28 08:00:00 +0800
+title: "内存中的指令和数据"
 summary: "指令；数据；栈和堆；指针；字符串；数组；结构体；"
 toc: true
 
 categories:
-  - operating-system
+  - operating-system(操作系统)
 
 tags:
-  - computer-science
-  - operating-system
-  - memory
+  - computer-science(计算机科学)
+  - operating-system(操作系统)
+  - memory(内存)
 ---
 
 ## 前言
 
+这篇笔记属于需要 elf、linux 进程的内存布局、gdb 调试相关的知识。
+
+## 资料
+
+笔记里的代码都在 [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/memory/ 目录下。
+
 ## 正文
 
-这里就麻烦一点了 gdb 调试
+### 内存地址
 
-### 内存布局
+内存的存储单元会根据 CPU 的位宽以 16 进制从 0 开始顺序编号。
+每个存储单元只对应一个编号，且只可以存储一个 byte 的数据。
 
-内存的存储单元会根据 CPU 位数宽度以 16 进制从 0 开始顺序编号。每个存储单元只对应一个编号，且只可以存储一个 byte 的数据。
+32 位 CPU 最大的内存地址是 0xffffffff，容量为 2^32 字节
+64 位 CPU 最大的内存地址是 0xffffffffffffffff，容量为 2^64 字节。
 
-Linux 进程的虚拟内存会对内存空间进行划分，不同的区域存储不同的数据，有不同的权限。
+### 起始地址
 
-一般来说：可执行的指令存储在代码区 .text、全局变量和静态变量存储在数据区 .data，局部变量存储在 stack 区（栈区），动态申请的内存存储在
-heap 区（堆区）。
-
-- statically allocated（静态分配）：data on the stack（数据在栈区）
-- dynamically allocated（动态分配）：data on the heap（数据在堆区）
-
-可执行文件运行的时候，代码和数据会被读取到内存中。
-
-### linux 进程的内存布局
-
-- 内核空间（kernel space）
-- 栈（stack）
-- 动态库的映射
-- 堆（heap）
-- 读写数据区，主要是程序数据，`.data`、`.bss` 等
-- 只读数据区，主要是程序指令，`.text`、`.init`、`.rodata` 等
-- 保留区
-
-### 起始地址（首地址、基地址、基址）
-
-起始地址指的是函数代码或者变量所占内存空间的第一个存储单元的地址。
+起始地址（首地址、基地址、基址），指的是代码块（函数）或者数据（变量）所占内存空间的第一个存储单元的地址。
 
 ### 指令
 
 这里的指令说的是代码块（函数）。函数的起始地址在编译时就已经确定了。
 
-readelf -s
+代码：instruction_in_memory.c
+
+从 `readelf -s` 的结果里，找到代码块（methodA）的信息。
+这里可以看到，代码块的起始地址是 0x1149，代码块的长度是 15。
 
 ```text
 Symbol table '.symtab' contains 37 entries:
@@ -60,7 +51,8 @@ Symbol table '.symtab' contains 37 entries:
     23: 0000000000001149    15 FUNC    GLOBAL DEFAULT   16 methodA
 ```
 
-objdump -s
+然后，在 `objdump -s` 的结果里，找到起始地址的位置。
+从起始地址开始的 15 个字节就是代码块对应的数据了。
 
 ```text
 Contents of section .text:
@@ -68,7 +60,14 @@ Contents of section .text:
  1150 e5b80004 00005dc3 ________ ________  ......].....UH..
 ```
 
-objdump -d
+起始地址也占了一个位置，所以计算结束地址的时候不是直接加代码块的大小。
+起始地址为 0x1149，结束地址为 0x1157 = 起始地址（16） + (15-1)（10）
+
+也就是 0x1149,0x114a,0x114b,0x114c,0x114d,0x114e,0x114f,0x1150,0x1151,0x1152,0x1153,0x1154,0x1155,0x1156,0x1157，
+这 15 个地址上的数据。
+
+可以再看一眼汇编代码，在 `objdump -d` 的结果里，找到起始地址的位置。
+这里的数据和上面的 15 个字节的数据是一样的，这里详细的标注了每一个字节对应的汇编代码。
 
 ```text
 Disassembly of section .text:
@@ -82,12 +81,9 @@ Disassembly of section .text:
     1157:	c3                   	ret
 ```
 
-起始地址也占了一个位置，所以计算结束地址的时候不是直接加函数大小。
+#### gdb 调试
 
-起始地址为 0x1149，结束地址为 0x1157 = 起始地址（16） + 15（10）
-49,4a,4b,4c,4d, 4e,4f,50,51,52, 53,54,55,56,57,
-
-gdb 调试
+先打印一下代码块在程序中的起始地址，然后，打印从起始地址开始的 15 个地址上的数据。和上面一样的对吧。
 
 ```text
 (gdb) p methodA
@@ -98,7 +94,7 @@ $1 = {int ()} 0x555555555149 <methodA>
 0x555555555151 <methodA+8>:	0xb8	0x00	0x04	0x00	0x00	0x5d	0xc3
 ```
 
-在程序里一个字节一个字节的打印函数内存地址上的内容
+通过遍历也可以在程序里一个字节一个字节的打印代码块对应的内存地址上的内容。
 
 ```text
 &methodA=0x56025d439149
@@ -120,16 +116,17 @@ $1 = {int ()} 0x555555555149 <methodA>
 ```
 
 这里打印 f3 出来 fffffff3 是因为符号扩展（sign extension），这里简单解释一下。
-
 当 0xc3 被存储在 1 个字节的 char 变量中，被提升为 4 个字节的 int 或者被以十六进制打印时。
-
-前面不是有三个字节的空位吗，这个时候会扩展符号位以填充前面的空位，这样，就得到了 0xffffffc3。
+前面不是有三个字节的空位嘛，这个时候会扩展符号位以填充前面的空位，这样，就得到了 0xffffffc3。
 
 ### 数据
 
 全局变量的起始地址在编译时就已经确定了。
 
-readelf -s
+代码：data_in_memory.c
+
+从 `readelf -s` 的结果里，找到数据（globalI）的信息。
+这里可以看到，数据的起始地址是 0x4010，数据的长度是 4。
 
 ```text
 Symbol table '.symtab' contains 37 entries:
@@ -137,7 +134,8 @@ Symbol table '.symtab' contains 37 entries:
     27: 0000000000004010     4 OBJECT  GLOBAL DEFAULT   25 globalI
 ```
 
-objdump -s
+然后，在 `objdump -s` 的结果里，找到起始地址的位置。
+从起始地址开始的 4 个字节就是代码块对应的数据了。
 
 ```text
 Contents of section .data:
@@ -145,7 +143,13 @@ Contents of section .data:
  4010 00040000 
 ```
 
-gdb 调试
+起始地址为 0x4010，结束地址为 0x4013 = 起始地址（16） + 3（10）
+
+也就是 0x4010,0x4011,0x4012,0x4013 这 4 个地址上的数据。
+
+#### gdb 调试
+
+这里和指令那里一样，先打印数据的起始地址，然后，打印地址上的数据。注意，数据在内存中是小端字节序。
 
 ```text
 (gdb) p &globalI
@@ -155,15 +159,18 @@ $3 = (int *) 0x555555558010 <globalI>
 0x555555558010 <globalI>:	0x00	0x04	0x00	0x00
 ```
 
-注意，在内存中是小端字节序。
+和指令那里一样，也通过遍历也可以在程序里一个字节一个字节的打印数据对应的内存地址上的内容。
 
-按字节输出 globalI，globalI 取地址，拿到的是 int* ，对 int* +1 会移动4个字节，这不是我们想要的
-
-如果想按字节输出，首先需要将 地址强转陈 chat* ，chat* +1 移动的就是1个字节了
+但是，要注意。对 int 类型进行取地址操作，拿到的是 int*。对 int* +1 会移动4个字节，这不是我们想要的。
+如果想输出 int 类型的每个字节，首先需要将起始地址转换成 chat*，chat* +1 移动的就是 1 个字节了。
 
 ### 有意思的来了
 
-readelf -s
+如果在代码块里直接返回全局变量会怎么样呢。
+
+代码：return_global_var.c
+
+从 `readelf -s` 的结果里，找到代码块（methodA）和数据（globalI）的信息。
 
 ```text
 Symbol table '.symtab' contains 38 entries:
@@ -172,7 +179,7 @@ Symbol table '.symtab' contains 38 entries:
     28: 0000000000004010     4 OBJECT  GLOBAL DEFAULT   25 globalI
 ```
 
-objdump -d
+然后，我们看汇编代码，在 `objdump -d` 的结果里，找到代码块对应的汇编代码。
 
 ```text
 0000000000001149 <methodA>:
@@ -184,15 +191,16 @@ objdump -d
     1158:	c3                   	ret
 ```
 
-globalI 是全局变量，methodA 返回了全局变量，在汇编里面可以看到，这里 methodA 直接就用了 globalI 的地址
+globalI 是全局变量，methodA 的代码里直接返回了全局变量，这里的汇编代码，methodA 直接就用了 globalI 的地址。
 
 ### 栈
 
-局部变量是分配在栈上的，每次执行的时候都不一样。可以和进程内存信息比对一下，局部变量的地址都在 stack 区（栈区）。
+静态分配的内存在栈区，比如，函数里面的局部变量，每次执行的时候都不一样。
 
 ```text
 (gdb) p &localI
 $1 = (int *) 0x7fffffffdeb4
+
 (gdb) x/4xb 0x7fffffffdeb4
 0x7fffffffdeb4:	0x00	0x04	0x00	0x00
 ```
@@ -201,17 +209,17 @@ $1 = (int *) 0x7fffffffdeb4
 7ffffffde000-7ffffffff000 rw-p 00000000 00:00 0                          [stack]
 ```
 
-| -     | 地址             |
-|-------|----------------|
-| 栈堆首地址 | 0x7ffffffde000 |
-| 变量首地址 | 0x7fffffffdeb4 |
-| 栈堆尾地址 | 0x7ffffffff000 |
+可以和进程的内存信息比对一下。
+0x7ffffffde000（栈堆首地址） < 0x7fffffffdeb4（变量首地址） < 0x7ffffffff000（栈堆尾地址）
 
 ### 堆
+
+动态分配的内存在堆区，比如，给指针申请一块内存。
 
 ```text
 (gdb) p p7LocalJ
 $1 = (int *) 0x5555555596b0
+
 (gdb) x/4xb 0x5555555596b0
 0x5555555596b0:	0x00	0x08	0x00	0x00
 ```
@@ -220,26 +228,31 @@ $1 = (int *) 0x5555555596b0
 555555559000-55555557a000 rw-p 00000000 00:00 0                          [heap]
 ```
 
-| -    | 地址             |
-|------|----------------|
-| 堆首地址 | 0x555555559000 |
-| 变量地址 | 0x5555555596b0 |
-| 堆尾地址 | 0x55555557a000 |
+可以和进程的内存信息比对一下。
+0x555555559000（堆首地址） < 0x5555555596b0（变量地址） < 0x55555557a000（堆尾地址）
 
 ### 指针
+
+首先定义一个变量，比如，定义一个 int 类型的。
+
 
 ```text
 (gdb) p &localI
 $2 = (int *) 0x7fffffffdea4
+
 (gdb) x/4xb 0x7fffffffdea4
 0x7fffffffdea4:	0x00	0x04	0x00	0x00
 ```
 
+二级指针
+
 ```text
 (gdb) p p7LocalI
 $4 = (int *) 0x7fffffffdea4
+
 (gdb) p &p7LocalI
 $3 = (int **) 0x7fffffffdea8
+
 (gdb) x/8xb 0x7fffffffdea8
 0x7fffffffdea8:	0xa4	0xde	0xff	0xff	0xff	0x7f	0x00	0x00
 ```
@@ -294,7 +307,9 @@ $2 = (char (*)[16]) 0x7fffffffdea0
 同理 stringC 是一个字符数组的值，这个字符数组是程序运行的时候动态申请的内存，动态申请的内存在堆里面。
 存储在堆里面的字符数组是可变的，stringC 只用于初始化。
 
-stringB 和 stringBB 并没有开辟内存去存它们，程序运行起来之后，也没有办法去修改它们的值。所以，在编译的时候，就放到了只读数据段，也就是 ".rodata" 段。
+stringB 和 stringBB
+并没有开辟内存去存它们，程序运行起来之后，也没有办法去修改它们的值。所以，在编译的时候，就放到了只读数据段，也就是 ".rodata"
+段。
 
 ```
 Contents of section .rodata:
@@ -424,7 +439,7 @@ s6a.name=0x5555555596b0
 
 直接观察内存里从结构体首地址开始的 16 个字节。
 
-最前面的 8 个字节，是小端字节序的，正过来就是 00 00 55 55 55 55 96 b0。 
+最前面的 8 个字节，是小端字节序的，正过来就是 00 00 55 55 55 55 96 b0。
 这就是 name 字段的地址 0x5555555596b0，前面的 0 被省略了。
 
 然后是 4 个字节的 int。然后是 1 个字节的 char。最后 3 个字节填充的 0 用于对齐。

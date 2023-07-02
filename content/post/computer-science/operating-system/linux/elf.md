@@ -1,7 +1,7 @@
 ---
 draft: false
 date: 2023-06-10 08:00:00 +0800
-title: "ELF 文件"
+title: "ELF"
 summary: "elf 文件是什么文件；elf 文件的内容；数据存储方式；程序的入口地址；符号表；文件的权限；"
 toc: true
 
@@ -11,8 +11,7 @@ categories:
 tags:
   - computer-science(计算机科学)
   - operating-system(操作系统)
-  - linux
-  - c-programming-language
+  - elf
 ---
 
 ## 前言

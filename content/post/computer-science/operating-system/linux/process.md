@@ -11,8 +11,6 @@ categories:
 tags:
   - computer-science(计算机科学)
   - operating-system(操作系统)
-  - linux
-  - c-programming-language
   - process(进程)
 ---
 
@@ -34,7 +32,6 @@ tags:
 
 #### fock()
 
-> DESCRIPTION</br>
 > fork() creates a new process by duplicating the calling process.</br>
 > The new process is referred to as the child process.</br>
 > The calling process is referred to as the parent process.</br>
@@ -447,7 +444,8 @@ _exit() （_Exit()和 _exit() 是等价的）会让进程立即终止，
 
 #### wait()、waitpid()
 
-> SYNOPSIS</br>
+这两个系统调用的声明如下。
+
 > pid_t wait(int *wstatus);</br>
 > pid_t waitpid(pid_t pid, int *wstatus, int options);
 

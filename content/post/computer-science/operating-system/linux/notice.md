@@ -11,8 +11,6 @@ categories:
 tags:
   - computer-science(计算机科学)
   - operating-system(操作系统)
-  - linux
-  - c-programming-language
 ---
 
 ## 正文
@@ -87,15 +85,15 @@ tags:
 | wait4(2) - wait for process to change state, BSD style    | 等待回收进程     |
 | **进程的运行顺序**                                               | ---        |
 | nice(1) - run a program with modified scheduling priority | ---        |
+| nice(2) - change process priority                         | ---        |
 | renice(1) - alter priority of running processes           | ---        |
 | getpriority(2) - get/set program scheduling priority      | ---        |
 | setpriority(2) - get/set program scheduling priority      | ---        |
-| nice(2) - change process priority                         | ---        |
 | **进程的内存资源**                                               | ---        |
 | proc(5) - process information pseudo-filesystem           | ---        |
 | getrlimit(2) - get/set resource limits                    | ---        |
 | setrlimit(2) - get/set resource limits                    | ---        |
-| ---                                                       | ---        |
+| ptrace(2) - process trace                                                    | 跟踪和控制另一个进程 |
 
 #### 信号
 
@@ -239,4 +237,8 @@ tags:
 | inet_addr(3) - Internet address manipulation routines         | 点分十进制和二进制网络字节顺序的转换 |
 | strncasecmp(3) - compare two strings ignoring case            | 比较两个字符串，忽略大小写      |
 | vdso(7) - overview of the virtual ELF dynamic shared object   | ---                |
+| sscanf(3) - input string format conversion   | ---                |
+| strstr(3) - locate a substring   | ---                |
+| isalpha(3) - character classification functions   | ---                |
+| readdir(3) - read a directory   | ---                |
 | ---                                                           | ---                |
