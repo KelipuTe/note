@@ -1,37 +1,28 @@
 ---
-draft: true
-create_date: 2023-05-17 08:00:00 +0800
+draft: false
 date: 2023-05-17 08:00:00 +0800
 title: "进程池"
 summary: "进程池；"
 toc: true
 
 categories:
-- operating-system(操作系统)
+  - operating-system(操作系统)
 
 tags:
-- computer-science(计算机科学)
-- operating-system(操作系统)
-- linux
-- linux-c
-- process(线程)
+  - computer-science(计算机科学)
+  - operating-system(操作系统)
+  - process(进程)
 ---
+
 ## 前言
-
-实践的环境：
-
-- CPU AMD64(x86_64)
-- Windows 11 家庭版
-- VMware Workstation Pro 16
-- Ubuntu 22.04
-- Linux 5.19.0-32-generic x86_64
-- gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
 
 前置笔记：
 
 - [进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收](/post/computer-science/operating-system/linux/process)
 - [信号](/post/computer-science/operating-system/linux/signal)
 - [进程间通信（IPC）](/post/computer-science/operating-system/linux/ipc)
+
+实践的环境：同 [程序]()
 
 ## 资料
 
@@ -57,8 +48,8 @@ tags:
 
 代码示例：
 
-- **{demo-c}/demo-in-linux/process-pool/pool.c**
-- **{demo-c}/demo-in-linux/process-pool/write.c**
+- {demo-c}/demo-in-linux/process-pool/pool.c
+- {demo-c}/demo-in-linux/process-pool/write.c
 
 示例中：
 
@@ -69,8 +60,3 @@ tags:
 - 子进程通过父进程发送的信号退出。
 - 父进程通过命名管道从外部接收数据。
 - 父进程通过信号和特殊的输入 "exit" 退出。
-
-## 参考（reference）
-
-- {51CTO学堂}/{可用行师}/[Linux C核心技术](https://edu.51cto.com/course/28903.html)
-  - 进程池部分

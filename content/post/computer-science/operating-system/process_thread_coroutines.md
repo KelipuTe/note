@@ -7,13 +7,17 @@ summary: "程序、进程、线程、协程"
 toc: true
 
 categories:
-- operating-system(操作系统)
+  - operating-system(操作系统)
 
 tags:
-- computer-science(计算机科学)
-- operating-system(操作系统)
-- process(程序)
+  - computer-science(计算机科学)
+  - operating-system(操作系统)
+  - process(进程)
+  - thread(线程)
+  - coroutines(协程)
 ---
+
+## 正文
 
 ### 程序
 

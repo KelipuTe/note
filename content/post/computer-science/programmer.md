@@ -1,17 +1,17 @@
 ---
 draft: false
 date: 2022-09-20 08:00:00 +0800
-lastmod: 2022-09-20 08:00:00 +0800
 title: "程序员的定位"
 summary: "程序员的定位"
 toc: true
 
 categories:
-- computer-science(计算机科学)
+  - computer-science(计算机科学)
 
 tags:
-- computer-science(计算机科学)
+  - computer-science(计算机科学)
 ---
+
 ## 正文
 
 ### 程序员的自我修养
@@ -27,7 +27,6 @@ tags:
 > 大部分人并不是天生有选择恐惧症，也不是天生的杠精。所有关于选择的迷惑或者争吵，大都因为：<br/>
 > 1、标准不唯一，没有设定清晰的标准；2、标准之间没有优先级或者权重。
 
-## 参考（reference）
+## 参考
 
-- [慕课网，隔壁王校长](https://www.imooc.com/u/6901397/courses)
-  - [Go语言框架：Beego vs Gin](https://www.imooc.com/learn/602)
+- {慕课网}/{隔壁王校长}/[Go语言框架：Beego vs Gin](https://www.imooc.com/learn/602)
