@@ -1,20 +1,278 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>访客如何使用档案馆</title><url>/post/how_to_use/</url><categories/><tags/><content type="html">前言 帕里特档案馆（重建中），是个个人档案馆。
-档案馆的内容主要是本人的学习笔记、对学到的东西的解释和思考、对实践过程的记录。
-这些玩意本质上是当时的我给以后的我的留言。它们不是教程，更不是论文。
-写它们的目的是，如果以后的我忘记了这块的内容，那么希望现在的我可以把以后的我教会。
-本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
-本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
-本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
-另外，如果访客您觉得毫无干货或者内容非常水，那么非常抱歉。
-如何使用档案馆 档案馆的内容分为三个部分：笔记的文本；涉及的代码，借助 github；笔记中的图，借助 draw.io。
-如果笔记里面涉及到了代码或者图，通常在文本的最前面会有一个标题为 资料 的部分。
-如果是类似 {xxx}/aaa/bbb/ 这种格式的，就是 github 上的项目的代码，需要去 github 上查看。
-其中 {demo-c}、{tcp-service-c} 是私有仓库，暂不对外开放。
-关于项目的代码中的符号命名，详见 符号命名 这一篇。
-实际开发中符号命名规则应该和团队的风格保持统一，这套符号命名规则是本人的个人喜好。
-如果访客您非要说不符合哪里哪里的规范，怎么怎么有问题，那么访客您说的都对。
-如果是类似 xxx.drawio.html 这种格式的，就是 draw.io 生成的 html，直接打开就可以预览。
-如果参考了外部资料，通常在文本的最后面会有一个标题为 参考（reference） 的部分。</content></entry><entry><title>Golang 反射的基本使用方式</title><url>/post/computer-science/programming-language/golang/reflect/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag><tag>reflect(反射)</tag></tags><content type="html"><![CDATA[前言 CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64 资料 {demo-golang}/demo/reflectkn/ reflect.drawio.html 正文 注意，笔记里的代码是伪代码，方便说明和区分用的。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>访客如何使用档案馆</title><url>/post/how_to_use/</url><categories/><tags/><content type="html"><![CDATA[关于访客如何使用档案馆 笔记内容分为三个部分：文本；程序代码（借助 github）；图（借助 draw.io）。
+如果笔记涉及到具体的操作或者笔记是一个系列的，通常在文本的最前面会有一个标题为 前言 的部分。 如果涉及具体的操作，那前言会说明实践的环境。如果笔记是一个系列的，那前言会说明需要那些前置知识。
+如果笔记里面涉及到了代码或者图，通常在文本的最前面会有一个标题为 资料 的部分。 如果是类似 &ldquo;{xxx}/xxx/xxx/&rdquo; 这种格式的，就是个人项目中的程序代码，需要去 github 上查看。 如果是类似 &ldquo;xxx.drawio.html&rdquo; 这种格式的，就是图，直接打开就可以预览。
+关于我的个人项目中的符号命名，详见 符号命名这一篇。
+如果参考了外部资料，通常在笔记的最后面会有一个标题为 参考 的部分。
+]]></content></entry><entry><title>计算机科学相关笔记的导航</title><url>/post/computer-science/computer_science/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag></tags><content type="html">正文 本篇是计算机科学相关笔记的导航。
+硬件系统 这个部分，主要涉及硬件系统的几个基本的硬件单元。 主要是为了，了解 CPU 的基本原理，了解指令集是什么。
+指令集是计算机的灵魂，整个计算机都是围绕指令集构建起来的。 它一方面指导硬件系统（比如 CPU）怎么设计，另一方面指导软件系统（比如 BIOS）怎么设计。 指令集就是一个抽象层，是连接硬件系统和软件系统的桥梁。
+算术逻辑单元（Arithmetic and Logic Unit、ALU）
+内存（Memory）
+中央处理器（Central Processing Unit、CPU）
+软件系统 这个部分，主要涉及操作系统、程序、在 linux 系统中使用 c 语言进行编程。 了解操作系统是什么、了解操作系统的系统调用、了解程序是什么、了解程序的基本运行过程。
+基本输入输出系统（Basic Input/Output System、BIOS）
+程序
+在 Linux 中使用 C 语言进行编程的注意点
+ELF 文件
+运行 ELF 文件
+系统调用
+命令行参数和环境参数
+动态链接和静态链接
+进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收
+终端和控制台
+init 进程、进程间关系、作业、会话、守护进程
+信号
+线程
+网络间进程间通信
+I/O 模型
+参考 频繁出现的外部引用不会每一篇笔记里都写，太烦了。 如果是某一篇或者某几篇笔记里引用的，就写在最后的参考里面。
+ChatGPT
+Bito
+DeepL
+{51CTO学堂}/{可用行师}/
+Linux C核心技术
+{51CTO学堂}/{可用行师}/
+Golang核心高级
+{51CTO学堂}/{可用行师}/
+内存与数据精讲
+{51CTO学堂}/{可用行师}/
+内存与数据二</content></entry><entry><title>关于</title><url>/about/</url><categories/><tags/><content type="html">帕里特档案馆（重建中），是个个人档案馆。 档案馆的内容主要是本人的学习笔记、对学到的东西的解释和思考、对实践过程的记录。
+这些玩意本质上是当时的我给以后的我的留言。它们不是教程，更不是论文。 写它们的目的是，如果以后的我忘记了这块的内容，那么希望现在的我可以把以后的我教会。 如果访客您觉得毫无干货或者内容非常水，那么非常抱歉。
+本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
+站点基于 hugo 0.103.1 extended
+搭建。 使用的主题是 Hugo NexT
+。 部属在 github pages 上。
+如果访客您发现我的内容有明显的问题或者错误，欢迎批评指正。同时也欢迎建设性意见。 我的交流方式，QQ：786907650；微信号：wxid_k3uqy9xeryn422。昵称和头像都是一样的，很好辨认。 有意交流者，请至少备注是谁和从哪来。</content></entry><entry><title>内存中的指令和数据</title><url>/post/computer-science/operating-system/memory/instruction_and_data/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>memory(内存)</tag></tags><content type="html"><![CDATA[前言 这篇笔记属于需要 elf、linux 进程的内存布局、gdb 调试相关的知识。
+资料 笔记里的代码都在 {demo-c}/demo-in-linux/memory/ 目录下。
+图在 memory.drawio.html 里面。
+正文 内存地址 内存的存储单元会根据 CPU 的位宽以 16 进制从 0 开始顺序编号。 每个存储单元只对应一个编号，且只可以存储一个 byte 的数据。
+32 位 CPU 最大的内存地址是 0xffffffff，容量为 2^32 字节 64 位 CPU 最大的内存地址是 0xffffffffffffffff，容量为 2^64 字节。
+起始地址 起始地址（首地址、基地址、基址），指的是代码块（函数）或者数据（变量）所占内存空间的第一个存储单元的地址。
+指令 这里的指令说的是代码块（函数）。函数的起始地址在编译时就已经确定了。
+代码：instruction_in_memory.c
+从 readelf -s 的结果里，找到代码块（methodA）的信息。 这里可以看到，代码块的起始地址是 0x1149，代码块的长度是 15。
+Symbol table &#39;.symtab&#39; contains 37 entries: Num: Value Size Type Bind Vis Ndx Name 23: 0000000000001149 15 FUNC GLOBAL DEFAULT 16 methodA 然后，在 objdump -s 的结果里，找到起始地址的位置。 从起始地址开始的 15 个字节就是代码块对应的数据了。
+Contents of section .text: 1140 ________ ________ __f30f1e fa554889 .....w.......UH. 1150 e5b80004 00005dc3 ________ ________ ......].....UH.. 起始地址也占了一个位置，所以计算结束地址的时候不是直接加代码块的大小。 起始地址为 0x1149，结束地址为 0x1157 = 起始地址（16） + (15-1)（10）
+也就是 0x1149,0x114a,0x114b,0x114c,0x114d,0x114e,0x114f,0x1150,0x1151,0x1152,0x1153,0x1154,0x1155,0x1156,0x1157， 这 15 个地址上的数据。
+可以再看一眼汇编代码，在 objdump -d 的结果里，找到起始地址的位置。 这里的数据和上面的 15 个字节的数据是一样的，这里详细的标注了每一个字节对应的汇编代码。
+Disassembly of section .text: 0000000000001149 &lt;methodA&gt;: 1149:	f3 0f 1e fa endbr64 114d:	55 push %rbp 114e:	48 89 e5 mov %rsp,%rbp 1151:	b8 00 04 00 00 mov $0x400,%eax 1156:	5d pop %rbp 1157:	c3 ret gdb 调试 先打印一下代码块在程序中的起始地址，然后，打印从起始地址开始的 15 个地址上的数据。和上面一样的对吧。
+(gdb) p methodA $1 = {int ()} 0x555555555149 &lt;methodA&gt; (gdb) x/15xb 0x555555555149 0x555555555149 &lt;methodA&gt;:	0xf3	0x0f	0x1e	0xfa	0x55	0x48	0x89	0xe5 0x555555555151 &lt;methodA+8&gt;:	0xb8	0x00	0x04	0x00	0x00	0x5d	0xc3 通过遍历也可以在程序里一个字节一个字节的打印代码块对应的内存地址上的内容。
+&amp;methodA=0x56025d439149 [0x56025d439149]=fffffff3 [0x56025d43914a]=0f [0x56025d43914b]=1e [0x56025d43914c]=fffffffa [0x56025d43914d]=55 [0x56025d43914e]=48 [0x56025d43914f]=ffffff89 [0x56025d439150]=ffffffe5 [0x56025d439151]=ffffffb8 [0x56025d439152]=00 [0x56025d439153]=04 [0x56025d439154]=00 [0x56025d439155]=00 [0x56025d439156]=5d [0x56025d439157]=ffffffc3 这里打印 f3 出来 fffffff3 是因为符号扩展（sign extension），这里简单解释一下。 当 0xc3 被存储在 1 个字节的 char 变量中，被提升为 4 个字节的 int 或者被以十六进制打印时。 前面不是有三个字节的空位嘛，这个时候会扩展符号位以填充前面的空位，这样，就得到了 0xffffffc3。
+数据 全局变量的起始地址在编译时就已经确定了。
+代码：data_in_memory.c
+从 readelf -s 的结果里，找到数据（globalI）的信息。 这里可以看到，数据的起始地址是 0x4010，数据的长度是 4。
+Symbol table &#39;.symtab&#39; contains 37 entries: Num: Value Size Type Bind Vis Ndx Name 27: 0000000000004010 4 OBJECT GLOBAL DEFAULT 25 globalI 然后，在 objdump -s 的结果里，找到起始地址的位置。 从起始地址开始的 4 个字节就是代码块对应的数据了。
+Contents of section .data: 4000 00000000 00000000 08400000 00000000 .........@...... 4010 00040000 起始地址为 0x4010，结束地址为 0x4013 = 起始地址（16） + 3（10）
+也就是 0x4010,0x4011,0x4012,0x4013 这 4 个地址上的数据。
+gdb 调试 这里和指令那里一样，先打印数据的起始地址，然后，打印地址上的数据。注意，数据在内存中是小端字节序。
+(gdb) p &amp;globalI $3 = (int *) 0x555555558010 &lt;globalI&gt; (gdb) x/4xb 0x555555558010 0x555555558010 &lt;globalI&gt;:	0x00	0x04	0x00	0x00 和指令那里一样，也通过遍历也可以在程序里一个字节一个字节的打印数据对应的内存地址上的内容。
+但是，要注意。对 int 类型进行取地址操作，拿到的是 int*。对 int* +1 会移动4个字节，这不是我们想要的。 如果想输出 int 类型的每个字节，首先需要将起始地址转换成 chat*，chat* +1 移动的就是 1 个字节了。
+有意思的来了 如果在代码块里直接返回全局变量会怎么样呢。
+代码：return_global.c
+从 readelf -s 的结果里，找到代码块（methodA）和数据（globalI）的信息。
+Symbol table &#39;.symtab&#39; contains 38 entries: Num: Value Size Type Bind Vis Ndx Name 23: 0000000000001149 16 FUNC GLOBAL DEFAULT 16 methodA 28: 0000000000004010 4 OBJECT GLOBAL DEFAULT 25 globalI 然后，我们看汇编代码，在 objdump -d 的结果里，找到代码块对应的汇编代码。
+0000000000001149 &lt;methodA&gt;: 1149:	f3 0f 1e fa endbr64 114d:	55 push %rbp 114e:	48 89 e5 mov %rsp,%rbp 1151:	8b 05 b9 2e 00 00 mov 0x2eb9(%rip),%eax # 4010 &lt;globalI&gt; 1157:	5d pop %rbp 1158:	c3 ret globalI 是全局变量，methodA 的代码里直接返回了全局变量，这里的汇编代码，methodA 直接就用了 globalI 的地址。
+栈 代码：stack.c
+静态分配的内存在栈区，比如，函数里面的局部变量，每次执行的时候都不一样。
+(gdb) p &amp;localI $1 = (int *) 0x7fffffffdeb4 (gdb) x/4xb 0x7fffffffdeb4 0x7fffffffdeb4:	0x00	0x04	0x00	0x00 7ffffffde000-7ffffffff000 rw-p 00000000 00:00 0 [stack] 可以和进程的内存信息比对一下。 0x7ffffffde000（栈堆首地址） &lt; 0x7fffffffdeb4（变量首地址） &lt; 0x7ffffffff000（栈堆尾地址）
+堆 代码：heap.c
+动态分配的内存在堆区，比如，给指针申请一块内存。
+(gdb) p p7LocalJ $1 = (int *) 0x5555555596b0 (gdb) x/4xb 0x5555555596b0 0x5555555596b0:	0x00	0x08	0x00	0x00 555555559000-55555557a000 rw-p 00000000 00:00 0 [heap] 可以和进程的内存信息比对一下。 0x555555559000（堆首地址） &lt; 0x5555555596b0（变量地址） &lt; 0x55555557a000（堆尾地址）
+指针 代码：pointer.c
+首先定义一个变量，比如，定义一个 int 类型的。
+(gdb) p &amp;localI $2 = (int *) 0x7fffffffdea4 (gdb) x/4xb 0x7fffffffdea4 0x7fffffffdea4:	0x00	0x04	0x00	0x00 二级指针
+(gdb) p p7LocalI $4 = (int *) 0x7fffffffdea4 (gdb) p &amp;p7LocalI $3 = (int **) 0x7fffffffdea8 (gdb) x/8xb 0x7fffffffdea8 0x7fffffffdea8:	0xa4	0xde	0xff	0xff	0xff	0x7f	0x00	0x00 (gdb) p p7LocalII $5 = (int **) 0x7fffffffdea8 (gdb) p &amp;p7LocalII $6 = (int ***) 0x7fffffffdeb0 (gdb) x/8xb &amp;p7LocalII 0x7fffffffdeb0:	0xa8	0xde	0xff	0xff	0xff	0x7f	0x00	0x00 我画了个图，memory.drawio.html 2-2、代码的运行结果在内存里的结构，以及得到结果的过程
+字符串 代码：string.c
+&amp;strA=0x7fffffffdea0,strA=stringA &amp;strB=0x55555555601e,strB=stringB &amp;strB=0x555555556038,strB=stringBB &amp;strC=0x5555555596b0,strC=stringC 打印几个指针指向的地址，然后，结合 &ldquo;proc/{pid}/maps&rdquo; 看一下内存。
+555555556000-555555557000 r--p 00002000 00:25 48 /mnt/hgfs/demo-c/demo-in-linux/memory/string.elf 555555559000-55555557a000 rw-p 00000000 00:00 0 [heap] 7ffffffde000-7ffffffff000 rw-p 00000000 00:00 0 [stack] strA 字符数组地址指向了栈，strB 指针两次都指向了 string.elf 文件，strC 字符数组地址指向了堆。
+这里，因为是字符串，所以，可以直接在 objdump -s 命令输出的结果里面查找这几个字符串值。 这里直接说结论了，stringA 和 stringC 在 &ldquo;.text&rdquo; 段里面，stringB 和 stringBB 在 &ldquo;.rodata&rdquo; 段里面。 此外，在 &ldquo;.rodata&rdquo; 段里面，还可以看到很多写死在程序里的字符串。比如, 写在 printf() 里面的字符串。
+stringA 和 stringC 这两个字符串只是初始化的时候长这样，底下真正对应的字符数组是可变的。
+stringA 是一个字符数组的值，这个字符数组，存储在栈里面，编译的时候就知道有多大了。 存储在栈里面的字符数组是可变的，stringA 只用于初始化。
+(gdb) p strA $1 = &#34;stringA\000\000\000\000\000\000\000\000&#34; (gdb) p &amp;strA $2 = (char (*)[16]) 0x7fffffffdea0 (gdb) x/16xb 0x7fffffffdea0 0x7fffffffdea0:	0x73	0x74	0x72	0x69	0x6e	0x67	0x41	0x00 0x7fffffffdea8:	0x00	0x00	0x00	0x00	0x00	0x00	0x00	0x00 同理 stringC 是一个字符数组的值，这个字符数组是程序运行的时候动态申请的内存，动态申请的内存在堆里面。 存储在堆里面的字符数组是可变的，stringC 只用于初始化。
+stringB 和 stringBB 并没有开辟内存去存它们，程序运行起来之后，也没有办法去修改它们的值。所以，在编译的时候，就放到了只读数据段，也就是 &ldquo;.rodata&rdquo; 段。
+Contents of section .rodata: 2000 01000200 7069643d 25640a00 26737472 ....pid=%d..&amp;str 2010 413d2570 2c737472 413d2573 0a007374 A=%p,strA=%s..st 2020 72696e67 42002673 7472423d 25702c73 ringB.&amp;strB=%p,s 2030 7472423d 25730a00 73747269 6e674242 trB=%s..stringBB 2040 00267374 72433d25 702c7374 72433d25 .&amp;strC=%p,strC=% 2050 730a006d 616c6c6f 635f7573 61626c65 s..malloc_usable 2060 5f73697a 65287374 7243293d 256c640a _size(strC)=%ld. 2070 00 malloc_usable_size(strC)=24 malloc_usable_size() 返回由 malloc() 或其他内存分配函数分配的内存块的大小。 由于内存对齐或者其他的因素，这个大小可能与传递给 malloc() 或其他内存分配函数的大小不同。
+在示例代码 string.c 中使用 malloc() 分配了 8 个字节的内存来存储字符串 &ldquo;stringC&rdquo;。 但是，这里用 malloc_usable_size() 可以知道，malloc() 分配的内存块的实际大小是 24 字节。
+这是因为，大多数内存分配函数是以内存块或内存页为单位进行分配的，通常比请求的大小大。 编译器也有可能会做一些优化，申请内存的时候多给的部分，在需要扩容的时候就可以直接用了。 不需要再通过系统调用去申请，可以减少系统调用的次数。
+此外，一些内存分配函数可能会给内存块添加额外的元数据，以跟踪内存块的信息。 比如，调用 free() 函数的时候，只传了一个内存地址过去，它是怎么知道应该释放多大的内存的。
+数组 代码：array.c
+一维数组或者多维数组的变量都指向数组所占内存单元的起始地址。
+555555559000-55555557a000 rw-p 00000000 00:00 0 [heap] 7ffffffde000-7ffffffff000 rw-p 00000000 00:00 0 [stack] 栈和堆就没啥好说的，直接声明的数组在栈里面，动态申请内存的数组是指针，指向堆。
+(gdb) p &amp;a5I $2 = (int (*)[4]) 0x7fffffffde90 (gdb) x/16xb 0x7fffffffde90 0x7fffffffde90:	0x02	0x00	0x00	0x00	0x04	0x00	0x00	0x00 0x7fffffffde98:	0x08	0x00	0x00	0x00	0x10	0x00	0x00	0x00 (gdb) p &amp;a5J $3 = (int (*)[2][2]) 0x7fffffffdea0 (gdb) x/16xb 0x7fffffffdea0 0x7fffffffdea0:	0x20	0x00	0x00	0x00	0x40	0x00	0x00	0x00 0x7fffffffdea8:	0x80	0x00	0x00	0x00	0x00	0x01	0x00	0x00 通过观察内存可以发现，不管是 int[4] 还是 int[2][2]，在内存里都是连续的 16 个字节。
+(gdb) p p7a5K $4 = (int (*)[4]) 0x5555555596b0 (gdb) x/16xb 0x5555555596b0 0x5555555596b0:	0x02	0x00	0x00	0x00	0x04	0x00	0x00	0x00 0x5555555596b8:	0x08	0x00	0x00	0x00	0x10	0x00	0x00	0x00 (gdb) p p7a5L $5 = (int (*)[2][2]) 0x5555555596d0 (gdb) x/16xb 0x5555555596d0 0x5555555596d0:	0x20	0x00	0x00	0x00	0x40	0x00	0x00	0x00 0x5555555596d8:	0x80	0x00	0x00	0x00	0x00	0x01	0x00	0x00 运行的时候动态分配的内存也是一样的，都是连续的 16 个字节。
+(*p7a5L)[0]=0x56247f1946d0,p7l=0x56247f1946d0 (*p7a5L)[0][0]=32,&amp;(*p7a5L)[0][0]=0x56247f1946d0,p7ll+0=32,p7ll+0=0x56247f1946d0 (*p7a5L)[0][0]=64,&amp;(*p7a5L)[0][0]=0x56247f1946d4,p7ll+0=33,p7ll+0=0x56247f1946d4 (*p7a5L)[1]=0x56247f1946d8,p7l+1=0x56247f1946d8 (*p7a5L)[0][0]=128,&amp;(*p7a5L)[0][0]=0x56247f1946d8,p7ll+0=128,p7ll+0=0x56247f1946d8 (*p7a5L)[0][0]=128,&amp;(*p7a5L)[0][0]=0x56247f1946dc,p7ll+0=256,p7ll+0=0x56247f1946dc 指向数组的指针这里，需要关注的就不是内存了，而是指针移动的距离。 当指针声明为 (int(*)[2]) 的时候，指针 +1，移动的是 8 个字节，也就是一个 int[2] 的长度。 当指针声明为 (int *) 的时候，指针 +1，移动的是 4 个字节，也就是一个 int 的长度。
+结构体 代码：struct.c
+555555559000-55555557a000 rw-p 00000000 00:00 0 [heap] 7ffffffde000-7ffffffff000 rw-p 00000000 00:00 0 [stack] 栈和堆就没啥好说的，直接声明的结构体在栈里面，动态申请内存的结构体是指针，指向堆。 两个结构体里的 name 都是动态申请的内存，都指向堆。
+sizeof(s6a)=16 &amp;s6a=0x7fffffffdeb0 &amp;s6a.name=0x7fffffffdeb0 s6a.name=0x5555555596b0 &amp;s6a.age=0x7fffffffdeb8 &amp;s6a.sex=0x7fffffffdebc 这里用 sizeof() 得出的结构体的大小是 16 个字节。但是，实际上加起来应该是 13 个字节。 声明的时候，结构体里面有三个字段，一个 &ldquo;char *&rdquo; 8 个字节，一个 int 4 个字节，一个 char 1 个字节。
+这是因为编译器会使用填充和对齐来优化内存的使用和访问。 这会导致同一个 struct 在不同系统上的大小可能不同，这取决于不同系统上的数据类型的大小和对齐的规则。
+在这里的情况是，struct 的大小是其最大字段的大小的倍数。 最大的字段是 &ldquo;char *&rdquo; 8 个字节，结构体一共需要 13 个字节。所以，分配给结构体的内存就是 16 个字节。
+(gdb) x/16xb 0x7fffffffdeb0 0x7fffffffdeb0:	0xb0	0x96	0x55	0x55	0x55	0x55	0x00	0x00 0x7fffffffdeb8:	0x12	0x00	0x00	0x00	0x66	0x00	0x00	0x00 (gdb) x/16xb 0x5555555596b0 0x5555555596b0:	0x61	0x61	0x61	0x00	0x00	0x00	0x00	0x00 0x5555555596b8:	0x00	0x00	0x00	0x00	0x00	0x00	0x00	0x00 直接观察内存里从结构体首地址开始的 16 个字节。
+最前面的 8 个字节，是小端字节序的，正过来就是 00 00 55 55 55 55 96 b0。 这就是 name 字段的地址 0x5555555596b0，前面的 0 被省略了。
+然后是 4 个字节的 int。然后是 1 个字节的 char。最后 3 个字节填充的 0 用于对齐。
+0x5555555596b0 上的 0x61 就是 a 的 ascii 码（10 进制是 97）。
+sizeof(p7b)=8 p7b=0x5555555596d0 &amp;p7b-&gt;name=0x5555555596d0 p7b-&gt;name=0x5555555596f0 &amp;p7b-&gt;age=0x5555555596d8 &amp;p7b-&gt;sex=0x5555555596dc 这里因为是指针，所以 sizeof() 得出的大小是 8 个字节。
+(gdb) x/16xb 0x5555555596d0 0x5555555596d0:	0xf0	0x96	0x55	0x55	0x55	0x55	0x00	0x00 0x5555555596d8:	0x12	0x00	0x00	0x00	0x66	0x00	0x00	0x00 (gdb) x/16xb 0x5555555596f0 0x5555555596f0:	0x62	0x62	0x62	0x00	0x00	0x00	0x00	0x00 0x5555555596f8:	0x00	0x00	0x00	0x00	0x00	0x00	0x00	0x00 和上面一样，直接观察内存里结构体指针指向的内存地址开始的 16 个字节。
+最前面的 8 个字节，是小端字节序的，正过来就是 00 00 55 55 55 55 96 f0。 这就是 name 字段的地址 0x5555555596f0，前面的 0 被省略了。
+然后是 4 个字节的 int。然后是 1 个字节的 char。最后 3 个字节填充的 0 用于对齐。
+0x5555555596f0 上的 0x62 就是 b 的 ascii 码（10 进制是 98）。
+]]></content></entry><entry><title>ELF</title><url>/post/computer-science/operating-system/linux/elf/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>elf</tag></tags><content type="html"><![CDATA[前言 前置笔记：程序实践的环境：同 程序资料 {demo-c}/demo-in-linux/elf/ 正文 elf 文件是什么文件 在 程序中提到过，c 源码文件通过 gcc 编译器编译可以得到可执行文件，这里的可执行文件就是 elf 文件的一种。 关于 elf 具体的细节可以看 &ldquo;elf(5) - format of Executable and Linking Format (ELF) files&rdquo;
+elf(5) Amongst these files are normal executable files, relocatable object files, core files, and shared objects.
+elf 文件格式有四种： 普通可执行文件（normal executable files）； 可重定位文件（relocatable object files）； 核心文件（core files）； 共享目标文件、共享库、动态库（shared objects）。
+我在 {demo-c}/demo-in-linux/elf/ 目录下，准备了三个程序： symbol.c、0b_0_10_0x.c、address.c。分别用于讨论不同的问题。
+elf 文件的内容 这里主要围绕 symbol.c 编译得到的 symbol.elf 文件。
+先用 objdump 命令观察一下。 命令具体的输出放在 {demo-c}/demo-in-linux/elf/symbol_elf_objdump.md 里面。
+然后，用 readelf 命令观察一下 symbol.elf。 关于 readelf 命令具体怎么用可以看 &ldquo;readelf(1) - display information about ELF files&rdquo;。
+这里会用到 &ldquo;-h&rdquo;、&quot;-l&quot;、&quot;-S&quot;、&quot;-s&quot; 几个参数。 &ldquo;-h&rdquo; 表示输出 elf 文件头（elf header）；&quot;-l&quot; 表示输出 program headers； &ldquo;-S&rdquo; 表示输出段表（section headers）；&quot;-s&quot; 表示输出符号表。 命令具体的输出放在 {demo-c}/demo-in-linux/elf/symbol_elf_readelf.md 里面。
+elf(5) The ELF header is always at offset zero of the file.
+elf 文件头总是在文件的最前面，其他的数据都在后面。这很好理解，如果一个文件最前面不告我它是什么，我怎么知道它是什么。
+分别解释一下。
+&ldquo;-h&rdquo; 输出的 elf 文件头，这里截取了一些。
+Data: 2&#39;s complement, little endian Type: DYN (Position-Independent Executable file) Machine: Advanced Micro Devices X86-64 Entry point address: 0x1060 Number of section headers: 31 Data：数据存储方式，这里是小端字节序（little endian）。 Type：elf 文件的类型，这里是可执行文件（Executable）。 Machine：机器架构，这里是 X86-64。 Entry point address：程序的入口地址。 操作系统在加载完可执行文件后，会把控制权转移给该程序，然后找到入口地址（这里就是 &ldquo;0x1060&rdquo;）开始运行程序。 Number of section headers：elf 段表的大小。 &ldquo;-S&rdquo; 输出 section headers（段表），这里截取了一些。
+[Nr] Name Type Address Offset Size EntSize Flags Link Info Align [ 1] .interp PROGBITS 0000000000000318 00000318 000000000000001c 0000000000000000 A 0 0 1 [12] .init PROGBITS 0000000000001000 00001000 000000000000001b 0000000000000000 AX 0 0 4 [16] .text PROGBITS 0000000000001060 00001060 00000000000001d6 0000000000000000 AX 0 0 16 [18] .rodata PROGBITS 0000000000002000 00002000 0000000000000063 0000000000000000 A 0 0 8 [25] .data PROGBITS 0000000000004000 00003000 0000000000000018 0000000000000000 WA 0 0 8 [26] .bss NOBITS 0000000000004018 00003018 0000000000000010 0000000000000000 WA 0 0 4 [28] .symtab SYMTAB 0000000000000000 00003048 0000000000000408 0000000000000018 29 20 8 [29] .strtab STRTAB 0000000000000000 00003450 000000000000022c 0000000000000000 0 0 1 &ldquo;.interp&rdquo;：程序解释器（elf 解释器）的路径。 &ldquo;.init&rdquo;：进程初始化的代码。 &ldquo;.text&rdquo;：程序指令&ndash;&gt;指令码&ndash;&gt;机器码&ndash;&gt;二进制指令&ndash;&gt;cpu 指令（芯片层级的指令）。 &ldquo;.rodata&rdquo;：只读数据（如：数字常量，字符串常量）。 &ldquo;.data&rdquo;：已经给值的全局变量、静态变量、局部变量。 &ldquo;.bss&rdquo;：未初始化的全局变量、静态变量、局部变量。 &ldquo;.symtab&rdquo;：符号表。和 &ldquo;.strtab&rdquo; 段一起用。 &ldquo;.strtab&rdquo;：字符串符号表（变量名、函数名）。 &ldquo;.debug&rdquo;：调试信息，编译的时候带 &ldquo;-g&rdquo; 参数的时候就会有这一段。 其他的段的解释详见 linux 文档 elf(5)。 &ldquo;-s&rdquo; 输出的符号表，这里截取了 symbol.c 代码里直接出现的几个。
+Num: Value Size Type Bind Vis Ndx Name 12: 0000000000004014 4 OBJECT LOCAL DEFAULT 25 staticIntB.1 13: 0000000000004020 4 OBJECT LOCAL DEFAULT 26 staticIntA.0 26: 000000000000401c 4 OBJECT GLOBAL DEFAULT 26 globalIntA 27: 0000000000001149 54 FUNC GLOBAL DEFAULT 16 functionA 28: 00000000000011b5 54 FUNC GLOBAL DEFAULT 16 functionC 36: 00000000000011eb 75 FUNC GLOBAL DEFAULT 16 main 38: 0000000000004010 4 OBJECT GLOBAL DEFAULT 25 globalIntB 40: 000000000000117f 54 FUNC GLOBAL DEFAULT 16 functionB 数据存储方式 数据存储方式有两种：小端字节序（little endian）和大端字节序（big endian）。 小端字节序又叫主机字节序，大端字节序又叫网络字节序。
+上面 readelf -h 命令的结果里面，在 Data 字段里可以看见 &ldquo;little endian&rdquo;。 意思就是在 symbol.elf 里面，数据的存储格式是小端字节序。下面来验证一下这个结论。
+在 symbol.c 的源码里面，全局变量 globalIntB 是一开始就明确的给了值的。 在 readelf -s 命令输出的符号表里，找到 globalIntB 在的那一行。 然后，就可以知道到 globalIntB 对应的内存地址是 0x4010。
+在 objdump -s 命令输出的结果里面，找到内存地址 0x4010，地址上存储的就是全局变量 globalIntB 的数据。 内存地址 0x4010 在 &ldquo;.data&rdquo; 段里面，这里截取一下 &ldquo;.data&rdquo; 段的内容。
+Contents of section .data: 4000 00000000 00000000 08400000 00000000 .........@...... 4010 2c010000 0a000000 ,....... 因为源码里面 globalIntB 是 int 类型的，int 类型的长度是 4 个字节。 所以，globalIntB 的数据就对应从 0x4010 地址开始的 4 个字节的数据。也就是 &ldquo;2c010000&rdquo; 这一段。
+源码里面 globalIntB 初始化的时候是 300。 10 进制的 300 用 16 进制表示就是 0x12c，补全 4 个字节就是 &ldquo;00 00 01 2c&rdquo;。 但是，这里可以看到内存上的数据是 &ldquo;2c 01 00 00&rdquo;，是反的。这就是因为这里用的是小端字节序。
+c 语言的 int 变量由 4 个字节组成，每个字节由 8 个 bit 位组成。 把 10 进制的 300 转换成 2 进制就是 &ldquo;00000000 00000000 00000001 00101100&rdquo;，左边定义为高位，右边定义为低位。 小端字节序的存储格式是把数据的低位放在内存低位上，而内存的排布是从低位到高位的。 所以，就变成了 &ldquo;00101100 00000001 00000000 00000000&rdquo;，转换成 16 进制就是 &ldquo;2c 01 00 00&rdquo;。
+关于进制的问题，我放了一个示例代码，0b_0_10_0x.c。
+通过 size 命令可以查看文件中各段及其总和的大小，单位是字节。 关于 size 命令具体怎么用可以看 &ldquo;size(1) - list section sizes and total size of binary files&rdquo;。
+这里观察一下 symbol.elf 文件。
+&gt; size demo02 text	data	bss	dec	hex	filename 1786	608	16	2410	96a	symbol.elf text，代码段，通常是指用来存放程序执行代码的一块内存区域。 data，数据段，通常是指用来存放程序中已初始化的全局变量的一块内存区域。数据段属于静态内存分配。 bss，通常是指用来存放程序中未初始化的全局变量的一块内存区域。bss 段属于静态内存分配。 默认情况下，段的大小是以十进制的方式来展示。 程序的入口地址 从 objdump -s 命令输出的结果里可以知道 symbol.elf 程序的入口地址是 0x1060。 然后在 objdump -s 命令输出的结果里面。找到 &ldquo;.text&rdquo; 段，然后找到地址 0x1060 对应的数据。 这里截取了 &ldquo;.text&rdquo; 段前三行的内容。
+Contents of section .text: 1060 f30f1efa 31ed4989 d15e4889 e24883e4 ....1.I..^H..H.. 1070 f0505445 31c031c9 488d3d6c 010000ff .PTE1.1.H.=l.... 1080 15532f00 00f4662e 0f1f8400 00000000 .S/...f......... 左边第 1 列是虚拟地址；中间的 4 列是指令码；最右边 1 列是 ASCII 码。 &ldquo;0x1060&rdquo; 是起始地址；&ldquo;f30f1efa&rdquo; 是起始指令；指令是 16 进制的：&ldquo;0xf3 0x0f 0x1e 0xfa&rdquo;；大小为 4 个字节。 在 objdump -d 命令输出的结果中，可以找到对应的汇编代码。 这里截取了程序的入口地址对应的部分。通过虚拟地址的值和指令的值可以对应起来。
+0000000000001060 &lt;_start&gt;: 1060:	f3 0f 1e fa endbr64 1064:	31 ed xor %ebp,%ebp 1066:	49 89 d1 mov %rdx,%r9 1069:	5e pop %rsi 106a:	48 89 e2 mov %rsp,%rdx 106d:	48 83 e4 f0 and $0xfffffffffffffff0,%rsp 1071:	50 push %rax 1072:	54 push %rsp 1073:	45 31 c0 xor %r8d,%r8d 1076:	31 c9 xor %ecx,%ecx 1078:	48 8d 3d 33 01 00 00 lea 0x133(%rip),%rdi # 11b2 &lt;main&gt; 107f:	ff 15 53 2f 00 00 call *0x2f53(%rip) # 3fd8 &lt;__libc_start_main@GLIBC_2.34&gt; 1085:	f4 hlt 1086:	66 2e 0f 1f 84 00 00 cs nopw 0x0(%rax,%rax,1) 108d:	00 00 00 &ldquo;_start&rdquo; 是函数名。因为 &ldquo;0x1060&rdquo; 是起始地址，所以 &ldquo;_start&rdquo; 函数，就是这个程序的入口函数。 它在调用 main 函数之前，会做一些前期的准备工作。编程语言的 main 函数一般不是程序的入口函数。 大部分入口函数都是类似 &ldquo;_start&rdquo; 函数这样的，而且不同的语言在初始化阶段会有各自的处理逻辑。
+这里最右边的汇编代码是 ATT 格式的汇编语法，汇编语法有 intel 格式和 ATT 格式，ATT 格式主要用于 unix/linux 系统。 使用命令 objdump -d -M intel symbol.elf 就可以输出 intel 格式的汇编代码。
+符号表 通过命令 readelf -s 可以输出符号表。 这里截取了 &ldquo;_start&rdquo; 对应的数据和 symbol.elf 代码里直接出现的几个。
+Num: Value Size Type Bind Vis Ndx Name 12: 0000000000004014 4 OBJECT LOCAL DEFAULT 25 staticIntB.1 13: 0000000000004020 4 OBJECT LOCAL DEFAULT 26 staticIntA.0 26: 000000000000401c 4 OBJECT GLOBAL DEFAULT 26 globalIntA 27: 0000000000001149 54 FUNC GLOBAL DEFAULT 16 functionA 28: 00000000000011b5 54 FUNC GLOBAL DEFAULT 16 functionC 34: 0000000000001060 38 FUNC GLOBAL DEFAULT 16 _start 36: 00000000000011eb 75 FUNC GLOBAL DEFAULT 16 main 38: 0000000000004010 4 OBJECT GLOBAL DEFAULT 25 globalIntB 40: 000000000000117f 54 FUNC GLOBAL DEFAULT 16 functionB 这里用 globalIntB 举例，globalIntB 在源码中是个全局 int 变量，初始化为 300。
+Name（符号名）：globalIntB Ndx（段 id）：25，表示符号属于第 25 段。结合段表，第 25 段是 &ldquo;.data&rdquo; 段。第 26 段是 &ldquo;.bss&rdquo; 段。 Type（类型）：OBJECT，表示是个对象。如果是 FUNC，就表示是个函数 Bind（绑定范围）：GLOBAL，表示全局。 Value（地址）：0x0000000000004010。 这里结合 &ldquo;.data&rdquo; 段的数据。 globalIntB 的数据保存在地址从 0x4010 开始往后的 4 个字节上，也就是上面的 &ldquo;2c010000&rdquo;，值就是 300。
+命令 nm 也可以输出符号表。关于 gcc 命令具体怎么用可以看 &ldquo;nm(1) - list symbols from object files&rdquo;。 nm 命令输出的内容在文件 {demo-c}/demo-in-linux/elf/symbol_elf_nm.md 中。
+使用符号表的地址直接访问数据 在程序中可以直接使用符号表中的 Value 值去访问对应的内存数据。 同样的源文件，每次编译得到的符号表的地址是一样的。 如果只是修改了某个变量的值，没有大规模的修改代码的话，重新编译的时候，变量的地址一般也是不会变得。 可以通过这种方式验证这个结论。
+示例代码：address.c。不过，在 ubuntu 22.04 中，这种方式无效。
+进程虚拟地址空间映射 需要注意的是，在上面的输出中，与地址有关的数据，都不是程序跑起来的时候，在内存中真正的地址。 程序在进程里跑起来的时候，操作系统会把真正的内存地址和 elf 文件中的虚拟地址做映射。
+文件的权限 读写执行权限 在命令行中，使用 ls -l 命令，就可以看到文件的权限。
+&gt; ls -l -rwxrwxrwx 1 root root 607 6月 10 19:16 symbol.c -rwxrwxrwx 1 root root 16216 6月 10 19:24 symbol.elf 第一列是文件的权限，第三列是文件的所有者，第四列是文件的所有群组。 这里以 &ldquo;-rwxrwxrwx&rdquo; 为例：第一位表示文件的类型；第 2~4 位分别表示 user 的读、写、执行权限； 第 5~7 位分别表示 group 的读、写、执行权限；第 8~10 位分别表示 other 的读、写、执行权限。
+&ldquo;-rwxrwxrwx&rdquo; 表示：所有的用户都拥有这个文件的读、写、执行权限。 如果是 &ldquo;-rwxr-xr-x&rdquo;，则表示：user 有读、写、执行权限，而 group 和 other 只有读、执行权限，没有写权限。
+特权权限 &ldquo;/etc/shadow&rdquo; 文件用于记录 linux 上所有用户的账号和密码。 只有超级管理员有读写权限，普通用户是没有读写权限的。
+但是，没有写权限的普通用户却可以通过 passwd 命令修改自己的密码。 这是因为 passwd 命令对应的 &ldquo;/bin/passwd&rdquo; 文件的权限是 &ldquo;-rwsr-xr-x&rdquo;。
+# /etc/shadow -rw-r----- 1 root shadow 1462 2月 6 12:38 shadow # /bin/passwd -rwsr-xr-x 1 root root 59976 11月 24 20:05 passwd 可以注意到 user 的执行权限位上是 s，这称为特权权限（Set User ID，SUID）。 如果 group 的执行权限位上是 s，就是（Set Group ID，SGID）。 文件所有者可以通过 chmod u+s 命令设置特权权限。有特权权限的文件通过 ls 命令看的时候是红色的。
+在程序中，可以通过 getuid() 获取用户 id，通过 geteuid() 获取有效用户 id。 通过 setuid() 设置用户 id，通过 seteuid() 设置有效用户 id。
+如果是文件的所有者，那么 getuid() 和 geteuid() 得到的结果是一样的。 如果不是文件的所有者，那么 geteuid() 就能拿到文件的所有者的 id。
+如果文件所有者设置了特权权限，那么其他用户调用 seteuid() 并传入文件的所有者的 id 的时候，就可以拥有文件所有者的权限。 想要改回来，可以调用 seteuid() 并传入自己的有效用户 id，这样就没有文件所有者的权限了。
+一般来说，程序主要是以普通用户运行的，以较低的权限执行程序，可以保证安全性。 但是，有时需要操作一些比较重要的数据，这个时候就需要提权。
+提权后，可以短暂地拥有该可执行文件所有者的权限，然后就可以修改数据了。 特别需要注意的是，使用完之后一定要降权。
+代码示例：{demo-c}/demo-in-linux/elf/setuid.c
+]]></content></entry><entry><title>程序</title><url>/post/computer-science/operating-system/program/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+amd64（x86_64） windows 11 vmware workstation pro 16 ubuntu 22.04 linux version 5.19.0-41-generic gcc version 11.3.0 资料 {demo-c}/demo-in-linux/program/ 正文 什么是程序 程序是计算机可以执行的一条或者一组指令，不管怎样，程序最终要在计算机物理硬件上跑起来的。
+程序有很多种形态：计算机可以直接执行，但是，不方便开发人员阅读和处理的二进制机器码是程序； 计算机不能直接执行，但是，方便开发人员阅读和处理的由各种编程语言编写的源代码也是程序。
+程序还有一种特别的形态，即由各种编程语言编写的源代码编译出来的可执行文件。 比如：windows 系统中 exe 可执行文件；linux 系统中的 elf 可执行文件。
+那么问题来了，程序有这么多种形态，它们之间是怎么能正确的相互转化的？ 答案是，通过抽象，而且是好多层的抽象。因为分类方式不同，会有不同的分层，所以下面说的，都是我的理解。
+首先是，最上面的应用软件层和最下面的物理硬件层。 这两层比较好理解，应用软件层就是我们使用的各式各样的应用程序，物理硬件层就是这些应用程序最终运行时所依托的计算机物理硬件。
+那么，中间有几层呢？这里不一定，我目前把中间分成 3 层。 操作系统肯定有一层，这个也好理解，我们使用计算机的时候都需要先安装一个操作系统。然后，在操作系统里面安装我们需要的应用程序。
+一般来说，开发人员开发的应用程序是不能直接操作操作系统的，使用的是操作系统提供的系统接口。 开发人员通过操作系统提供的系统接口实现应用程序的功能。所以，这里有一层。
+同理，开发人员开发的操作系统也是不能直接操作物理硬件的，使用的是物理硬件提供的固件接口。 固件是指嵌入硬件设备中的软件，开发人员通过固件接口开发操作系统。所以，这里也有一层。
+从源代码到可执行文件 对于应用软件的开发人员来说，一般都是基于操作系统进行开发的。所以，我这里的讨论，到操作系统就为止了。 不是说下层就不重要了，而是由于抽象层的存在，我们可以规避掉下层茫茫多的细节，专心讨论上层的问题。
+上面提到过，开发人员开发的应用程序，使用的是操作系统提供的系统接口。系统接口也叫系统调用（system call）。 这个玩意，现在就解释有点太早了，在 运行 ELF 文件这篇里面会详细的说。
+实践的环境 这里，我借助 linux 系统和 c 语言来讨论这个问题。我这里实践的环境如下。 cpu 是 amd64（x86_64）架构，操作系统是 windows 11。这个可以通过 systeminfo 命令查看。
+然后，在 windows 中，使用 vmware workstation pro 16，搭建 ubuntu 22.04 虚拟机。 ubuntu 22.04 的 linux 版本是 linux version 5.19.0-41-generic。这个可以通过 cat /proc/version 命令查看。
+然后，在 linux 中安装 gcc 编译器，版本是 gcc version 11.3.0 (ubuntu 11.3.0-1ubuntu1~22.04)。
+在 Linux 中使用 C 语言进行编程的注意点编译 可执行文件是操作系统提供的对于程序的抽象，内容包括程序指令和程序数据。 程序指令就是前面说过的指令集里面的指令，程序数据就是二进制的数据。 按照操作系统提供的对于程序的抽象编写出来的程序，操作系统才看得懂。
+可执行文件就相当于一个操作手册，操作手册上记录了每一步要干什么。 手册上是用文字描述要干什么的，实际操作的时候，是一个个具体动作，指令集记录的就是文字描述和具体动作的对应关系。 操作系统拿着操作手册，再对照指令集，就可以知道需要在硬件系统上做什么具体动作。
+想从源代码变成可执行文件，通常要进行编译。 在 linux 系统中就是，c 源码文件通过 gcc 编译器的编译得到 elf 可执行文件。 在 windows 系统中就是，c 源码文件通过 gcc 编译器的编译得到 exe 可执行文件。这里讨论的是在 linux 系统中的情况。
+通常使用 gcc 命令 gcc xxx.c -o xxx 一步就完成了。但是，这一步里面其实有四个步骤：预处理、编译、汇编、链接。 关于 gcc 命令具体怎么用，可以看 &ldquo;gcc(1) - GNU project C and C++ compiler&rdquo;。
+这里会用到 &ldquo;-E&rdquo;、&quot;-S&quot;、&quot;-c&quot;、&quot;-o&quot; 这几个参数。 &ldquo;-E&rdquo; 表示会进行预处理；&quot;-S&quot; 表示会进行预处理、编译，得到汇编代码； &ldquo;-c&rdquo; 表示会进行预处理、编译、汇编，得到可重定位文件；&quot;-o&quot; 表示指定目标名称； 如果什么参数都不写，那就会预处理、编译、汇编、链接一步到位，得到可执行文件。
+预处理（preprocessing）：gcc -E xxx.c -o xxx.i，预处理器会在源码的基础上增加一些代码。 编译（compilation）：gcc -S xxx.i -o xxx.s，编译器通过编译代码（词法分析、语法分析等）得到汇编代码。 汇编（assemble）：gcc -c xxx.s -o xxx.o，汇编器把汇编代码转化为机器指令，这一步得到的是可重定位文件。 链接（link）：gcc xxx.o -o xxx.elf，连接器把各个模块链接起来，组织成为可执行文件。 在链接中，会把函数的名字和变量的名字都称为符号（symbol）。源代码中的函数的名字和变量的名字，无论长度多少，最终都会转换为符号。
+我在 {demo-c}/demo-in-linux/program/ 目录准备了五个文件。 hello_world.c、hello_world.i、hello_world.s、hello_world.o、hello_world.elf。 分别对应上面的源码文件，还有每个命令执行之后生成的文件。
+编译过程产生的几个文件 首先，我们使用 file 命令，依次看一下这 5 个文件的文件类型。 关于 file 命令具体怎么用，可以看 &ldquo;file(1) - determine file type&rdquo;。
+&gt; file hello_world.c hello_world.c: C source, ASCII text, with CRLF line terminators &gt; file hello_world.i hello_world.i: C source, ASCII text &gt; file hello_world.s hello_world.s: assembler source, ASCII text &gt; file hello_world.o hello_world.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped &gt; file hello_world.elf hello_world.elf: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=6d49e18a785eb53d246ca89c5dbce54472ed1584, for GNU/Linux 3.2.0, not stripped 这里解释一下。 hello_world.c 和 hello_world.i 都是 c 源码文件（C source）； hello_world.s 是汇编源码文件（assembler source）； hello_world.o 是可重定位文件（relocatable）； hello_world.elf 是可执行文件（executable）。
+特别注意一下 hello_world.elf，它的内容有点多的。 &ldquo;dynamically linked&rdquo; 表示它是动态链接的。 &ldquo;interpreter /lib64/ld-linux-x86-64.so.2&rdquo; 表示它有一个解释器，解释器的路径是 &ldquo;/lib64/ld-linux-x86-64.so.2&rdquo;。 这两个玩意，现在就解释有点太早了，在 运行 ELF 文件这篇里面会详细的说。
+这里，再用 objdump 命令观察一下 hello_world.o 文件的具体内容。 关于 objdump 命令具体怎么用。可以看 &ldquo;objdump(1) - display information from object files&rdquo;
+这里会用到 &ldquo;-h&rdquo;、&quot;-s&quot;、&quot;-d&quot; 这几个参数。 &ldquo;-h&rdquo; 表示输出段表；&quot;-s&quot; 表示输出段表中每个段的详细内容；&quot;-d&quot; 表示输出 &ldquo;.text&rdquo; 段对应的汇编代码。 命令的输出我放在 {demo-c}/demo-in-linux/program/ 目录的 hello_world_objdump.md 文件内。
+分别解释一下。
+命令输出的结果的第一行都是 hello_world.o: file format elf64-x86-64，这个是文件的类型。
+&ldquo;-h&rdquo; 输出的段表。
+&ldquo;.text&rdquo; 是代码段，它用于存储程序指令（程序的代码）； &ldquo;.data&rdquo;、&quot;.bss&quot;、&quot;.rodata&quot; 都是数据段，它们用于存储程序数据； &ldquo;.bss&rdquo; 是未初始化数据段；&quot;.rodata&quot; 是只读数据段； &ldquo;-s&rdquo; 输出的段表中每个段的详细内容。这里截取了 &ldquo;.text&rdquo; 段。
+Contents of section .text: 0000 f30f1efa 554889e5 488d0500 00000048 ....UH..H......H 0010 89c7e800 000000b8 00000000 5dc3 ............]. 左边第 1 列是虚拟地址，表示内存偏移量。 中间的 4 列是指令码，表示程序指令的内容（16 进制机器指令）。 最右边 1 列是 ASCII 码，是程序指令的 ASCII 文本。 &ldquo;-d&rdquo; 输出的 &ldquo;.text&rdquo; 段对应的汇编代码。
+Disassembly of section .text: 0000000000000000 &lt;main&gt;: 0:	f3 0f 1e fa endbr64 4:	55 push %rbp 5:	48 89 e5 mov %rsp,%rbp 8:	48 8d 05 00 00 00 00 lea 0x0(%rip),%rax # f &lt;main+0xf&gt; f:	48 89 c7 mov %rax,%rdi 12:	e8 00 00 00 00 call 17 &lt;main+0x17&gt; 17:	b8 00 00 00 00 mov $0x0,%eax 1c:	5d pop %rbp 1d:	c3 ret &ldquo;Disassembly of section .text&rdquo;，表示程序指令的内容，以及对应的汇编代码。这里和 &ldquo;-s&rdquo; 输出的结果对应。 上面 &ldquo;-s&rdquo; 输出的结果里的 &ldquo;Contents of section .text&rdquo; 里，第一行第二段的 &ldquo;f30f1efa&rdquo;，就对应这里的 &ldquo;0: f3 0f 1e fa&rdquo;。 下面一行的 &ldquo;4: 55&rdquo; 和后面的 &ldquo;push %rbp&rdquo;，就表示 &ldquo;55&rdquo;（0x55）反汇编后对应的汇编指令就是 &ldquo;push %rbp&rdquo;。
+然后，再用 objdump 命令观察一下 hello_world.elf 文件。命令的输出也放在 hello_world_objdump.md 文件里面。 这里可以看到，hello_world.elf 的内容是比 hello_world.o 要多出不少的。
+而且，通过 hello_world.elf 的内容，我们可以发现。
+第一点：hello_world.elf 的 &ldquo;.text&rdquo; 段的第一个函数不是 main 函数，而是 &ldquo;_start&rdquo; 函数。 &ldquo;_start&rdquo; 函数会调用 &ldquo;__libc_start_main&rdquo; 函数进行一些必要的初始化操作，然后再调用 main 函数。 也就是说，main 函数并不是程序的入口。
+第二点：一个简单的 hello world 程序没有看上去的那么简单。
+可执行文件 关于 elf 可执行文件的详细的内容。我放到这篇里面去了。 ELF 文件程序的运行过程是怎样的 关于 elf 可执行文件的运行过程的详细的内容。我放到这篇里面去了。 运行 ELF 文件]]></content></entry><entry><title>动态链接和静态链接</title><url>/post/computer-science/operating-system/dynamically_statically_linked/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>c-programming-language</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+amd64（x86_64） windows 11 vmware workstation pro 16 ubuntu 22.04 linux version 5.19.0-41-generic gcc version 11.3.0 前置笔记：运行 ELF 文件资料 {demo-c}/demo-in-linux/program/ {demo-c}/demo-in-linux/dynamically-statically-linked/ 正文 动态链接 &gt; file hello_world.elf hello_world.elf: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=6d49e18a785eb53d246ca89c5dbce54472ed1584, for GNU/Linux 3.2.0, not stripped 之前我们通过 file 命令查看 hello_world.elf 的文件类型时说过，它是 &ldquo;dynamically linked&rdquo; 的，也就是动态链接的。 如果一个 elf 可执行文件是动态链接的。那么，它必定有一个解释器，这个解释器就是 linux 动态链接器。 在这里就是 &ldquo;interpreter /lib64/ld-linux-x86-64.so.2&rdquo; 这一段。interpreter 就是解释器的意思，后面的是解释器的路径。
+有的时候动态链接的信息可以从 file 命令的结果里可以直接看见。 如果没有的话，也可以通过 readelf 命令，从 elf 文件的 program headers 中找到。 这里截取了 readelf 命令的输出中关于解释器的那一部分。
+Program Headers: Type Offset VirtAddr PhysAddr FileSiz MemSiz Flags Align INTERP 0x0000000000000318 0x0000000000000318 0x0000000000000318 0x000000000000001c 0x000000000000001c R 0x1 [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2] 前面我们也提到过 &ldquo;.interp&rdquo; 段（上面的 INTERP）里面，存的就是程序解释器（elf 解释器）的路径。
+这里的就是这个 &ldquo;interpreter: /lib64/ld-linux-x86-64.so.2&rdquo;，它就是 linux 动态链接器。 它的功能是，把 elf 程序所依赖的动态库（共享库）加载并初始化。
+如果 elf 可执行程序的类型是动态链接的话，那么这个程序加载到内存运行时，操作系统会把控制权先交给动态链接器。 动态链接器加载完该程序所依赖的动态库并初始化相应的必要操作后，才会把控制权交给程序的入口地址。 如果这个程序没有 &ldquo;.interp&rdquo; 段，就会直接从程序的入口地址直接执行。
+也就是说，linux 在使用 execve() 加载程序时。不管 elf 文件的具体类型是什么。 只要检测出含有 &ldquo;.interp&rdquo; 段，那么，linux 就会先运行动态链接器。 动态链接器运行完之后，才会将控制权交给 elf 程序的入口地址。
+可以通过 ldd 命令查看文件依赖的动态库。 关于 ldd 命令具体怎么用，可以看 &ldquo;ldd(1) - print shared object dependencies&rdquo;。
+&gt; ldd hello_world.elf linux-vdso.so.1 (0x00007fffafdd6000) libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f6d35e00000) /lib64/ld-linux-x86-64.so.2 (0x00007f6d3620c000) &ldquo;/lib64/ld-linux-x86-64.so.2&rdquo; 就是动态链接器。 通过 file /lib64/ld-linux-x86-64.so.2 命令，可以查看它的文件类型。
+结果是：&quot;/lib64/ld-linux-x86-64.so.2: symbolic link to /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2&quot; 其中 &ldquo;symbolic link to&rdquo; 表示它是个软链接。链接到的 &ldquo;ld-linux-x86-64.so.2&rdquo; 是个特殊的共享库文件，因为它可以执行。
+&ldquo;/lib/x86_64-linux-gnu/libc.so.6&rdquo; 就是依赖的动态库。它是 c 的运行库，封装了很多操作系统的接口。 libc.so.6 是 GNU c 库（glibc）的一个重要组成部分，是大多数 linux 发行版使用的标准 c 库。
+linux 系统中，c 库的命名规则通常遵循 libc.so.&lt;版本&gt; 的模式，libc.so.6 就表示它是 c 库的第 6 版。
+动态库允许多个程序在内存中共享同一实例，减少内存消耗，并使动态库的更新变得容易，而不需要重新编译所有依赖它的程序。 这样程序就可以以模块的形式独立开发，并且方便后续的维护和升级。
+动态库的查找路径：&quot;/usr/lib&quot;、&quot;/usr/lib64&quot; 存储的是操作系统的共享库； &ldquo;/usr/local/lib&rdquo;、&quot;/usr/local/lib64&quot;存储的是第三方的共享库。
+&ldquo;linux-vdso.so.1&rdquo;，它是比较特殊的一个共享库，它不在文件系统中，而是在内核中。 详细的可以看：&ldquo;vdso(7) - overview of the virtual ELF dynamic shared object&rdquo;。
+编写和使用动态库 我在 &ldquo;{demo-c}/demo-in-linux/dynamically-statically-linked/&rdquo; 目录下准备了样例代码。
+dynamically_library.c 是动态库本体。里面准备了一个 print_hello_world()。 编码完成后使用 gcc -fPIC -shared dynamically_library.c -o dynamically_library.so 命令，编译成动态库。
+动态库一般有两种使用方式：编译时链接动态库（写代码的时候引入头文件，头文件里面是声明和定义）；程序中显示调用动态库。
+首先是编译时使用动态库，我们在 use_when_gcc.c 里面直接声明然后调用 print_hello_world()。 这个时候直接使用 gcc 编译肯定是不行的，因为标准库里面没有 print_hello_world()。
+需要使用 gcc use_when_gcc.c ./dynamically_library.so -o use_when_gcc.elf 命令，在编译时连接动态库。
+在程序中显示调用动态库比较麻烦，需要借助几个系统调用：dlopen()、dlsym()。代码在 use_in_code.c 里面。 这个编译的时候这样写 gcc use_in_code.c -ldl -o use_in_code.elf，不需要连接动态库。
+静态链接 如果通过 file 命令查看静态链接的 elf 可执行文件的话，结果中会有 &ldquo;statically linked&rdquo;。 静态链接的程序，会直接从程序的入口地址开始执行。
+我这里准备了 2 个文件，statically_library.c、statically_use.c
+// statically_library.c int returnVal (int v){ return v; } // statically_use.c #include &lt;stdio.h&gt; int main() { returnVal(1); return 0; } 使用 gcc 先将两个文件编译成可重定位文件。 gcc -c statically_library.c -o statically_library.o。 gcc -c statically_use.c -o statically_use.o。
+编译 statically_use.c 的时候会报错，这个忽略就好，这玩意肯定是有问题的。
+statically_use.c: In function ‘main’: statically_use.c:4:3: warning: implicit declaration of function ‘returnVal’ [-Wimplicit-function-declaration] 4 | returnVal(1); | ^~~~~~~~~ 这个时候我们使用 objdump 命令分别看一下 statically_library.o 和 statically_use.o。 这里截取了 &ldquo;.text&rdquo; 段的内容，要和下面 statically_call.elf 的对比着看的。
+&gt; objdump -s statically_library.o Contents of section .text: 0000 f30f1efa 554889e5 897dfc8b 45fc5dc3 ....UH...}..E.]. &gt; objdump -s statically_use.o Contents of section .text: 0000 f30f1efa 554889e5 bf010000 00b80000 ....UH.......... 0010 0000e800 000000b8 00000000 5dc3 ............]. 然后，这里用的不是 gcc 了，用的是静态链接器 ld，用 gcc 的时候，它会自动调用 ld。 链接 statically_library.o 和 statically_use.o 并设置程序入口为 main。 ld statically_library.o statically_use.o -e main -o statically_call.elf。
+这个时候就得到了一个 elf 可执行文件。这玩意跑不起来，因为除了这两段代码别的啥都没有。 用 file 命令看一下，可以看到输出的结果里面有 &ldquo;statically linked&rdquo;。
+&gt; file statically_call.elf statically_call.elf: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped 再使用 objdump 命令看一下 statically_call.elf。可以发现 &ldquo;.text&rdquo; 段的内容，就是上面两个文件拼起来的。
+&gt; objdump -s statically_call.elf Contents of section .text: 401000 f30f1efa 554889e5 897dfc8b 45fc5dc3 ....UH...}..E.]. 401010 f30f1efa 554889e5 bf010000 00b80000 ....UH.......... 401020 0000e8d9 ffffffb8 00000000 5dc3 ............]. 静态链接器会将输入的目标文件进行合并，把 &ldquo;.text&rdquo; 段、&quot;.data&quot; 段等进行合并，合并后会重新计算段的大小、偏移位置。 同时静态链接器还要完成符号解析（确保所有的符号被正确地连接）、重新定位（调整内存地址和引用）等操作。
+]]></content></entry><entry><title>运行 ELF 文件</title><url>/post/computer-science/operating-system/linux/exec_elf/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>elf</tag></tags><content type="html"><![CDATA[前言 前置笔记：ELF 文件实践的环境：同 程序资料 {demo-c}/demo-in-linux/program/ 正文 进程是什么 可执行文件只是程序而已，程序自己是跑不起来的，需要把程序交给操作系统去执行。
+当一个程序被交给操作系统执行时，操作系统首先会创建一个进程。 与此同时，一个线程也会被立刻启动起来去执行程序中的 main 函数。 这个线程就叫主线程，后续创建的线程都是这个主线程的子线程。
+线程被称作轻量级进程，它是操作系统调度的最小单元，通常一个进程可以拥有多个线程。
+进程不仅局限于程序（那段可执行代码），还包含其他资源。例如，文件、内存、线程、信号等。 进程拥有独立的资源空间，进程中的线程共享进程的资源空间。
+简单的理解，程序是静态的，进程是动态的，程序需要变成进程，才能够真正的运行起来，程序启动起来就变成进程，直到程序运行结束。
+怎么观察进程 可以通过 strace 命令可以跟踪进程执行时的系统调用和进程接收的信号。 关于 strace 命令具体怎么用，可以看 &ldquo;strace(1) - trace system calls and signals&rdquo;。
+这里会用到 &ldquo;-f&rdquo;、&quot;-i&quot;、&quot;-t&quot;、&quot;-T&quot;、&quot;-p&quot;、&quot;-s&quot;、&quot;-o&quot; 这几个参数。 &ldquo;-f&rdquo; 跟踪子进程；&quot;-i&quot; 打印系统调用的地址；&quot;-t&quot; 每一行打印时间； &ldquo;-T&rdquo; 显示系统调用花费的时间；&quot;-p {pid}&ldquo;指定跟踪的进程号； &ldquo;-s {length}&rdquo; 每一行的长度，默认 32，一般设置 65535；&quot;-o {file name}&rdquo; 输出到文件。
+关于系统调用的详细的内容。我放到这篇里面去了。 系统调用这里观察一下 hello_world.elf 可执行文件运行的过程。 命令的输出我放在 {demo-c}/demo-in-linux/program/ 目录的 hello_world_objdump.md 文件内。
+在 centos 的 docker 容器中使用 strace 命令报错 使用 strace -p 命令跟踪进程时报错：
+attach: ptrace(PTRACE_SEIZE): Operation not permitted 参考官方文档： The solution for enabling of ptrace and PTRACE_ATTACH in Docker Containers。
+启动容器的时候使用 &ldquo;–-privileged&rdquo; 参数，让容器内的 root 用户拥有真正的 root 权限。
+docker run -it -p 127.0.0.1:9501:9501 -v {local path}:{docker path} --name={container name} --privileged centos:centos7 进入容器，然后使用命令：echo 0 &gt; /proc/sys/kernel/yama/ptrace_scope。 将 &ldquo;/proc/sys/kernel/yama/ptrace_scope&rdquo; 文件中的值修改成 0。然后就可以使用 strace -p 命令跟踪进程了。
+观察一下 hello world 程序运行的过程 可以直接用 strace -f -i -T -s 65535 ./hello_world.elf 命令直接跟踪 ./hello_world.elf 命令运行的过程。 但是，这样观察不到全部的细节。这里用另外一种观察方式，观察输入 ./hello_world.elf 并运行程序的那个终端对应的进程。
+其实用户的输入，也是有一个进程来处理的，这个进程会接收并分析用户输入的容，然后做出相应的动作。 这里这个进程，会先接收到用户输入的 ./hello_world.elf 还有回车符。 通过分析，得到这条命令的意思是这是要执行 hello_world.elf 这个可执行文件。然后，就去执行相应的操作。
+假设有两个终端黑窗口（进程），进程 a 负责进行上面的操作。进程 b 负责观察进程 a。 在进程 b 进行跟踪之前，需要现在进程 a 里面，使用 echo $$ 命令获取当前进程的 pid。 然后进程 b 使用 strace -f -i -T -s 65535 -p {pid} -o hello_world_elf_strace.log 命令观察进程 a。
+strace 命令输出的结果：
+strace: Process 5148 attached strace: Process 5333 attached ^Cstrace: Process 5148 detached 终端 a 运行输入 ./hello_world.elf 执行程序，终端 b 在输出前两行之后，按 ctrl+c 终止监视，会输出第三行。 追踪到的内容会输出到 hello_world_elf_strace.log 里面，下面看一下 log 里面的内容。
+最前面的重复出现的 read 和 write 这里截取了 strace.log 里面，最前面的一段。... 表示这里省略了代码，全部贴过来太长了。
+2222 [00007f060c91b8f4] pselect6(1, [0], NULL, NULL, NULL, {sigmask=[], sigsetsize=8}) = 1 (in [0]) &lt;4.219516&gt; 2222 [00007f060c914992] read(0, &#34;.&#34;, 1) = 1 &lt;0.000107&gt; 2222 [00007f060c91b74d] pselect6(1, [0], NULL, [0], {tv_sec=0, tv_nsec=0}, NULL) = 0 (Timeout) &lt;0.000100&gt; 2222 [00007f060c914a37] write(2, &#34;.&#34;, 1) = 1 &lt;0.000098&gt; 2222 [00007f060c91b8f4] pselect6(1, [0], NULL, NULL, NULL, {sigmask=[], sigsetsize=8}) = 1 (in [0]) &lt;0.269215&gt; 2222 [00007f060c914992] read(0, &#34;/&#34;, 1) = 1 &lt;0.000736&gt; 2222 [00007f060c91b74d] pselect6(1, [0], NULL, [0], {tv_sec=0, tv_nsec=0}, NULL) = 0 (Timeout) &lt;0.000152&gt; 2222 [00007f060c914a37] write(2, &#34;/&#34;, 1) = 1 &lt;0.000115&gt; ... 这里用上面的第二行 &ldquo;2222 [00007f060c914992] read(0, &ldquo;.&rdquo;, 1) = 1 &lt;0.000107&gt;&rdquo; 做一个说明： &ldquo;2222&rdquo; 是进程号；&rsquo;[00007f060c914992]&rsquo; 是地址；&lsquo;read(0, &ldquo;.&rdquo;, 1)&rsquo; 是系统调用和调用的时候传入的参数； &ldquo;= 1&rdquo; 这里的 1 是前面那个系统调用的返回值；&quot;&lt;0.000107&gt;&quot; 是系统调用消耗的时间。
+终端 a（进程 2222），是由 &ldquo;/bin/bash&rdquo; 程序启动来的（&quot;/bin/bash&quot; 程序就是输入命令的那个终端黑窗口）。 这一大段 read 函数和 write 函数，跟踪到的就是用户在终端 a 里用键盘输入 ./helloworld 的过程。 read 是读取用户的输入，write 是将用户的输入显示到屏幕上。
+关于 read 函数和 write 函数具体怎么用可以看 &ldquo;read(2) - read from a file descriptor&rdquo; 和 &ldquo;write(2) - write to a file descriptor&rdquo;
+clone 下一个关键的步骤是，调用 clone()。
+... 2222 [00007f060c8eabc7] clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD &lt;unfinished ...&gt; 3579 [00007f060c8eac02] set_robust_list(0x7f060cb82a20, 24 &lt;unfinished ...&gt; 2222 [00007f060c8eabc7] &lt;... clone resumed&gt;, child_tidptr=0x7f060cb82a10) = 3579 &lt;0.000430&gt; ... clone() 的作用是创建子进程，这里父进程 2222 创建了子进程 3579。 关于 clone() 具体怎么用可以看 &ldquo;clone(2) - create a child process&rdquo;。 另外，fock() 也可以创建子进程，这个后面再说。
+wait4 下一个关键的步骤是，是父进程调用 wait4()。
+... 2222 [00007f060c8ea45a] wait4(-1, &lt;unfinished ...&gt; ... 父进程调用 wait4() 会进入阻塞状态，直到有子进程退出。 关于 wait4() 具体怎么用可以看 &ldquo;wait4(2) - wait for process to change state, BSD style&rdquo;。
+在这里就是，父进程调用 wait4() 进入阻塞状态，然后操作系统切换到子进程继续运行。 出现 &ldquo;&lt;unfinished &hellip;&gt;&rdquo; 这个就表示产生了进程切换。
+execve 下一个关键的步骤是，是子进程调用 execve()。
+... 3579 [00007f060c8eb0fb] execve(&#34;./hello_world.elf&#34;, [&#34;./hello_world.elf&#34;], 0x5595c15c1ed0 /* 55 vars */) = 0 &lt;0.009663&gt; ... 子进程调用 execve() 执行可执行文件 hello_world.elf。 关于 execve() 具体怎么用可以看 &ldquo;execve(2) - execute program&rdquo;。
+execve() 会加载可执行文件的 &ldquo;.text&rdquo; （程序指令）和 &ldquo;.data&rdquo; （程序数据）到当前进程，并覆盖当前进程。 &lsquo;[&quot;./helloworld&quot;]&rsquo; 是命令行参数。&ldquo;0x564eeda28ec0 /* 55 vars */&rdquo; 是环境参数。环境参数是供所有应用程序使用的公共数据。
+关于命令行参数和环境参数的详细的内容。我放到这篇里面去了。 命令行参数和环境参数libc.so.6 下一个关键的步骤是，加载 libc.so.6 文件。
+... 3579 [00007f02afc17b38] openat(AT_FDCWD, &#34;/lib/x86_64-linux-gnu/libc.so.6&#34;, O_RDONLY|O_CLOEXEC) = 3 &lt;0.000014&gt; 3579 [00007f02afc17b88] read(3, &#34;\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0&gt;\0\1\0\0\0P\237\2\0\0\0\0\0@\0\0\0\0\0\0\0\360\300!\0\0\0\0\0\0\0\0\0@\08\0\16\0@\0B\0A\0\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0\20\3\0\0\0\0\0\0\20\3\0\0\0\0\0\0\10\0\0\0\0\0\0\0\3\0\0\0\4\0\0\0000&gt;\36\0\0\0\0\0000&gt;\36\0\0\0\0\0000&gt;\36\0\0\0\0\0\34\0\0\0\0\0\0\0\34\0\0\0\0\0\0\0\20\0\0\0\0\0\0\0\1\0\0\0\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340\177\2\0\0\0\0\0\340\177\2\0\0\0\0\0\0\20\0\0\0\0\0\0\1\0\0\0\5\0\0\0\0\200\2\0\0\0\0\0\0\200\2\0\0\0\0\0\0\200\2\0\0\0\0\0\301D\31\0\0\0\0\0\301D\31\0\0\0\0\0\0\20\0\0\0\0\0\0\1\0\0\0\4\0\0\0\0\320\33\0\0\0\0\0\0\320\33\0\0\0\0\0\0\320\33\0\0\0\0\0\314x\5\0\0\0\0\0\314x\5\0\0\0\0\0\0\20\0\0\0\0\0\0\1\0\0\0\6\0\0\0\360H!\0\0\0\0\0\360X!\0\0\0\0\0\360X!\0\0\0\0\0\230O\0\0\0\0\0\0`%\1\0\0\0\0\0\0\20\0\0\0\0\0\0\2\0\0\0\6\0\0\0\300{!\0\0\0\0\0\300\213!\0\0\0\0\0\300\213!\0\0\0\0\0\320\1\0\0\0\0\0\0\320\1\0\0\0\0\0\0\10\0\0\0\0\0\0\0\4\0\0\0\4\0\0\0P\3\0\0\0\0\0\0P\3\0\0\0\0\0\0P\3\0\0\0\0\0\0000\0\0\0\0\0\0\0000\0\0\0\0\0\0\0\10\0\0\0\0\0\0\0\4\0\0\0\4\0\0\0\200\3\0\0\0\0\0\0\200\3\0\0\0\0\0\0\200\3\0\0\0\0\0\0D\0\0\0\0\0\0\0D\0\0\0\0\0\0\0\4\0\0\0\0\0\0\0\7\0\0\0\4\0\0\0\360H!\0\0\0\0\0\360X!\0\0\0\0\0\360X!\0\0\0\0\0\20\0\0\0\0\0\0\0\220\0\0\0\0\0\0\0\10\0\0\0\0\0\0\0S\345td\4\0\0\0P\3\0\0\0\0\0\0P\3\0\0\0\0\0\0P\3\0\0\0\0\0\0000\0\0\0\0\0\0\0000\0\0\0\0\0\0\0\10\0\0\0\0\0\0\0P\345td\4\0\0\0L&gt;\36\0\0\0\0\0L&gt;\36\0\0\0\0\0L&gt;\36\0\0\0\0\0\314p\0\0\0\0\0\0\314p\0\0\0\0\0\0\4\0\0\0\0\0\0\0Q\345td\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\20\0\0\0\0\0\0\0R\345td\4\0\0\0\360H!\0\0\0\0\0\360X!\0\0\0\0\0\360X!\0\0\0\0\0\0207\0\0\0\0\0\0&#34;, 832) = 832 &lt;0.000015&gt; ... 子进程调用 openat() 和 read() 加载 hello_world.elf 程序所依赖的库文件 libc.so.6。
+其中 openat() 会打开 libc.so.6 文件。 关于 openat() 具体怎么用可以看 &ldquo;openat(2) - open and possibly create a file&rdquo;。
+openat() 的返回值 3 是个文件描述符。文件描述符是指当前进程在访问的文件，这个值一般大于等于 0。 linux 进程默认情况下会有 3 个缺省打开的文件描述符，分别是：标准输入 0、标准输出 1、标准错误 2。 然后，后面的 read 函数的第一个参数就是这个 3，表示从文件里读数据。
+libc.so.6 是共享目标文件，也叫共享库、运行库、动态库。用户程序会调用运行库（C Runtime Library、CRT）。 运行库封装了操作系统更底层的系统调用函数。Linux、Windows、Mac，不同的操作系统，底层接口都是不一样的。 并且这些底层接口都比较 &ldquo;原始&rdquo;，如果想直接使用，那是比较复杂的，所以，要封装这些比较底层的系统调用。
+关于静态链接和动态链接的详细的内容。我放到这篇里面去了。 动态链接和静态链接write 下一个关键的步骤是，是调用 write()。
+... 3579 [00007f02af914a37] write(1, &#34;hello, world\n&#34;, 13) = 13 &lt;0.000117&gt; ... 调用 write() 输出 &ldquo;hello, world\n&rdquo; 到屏幕上。返回值 13 表示 &ldquo;hello, world\n&rdquo; 有 13 个字节。
+在源码里面，用的是 printf()。这个函数声明在 stdio.h 头文件里面。 它的底层实现最终调用的就是 write()，而 write() 的具体实现就在 libc.so.6 库里。 write() 就是操作系统暴露出来的最底层的函数了，再往下就要和驱动、硬件等相关了。
+另外，程序是可以直接调用系统调用函数的。 也就是说，直接在程序里写 write(1, &quot;hello, world\n&quot;, 13) 也是可以的。 但是，这个时候，头文件就不是 stdio.h 了，而是 unistd.h。就像下面这样。
+#include &lt;unistd.h&gt; int main() { write(1, &#34;hello, world\n&#34;, 13); return 0; } exit_group 下一个关键的步骤是，是调用 exit_group()。 关于 exit_group() 具体怎么用可以看 &ldquo;exit_group(2) - exit all threads in a process&rdquo;。
+... 3579 [00007f02af8eaca1] exit_group(0) = ? 3579 [????????????????] +++ exited with 0 +++ ... 子进程调用 exit_group(0) 退出进程，参数值 0 是进程退出状态码，也就是程序里 return 的 0。
+wait4 下一个关键的步骤是，是父进程从 wait4() 的阻塞状态中被唤醒。但是，父进程怎么被唤醒的呢。
+Topic 2 Multiprocessing (4) A SIGCHLD is sent automatically by the kernel to a process, telling the process that one of its child process terminates or stops.
+子进程退出的时候，操作系统先知道。然后，操作系统会给父进程发一个 SIGCHLD 信号。 然后，父进程知道子进程退出了，前面调用的 wait4() 会回收退出的子进程，并回收子进程的内存资源。
+... 2222 [00007f060c8ea45a] &lt;... wait4 resumed&gt;[{WIFEXITED(s) &amp;&amp; WEXITSTATUS(s) == 0}], WSTOPPED|WCONTINUED, NULL) = 3579 &lt;0.035522&gt; ... 2222 [00007f060c89bc9b] --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=3579, si_uid=1000, si_status=0, si_utime=0, si_stime=0} --- 2222 [00007f060c8ea45a] wait4(-1, 0x7ffdb295ab90, WNOHANG|WSTOPPED|WCONTINUED, NULL) = -1 ECHILD (No child processes) &lt;0.000005&gt; ... &ldquo;WIFEXITED(s)&rdquo; 和 &ldquo;WEXITSTATUS(s)&rdquo; 是宏函数，&ldquo;WEXITSTATUS(s)&rdquo; 可以拿到退出状态码。
+至此整个 hello world 程序执行结束。 进程 上面 hello world 程序执行的过程，就是一个非常典型的进程的生命周期。 主要包括进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收。
+关于这块的详细的内容。我放到这篇里面去了。 进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收参考 百度百科-主线程Topic 2 Multiprocessing (4)]]></content></entry><entry><title>Golang 反射的基本使用方式</title><url>/post/computer-science/programming-language/golang/reflect/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag><tag>reflect(反射)</tag></tags><content type="html"><![CDATA[前言 CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64 资料 {demo-golang}/demo/reflectkn/ reflect.drawio.html 正文 注意，笔记里的代码是伪代码，方便说明和区分用的。
 实例 在 Golang 中，一个实例（叫变量也行），它由类型信息和值信息组成。
 比如：var int a = 8。a 就是一个实例，它的类型信息就是 int，值信息就是 8。
 当然实际上没有这么简单，这里就是方便理解。
@@ -147,7 +405,60 @@ RPC 的原理 RPC 首先需要定义一个协议，也就是约定两个服务�
 也就是 a 服务上的类 A 假装自己就是 b 服务上的类 A，这样上游调用的时候，类 A 就可以拿到调用的信息（调了哪个接口，传了哪些参数）。
 然后，把这些调用信息传递给 b 服务上真正的类 A 去执行。
 这个过程大概可以简单的分成下面几个步骤：
-a 服务上的类 A 需要把自己伪装成 b 服务上的类 A，从外面看上去是一样的。 a 服务上的类 A 在被调用的时候需要把调用的信息收集起来，然后通过网络传给 b 服务。 b 服务接收到请求之后需要通过传过来的调用的信息，分析出这个请求调的是类 A，传了哪些参数。 b 服务 new 一个类 A 出来，使用传过来的参数调用接口拿到结果。 b 服务拿到结果之后，给 a 服务传回去。a 服务上的类 A 拿到结果之后，对上游做出响应。</content></entry><entry><title>Windows 10 环境使用 Docker</title><url>/post/computer-science/application/docker/windows/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>application(应用)</tag><tag>docker</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+a 服务上的类 A 需要把自己伪装成 b 服务上的类 A，从外面看上去是一样的。 a 服务上的类 A 在被调用的时候需要把调用的信息收集起来，然后通过网络传给 b 服务。 b 服务接收到请求之后需要通过传过来的调用的信息，分析出这个请求调的是类 A，传了哪些参数。 b 服务 new 一个类 A 出来，使用传过来的参数调用接口拿到结果。 b 服务拿到结果之后，给 a 服务传回去。a 服务上的类 A 拿到结果之后，对上游做出响应。</content></entry><entry><title>线程</title><url>/post/computer-science/operating-system/linux/thread/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>thread(线程)</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+amd64（x86_64） windows 11 vmware workstation pro 16 ubuntu 22.04 linux version 5.19.0-41-generic gcc version 11.3.0 前置笔记： 进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收资料 {demo-c}/demo-in-linux/thread/ 正文 主线程 当一个进程启动时，默认会创建一个主线程。主线程会从 main() 开始执行代码。 main() 就是主线程的入口函数。每个线程都会有一个入口函数。 主线程一旦退出，整个进程就会退出，子线程无论有没有退出，都会被强制干掉。
+并发和并行 当线程数量小于等于 CPU 核心数时，所有的线程并行执行。CPU 的核心够所有线程同时跑，不存在等待的情况。
+当线程数量大于 CPU 核心数时，所有的线程并发执行。 CPU 的核心不够所有的线程同时跑，所以，每个线程执行一个时间片，然后，切换到其它线程执行。
+多线程 多线程程序在执行的时候有两种情况。一种是子线程并入主线程，一种是主线程与子线程分离。
+子线程并入主线程的情况，主线程调用 pthread_join() 后，会一直阻塞到子线程结束退出为止，当子线程结束退出后，主线程会继续往后执行。 主线程与子线程分离线的情况，主程调用 pthread_detach() 后，主线程与子线程分离，当子线程结束退出后，资源会被自动回收。
+编写多线程程序的时候需要注意，如果主线程里面没有 sleep()、pthread_join()、pthread_detach() 这些相当于等待的代码结构。 那么，主线程执行完 pthread_create() 后就会结束，子线程没有来得急执行，就会被强制退出了。
+代码示例：
+{demo-c}/demo-in-linux/thread/thread_join.c {demo-c}/demo-in-linux/thread/thread_detach.c 编译的时候，如果代码是多线程程序，gcc 命令需要加上 &ldquo;-lpthread&rdquo; 选项。例如：gcc xxx.c -lpthread -o xxx.elf
+线程可以通过调用 pthread_exit() 结束并退出，同时可以返回返回值。 比如，想返回个 3，这么写 &ldquo;pthread_exit((void *)3)&rdquo; 就行了。 或者直接用 return 也是可以的。同样的，想返回个 3，这么写 &ldquo;return (void *)3&rdquo; 就行了。
+这样，pthread_join() 的第二个参数就能拿到返回值。注意，这个参数是个二级指针，一般传 **int 进去。
+互斥锁 下面这段程序，本意是想将 x 中的数据取出来，对其 +100，然后再放回去。 如果跑两次的话，期望是依次输出 y=200，y=300。但是，在并发场景下，会输出 2 次 y=200。
+因为，两个线程都会读到 100；然后，阻塞；然后，对其 +100；然后，赋值回去。
+int x = 100; void *mythread() { int y = x; sleep(1); y = y + 100; x = y; printf(&#34;[info]:child pthread, y=%d\n&#34;, x); } 这里就需要用互斥锁对全局变量 x 进行保护，确保同一时刻只有一个线程有权利对 x 进行读写操作。
+互斥锁常用于保护临界区的数据。有互斥锁的保护，在并发场景下，两个线程就会顺序执行，依次输出 y=200，y=300。
+代码示例：{demo-c}/demo-in-linux/thread/mutex_lock.c
+可以使用 pthread_mutex_init() 初始化互斥锁，也可以使用常量 PTHREAD_MUTEX_INITIALIZER 初始化互斥锁。
+pthread_mutex_lock() 加不上锁的时候就会阻塞。对同一个锁重复执行加锁动作会死锁。
+条件变量 程序在运行的时候会有，如果不满足某个条件就等待，直到条件满足再继续执行的场景。
+假设，有一个线程 a 执行的时候，发现条件不满足，自己不能继续执行了，但是，自己前面加锁锁了临界资源 1。 再假设，有另一个线程 b，它手上有线程 a 需要的临界资源 2，但是，线程 b 需要线程 a 锁住的临界资源 1 才能继续执行。
+这个时候，如果线程 a 不把所锁放掉，就陷入等待了，那么自己锁定的临界资源 1 就不会被释放。 这时，临界资源 1 是闲置的，但是，线程 b 就会拿不到，最终造成相互等待的死锁的情况。
+这种情况就需要使用条件变量了。条件变量和需要结合互斥锁使用，互斥锁的存在是为了保护条件变量。 可以使用 pthread_cond_init() 初始化条件变量，也可以使用常量 PTHREAD_COND_INITIALIZER 初始化条件变量。
+当线程 a 发现条件不满足时，就可以调用 pthread_cond_wait()。 调用 pthread_cond_wait() 会阻塞当前线程，并且会释放互斥锁。当 pthread_cond_wait() 被激活之后会再自动加锁。
+另外的线程在释放掉临界资源后，可以使用 pthread_cond_signal() 唤醒一条阻塞的线程。 或者使用 pthread_cond_broadcast() 唤醒全部阻塞的线程。
+代码示例：{demo-c}/demo-in-linux/thread/cond_wait.c
+惊群问题 惊群问题（Thundering herd、cache stampede、cache-rashing），是多线程（多进程）程序中可能会发生的性能问题。
+当多个线程（进程）竞争同一个共享资源，而该资源一次只能由一个对象访问时，就会出现惊群问题。
+当资源可用时，所有的对象会同时醒来，并开始竞争同一个共享资源。这种突发的情况会导致资源使用量激增，进而导致系统性能下降。
+惊群问题，可以使用互斥锁、信号量、或者其他同步原语，来调节对共享资源的访问。
+缓存可以用来减少对共享资源的访问需求，提高系统的整体性能。负载均衡可以将共享资源分散出去，避免单点争夺。
+]]></content></entry><entry><title>进程池</title><url>/post/computer-science/operating-system/linux/process_pool/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>process(进程)</tag></tags><content type="html">前言 前置笔记：
+进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收
+信号
+进程间通信（IPC）
+实践的环境：同 程序
+资料 {demo-c}
+/demo-in-linux/process-pool/ 正文 进程池 进程的创建和销毁是有代价的。每次需要的时候，新创建一个子进程，使用完了在销毁掉，这种方式非常的浪费资源。
+进程池就是预先创建好一组用于处理某种问题的子进程，等遇到这个问题的时候直接就可以丢给其中一个子进程去处理。
+使用完了并不会销毁掉子进程，而是把数据都初始化回去之后，重新放回进程池中。这样就可以避免频繁的创建和销毁子进程。
+实现进程池的时候需要注意几点。
+父进程怎么给子进程传递数据。 父进程怎么选择用哪个子进程。 子进程用完了之后要重新初始化。 子进程怎么退出，防止变成孤儿进程。 父进程怎么接收外部数据。 代码示例：
+{demo-c}/demo-in-linux/process-pool/pool.c {demo-c}/demo-in-linux/process-pool/write.c 示例中：
+父进程通过匿名管道传递数据给子进程。 子进程的工作是接收父进程的数据并打印。 父进程使用轮询算法选择用哪个子进程。 子进程用完了之后会重新初始化接收缓冲区。 子进程通过父进程发送的信号退出。 父进程通过命名管道从外部接收数据。 父进程通过信号和特殊的输入 &amp;ldquo;exit&amp;rdquo; 退出。</content></entry><entry><title>在 Linux 中使用 C 语言进行编程的注意点</title><url>/post/computer-science/operating-system/linux/notice/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag></tags><content type="html"><![CDATA[正文 学会看 linux 文档 想在 linux 系统中使用 c 语言进行编程，一定要学会看 linux 的文档。
+在线文档 在线文档可以从 man7.org进去。 在 man7.org 页面，点击 &ldquo;Online manual pages&rdquo;，可以进到 Linux man pages online页面。
+在 &ldquo;Linux man pages online&rdquo; 页面，点击 &ldquo;by section&rdquo; 链接，可以进到一个列表页面。在这个列表页面，有所有的条目。 虽然，东西多，但是，可以用浏览器进行全文搜索，找起来比较容易，不需要知道要找的条目到底在哪个 page。
+man 命令 在 linux 操作系统中，可以使用 man 命令查看 linux 文档。但是，用 man 命令的时候，需要知道要找的条目到底在哪个 page。
+比如：在线文档 by section 页面上的 &ldquo;execve(2) - execute program&rdquo;，用 man 命令就是 man 2 execve； 在线文档 by section 页面上的 &ldquo;exec(3) - execute a file&rdquo; 用 man 命令就是 man 3 exec。
+在 docker 的 centos 容器中无法使用 man 命令 因为，docker 的 centos 容器，它把一些东西精简了，所以，有一些命令不能使用。
+需要修改 &ldquo;/etc/yum.conf&rdquo; 配置文件。注释掉 tsflags=nodocs 这一行。这个配置禁用了一些软件包。 修改配置文件后，使用 yum -y install man 和 yum -y install man-pages 命令，重新安装 man 命令，即可使用。
+注意代码运行的目标环境 编程的时候，要注意代码运行的目标环境。 同一段代码，在 ubuntu 和 centos 上运行的时候，整体的系统调用过程应该是差不多的，但是细节可能不一样。
+举个例子，在 ubuntu 22.04 和 centos 7 上分别跑 hello world 程序。加载 libc.so.6 文件的这个步骤。 在 ubuntu 22.04 上加载的是 &ldquo;/lib/x86_64-linux-gnu/libc.so.6&rdquo;；而在 centos 7 上加载的是 &ldquo;/lib64/libc.so.6&rdquo;。
+笔记中出现的文档 笔记中出现的 linux 文档，都会统一写在这里。直接在在线文档 by section 页面搜就可以。每一篇笔记都贴链接，太麻烦了。
+笔记中出现的是从文档中节选的关键的部分，或者和实践过程有关的部分。有可能是整段的，有可能是节选的，看的时候稍微注意一点。
+进程 标题 描述 进程的标识 &mdash; getuid(2) - get user identity &mdash; geteuid(2) - get user identity &mdash; getpid(2) - get process identification &mdash; getppid(2) - get process identification &mdash; getpgid(2) - set/get process group &mdash; 进程的创建 &mdash; fork(2) - create a child process 创建子进程 vfork(2) - create a child process and block parent 创建子进程 clone(2) - create a child process 创建子进程 进程的运行 &mdash; execve(2) - execute program 执行程序 exec(3) - execute a file &mdash; 进程的退出 &mdash; exit(2) - terminate the calling process &mdash; _Exit(2) - terminate the calling process &mdash; _exit(2) - terminate the calling process &mdash; exit(3) - cause normal process termination &mdash; exit_group(2) - exit all threads in a process 退出进程中所有的线程 进程的回收 &mdash; wait(2) - wait for process to change state &mdash; waitpid(2) - wait for process to change state &mdash; wait4(2) - wait for process to change state, BSD style 等待回收进程 进程的运行顺序 &mdash; nice(1) - run a program with modified scheduling priority &mdash; nice(2) - change process priority &mdash; renice(1) - alter priority of running processes &mdash; getpriority(2) - get/set program scheduling priority &mdash; setpriority(2) - get/set program scheduling priority &mdash; 进程的内存资源 &mdash; proc(5) - process information pseudo-filesystem &mdash; getrlimit(2) - get/set resource limits &mdash; setrlimit(2) - get/set resource limits &mdash; ptrace(2) - process trace 跟踪和控制另一个进程 信号 标题 描述 signal(7) - overview of signals &mdash; sigaction(2) - examine and change a signal action &mdash; sigprocmask(2) - examine and change blocked signals &mdash; sigpending(2) - examine pending signals &mdash; sigsetops(3) - POSIX signal set operations &mdash; alarm(2) - set an alarm clock for delivery of a signal &mdash; kill(2) - send signal to a process 发送信号给一个过程 &mdash; &mdash; 进程间通信 标题 描述 管道 &mdash; pipe(7) - overview of pipes and FIFOs &mdash; pipe(2) - create pipe &mdash; mkfifo(3) - make a FIFO special file (a named pipe) &mdash; System V IPC &mdash; ipc(2) - System V IPC system calls &mdash; System V 消息队列 &mdash; msgget(2) - get a System V message queue identifier &mdash; msgsnd(2) - System V message queue operations &mdash; msgrcv(2) - System V message queue operations &mdash; msgctl(2) - System V message control operations &mdash; System V 信号量 &mdash; semget(2) - get a System V semaphore set identifier &mdash; semctl(2) - System V semaphore control operations &mdash; semop(2) - System V semaphore operations &mdash; System V 共享内存 &mdash; shmget(2) - allocates a System V shared memory segment &mdash; shmat(2) - System V shared memory operations &mdash; shmdt(2) - System V shared memory operations &mdash; POSIX IPC &mdash; mq_overview(7) - overview of POSIX message queues &mdash; sem_overview(7) - overview of POSIX semaphores &mdash; shm_overview(7) - overview of POSIX shared memory &mdash; &mdash; &mdash; 网络间进程间通信 标题 描述 socket(7) - Linux socket interface socket 概述 socket(2) - create an endpoint for communication 创建 socket ip(7) - Linux IPv4 protocol implementation 设置 ipv4 的 tcp、udp 等 tcp(7) - TCP protocol TPC 概述 udp(7) - User Datagram Protocol for IPv4 UDP 概述 unix(7) - sockets for local interprocess communication UNIX Socket bind(2) - bind a name to a socket 绑定地址和端口 listen(2) - listen for connections on a socket 监听 socket accept(2) - accept a connection on a socket 接受连接 connect(2) - initiate a connection on a socket 发起连接 recv(2) - receive a message from a socket 从 socket 读取数据 recvfrom(2) - receive a message from a socket 从 socket 读取数据 send(2) - send a message on a socket 向 socket 发送数据 sendto(2) - send a message on a socket 向 socket 发送数据 &mdash; &mdash; 线程 标题 描述 线程 &mdash; pthreads(7) - POSIX threads 线程概述 pthread_create(3) - create a new thread 创建线程 pthread_join(3) - join with a terminated thread 子线程合入主线程 pthread_detach(3) - detach a thread 主线程与子线程分离 pthread_exit(3) - terminate calling thread 线程退出 互斥锁 &mdash; pthread_mutex_init(3p) - destroy and initialize a mutex 互斥锁初始化 pthread_mutex_lock(3p) - lock and unlock a mutex 互斥锁加锁 pthread_mutex_unlock(3p) - lock and unlock a mutex 互斥锁释放 条件变量 &mdash; pthread_cond_init(3p) - destroy and initialize condition variables 条件变量初始化 pthread_cond_wait(3p) - wait on a condition 等待条件变量 pthread_cond_signal(3p) - signal a condition 唤醒一条被条件变量阻塞的线程 pthread_cond_broadcast(3p) - broadcast or signal a condition 唤醒全部被条件变量阻塞的线程 &mdash; &mdash; IO 多路复用 标题 描述 epoll(7) - I/O event notification facility epoll 概述 epoll_create(2) - open an epoll file descriptor 创建 epoll 文件描述符 epoll_ctl(2) - control interface for an epoll file descriptor 添加、修改、删除 epoll 关联的 linux 内核事件 epoll_wait(2) - wait for an I/O event on an epoll file descriptor &mdash; &mdash; &mdash; 文件 标题 描述 access(2) - check user&rsquo;s permissions for a file &mdash; open(2) - open and possibly create a file &mdash; read(2) - read from a file descriptor 从文件描述符读取数据 write(2) - write to a file descriptor 向文件描述符写入数据 fcntl(2) - manipulate file descriptor 操作文件描述符 elf(5) - format of Executable and Linking Format (ELF) files elf 相关 openat(2) - open and possibly create a file 打开或者创建一个文件 &mdash; &mdash; 终端 标题 描述 tty(1) - print the file name of the terminal connected to standard input &mdash; tty(4) - controlling terminal &mdash; pty(7) - pseudoterminal interfaces &mdash; pts(4) - pseudoterminal master and slave &mdash; ptmx(4) - pseudoterminal master and slave &mdash; posix_openpt(3) - open a pseudoterminal device &mdash; &mdash; &mdash; linux 命令 标题 描述 man(1) - an interface to the system reference manuals 查看文档 gcc(1) - GNU project C and C++ compiler 用于编译 file(1) - determine file type 查文件类型 objdump(1) - display information from object files 查看文件信息 strace(1) - trace system calls and signals 跟踪系统调用 readelf(1) - display information about ELF files 查看 elf 文件内容 size(1) - list section sizes and total size of binary files 查看段大小 nm(1) - list symbols from object files 查看符号表 ldd(1) - print shared object dependencies 查看文件依赖的动态库 &mdash; &mdash; 其他 标题 描述 errno(3) - number of last error errno 怎么用 htons(3) - convert values between host and network byte order 主机字节序和网络字节序的转换 inet_addr(3) - Internet address manipulation routines 点分十进制和二进制网络字节顺序的转换 strncasecmp(3) - compare two strings ignoring case 比较两个字符串，忽略大小写 vdso(7) - overview of the virtual ELF dynamic shared object &mdash; sscanf(3) - input string format conversion &mdash; strstr(3) - locate a substring &mdash; isalpha(3) - character classification functions &mdash; readdir(3) - read a directory &mdash; &mdash; &mdash; ]]></content></entry><entry><title>Windows 10 环境使用 Docker</title><url>/post/computer-science/application/docker/windows/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>application(应用)</tag><tag>docker</tag></tags><content type="html"><![CDATA[前言 实践的环境：
 CPU AMD64(x86_64) Windows 11 家庭版 Docker v20.10.17 正文 安装 去 Docker 官网下一个 Windows 11 使用的 Docker Desktop For Windows（下面简称 docker） 安装包。
 因为，Docker Desktop For Windows 使用的是 hyper-v 虚拟机。所以，安装之前，需要安装并启用 Windows 11 的 hyper-v 虚拟机服务。
 安装之后，可以打开 Windows PowerShell（下面简称 powershell），执命令行 docker run hello-world，检测是否安装成功。成功的话，输出应该是下面这样的。
@@ -178,36 +489,35 @@ prog.go:12:2: no required module provides package github.com/golang/mock/mockgen
 cmdable := mock.NewMockCmdable(p7ctrl) cmd := redis.NewCmd(context.Background(), nil) cmd.SetErr(context.DeadlineExceeded) cmdable.EXPECT().Eval(gomock.Any(), {redis 语句 1}, 语句需要的参数 1, 语句需要的参数 2, ..., gomock.Any()).Times(2).Return(cmd) cmd2 := redis.NewCmd(context.Background(), nil) cmd2.SetVal(&#34;OK&#34;) cmdable.EXPECT().Eval(gomock.Any(), {redis 语句 2}, 语句需要的参数 1, 语句需要的参数 2, ..., gomock.Any()).Return(cmd2) 可以用 Times() 方法指定语句的调用次数，如果无限次的话就用 AnyTimes()。如果需要设置多种语句执行的结果，那就像上面那样，挨个定义，挨个设置就行。
 用 Times() 的时候，不知道需不需要控制调用次数。这里用的时候发现，如果设置的调用次数没用完测试就结束了，那单元测试会报错。调整一下调用次数和被测试的程序保持一致就行。
 controller.go:269: missing call(s) to 中间一大堆，应该就是调用次数没用完那个 redis 语句 controller.go:269: aborting test due to missing call(s) 如果设置了，但是没有调用的话，就会报下面这样的错：
-controller.go:269: missing call(s) to 一大堆，会具体说哪个接口没调用 controller.go:269: aborting test due to missing call(s) ]]></content></entry><entry><title>基本输入输出系统（Basic Input/Output System、BIOS）</title><url>/post/computer-science/operating-system/bios/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>bios</tag></tags><content type="html">前言 前置笔记：
-中央处理器（Central Processing Unit、CPU）
+controller.go:269: missing call(s) to 一大堆，会具体说哪个接口没调用 controller.go:269: aborting test due to missing call(s) ]]></content></entry><entry><title>基本输入输出系统（Basic Input/Output System、BIOS）</title><url>/post/computer-science/operating-system/bios/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>bios</tag></tags><content type="html">前言 前置笔记： 中央处理器（Central Processing Unit、CPU）
 资料 正文 基本输入输出系统 之前的笔记，大概描述了一下 CPU 的基本运行原理。这里面有一个问题没有讨论，那段程序怎么装到内存里去。
-最简单的方法是，直接把程序烧录进内存。如果这么做的话，内存里的数据就是固定的，每次读都一样。那么这块内存，就不能装载不同的程序，进而达到执行不同的任务的目的。换句话说就是，没有通用性。
-现在的计算机里的内存，每次启动的时候都是空的，可以根据需要装载不同的程序到内存中而不用替换内存的。所以，这里肯定不是直接把程序烧录进内存的。但是，想要让计算机能够装载不同的程序到内存中，这本身又是需要程序去处理的。
+最简单的方法是，直接把程序烧录进内存。如果这么做的话，内存里的数据就是固定的，每次读都一样。 那么这块内存，就不能装载不同的程序，进而达到执行不同的任务的目的。换句话说就是，没有通用性。
+现在的计算机里的内存，每次启动的时候都是空的，可以根据需要装载不同的程序到内存中而不用替换内存的。 所以，这里肯定不是直接把程序烧录进内存的。但是，想要让计算机能够装载不同的程序到内存中，这本身又是需要程序去处理的。
 就是说，计算机启动之后，需要有一个程序去实现装载不同的程序的功能，但是，这个程序又不能直接烧录进内存。 那么怎么办呢？分开喽。用一块内存专门存储这个程序，然后，用另外一块内存来装载不同的程序。
-现在我们都知道了，内存可以分为只读内存（read-only memory，ROM）和随机存取内存（Random Access Memory，RAM）。那个实现装载不同的程序到内存中的程序，是基本输入输出系统（Basic Input/Output System、BIOS）。
-BIOS 是烧录在主板上的 ROM 里面的，一般在计算机主板的非易失性存储芯片上。它属于固件，负责提供低级别的软件，控制计算机的硬件组件，使其能够启动和运行操作系统。计算机启动的时候，干的第一件事情，就是运行 BIOS 程序。有了 BIOS 才能干后面的事情。
-硬件自检 BIOS 程序干的第一件事情是进行检查，检查计算机硬件能不能满足基本的运行条件。这个过程叫硬件自检（power-on self-test，POST）。硬件自检的时候还会识别连接到计算机的设备，比如：显示器、硬盘、键盘、鼠标、等。
-如果硬件有问题，主板就会发出蜂鸣。比如，内存条没插好的话，一般会 &amp;ldquo;滴~&amp;rdquo; 一下。如果硬件没有问题，显示器就会显示硬件的信息。硬件自检完成之后，BIOS 会搜索引导程序，然后，把计算机的控制权转交它。
-引导程序 启动顺序 引导程序负责将操作系统加载到内存中。引导程序通常位于外部存储器上，比如：硬盘（系统盘）的第一个扇区；可启动的 USB 驱动器（装机盘）；CD-ROM（装机光碟）。
-计算机的外部存储器可以有好几个，在 BIOS 的操作界面可以设置这些外部存储器的优先级。指定 BIOS 应该先去那个设备上寻找引导程序。如果在第一块硬盘的第一个扇区没有找到引导程序，BIOS 将按照启动设备的优先级在其他设备上寻找它，比如，第二块硬盘。
-启动设备的优先级叫作启动顺序（boot sequence），存储在 CMOS（互补金属氧化物半导体）存储器中，它是一种非易失性存储器，用于存储 BIOS 设置和配置。CMOS 存储器数量很少，它由主板上的电池供电。
-主引导记录 这里用硬盘的第一个扇区为例。扇区是磁盘操作的最小可寻址单位，通常每个扇区有 512 个字节的存储容量。如果硬盘的第一个扇区的最后两个字节是 0x55 和 0xAA，那么表示这个设备可以用于启动。
-这最前面的 512 个字节，就叫做主引导记录（Master boot record、MBR）。主引导记录只有 512 个字节，放不了太多东西。它的主要作用是，告诉计算机到硬盘的哪一个位置去找操作系统。
-主引导记录由三个部分组成。第 1-446 字节：调用操作系统的机器码。第 447-510 字节：分区表（Partition table）。第 511-512 字节：主引导记录签名（0x55 和 0xAA）。
+现在我们都知道了，内存可以分为只读内存（read-only memory，ROM）和随机存取内存（Random Access Memory，RAM）。 那个实现装载不同的程序到内存中的程序，是基本输入输出系统（Basic Input/Output System、BIOS）。
+BIOS 是烧录在主板上的 ROM 里面的，一般在计算机主板的非易失性存储芯片上。 它属于固件，负责提供低级别的软件，控制计算机的硬件组件，使其能够启动和运行操作系统。 计算机启动的时候，干的第一件事情，就是运行 BIOS 程序。有了 BIOS 才能干后面的事情。
+硬件自检 BIOS 程序干的第一件事情是进行检查，检查计算机硬件能不能满足基本的运行条件。 这个过程叫硬件自检（power-on self-test，POST）。 硬件自检的时候还会识别连接到计算机的设备，比如：显示器、硬盘、键盘、鼠标、等。
+如果硬件有问题，主板就会发出蜂鸣。比如，内存条没插好的话，一般会 &amp;ldquo;滴~&amp;rdquo; 一下。 如果硬件没有问题，显示器就会显示硬件的信息。硬件自检完成之后，BIOS 会搜索引导程序，然后，把计算机的控制权转交它。
+引导程序 启动顺序 引导程序负责将操作系统加载到内存中。引导程序通常位于外部存储器上，比如： 硬盘（系统盘）的第一个扇区；可启动的 USB 驱动器（装机盘）；CD-ROM（装机光碟）。
+计算机的外部存储器可以有好几个，在 BIOS 的操作界面可以设置这些外部存储器的优先级。指定 BIOS 应该先去那个设备上寻找引导程序。 如果在第一块硬盘的第一个扇区没有找到引导程序，BIOS 将按照启动设备的优先级在其他设备上寻找它，比如，第二块硬盘。
+启动设备的优先级叫作启动顺序（boot sequence），存储在 CMOS（互补金属氧化物半导体）存储器中， 它是一种非易失性存储器，用于存储 BIOS 设置和配置。CMOS 存储器数量很少，它由主板上的电池供电。
+主引导记录 这里用硬盘的第一个扇区为例。扇区是磁盘操作的最小可寻址单位，通常每个扇区有 512 个字节的存储容量。 如果硬盘的第一个扇区的最后两个字节是 0x55 和 0xAA，那么表示这个设备可以用于启动。
+这最前面的 512 个字节，就叫做主引导记录（Master boot record、MBR）。主引导记录只有 512 个字节，放不了太多东西。 它的主要作用是，告诉计算机到硬盘的哪一个位置去找操作系统。
+主引导记录由三个部分组成。第 1-446 字节：调用操作系统的机器码。 第 447-510 字节：分区表（Partition table）。第 511-512 字节：主引导记录签名（0x55 和 0xAA）。
 分区表 分区表的作用是将硬盘分成若干个区，每个区可以安装不同的操作系统。因此，主引导记录必须知道将控制权转交给哪个区。
-分区表的长度有 64 个字节，里面又分成四项，每项 16 个字节。也就是说，一个硬盘最多只能分四个主分区（一级分区）。每个主分区的 16 个字节，由 6 个部分组成。
-第 1 个字节：如果为 0x80，就表示该主分区是激活分区，控制权要转交给这个分区。四个主分区里面只能有一个是激活的。第 2-4 个字节：主分区第一个扇区的物理位置（柱面、磁头、扇区号等等）。
-第 5 个字节：主分区类型。第 6-8 个字节：主分区最后一个扇区的物理位置。第 9-12 字节：该主分区第一个扇区的逻辑地址。第 13-16 字节：主分区的扇区总数。
-随着硬盘越来越大，四个主分区已经不够了，需要更多的分区。但是，分区表只有四项，因此规定有且仅有一个区可以被定义成扩展分区（Extended partition）。扩展分区里面又分成多个区，叫做逻辑分区（logical partition）。
-扩展分区中的每个逻辑驱动器的分区信息都存在一个类似于 MBR 的扩展引导记录（Extended boot record、EBR）中。它里面也包含一张 64 字节的分区表，但是最多只有两项（也就是两个逻辑分区）。
-第一项描述一个逻辑分区，第二项描述下一个扩展分区。如果不存在下一个扩展分区，第二项就不需要使用。扩展分区的整个结构就像个链表，理论上可以包含无数个逻辑分区。
+分区表的长度有 64 个字节，里面又分成四项，每项 16 个字节。也就是说，一个硬盘最多只能分四个主分区（一级分区）。 每个主分区的 16 个字节，由 6 个部分组成。
+第 1 个字节：如果为 0x80，就表示该主分区是激活分区，控制权要转交给这个分区。 四个主分区里面只能有一个是激活的。第 2-4 个字节：主分区第一个扇区的物理位置（柱面、磁头、扇区号等等）。
+第 5 个字节：主分区类型。第 6-8 个字节：主分区最后一个扇区的物理位置。 第 9-12 字节：该主分区第一个扇区的逻辑地址。第 13-16 字节：主分区的扇区总数。
+随着硬盘越来越大，四个主分区已经不够了，需要更多的分区。 但是，分区表只有四项，因此规定有且仅有一个区可以被定义成扩展分区（Extended partition）。 扩展分区里面又分成多个区，叫做逻辑分区（logical partition）。
+扩展分区中的每个逻辑驱动器的分区信息都存在一个类似于 MBR 的扩展引导记录（Extended boot record、EBR）中。 它里面也包含一张 64 字节的分区表，但是最多只有两项（也就是两个逻辑分区）。
+第一项描述一个逻辑分区，第二项描述下一个扩展分区。如果不存在下一个扩展分区，第二项就不需要使用。 扩展分区的整个结构就像个链表，理论上可以包含无数个逻辑分区。
 找到操作系统 找操作系统分为三种情况：
-从主分区启动：如果分区表的四个主分区里面只有一个是激活的，计算机会读取激活分区的第一个扇区，叫做卷引导记录（volume boot record、VBR）。卷引导记录的主要作用是，告诉计算机，操作系统在这个分区里的位置。然后，计算机就会加载操作系统了。
+从主分区启动：如果分区表的四个主分区里面只有一个是激活的，计算机会读取激活分区的第一个扇区，叫做卷引导记录（volume boot record、VBR）。 卷引导记录的主要作用是，告诉计算机，操作系统在这个分区里的位置。然后，计算机就会加载操作系统了。
 从扩展分区启动：一般不这么干，如果操作系统确实安装在扩展分区，那么一般会用启动管理器（引导装载程序）。
-启动管理器（boot loader）：计算机读取主引导记录前面 446 个字节之后，不再把控制权转交给某一个分区，而是运行事先安装的启动管理器，由用户选择启动哪一个操作系统。比如，Linux 的 Grub，Windows 7 的 Bootmgr。
+启动管理器（boot loader）：计算机读取主引导记录前面 446 个字节之后，不再把控制权转交给某一个分区， 而是运行事先安装的启动管理器，由用户选择启动哪一个操作系统。比如，Linux 的 Grub，Windows 7 的 Bootmgr。
 操作系统 控制权转交给操作系统后，操作系统的内核首先被载入内存。
-以 Linux 系统为例，先载入 /boot 目录下面的 kernel。内核加载成功后，第一个运行的是 /sbin/init 程序。init 进程是 Linux 启动后的第一个进程，pid 进程编号为 1，其他进程都是它的后代。然后，init 进程加载操作系统的各个模块，进而启动整个 Linux 系统。
-如果是 Windows 7 的话，先载入 windows\system32\winload.exe。然后，winload.exe 去加载 Windows 7 内核和操作系统的各个模块，进而启动整个 Windows 7 系统。
+以 Linux 系统为例，先载入 /boot 目录下面的 kernel。内核加载成功后，第一个运行的是 /sbin/init 程序。 init 进程是 Linux 启动后的第一个进程，pid 进程编号为 1，其他进程都是它的后代。 然后，init 进程加载操作系统的各个模块，进而启动整个 Linux 系统。
+如果是 Windows 7 的话，先载入 windows\system32\winload.exe。 然后，winload.exe 去加载 Windows 7 内核和操作系统的各个模块，进而启动整个 Windows 7 系统。
 参考 {CSDN}/{JerkWisdom}/
 操作系统引导过程
 {阮一峰的网络日志}/
@@ -471,40 +781,84 @@ func handleGet(){ if Request.URL like &#34;/user/%&#34; { // 前置工作 user i
 普通结点里用于标记它是路由中的哪一个部分的那个参数，在这三种结点里面是没啥用的。路径参数路由和正则匹配路由需要一个额外的参数存储参数的名字，正则匹配路由还需要一个参数存储正则表达式。
 所以，上面的代码结构需要增加点东西，目前应该差不多像下面这样。
 // routingNode 路由结点 type routingNode struct { // nodeType 结点类型 nodeType int // part 这个路由结点代表的那段路径 part string // path 从根路由到这个路由结点的全路径 path string // handler 命中路由之后的处理逻辑 handler HTTPHandleFunc // routingTree 路由子树，子结点的 path =&gt; 子树根结点 routingTree map[string]*routingNode // paramChild 路径参数结点 paramChild *routingNode // paramName 路径参数路由和正则表达式路由，都会提取路由参数的名字 paramName string // regexpChild 正则表达式结点 regexpChild *routingNode // regexp 正则表达式 regexp *regexp.Regexp // anyChild 通配符结点 anyChild *routingNode } 测试用例设计 三种特殊结点的测试用例设计就稍微复杂一点了。而且因为结点类型变多了，还需要考虑注册结点的时候的顺序的问题。三种特殊结点有可能会干扰注册普通结点时的结点查询逻辑。
-用例编号 测试用例 测试目标 - 普通结点 + 参数路由结点 - 2 /user + /user/:id user 结点（空结点） -&gt; user 结点有 1 个参数路由子结点（:id） 4 /user + /user/info + /user/:id user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个参数路由子结点（:id） 6 /user + /user/:id + /user/info user 结点有 1 个参数路由子结点（:id） -&gt; user 结点有 1 个子结点（info）和 1 个参数路由子结点（:id） 8 /user + /user/:id + /user/:id/info 参数路由结点（:id）（空结点） -&gt; 参数路由结点（:id） 有 1 个子结点（info）注意用例 8 和用例 6 的区别。 10 /user + /user/:id + /user/:name user 结点有两个参数路由子结点，报错 12 /user + /user/:id + /user/:id/:name 参数路由结点（:id）（空结点） -&gt; 参数路由结点（:id）有 1 个参数路由子结点（:name） - 普通结点 + 正则表达式结点 - 42 /user + /user/:id(/\d/) user 结点（空结点） -&gt; user 结点有 1 个正则表达式子结点（:id） 44 /user + /user/info + /user/:id(/\d/) user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个正则表达式子结点（:id） 46 /user + /user/:id(/\d/) + /user/info user 结点有 1 个正则表达式子结点（:id） -&gt; user 结点有 1 个子结点（info）和 1 个正则表达式子结点（:id） 48 /user + /user/:id(/\d/) + /user/:id(/\d/)/info 正则表达式结点（:id）（空结点） -&gt; 正则表达式结点（:id） 有 1 个子结点（info）注意用例 48 和用例 46 的区别。 50 /user + /user/:id(/\d/) + /user/:name(/^[A-Za-z0-9]+$/) user 结点有两个正则表达式子结点，报错 52 /user + /user/:id(/\d/) + /user/:id(/\d/)/:name(/^[A-Za-z0-9]+$/) 正则表达式结点（:id）（空结点） -&gt; 正则表达式结点（:id）有 1 个正则表达式子结点（:name） - 普通结点 + 通配符结点 - 82 /user + /user/* user 结点（空结点） -&gt; user 结点有 1 个通配符子结点 84 /user + /user/info + /user/* user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个通配符子结点 86 /user + /user/* + /user/info user 结点有 1 个通配符子结点 -&gt; user 结点有 1 个子结点（info）和 1 个通配符结点子结点 88 /user + /user/* + /user/*/info 通配符结点后面不能有子结点，报错 - 4 种结点混合，这里就不一个一个写了，场景太多了 - 前置（后置）工作成对出现 上面讨论前置（后置）工作的时候，都是以 &ldquo;前置（后置）工作是可以独立执行的整体&rdquo; 为前提讨论的。如果它们之间有合作关系，也就是需要相互传递数据，那么怎么办呢？这个放到下一篇里说：【实验性质，带图片】Golang 实现简单的 Web 框架 &ndash; middleware(中间件)参考（reference） {极客时间}/Go 实战训练营Web 框架部分 ]]></content></entry><entry><title>终端和控制台</title><url>/post/computer-science/terminal_console/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>linux</tag></tags><content type="html"><![CDATA[前言 交叉笔记：init 进程、进程间关系、作业、会话、守护进程资料 terminal_console.drawio.html 正文 终端 计算机终端（computer terminal）是与计算机相连的一种输入输出设备。
-早期有一种叫电传打字机的设备，它是一台独立于计算机的机器，通过物理线缆与计算机连接，可以完成计算机的输入输出功能。电传打字机的英文是 Teletype 或 Teletypewriter，缩写是 TTY，所以 TTY 也泛指计算机的终端设备。后来，电传打字机被键盘和显示器取代。
-但是不管是电传打字机还是键盘和显示器，都是作为计算机的终端设备存在的。电传打字机属于物理终端。现在物理终端基本上已经不用了。图形界面出现之前，键盘和显示器的组合属于软件仿真终端，也就是软件模拟出来的终端。图形界面出现之后，键盘和显示器的组合演变成了伪终端，但是软件仿真终端还是可以用的。
-控制台 这里以数控机床为例。数控机床可能有一个独立出来一整块，然后上面有很多按钮的地方，这些按钮可以直接控制机床上的设备。如果这地方是直接在机床表面的，就叫控制面板。如果这地方是被一个柜子锁起来的，就叫控制箱。如果这地方看上去像个台子，就叫控制台（console）。
-控制台和终端其实不是一个东西。控制台是计算机本身就有的设备，而终端不是计算机本身就有的设备。控制台应该只有一个，但是终端可以有多个。计算机的控制台理论上应该是电源开关和电源灯那些玩意，电源开关是可以直接控制计算机的。终端是通过接口接上去的，终端和计算机本身的运行没有关系，它就是个额外的输入输出设备。
-这里用 ubuntu 系统和 windows 系统为例。计算机刚启动的时候，是可以通过键盘直接控制计算机的，而且会输出内核的信息到显示器上。这个时候的键盘和显示器就类似于控制台。
-当计算机启动完成，进入操作系统的桌面后，这时是可以开很多的命令行窗口的。这些命令行窗口里面不会输出内核的信息，而且可以各自独立的接收命令输入，然后执行程序并返回输出。这个时候的键盘和显示器就是终端。
-不过，现在的控制台和终端都由硬件概念逐渐演化成了软件的概念。简单的说，第一个启动的，会输出内核的信息的那个终端就称为控制台，其他的终端就是终端。
+用例编号 测试用例 测试目标 - 普通结点 + 参数路由结点 - 2 /user + /user/:id user 结点（空结点） -&gt; user 结点有 1 个参数路由子结点（:id） 4 /user + /user/info + /user/:id user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个参数路由子结点（:id） 6 /user + /user/:id + /user/info user 结点有 1 个参数路由子结点（:id） -&gt; user 结点有 1 个子结点（info）和 1 个参数路由子结点（:id） 8 /user + /user/:id + /user/:id/info 参数路由结点（:id）（空结点） -&gt; 参数路由结点（:id） 有 1 个子结点（info）注意用例 8 和用例 6 的区别。 10 /user + /user/:id + /user/:name user 结点有两个参数路由子结点，报错 12 /user + /user/:id + /user/:id/:name 参数路由结点（:id）（空结点） -&gt; 参数路由结点（:id）有 1 个参数路由子结点（:name） - 普通结点 + 正则表达式结点 - 42 /user + /user/:id(/\d/) user 结点（空结点） -&gt; user 结点有 1 个正则表达式子结点（:id） 44 /user + /user/info + /user/:id(/\d/) user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个正则表达式子结点（:id） 46 /user + /user/:id(/\d/) + /user/info user 结点有 1 个正则表达式子结点（:id） -&gt; user 结点有 1 个子结点（info）和 1 个正则表达式子结点（:id） 48 /user + /user/:id(/\d/) + /user/:id(/\d/)/info 正则表达式结点（:id）（空结点） -&gt; 正则表达式结点（:id） 有 1 个子结点（info）注意用例 48 和用例 46 的区别。 50 /user + /user/:id(/\d/) + /user/:name(/^[A-Za-z0-9]+$/) user 结点有两个正则表达式子结点，报错 52 /user + /user/:id(/\d/) + /user/:id(/\d/)/:name(/^[A-Za-z0-9]+$/) 正则表达式结点（:id）（空结点） -&gt; 正则表达式结点（:id）有 1 个正则表达式子结点（:name） - 普通结点 + 通配符结点 - 82 /user + /user/* user 结点（空结点） -&gt; user 结点有 1 个通配符子结点 84 /user + /user/info + /user/* user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个通配符子结点 86 /user + /user/* + /user/info user 结点有 1 个通配符子结点 -&gt; user 结点有 1 个子结点（info）和 1 个通配符结点子结点 88 /user + /user/* + /user/*/info 通配符结点后面不能有子结点，报错 - 4 种结点混合，这里就不一个一个写了，场景太多了 - 前置（后置）工作成对出现 上面讨论前置（后置）工作的时候，都是以 &ldquo;前置（后置）工作是可以独立执行的整体&rdquo; 为前提讨论的。如果它们之间有合作关系，也就是需要相互传递数据，那么怎么办呢？这个放到下一篇里说：【实验性质，带图片】Golang 实现简单的 Web 框架 &ndash; middleware(中间件)参考（reference） {极客时间}/Go 实战训练营Web 框架部分 ]]></content></entry><entry><title>init 进程、进程间关系、作业、会话、守护进程</title><url>/post/computer-science/operating-system/linux/process02/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>process(进程)</tag></tags><content type="html"><![CDATA[前言 前置笔记： 进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收交叉笔记：终端和控制台实践的环境：同 程序资料 {demo-c}/demo-in-linux/process02/ 正文 init 进程 init 程序是 Linux 操作系统中不可缺少的程序之一，它是一个由内核启动的用户级进程。 内核会在过去曾使用过 init 程序的几个地方查找它，它的正确位置（对 Linux 系统来说）是 &ldquo;/sbin/init&rdquo;。 如果内核找不到 init，它就会试着运行 &ldquo;/bin/sh&rdquo;。如果这两个都运行失败了，操作系统的启动也会失败。
+Linux 操作系统的启动首先从 BIOS 开始，接下来进入 boot loader，由 boot loader 载入内核，进行内核初始化。 内核启动之后（被载入内存，开始运行，初始化所有的设备驱动程序和数据结构之后），就会通过启动一个用户级程序 init 的方式，完成引导进程。
+内核初始化的最后一步就是启动 init 进程，这个进程是系统的第一个进程，它负责产生其他所有的用户进程。 所以，init 进程始终是第一个进程，其进程编号始终为 1。 其他所有的用户进程每个进程都有父进程，一直上溯的话，所有的进程会形成一个以 init 进程为根结点的树状结构。
+进程树 这里简单的验证一下。先打开一个终端，使用 &ldquo;echo $$&rdquo; 命令，打印当前进程的 pid。 再打开一个终端，使用 &ldquo;echo $$&rdquo; 命令，打印当前进程的 pid。然后使用 &ldquo;pstree -p&rdquo; 命令，观察一下进程树。
+&gt; echo $$ 1963 &gt; echo $$ 2166 &gt; pstree -p systemd(1)─┬... ├─systemd(1074)─┬─... │ ├─gnome-terminal-(1945)─┬─bash(1963) │ │ ├─bash(2166)───pstree(2173) 这里从进程树里截取了有关的片段。 可以看到，打开的两个终端，bash(1963) 和 bash(2166) 的父进程都是 gnome-terminal-(1945)。 终端 bash(2166) 执行 pstree 命令的时候，又创建了一个子进程 pstree(2173)。
+进程组 进程组（process group）是一个或者多个进程的集合。 每个进程必须而且只能属于一个进程组。集合里的这些进程并不是孤立的，它们之间会存在父子或者兄弟的关系。 进程有自己的唯一标识，称为进程 id（process id、pid），进程组也有自己的唯一标识，称为进程组 id（process group id、pgid）。
+每个进程组都有一个组长进程，组长进程的 pid 与其 pgid 相同。组长进程可以创建一个进程组，一般是进程变成组长进程的时候。
+进程组的生命周期从被创建开始，直到进程组内所有进程终止或离开该组。 无论组长进程是否终止，只要进程组中存在未终止的进程，这个进程组就不会消失。 组长进程终止后，进程组中便不存在组长进程，剩下的进程也不会自动推选新的组长进程。
+进程组的作用是为了方便对进程进行管理。 假设有一个任务需要好多进程一起协作完成，现在出于某种原因需要终止这个任务。 如果没有进程组，就需要用 pid 一个一个杀掉这些进程，而且还要考虑顺序，先杀子进程再杀父进程。 如果有进程组的话，就可以搞一个杀进程组的操作。
+通过 getpgid() 或者 getpgrp() 可以获取进程所属的进程组 id。通过 setpgid() 可以设置进程的进程组 id。 进程通过 setpgid() 只能设置它自己和它的子进程的 ppid。 如果它的子进程调用了 exec 家族的函数，那么它也无法更改这个子进程的 ppid 了。
+创建出来的子进程一开始是和父进程是一组的，会继承父进程的 pgid。 可以通过把子进程的 pgid 设置成子进程的 pid，来创建以子进程为组长进程的新进程组。
+作业 Linux 是一个多用户多任务的分时操作系统。 多用户是指多个用户可以在同一时间使用计算机系统。 多任务是指 Linux 可以同时执行多个任务，可以在一个任务还未执行完的同时执行另一项任务。 多个用户和多个任务都由操作系统进行管理。 分时是指计算机采用时间片轮转的方式同时为几个、几十个、甚至几百个用户服务。
+作业控制 Shell 是操作系统的用户界面，提供了用户与内核进行交互操作的一种接口。 它实际上是一个命令解释器，接收并解释用户输入的命令，然后把命令送入内核去执行。 Shell 有多种不同的版本，常用的 BASH 就是其中一种。
+Shell 控制的不是进程而是作业。正在执行的一个或多个相关进程被称为作业（job），也有叫任务的。 作业是计算机操作者（可以是人也可以是程序）交给操作系统的执行单位。 作业控制指的是控制正在运行的进程的行为。比如，在 Shell 控制终端控制多个作业。
+前台作业和后台作业 作业还分为前台作业和后台作业。用户直接操作的那个终端窗口就属于前台作业，前台作业独占终端窗口。 它可以直接接收用户输入的命令，而且一旦命令开始运行，除非命令运行结束或者强制终止命令，要不然是不能执行其他命令的。
+前台作业运行结束，Shell 就会把自己提到前台。 比如，在终端窗输入 &ldquo;ls&rdquo; 命令之后，Shell 会启动一个进程去执行 &ldquo;ls&rdquo; 命令， &ldquo;ls&rdquo; 命令执行完之后会输出结果，然后这个进程退出，然后 Shell 把自己提到前台。
+除了表面上看得到的前台作业的进程，还有很多正在运行的进程是表面上看不到的。 比如，那个直接和用户交互的作业背后，是需要操作系统做很多工作来提供支撑的。 这些进程就属于后台作业。Shell 可以运行一个前台作业和任意多个后台作业。
+子进程 如果作业中的某个进程又创建了子进程，则子进程不属于作业。 作业运行结束时，如果这个子进程还没终止，那么它会变为后台进程。 比如，用 fork() 创建了一个子进程之后，父进程直接退出，这个时候子进程并不会终止，而是变成孤儿进程。
+会话 Linux 是一个多用户多任务的分时操作系统。多用户是指多个用户可以在同一时间使用计算机系统。一个用户登录一次系统就形成一个会话。
+会话（session）是多个进程组的集合，一个会话中可以包含一个前台进程组以及一个或多个后台进程组。 每个会话都有会话 id（session id、sid）。每个会话都有一个会话首进程（session leader），即创建会话的进程。
+一个会话可以关联终端，也可以不关联终端，关联终端的时候只能关联一个。 这个终端一般由会话首进程建立连接。此时，会话首进程也叫控制进程，这个终端也叫控制终端。
+一个会话关联了一个终端后，它至少有一个前台进程组，其它都是后台进程组。 在终端输入特殊字符，如：中断键（&ldquo;ctrl + c&rdquo;）、暂停键（&ldquo;ctrl + z&rdquo;）、退出键（&ldquo;ctrl + \&quot;）时，会产生中断信号。 中断信号会往前台进程组里的所有进程发送，但是不会给后台进程组里的进程发送。
+通过 getsid() 可以获取会话 id，通过 setsid() 可以设置会话 id。 当一个进程调用 setsid() 时，会发生三件事：该进程会变成会话首进程（session leader）； 该进程会变成进程组的组长；该进程不会关联终端，就算父进程有终端也会断开（后面可以再关联终端）。 必须注意的是，只有当前进程不是进程组的组长时，才能创建一个新的会话，成为新会话的会话首进程。
+控制进程 控制进程就是关联了终端的进程。比如，控制台黑窗口。可以通过 ps -l 命令看一下。
+&gt; ps -l UID PID PPID C PRI NI ADDR SZ WCHAN TTY TIME CMD 0 S 1000 2643 2625 0 80 0 - 3557 do_wai pts/0 00:00:00 bash 0 R 1000 2650 2643 0 80 0 - 3939 - pts/0 00:00:00 psF S 进程（PID）2643，是由 bash（/bin/bash）文件启动的，同时该进程关联了终端设备（TTY），这个终端设备是 pts/0（伪终端）。
+切换前台作业和后台作业 这里准备了一个程序 for_job.c。程序每 5 秒，用 printf() 输出一次 pid。
+想启动前台作业很简单，在终端窗口里直接执行命令就好了。比如，在终端窗口里直接运行这个程序。 这样程序就是一个前台作业，会占着终端窗口一直输出 pid。
+&gt; ./for_job.elf [debug]:getpid()=11959 [debug]:getpid()=11959 一直输出。。。 这个时候可以按下 &ldquo;ctrl + z&rdquo;，可以停止进程并放入后台。这个时候，这个前台作业就变成后台作业了。
+^Z [1]+ Stopped ./for_job.elf job 命令可以查看当前 Shell 环境中已启动的作业状态，这里用 &ldquo;job -l&rdquo; 命令查看一下。 可以看到刚才的 11959 进程，现在在后台而且处于停止状态。
+&gt; jobs -l [1]+ 11962 Stopped ./for_job.elf &ldquo;[1]&rdquo; 表示作业号为 1。 &ldquo;+&rdquo; 表示最近一个放入后台的作业。如果这里是 &ldquo;-&rdquo; 则表示倒数第二个放入后台的工作， 倒数第三个以后的工作就没有 &ldquo;+&rdquo; 或者 &ldquo;-&rdquo; 标志了。 11962 就是 pid；Stopped 表示进程现在是停止状态。 最后的 &ldquo;./for_job.elf&rdquo; 表示进程是这个命令启动起来的。 bg 命令可以让最近一个暂停的后台任务继续执行。这里也可以用 &ldquo;bg %1&rdquo;，&quot;%1&rdquo; 就是指定了作业号。
+&gt; bg [1]+ ./for_job.elf &amp; [debug]:getpid()=11962 [debug]:getpid()=11962 一直输出，而且不受控制 这里就要提到后台作业的两个特点：
+继承当前会话的标准输出（stdout）和标准错误输出（stderr）。 因此，后台任务的所有输出依然会同步地打到终端窗口，也就是上面一直输出的原因。 不继承当会话的标准输入（stdin）。因此，无法再向这个任务输入指令了，也就是上面不受控制的原因。 如果后台作业试图读取标准输入，终端驱动会检测后台进程的这种举动并向后台作业发送一个 SIGTTIN 信号。 SIGTTIN 信号通常会暂停（halt）后台作业的执行。 所以，前台任务和后台任务的区别只有一个：是否继承标准输入。
+如果这个时候继续在终端窗口里面输入命令，它是可以被执行的。 虽然这个时候后台任务的所有输出会同步地打到终端窗口，让窗口看上去非常的混乱，但是这并不影响输入的命令。 输入和输出的内容并不在一个地方，只是都显示到了一个地方。
+比如，使用 fg 命令将后台运行的或挂起的作业切换到前台运行。这里也可以用 &ldquo;fg %1&rdquo;，&quot;%1&quot; 同样是指定了作业号。
+&gt; fg %1 ./for_job.elf [debug]:getpid()=11962 一直输出。。。 另外，可以通过在命令的后面加一个 &ldquo;&amp;&rdquo; 符号，让程序直接以后台作业的方式启动。
+&gt;./for_job.elf &amp; [1] 2228 这种方式启动起来的作业就是直接处于后台并且是运行状态的。
+&gt; jobs -l [1]+ 2249 Running ./for_job.elf &amp; 守护进程 守护进程（Daemon 进程）最基本的特点就是运行在后台，并且不和终端关联。 这里的运行在后台和上文的后台作业或者后台进程组是有区别的。上文的后台作业或者后台进程组，进程依然是和会话进程关联的。 而守护进程的父进程是 1 号 init 进程，和启动它的会话进程不关联。 这里的不和终端关联的意思是，守护进程不接受标准输入也不会产生标准输出或者标准错误输出。
+从终端开始运行的进程都会依附于这个终端，这个终端称为这些进程的控制终端。 当控制终端被关闭时，相应的进程都会被自动关闭。对于一般的前台进程，可以用 &ldquo;ctrl + c&rdquo; 的方式来停止运行，也可以直接关闭终端。 但是对于守护进程来说它的生命周期需要突破这种限制，它会一直运行直到整个系统关闭才会退出，因此守护进程不能依赖于终端。
+编写守护进程的步骤 创建一个子进程 b，父进程 a 退出。因为调用 setsid() 的进程不能是组长进程。 子进程 b 调用 setsid() ，创建一个新的会话。 调用进程调用 setsid() 时，该调用进程会变成会话首进程，变成组长进程，而且不关联终端。 有些时候，在子进程 b 调用 setsid() 后，还会再创建一个子进程 c ，然后自己（会话首进程）退出。 修改子进程的工作目录，一般为根目录。fork() 使得子进程继承了父进程的工作目录。 调用 umask() 重设文件权限掩码。fork() 使得子进程继承了父进程的文件权限掩码，这会给子进程使用文件带来麻烦。 关闭不必要的文件描述符（主要是 0、1、2）。fork() 使得子进程继承了父进程一些打开的文件，但是子进程可能不需要，这会消耗系统资源。 打开黑洞文件（/dev/null），彻底的断开控制终端。 代码示例：{demo-c}/demo-in-linux/process02/daemon.c
+程序运行之后会变成守护进程，不会在终端有输出。可以通过 &ldquo;ps -ely&rdquo; 命令查看进程状态。
+&gt; ps -ely S UID PID PPID C PRI NI RSS SZ WCHAN TTY TIME CMD S 0 1 0 0 80 0 2824 2961 - pts/0 00:00:00 bash S 0 16 0 0 80 0 3064 2961 - pts/1 00:00:00 bash S 0 45 1 0 80 0 88 1058 - ? 00:00:00 daemon S 0 46 45 0 80 0 88 1058 - ? 00:00:00 daemon R 0 50 16 0 80 0 3076 12406 - pts/1 00:00:00 ps 可以看到进程 45 运行的 daemon 程序，它的父进程变成 1 号 init 进程了，这时进程 45 它就是一个守护进程。 从进程关联的标准输入设备（TTY）也可以看到进程 45 它值是 &ldquo;?&quot;，表示没有关联终端。 进程 45 还创建了一个子进程 46，这个虽然是后台进程，但是它的父进程不是1 号 init 进程，所以不算守护进程。
+另外，也可以通过 daemon() 创建守护进程。
+nohup 最常用的创建守护进程的方式是使用 &ldquo;nohup&rdquo; 命令加上 &ldquo;&amp;&rdquo; 符号。nohup ./for_job.elf &amp;。
+&ldquo;nohup&rdquo; 命令的作用有：阻止 SIGHUP 信号发送给这个进程； 关闭 stdin 使得该进程不再能接收任何输入，即使进程是运行在前台的（没有加 &ldquo;&amp;&rdquo; 符号）； 重定向 stdout 和 stderr 到 nohup.out。
+参考 百度百科-initLinux初始化init系统百度百科-Linux Shell百度百科-Linux进程管理及作业控制Linux-进程、进程组、作业、会话、控制终端详解APUE 2 - 进程组（process group） 会话（session） jobLinux会话、终端与进程组]]></content></entry><entry><title>终端和控制台</title><url>/post/computer-science/terminal_console/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag></tags><content type="html"><![CDATA[前言 交叉笔记：init 进程、进程间关系、作业、会话、守护进程资料 terminal_console.drawio.html 正文 终端 计算机终端（computer terminal）是与计算机相连的一种输入输出设备。
+早期有一种叫电传打字机的设备，它是一台独立于计算机的机器，通过物理线缆与计算机连接，可以完成计算机的输入输出功能。 电传打字机的英文是 Teletype 或 Teletypewriter，缩写是 TTY，所以 TTY 也泛指计算机的终端设备。 后来，电传打字机被键盘和显示器取代。
+但是不管是电传打字机还是键盘和显示器，都是作为计算机的终端设备存在的。 电传打字机属于物理终端。现在物理终端基本上已经不用了。 图形界面出现之前，键盘和显示器的组合属于软件仿真终端，也就是软件模拟出来的终端。 图形界面出现之后，键盘和显示器的组合演变成了伪终端，但是软件仿真终端还是可以用的。
+控制台 这里以数控机床为例。 数控机床可能有一个独立出来一整块，然后上面有很多按钮的地方，这些按钮可以直接控制机床上的设备。 如果这地方是直接在机床表面的，就叫控制面板。如果这地方是被一个柜子锁起来的，就叫控制箱。如果这地方看上去像个台子，就叫控制台（console）。
+控制台和终端其实不是一个东西。 控制台是计算机本身就有的设备，而终端不是计算机本身就有的设备。控制台应该只有一个，但是终端可以有多个。 计算机的控制台理论上应该是电源开关和电源灯那些玩意，电源开关是可以直接控制计算机的。 终端是通过接口接上去的，终端和计算机本身的运行没有关系，它就是个额外的输入输出设备。
+这里用 ubuntu 系统和 windows 系统为例。 计算机刚启动的时候，是可以通过键盘直接控制计算机的，而且会输出内核的信息到显示器上。这个时候的键盘和显示器就类似于控制台。
+当计算机启动完成，进入操作系统的桌面后，这时是可以开很多的命令行窗口的。 这些命令行窗口里面不会输出内核的信息，而且可以各自独立的接收命令输入，然后执行程序并返回输出。这个时候的键盘和显示器就是终端。
+不过，现在的控制台和终端都由硬件概念逐渐演化成了软件的概念。 简单的说，第一个启动的，会输出内核的信息的那个终端就称为控制台，其他的终端就是终端。
 物理终端 这里用电传打字机为例，画了基本的软硬件结构和交互。见图：terminal_console.drawio.html 2-2。
-UART（通用异步接收器和发射器）和 UART driver（UART 驱动）的功能简单的理解就是，将电传打字机的信号转换为计算机可以识别的信号。 line discipline（行规范） 的功能简单的理解就是，提供一个编辑缓冲区和一些基本的命令。比如：回车命令把缓冲区的数据发送给 TTY 驱动；退格命令清除一个字符。 TTY driver（终端驱动）的功能有两个：进行会话管理；处理终端设备的输入输出。 软件仿真终端 这里用键盘和显示器（注意这里是直连）为例，画了基本的软硬件结构和交互。见图：terminal_console.drawio.html 20-2。
+UART（通用异步接收器和发射器）和 UART driver（UART 驱动）的功能简单的理解就是，将电传打字机的信号转换为计算机可以识别的信号。 line discipline（行规范） 的功能简单的理解就是，提供一个编辑缓冲区和一些基本的命令。 比如：回车命令把缓冲区的数据发送给 TTY 驱动；退格命令清除一个字符。 TTY driver（终端驱动）的功能有两个：进行会话管理；处理终端设备的输入输出。 软件仿真终端 这里用键盘和显示器（注意这里是直连）为例，画了基本的软硬件结构和交互。见图：terminal_console.drawio.html 20-2。
 差别在于用键盘驱动、显示器驱动、终端模拟器替换了 UART 和 UART 驱动。基本流程不变，只是输入输出从一个设备变成两个设备了。
 在 linux 系统中，软件仿真终端在文件系统中的表示就是 /dev/tty1 ~ /dev/tty6。见图：terminal_console.drawio.html 20-4。
 在 ubuntu 系统中，在图形界面的桌面按下 &ldquo;CTRL&rdquo; + &ldquo;ALT&rdquo; + &ldquo;F1&rdquo; ~ &ldquo;F6&rdquo; 就可以分别进入 tty1 ~ tty6 对应的软件仿真终端。软件仿真终端的界面是操作系统内核直接提供的，这种叫虚拟控制台（virtual console）。
-按下 &ldquo;CTRL&rdquo; + &ldquo;ALT&rdquo; + &ldquo;F7&rdquo; 或者重新启动系统，就可以回到图形界面。在图形界面也可以打开终端，这种叫终端窗口（terminal window），属于伪终端。终端窗口就是常用的那个控制台黑窗口。
+按下 &ldquo;CTRL&rdquo; + &ldquo;ALT&rdquo; + &ldquo;F7&rdquo; 或者重新启动系统，就可以回到图形界面。 在图形界面也可以打开终端，这种叫终端窗口（terminal window），属于伪终端。 终端窗口就是常用的那个控制台黑窗口。
 这两中终端在功能上其实没啥区别，如果哪天操作系统的图形界面炸掉了，但是别的地方没问题，那倒是可以切到软件仿真终端去救火。
-伪终端 物理终端和软件模拟终端都需要直接连接外部设备，这两种方式对物理距离都是有限制的，伪终端（pseudo terminal，pty）的出现解决了这个问题。伪终端就是由终端模拟器提供的虚拟终端，终端模拟器是一种运行在用户空间的应用程序。
+伪终端 物理终端和软件模拟终端都需要直接连接外部设备，这两种方式对物理距离都是有限制的， 伪终端（pseudo terminal，pty）的出现解决了这个问题。 伪终端就是由终端模拟器提供的虚拟终端，终端模拟器是一种运行在用户空间的应用程序。
 这里用 xterm 终端模拟器为例，画了基本的软件结构和交互。见图：terminal_console.drawio.html 40-2。
-伪终端在操作系统内核中分为两部分：分别是不在 TTY 驱动中 PTY master side 和在 TTY 驱动中的 PTY slave side。master side 是接近用户的一端；slave side 是在虚拟终端上运行的 CLI（Command Line Interface，命令行接口）程序。
+伪终端在操作系统内核中分为两部分：分别是不在 TTY 驱动中 PTY master side 和在 TTY 驱动中的 PTY slave side。 master side 是接近用户的一端；slave side 是在虚拟终端上运行的 CLI（Command Line Interface，命令行接口）程序。
 连接 master side 和 slave side 的是伪终端驱动。见图：terminal_console.drawio.html 40-4。
-伪终端驱动会把写入 master side 的数据转发给 slave side 作为程序的输入。程序输出时会写入 slave side。伪终端驱动会把写入 slave side 的数据转发给 master side 作为可以读取的数据。
-在 linux 系统中，当创建一个伪终端时。会调用 posix_openpt() 请求 ptmx 创建一个 pts。ptmx 就是 &ldquo;/dev/ptmx&rdquo;，对应 master side。创建出来的 pts 在 &ldquo;/dev/pts/&rdquo; 目录下，对应 slave side。
-ssh 类似 PuTTY 这类通过 SSH 的方式远程连接到 linux 系统的终端模拟程序。如果从 linux 系统这边看的话，连接上来之后产生的用户进程，就是图 terminal_console.drawio.html 40-4 中 xterm process 的位置，它和 master side 交互。
+伪终端驱动会把写入 master side 的数据转发给 slave side 作为程序的输入。程序输出时会写入 slave side。 伪终端驱动会把写入 slave side 的数据转发给 master side 作为可以读取的数据。
+在 linux 系统中，当创建一个伪终端时。会调用 posix_openpt() 请求 ptmx 创建一个 pts。 ptmx 就是 &ldquo;/dev/ptmx&rdquo;，对应 master side。创建出来的 pts 在 &ldquo;/dev/pts/&rdquo; 目录下，对应 slave side。
+ssh 类似 PuTTY 这类通过 SSH 的方式远程连接到 linux 系统的终端模拟程序。 如果从 linux 系统这边看的话，连接上来之后产生的用户进程， 就是图 terminal_console.drawio.html 40-4 中 xterm process 的位置，它和 master side 交互。
 建立连接的过程：
-客户端（PuTTY）请求和 sshd 建立连接。 sshd 验证通过后，会创建一个新的会话（session）。 sshd 调用 posix_openpt() 请求 ptmx 创建一个 pts。如果创建成功，sshd 会得到一个连接到 ptmx 的文件描述符（fd）和一个 pts。ptmx 会自动维护这个 fd 和 pts 的关系。 sshd 会把创建的会话和这个 fd（连接到 ptmx 的文件描述符）关联起来。同时 sshd 会创建 bash 进程，将 pts 和 bash 进程关联起来。 用 lsof 命令可以查看 &ldquo;/dev/ptmx&rdquo; 被哪些进程打开了。如果 sshd 请求 ptmx 创建一个 pts 成功。那么输出里应该会有像下面这样 &lsquo;COMMAND 为 sshd，NAME 为 &ldquo;/dev/ptmx&rsquo; 的行。
+客户端（PuTTY）请求和 sshd 建立连接。 sshd 验证通过后，会创建一个新的会话（session）。 sshd 调用 posix_openpt() 请求 ptmx 创建一个 pts。 如果创建成功，sshd 会得到一个连接到 ptmx 的文件描述符（fd）和一个 pts。 ptmx 会自动维护这个 fd 和 pts 的关系。 sshd 会把创建的会话和这个 fd（连接到 ptmx 的文件描述符）关联起来。 同时 sshd 会创建 bash 进程，将 pts 和 bash 进程关联起来。 用 lsof 命令可以查看 &ldquo;/dev/ptmx&rdquo; 被哪些进程打开了。如果 sshd 请求 ptmx 创建一个 pts 成功。 那么输出里应该会有像下面这样 &lsquo;COMMAND 为 sshd，NAME 为 &ldquo;/dev/ptmx&rsquo; 的行。
 &gt; lsof /dev/ptmx COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME sshd 1191 dev 8u CHR 5,2 0t0 6531 /dev/ptmx ... 收发消息的过程：
 客户端（PuTTY）收到键盘的输入，通过 ssh 协议将数据发往 sshd。 sshd 收到客户端的数据后，从自己管理的会话里找到该客户端对应的 fd，然后将数据写入 fd。 ptmx 收到 sshd 的数据后，从自己管理的关系里找到该 fd 对应的 pts，然后将数据写入 pts。 pts 收到 ptmx 的数据后，检查关联的前端进程组，将数据转发给前端进程组的组长进程。因为上面是创建 bash 进程和 pts 关联起来的，所以这里就是 bash 收到了数据。 bash 收到 pts 的数据后，会对输入的数据进行处理，然后输出处理结果，输出的处理结果会被写入 pts。 pts 收到 bash 的数据后，将数据写入 ptmx。 ptmx 收到 pts 的数据后，从自己管理的关系里找到该 pts 对应的 fd，然后将数据写入 fd。 sshd 收到 fd 的数据后，从自己管理的会话里找到该 fd 对应的客户端，然后将数据发往客户端。 见图：terminal_console.drawio.html 40-6。
-键盘和显示器 图形界面出现之后，键盘和显示器的组合演变成了伪终端，整个结构和 ssh 的差不多。只不过没有远程连接了，图形客户端需要把 ssh 客户端的功能也实现，然后直接和 master side 交互。见图：terminal_console.drawio.html 40-8。
+键盘和显示器 图形界面出现之后，键盘和显示器的组合演变成了伪终端，整个结构和 ssh 的差不多。 只不过没有远程连接了，图形客户端需要把 ssh 客户端的功能也实现，然后直接和 master side 交互。 见图：terminal_console.drawio.html 40-8。
 TTY TTY 也泛指计算机的终端设备，说 TTY 的时候可能是 tty 也可能是 pts，大部分情况下是 pts。
-对于用户空间来说，这两个没有区别。对于内核来说，tty 的另一端连接的是终端模拟器，pts 的另一端连接的是 ptmx，终端模拟器和 ptmx 都只负责维护会话和转发数据。终端模拟器的另一端连接的是键盘和显示器这样等硬件。ptmx 的另一端连接的是用户空间的 xterm、sshd 等应用程序。
+对于用户空间来说，这两个没有区别。 对于内核来说，tty 的另一端连接的是终端模拟器，pts 的另一端连接的是 ptmx，终端模拟器和 ptmx 都只负责维护会话和转发数据。 终端模拟器的另一端连接的是键盘和显示器这样等硬件。ptmx 的另一端连接的是用户空间的 xterm、sshd 等应用程序。
 如果有多个终端连接上来的话，终端驱动会创建多个 TTY 与这些终端一一对应。见图：terminal_console.drawio.html 12-2。
 在 linux 的终端窗口里使用 tty 命令可以查看当前 bash 关联到哪个 tty 或者 pts。
 &gt; tty /dev/pts/0 然后用 lsof 命令可以查看这个 tty 或者 pts 被哪些进程打开了。
 &gt; lsof /dev/pts/0 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME bash 2150 qqq 0u CHR 136,0 0t0 3 /dev/pts/0 bash 2150 qqq 1u CHR 136,0 0t0 3 /dev/pts/0 bash 2150 qqq 2u CHR 136,0 0t0 3 /dev/pts/0 bash 2150 qqq 255u CHR 136,0 0t0 3 /dev/pts/0 lsof 2163 qqq 0u CHR 136,0 0t0 3 /dev/pts/0 lsof 2163 qqq 1u CHR 136,0 0t0 3 /dev/pts/0 lsof 2163 qqq 2u CHR 136,0 0t0 3 /dev/pts/0 上面的 FD 这一列是文件描述符，0u、1u、2u 就是 stdin(0u)、stdout(1u)、stderr(2u)，即标准输入、标准输出、标准错误输出。
-参考（reference） Linux 终端(TTY)Linux 伪终端(pty)Linux TTY/PTS概述终端、虚拟终端、shell、控制台、tty的区别]]></content></entry><entry><title>中央处理器（Central Processing Unit、CPU）</title><url>/post/computer-science/hardware/cpu/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html">前言 前置笔记：
+参考 Linux 终端(TTY)Linux 伪终端(pty)Linux TTY/PTS概述终端、虚拟终端、shell、控制台、tty的区别]]></content></entry><entry><title>中央处理器（Central Processing Unit、CPU）</title><url>/post/computer-science/hardware/cpu/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html">前言 前置笔记：
 算术逻辑单元（Arithmetic and Logic Unit、ALU）
 内存（Memory）
 资料 cpu.drawio.html 正文 程序 ALU 可以进行算数运算，内存可以存储数据。如果能把两个结合起来，那就可以处理复杂的逻辑了。ALU 有三个输入，这里假设有两个 8 bit 的二进制数和一个操作码，但是一个内存地址只能存储 8 bit，显然不可能把所有的东西都存在一个内存地址上，然后一股脑的扔给 ALU。
@@ -554,29 +908,32 @@ CPU 执行程序的过程 定义指令集和程序 这里假设这个 CPU 一次
 高级 CPU 会动态排序（dynamically reorder）有依赖（dependencies）关系的指令，然后乱序执行（out-of-order execution），这里的乱序是和原来的顺序相比较的。 高级 CPU 会使用分支预测（branch prediction）技术，提前把指令放入流水线。另外还有推测执行（speculative execution）技术。 其他提升性能的方法 超标量处理器（superscalar processors）：一个时钟周期完成多个指令。 多核处理器（multi-core processors）：一个 CPU 有多个内核，可同时处理多个指令流。 多个独立 CPU（multiple independent CPU）：多个独立 CPU 同时工作。 参考（reference） Crash Course Computer Science（计算机科学速成课） bilibili
 CrashCourse 字幕组
 Youtube 原视频
-7、中央处理器(CPU)-The Central Processing Unit 8、指令和程序-Instructions &amp;amp; Programs 9、高级CPU设计-Advanced CPU Designs</content></entry><entry><title>内存（Memory）</title><url>/post/computer-science/hardware/memory/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html">前言 前置笔记：
+7、中央处理器(CPU)-The Central Processing Unit 8、指令和程序-Instructions &amp;amp; Programs 9、高级CPU设计-Advanced CPU Designs</content></entry><entry><title>存储器（Memory）</title><url>/post/computer-science/hardware/memory/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html">前言 前置笔记：
 算术逻辑单元（Arithmetic and Logic Unit、ALU）
 资料 memory.drawio.html 正文 锁存器 锁存器（and-or latch）由与门、或门、非门组成。（见图：memory.drawio.html 2-2）可以存储 1 bit 的数据。
-初始状态，set 线不通电，reset 线不通电（见图：memory.drawio.html 2-4-2），此时输出 0。没有输入，整个结构也能持续输出 0，换句话说就是锁存器存储了 0。
-当 set 线通电，reset 线不通电时（见图：memory.drawio.html 2-4-4-2），此时输出 1。如果这个时候 set 线从通电变成不通电（见图：memory.drawio.html 2-4-4-4），没有输入，整个结构依然能持续输出 1，换句话说就是锁存器存储了 1。
-想要把锁存器里面恢复成 0，只需要 reset 线通电即可。这个时候 set 线通不通电是无所谓的，都会输出 0。（见图：memory.drawio.html 2-4-6-2、2-4-6-4、2-4-8-2、2-4-8-2）
-门锁 锁存器已经可以实现存储 1 bit 的数据了，但是它有一点不好用。第一，set 线用于输入 1，reset 线用于输入 0，输入数据需要两条线。第二，没有安全机制，任意一条线通电了，就有可能改变里面存储的数据。
+初始状态，set 线不通电，reset 线不通电（见图：memory.drawio.html 2-4-2），此时输出 0。 没有输入，整个结构也能持续输出 0，换句话说就是锁存器存储了 0。
+当 set 线通电，reset 线不通电时（见图：memory.drawio.html 2-4-4-2），此时输出 1。 如果这个时候 set 线从通电变成不通电（见图：memory.drawio.html 2-4-4-4）， 没有输入，整个结构依然能持续输出 1，换句话说就是锁存器存储了 1。
+想要把锁存器里面恢复成 0，只需要 reset 线通电即可。这个时候 set 线通不通电是无所谓的，都会输出 0。 （见图：memory.drawio.html 2-4-6-2、2-4-6-4、2-4-8-2、2-4-8-2）
+门锁 锁存器已经可以实现存储 1 bit 的数据了，但是它有一点不好用。 第一，set 线用于输入 1，reset 线用于输入 0，输入数据需要两条线。 第二，没有安全机制，任意一条线通电了，就有可能改变里面存储的数据。
 可以在锁存器的前面加上一些限制结构解决前面的两个问题，然后就可以得到 gated latch（门锁）（见图：memory.drawio.html 4-2）。
 初始状态，data input 线不通电，write enable 线不通电（见图：memory.drawio.html 4-4-2），此时输出的是 0。
-如果只给 data input 线通电，而 write enable 线不通电的话，1 这个数据是设置不进去的（见图：memory.drawio.html 4-4-4）。只有当 data input 和 write enable 线都通电时，1 这个数据才能设置进去（见图：memory.drawio.html 4-4-6-2、4-4-6-4）。
-想要把门锁里面恢复成 0，就需要给 write enable 线通电的同时保证 data input 线不通电，这里就和锁存器那里 set 线通不通电无所谓不一样了（见图：memory.drawio.html 4-4-8-2、4-4-8-4）。
+如果只给 data input 线通电，而 write enable 线不通电的话，1 这个数据是设置不进去的（见图：memory.drawio.html 4-4-4）。 只有当 data input 和 write enable 线都通电时，1 这个数据才能设置进去（见图：memory.drawio.html 4-4-6-2、4-4-6-4）。
+想要把门锁里面恢复成 0，就需要给 write enable 线通电的同时保证 data input 线不通电， 这里就和锁存器那里 set 线通不通电无所谓不一样了（见图：memory.drawio.html 4-4-8-2、4-4-8-4）。
 门锁可以做到一条线控制输入的数据，另一条线控制允不允许输入，操作的逻辑非常清晰。
-寄存器 把 n 个门锁线性排列起来，就可以存储 n 个 bit 的数据了，寄存器（register）就是这种结构。这里简单画一个 8 位的寄存器。（见图：memory.drawio.html 6-2）
-二维的平面结构 如果需要存储的数据容量很大的话，寄存器这种一维的线性的结构就不合适了，导线数量太多。所以需要排列更紧密的结构，让导线可以复用，从而减少导线的数量。比如，二维的平面结构，或者三维的立体结构。但是这会带来新的问题，怎么找到众多门锁中的某一个门锁？这里用二维的平面结构举例。
-门锁是没有位置信息的，但是二维的平面结构是可以放到坐标系里去的，这样二维的平面结构里的门锁就可以用行列坐标表示了。把行列坐标和 write enable 线组合起来，就可以控制二维的平面结构里的某一个门锁了。用同样的思路，还可以控制某一个门锁的输出，也就是图里的 read enable 线。read enable 线结合二极管就可以把数据的输入输出都用一条线解决。（见图：memory.drawio.html 8-2）
+寄存器 把 n 个门锁线性排列起来，就可以存储 n 个 bit 的数据了，寄存器（register）就是这种结构。 这里简单画一个 8 位的寄存器。（见图：memory.drawio.html 6-2）
+寄存器的位宽指的是，寄存器能存储多少位数据。
+二维的平面结构 如果需要存储的数据容量很大的话，寄存器这种一维的线性的结构就不合适了，导线数量太多。 所以需要排列更紧密的结构，让导线可以复用，从而减少导线的数量。比如，二维的平面结构，或者三维的立体结构。 但是这会带来新的问题，怎么找到众多门锁中的某一个门锁？这里用二维的平面结构举例。
+门锁是没有位置信息的，但是二维的平面结构是可以放到坐标系里去的，这样二维的平面结构里的门锁就可以用行列坐标表示了。 把行列坐标和 write enable 线组合起来，就可以控制二维的平面结构里的某一个门锁了。 用同样的思路，还可以控制某一个门锁的输出，也就是图里的 read enable 线。 read enable 线结合二极管就可以把数据的输入输出都用一条线解决。（见图：memory.drawio.html 8-2）
 这里简单画一下存入数据和读取数据的示意图。（见图：memory.drawio.html 8-4-2、8-4-4）
-内存 这里把一个 2 行 2 列的二维的平面结构画出来（见图：memory.drawio.html 8-8-2）。显然还有一个问题，行列的电路怎么控制？这里就要用到&amp;quot;多路复用器&amp;quot;结构。
-多路复用器就是一堆不同逻辑门的组合，用于判断输入是不是满足某个条件。这里画一个输入为 2 位二进制树的多路复用器。（见图：memory.drawio.html 8-8-4）举例，输入 0b10 的时候，多路复用器只有 01 对应的那个输出端会有电。
-把多路复用器加到图里，行列两个方向上都放上一个多路复用器，（见图：memory.drawio.html 8-8-6）这样就可以控制所有的存储单元了。举例，输入行 0b10、列 0b11 的时候，对应到图中，就是第 2 行、第 3 列的那个单元。
-2 行 2 列的可以得到一个 16 bit 的内存。再扩展一下，从 2 行 2 列变成 16 行 16 列，就可以得到一个 256 bit 的内存（见图：memory.drawio.html 8-8-10），每个内存地址只能存储 1 bit 的数据。
-现在常用的内存，一个内存地址可以存储一个字节，也就是 8 bit 的数据，这是怎么做到的？这里用到的思路和寄存器那里是一样的，把 8 个 256 bit 的内存线性排列起来（见图：memory.drawio.html 8-10-2），让一个地址对应 8 块内存里相同的位置。
-假设，有一个字节的数据 0b10001000 要存储进去。这里用到的思路是拆开，把 0b10001000 拆成 1、0、0、0、1、0、0、0 分别存储。第 0 位，放到第一块；第 1 位，放到第二块；以此类推。这样就可以让一个地址对应 8 块内存里相同的位置都存储了这个数据的一部分。取数据的时候，把取出来的 8 个 1 bit 的数据，按照拆分规则再组合起来就可以了。
-参考（reference） Crash Course Computer Science（计算机科学速成课） bilibili
+可寻址内存 这里把一个 2 行 2 列的二维的平面结构画出来（见图：memory.drawio.html 8-8-2）。 显然还有一个问题，行列的电路怎么控制？这里就要用到&amp;quot;多路复用器&amp;quot;结构。
+多路复用器就是一堆不同逻辑门的组合，用于判断输入是不是满足某个条件。这里画一个输入为 2 位二进制树的多路复用器。 （见图：memory.drawio.html 8-8-4）举例，输入 0b10 的时候，多路复用器只有 01 对应的那个输出端会有电。
+把多路复用器加到图里，行列两个方向上都放上一个多路复用器，（见图：memory.drawio.html 8-8-6）这样就可以控制所有的存储单元了。 举例，输入行 0b10、列 0b11 的时候，对应到图中，就是第 2 行、第 3 列的那个单元。
+2 行 2 列的可以得到一个 16 bit 的内存。再扩展一下，从 2 行 2 列变成 16 行 16 列， 就可以得到一个 256 bit 的内存（见图：memory.drawio.html 8-8-10），每个内存地址只能存储 1 bit 的数据。
+现在常用的内存，一个内存地址可以存储一个字节，也就是 8 bit 的数据，这是怎么做到的？这里用到的思路和寄存器那里是一样的， 把 8 个 256 bit 的内存线性排列起来（见图：memory.drawio.html 8-10-2），让一个地址对应 8 块内存里相同的位置。
+假设，有一个字节的数据 0b10001000 要存储进去。这里用到的思路是拆开，把 0b10001000 拆成 1、0、0、0、1、0、0、0 分别存储。 第 0 位，放到第一块；第 1 位，放到第二块；以此类推。这样就可以让一个地址对应 8 块内存里相同的位置都存储了这个数据的一部分。 取数据的时候，把取出来的 8 个 1 bit 的数据，按照拆分规则再组合起来就可以了。
+可寻址内存的一个重要特性就是可以随时访问任意位置。 可寻址内存的地址从 0 开始编号，然后，自增排列。 因为内存是线性结构而且有地址，所以理论上读写内存上任何一个数据的速度是一样的。
+不同的 RAM 用不同的存储单元（电路）存取单个 bit，比如： 不同的逻辑门、capcitor（电容器）、charge traps（电荷捕获）、memristor（记忆电阻器）。
+参考 Crash Course Computer Science（计算机科学速成课） bilibili
 CrashCourse 字幕组
 Youtube 原视频
 6、寄存器 &amp;amp; 内存-Registers and RAM</content></entry><entry><title>算术逻辑单元（Arithmetic and Logic Unit、ALU）</title><url>/post/computer-science/hardware/alu/</url><categories><category>hardware(硬件)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>hardware(硬件)</tag></tags><content type="html"><![CDATA[资料 alu.drawio.html 正文 机械继电器 早期的计算机用机械结构来控制电路的状态，这个部件叫机械继电器。机械继电器主要由机械开关和电磁铁组成（见图：alu.drawio.html 2-2）。
@@ -613,7 +970,117 @@ ALU ALU 就是由算术单元和逻辑单元组成的，这里画一个简单的
 计算 0b11111111 == 0b11111111。计算机不会直接比较两个数字哪个大哪个小，计算机用的思路是让两个数字相减，然后和 0 比较。两个数据输入是 0b11111111 和 0b11111111、操作码输入假设是 0002（表示减法）。这个时候，因为 0b11111111 - 0b11111111 = 0b00000000，为 0。所以数据输出会是 0b00000000、zero 会是 1。
 计算 A-B 时，如果负标志输出 true，表示 A 小于 B。
 计算 0b11111111 &lt; 0b11111110。和上面那个例子的思路一样。两个数据输入是 0b11111111 和 0b11111110、操作码输入假设是 0002（表示减法）。这个时候，因为 0b11111111 - 0b11111110 = 0b00000001，大于 0。所以数据输出会是 0b00000001、negative 会是 0（表示 0b11111111 - 0b11111110 &gt; 0，0b11111111 更大）。
-参考（reference） Crash Course Computer Science（计算机科学速成课） bilibiliCrashCourse 字幕组Youtube 原视频2、电子计算机-Electronic Computing 3、布尔逻辑 和 逻辑门-Boolean Logic &amp; Logic Gates 4、二进制-Representing Numbers and Letters with Binary 5、算术逻辑单元-How Computers Calculate-the ALU ]]></content></entry><entry><title>Golang 实现简单的 Web 框架 -- middleware(中间件)</title><url>/post/computer-science/programming-language/framework/web/golang/middleware_v2/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+参考（reference） Crash Course Computer Science（计算机科学速成课） bilibiliCrashCourse 字幕组Youtube 原视频2、电子计算机-Electronic Computing 3、布尔逻辑 和 逻辑门-Boolean Logic &amp; Logic Gates 4、二进制-Representing Numbers and Letters with Binary 5、算术逻辑单元-How Computers Calculate-the ALU ]]></content></entry><entry><title>进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收</title><url>/post/computer-science/operating-system/linux/process/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>process(进程)</tag></tags><content type="html"><![CDATA[前言 前置笔记：运行 ELF 文件实践的环境：同 程序资料 {demo-c}/demo-in-linux/process/ 正文 进程的创建 笔记主要涉及 fock()、vfock()。
+fock() fork() creates a new process by duplicating the calling process. The new process is referred to as the child process. The calling process is referred to as the parent process. &hellip;
+fork() 通过复制调用进程创建一个新进程，新进程为子进程，调用进程为父进程。
+RETURN VALUE On success, the PID of the child process is returned in the parent, and 0 is returned in the child. On failure, -1 is returned in the parent, no child process is created, and errno is set to indicate the error.
+成功时，父进程拿到子进程的 pid，子进程拿到 0。可以根据这个判断哪个是父进程，哪个是子进程。 失败时，父进程拿到-1，子进程不会被创建，errno 会被设置用于表示错误。 代码示例：{demo-c}/demo-in-linux/process/fork.c
+pid 和 ppid 在终端里使用 echo $$ 命令，可以打印当前进程的 pid。
+getpid() 返回调用进程的 pid，getppid() 返回调用进程的父进程的 pid。 在使用时需要注意，必须让子进程先执行，父进程后执行，打印出来的 ppid 才是正确的。
+代码示例：{demo-c}/demo-in-linux/process/pid_and_ppid.c
+如果父进程在子进程执行前先跑完了，那么子进程打印出来的 ppid 就会变成 1。 因为父进程已经没了，子进程变成了孤儿进程。孤儿进程会被 1 号进程接管，有可能会变成后台进程。
+1 号进程就是 init 进程。init 进程是所有其他进程的祖先进程， 它是 linux 系统启动过程中的第一个进程，也是系统在运行时的第一个用户级进程。 init 进程的 pid（进程标识符）是就是 1。
+子进程和父进程的内存空间 DESCRIPTION &hellip; The child process and the parent process run in separate memory spaces. At the time of fork() both memory spaces have the same content. Memory writes, file mappings (mmap(2)), and unmappings (munmap(2)) performed by one of the processes do not affect the other. &hellip;
+两个进程运行在不同的内存空间，进程间是隔离的。在 fork() 时，两个进程的内存空间的内容是一样的（程序数据和程序指令）。 两个进程进行写内存操作（定义新的变量并赋值，修改已定义的变量的值，定义新的函数）或者文件映射（进程间通信）时互不影响。
+代码示例：{demo-c}/demo-in-linux/process/fork_separate_memory.c
+在 fork() 时，子进程和父进程代码是一样的，子进程会从 fork() 的下一行代码开始继续执行。 一般是父进程先被调度，除非父进程被阻塞了。
+copy on write（写时复制） 在 fork() 执行之后 exec() 执行之前，两个进程用的是相同的物理空间，子进程的代码段、数据段、堆栈都是指向父进程的物理空间。 两者的虚拟空间不同，但其对应的物理空间是同一个。当父子进程中有更改相应段的行为发生时，再为子进程相应的段分配物理空间。
+如果没有执行 exec()，内核会给子进程的数据段、堆栈段分配相应的物理空间（两者有各自的进程空间，互不影响）。 而代码段继续共享父进程的物理空间（两者的代码完全相同）。 而如果执行了 exec()，由于两者执行的代码不同，子进程的代码段也会被分配单独的物理空间。
+子进程和父进程的区别 DESCRIPTION &hellip; * The child has its own unique process ID, and this PID does not match the ID of any existing process group (setpgid(2)) or session. * The child&rsquo;s parent process ID is the same as the parent&rsquo;s process ID. * The child does not inherit its parent&rsquo;s memory locks (mlock(2), mlockall(2)). &hellip;
+子进程有自己独立的唯一的进程标识（pid）。 子进程的父进程的 pid（ppid）和父进程的 pid 是一样的。 子进程不会继承父进程的内存锁。 vfork() Linux description vfork(), just like fork(2), creates a child process of the calling process. For details and return value and errors, see fork(2). &hellip; vfork() differs from fork(2) in that the calling thread is suspended until the child terminates (either normally, by calling_exit(2), or abnormally, after delivery of a fatal signal), or it makes a call to execve(2). Until that point, the child shares all memory with its parent, including the stack. &hellip;
+vfork() 和 fork() 用法一样。区别在于，vfork() 创建子进程后，父进程会被阻塞，直到子进程退出。
+代码示例：{demo-c}/demo-in-linux/process/vfork.c
+而且 vfork() 创建出来的子进程和父进程共享内存，包括栈。
+代码示例：{demo-c}/demo-in-linux/process/vfork_share_memory.c
+vfork() 有 bug。当使用 return 0 结束或者执行到最后一行代码结束时， 有可能会报 &ldquo;Segmentation fault (core dumped)&rdquo; 错误。但是使用 exit(0)或者 _exit(0) 结束的时候不会。
+通过 strace 命令追踪可以发现：报错时，子进程调用 exit_group(0) 退出，但是，父进程没有调用 exit_group(0)； 不报错时，两个进程都调用 exit_group(0) 退出。
+这里猜测应该是共享内存的问题，如果子进程退出的时候把栈干碎了，那父进程被拉起来的时候，就没有栈，肯定会报错。
+进程的运行 笔记主要涉及 execve()、exec 家族的六个函数。
+程序被 execve() 加载到内存中时，需要操作系统分配内存资源。 准备工作做完后，下一步就是找到程序入口并开始执行。主进程默认会启动一个主线程去执行 main() 入口函数。
+execve() DESCRIPTION execve() executes the program referred to by pathname. &hellip; pathname must be either a binary executable, or a script starting with a line of the form: #!interpreter [optional-arg] &hellip;
+在当前正在运行的程序里，可以调用 execve() 通过另外一个新的程序的路径名执行它。 这个新的程序必须是一个二进制的可执行文件。或者是一个以 #!interpreter [optional-arg] 形式开始的脚本。 比如，shell 脚本文件开头的 #!/bin/bash。
+DESCRIPTION &hellip; This causes the program that is currently being run by the calling process to be replaced with a new program, with newly initialized stack, heap, and (initialized and uninitialized) data segments. &hellip; execve() does not return on success, and the text, initialized data, uninitialized data (bss), and stack of the calling process are overwritten according to the contents of the newly loaded program.
+execve() 在成功时不会返回。而是会导致当前正在运行的程序被另外一个新的程序所取代。 当前程序的 .test 段、.data 段、.bss 段、栈、堆等，都会被新的程序的数据覆盖。
+exec DESCRIPTION The exec() family of functions replaces the current process image with a new process image. The functions described in this manual page are layered on top of execve(2).
+简单理解，exec 家族的六个函数底层都是基于 execve() 实现的。
+用 execl() 举例，代码示例：
+{demo-c}/demo-in-linux/process/execl.c {demo-c}/demo-in-linux/process/call_by_exec.c 用 execv() 举例，代码示例：
+{demo-c}/demo-in-linux/process/execv.c {demo-c}/demo-in-linux/process/call_by_exec.c 这个例子在 Ubuntu 22.04 环境中执行，会返回 Bad Address，不知道为什么。
+进程的运行顺序 DESCRIPTION The scheduling priority of the process, process group, or user, as indicated by which and who is obtained with the getpriority() call and set with the setpriority() call. The process attribute dealt with by these system calls is the same attribute (also known as the &ldquo;nice&rdquo; value) that is dealt with by nice(2). &hellip; The prio argument is a value in the range -20 to 19 (but see NOTES below), with -20 being the highest priority and 19 being the lowest priority. Attempts to set a priority outside this range are silently clamped to the range. The default priority is 0; lower values give a process a higher scheduling priority. &hellip;
+进程的运行（执行、调度）顺序受到 PRI（priority）值和 NI（nice）值控制，这两个值对应进程的同一个属性。 值的范围是 -20~19，值越小，进程优先级越高。这两个值可以通过 ps 命令（ps -ely）查看（PRI 和 NI 参数）， 也可以通过 top 命令查看（PR 和 NI 参数）。
+在系统中，可以使用 nice 命令和 renice 命令调整进程的优先级。 nice 命令用于进程启动之前，renice 命令用于进程启动之后。
+在代码中，getpriority() 可以查看进程优先级，setpriority()、nice() 可以调整进程优先级。 getpriority() 和 setpriority() 使用的时候需要注意的是，who 参数要和 which 参数对应。
+代码示例：{demo-c}/demo-in-linux/process/nice.c
+进程的内存数据 进程通过 execve() 将程序加载到内存中去执行，此时操作系统会它们分配相应的内存资源。分配的内存资源主要用于存储程序指令和程序数据。 还有额外的进程内存数据、进程标识、进程状态、哪个用户启动的、打开的文件等。这些数据主要存储在 /proc 目录中。
+/proc 目录 DESCRIPTION The proc filesystem is a pseudo-filesystem which provides an interface to kernel data structures. It is commonly mounted at /proc. Typically, it is mounted automatically by the system, but it can also be mounted manually using a command such as: mount -t proc proc /proc Most of the files in the proc filesystem are read-only, but some files are writable, allowing kernel variables to be changed. &hellip;
+proc 文件系统是一个伪文件系统，它提供了一个观察内核数据结构的接口。 一般来说，它会被操作系统自动挂载到 /proc 目录。proc 文件系统中的大多数文件都是只读的。 但是，有些文件是可写的，允许通过这些可写的文件改变内核变量。
+DESCRIPTION &hellip; /proc/[pid] subdirectories Each one of these subdirectories contains files and subdirectories exposing information about the process with the corresponding process ID. &hellip;
+/proc 目录存储了操作系统上所有进程的内存数据。进程对应的目录用进程标识（pid）命名。 比如，进程标识（pid）为 42 的进程，对应的目录就是 /proc/42。
+/proc/[pid] 目录 cmdline This read-only file holds the complete command line for the process, unless the process is a zombie.
+cmdline，记录进程是用什么命令启动的。如果进程已经变成僵尸进程了，那么这个文件就是空的。
+environ This file contains the initial environment that was set when the currently executing program was started via execve(2).
+environ，记录进程启动的时候的环境参数。就是调用 execve() 启动程序的时候，传给 execve() 的环境参数。
+exe Under Linux 2.2 and later, this file is a symbolic link containing the actual pathname of the executed command. This symbolic link can be dereferenced normally; attempting to open it will open the executable. You can even type /proc/[pid]/exe to run another copy of the same executable that is being run by process [pid].
+exe，包含被执行命令的实际路径名的软连接。可以直接通过它启动程序。
+fd/ This is a subdirectory containing one entry for each file which the process has open, named by its file descriptor, and which is a symbolic link to the actual file. Thus, 0 is standard input, 1 standard output, 2 standard error, and so on.
+fd 目录，记录进程打开的文件。这里面的内容就是常说的文件标识符。 程序启动的时候一般都会打开 0（标准输入）、1（标准输出）、2（标准错误）这三个。 也就是说，程序里通过代码打开的文件的文件标识符一般都是从 3 开始的。
+limits This file displays the soft limit, hard limit, and units of measurement for each of the process&rsquo;s resource limits (see getrlimit(2)).
+limits，记录进程的资源限制。
+maps A file containing the currently mapped memory regions and their access permissions. See mmap(2) for some further information about memory mappings.
+maps，记录进程的内存映射和对内存的访问权限。在里面可以找到，进程的堆栈对应的内存地址到底在哪。
+net/ This directory contains various files and subdirectories containing information about the networking layer. The files contain ASCII structures and are, therefore, readable with cat(1). However, the standard netstat(8) suite provides much cleaner access to these files.
+net 目录，记录进程和网络有关的数据。比如，和 socket 有关的东西。
+stat Status information about the process. This is used by ps(1).
+stat，记录进程状态信息。比如，进程状态、线程、信号等。这个文件是给 ps 命令用的。
+statm Provides information about memory usage, measured in pages.
+statm，以页为单位提供关于内存使用的信息。
+status Provides much of the information in /proc/[pid]/stat and /proc/[pid]/statm in a format that&rsquo;s easier for humans to parse.
+status，整合了 stat 和 statm 的内容。不过这个文件是给人看的，可读性更强。
+进程内存布局 todo hkn linux 内存相关的会单独开一篇
+进程的内存空间被分为内核空间（kernel space）和用户空间。 用户空间里面主要关注：栈（stack）、文件映射（里面有动态库的映射）、堆（heap）、 读写数据区（主要是程序数据，.bss 段、.data 段等）、 只读数据区（主要是程序指令，.text 段；也有程序数据 .rodata 段等。
+进程的资源限制 DESCRIPTION The getrlimit() and setrlimit() system calls get and set resource limits. Each resource has an associated soft and hard limit, &hellip; The soft limit is the value that the kernel enforces for the corresponding resource. The hard limit acts as a ceiling for the soft limit: an unprivileged process may set only its soft limit to a value in the range from 0 up to the hard limit, and (irreversibly) lower its hard limit. A privileged process (under Linux: one with the CAP_SYS_RESOURCE capability in the initial user namespace) may make arbitrary changes to either limit value. &hellip;
+getrlimit() 可以查看资源限制， setrlimit() 可以调整资源限制。 进程的资源限制包括软限制、硬限制等。其中软限制必须小于等于硬限制。
+The resource argument must be one of: &hellip; RLIMIT_NOFILE This specifies a value one greater than the maximum file descriptor number that can be opened by this process. Attempts (open(2), pipe(2), dup(2), etc.) to exceed this limit yield the error EMFILE. (Historically, this limit was named RLIMIT_OFILE on BSD.) &hellip;
+可以通过资源参数指定需要操作的资源。比如 RLIMIT_NOFILE 对应进程可以打开的文件个数。 这个参数很重要，因为 linux 上一切皆文件。
+代码示例：{demo-c}/demo-in-linux/process/rlimit.c
+另外，在生产环境中，应该优先在程序中动态修改资源限制，不要轻易修改操作系统的资源限制。
+进程的退出 笔记主要涉及：exit()、_exit()、_Exit()、exit_group()、abort()。
+代码示例：{demo-c}/demo-in-linux/process/exit.c
+进程退出的方式 程序运行到最后一行代码。 主动调用 exit()、_exit()、_Exit()、exit_group() 主动 return 0。 主动调用 abort()，会导致进程异常终止，报 &ldquo;Aborted (core dumped)&rdquo; 错误。 进程收到了中断信号。 exit() DESCRIPTION The exit() function causes normal process termination and the least significant byte of status (i.e., status &amp; 0xFF) is returned to the parent (see wait(2)). All functions registered with atexit(3) and on_exit(3) are called, in the reverse order of their registration. &hellip; If one of these functions does not return (e.g., it calls _exit(2), or kills itself with a signal), then none of the remaining functions is called, and further exit processing (in particular, flushing of stdio(3) streams) is abandoned. All open stdio(3) streams are flushed and closed. Files created by tmpfile(3) are removed. &hellip;
+exit() 会让进程正常终止，退出状态码会先和 0xFF 做与运算，然后返回给父进程。所有打开的 stdio(3) 流会被刷新然后关闭
+_exit()、_Exit() DESCRIPTION _exit() terminates the calling process &ldquo;immediately&rdquo;. Any open file descriptors belonging to the process are closed. Any children of the process are inherited by init(1) (or by the nearest &ldquo;subreaper&rdquo; process as defined through the use of the prctl(2) PR_SET_CHILD_SUBREAPER operation). The process&rsquo;s parent is sent a SIGCHLD signal. The value status &amp; 0xFF is returned to the parent process as the process&rsquo;s exit status, and can be collected by the parent using one of the wait(2) family of calls. The function _Exit() is equivalent to _exit().
+NOTES &hellip; The function _exit() is like exit(3), but does not call any functions registered with atexit(3) or on_exit(3). Open stdio(3) streams are not flushed. &hellip;
+_exit() （_Exit()和 _exit() 是等价的）会让进程立即终止， 子进程退出时会向父进程发送 SIGCHLD 中断信号，退出状态码会先和 0xFF 做与运算，然后返回给父进程。 打开的 stdio(3) 流不会被刷新。
+exit_group() SYNOPSIS Note: glibc provides no wrapper for exit_group(), necessitating the use of syscall(2).
+DESCRIPTION This system call is equivalent to _exit(2) except that it terminates not only the calling thread, but all threads in the calling process&rsquo;s thread group.
+退出状态码 [00007fdf9e51ea3d] exit_group(0) = ? [????????????????] +++ exited with 0 +++ 退出状态码会先和 0xFF 做与运算。这个的意思是说，加入退出状态码设置的是 300，那实际返回的是 300 &amp; 255 的结果，也就是 44。
+[00007fb290aeaca1] exit_group(300) = ? [????????????????] +++ exited with 44 +++ 在终端里使用 echo $? 命令，可以打印上一个程序的退出状态码。
+不同退出方式下 printf() 的区别 上面提到，过不同的退出方式，对打开的 stdio(3) 流的处理方式不一样。
+程序运行到最后一行代码、主动 return 0、主动调用 exit() 时，会检查文件的打开情况，处理 I/O 缓冲区内的内容。 而主动调用 _exit()、_Exit()、exit_group 时不会。
+也就是对于 printf(&quot;hello, world&quot;) （注意，没有 \n）来说，前面三个方式会输出 hello, world，而前面三个方式不会输出。
+进程的回收 笔记主要涉及：wait()、waitpid()
+wait()、waitpid() 这两个系统调用的声明如下。
+pid_t wait(int *wstatus); pid_t waitpid(pid_t pid, int *wstatus, int options);
+DESCRIPTION All of these system calls are used to wait for state changes in a child of the calling process, and obtain information about the child whose state has changed. A state change is considered to be: the child terminated; the child was stopped by a signal; or the child was resumed by a signal. If a child has already changed state, then these calls return immediately. Otherwise, they block until either a child changes state or a signal handler interrupts the call (assuming that system calls are not automatically restarted using the SA_RESTART flag of sigaction(2)). &hellip;
+RETURN VALUE wait(): on success, returns the process ID of the terminated child; on failure, -1 is returned. waitpid(): on success, returns the process ID of the child whose state has changed; if WNOHANG was specified and one or more child(ren) specified by pid exist, but have not yet changed state, then 0 is returned. On failure, -1 is returned.
+wait() 用于等待调用进程的一个子进程的状态变化，并获取状态发生变化的子进程的信息。 比如，子进程终止；子进程被信号停止；子进程被信号恢复。如果一个子进程已经改变了状态，那么调用进程调用 wait() 会立即返回。 否则，调用进程就会阻塞，直到子进程改变状态或信号处理程序中断调用。
+DESCRIPTION The wait() system call suspends execution of the calling thread until one of its children terminates. The call wait(&amp;wstatus) is equivalent to: waitpid(-1, &amp;wstatus, 0) &hellip;
+wait(&amp;status) 和 waitpid(-1, &amp;status, 0) 是等效的。
+DESCRIPTION If wstatus is not NULL, wait() and waitpid() store status information in the int to which it points. This integer can be inspected with the following macros (which take the integer itself as an argument, not a pointer to it, as is done in wait() and waitpid()!): &hellip;
+wait()、waitpid() 调用成功的时候，返回值是子进程的 pid，传进去的参数 wstatus 会记录子进程的退出信息。 退出信息可以用提供的宏函数确定是哪一种。
+代码示例：{demo-c}/demo-in-linux/process/wait.c
+宏函数 WIFEXITED(wstatus) returns true if the child terminated normally, that is, by calling exit(3) or _exit(2), or by returning from main().
+如果子进程是正常退出的 WIFEXITED(wstatus) 会返回一个非零值。
+WEXITSTATUS(wstatus) returns the exit status of the child. This consists of the least significant 8 bits of the status argument that the child specified in a call to exit(3) or _exit(2) or as the argument for a return statement in main(). This macro should be employed only if WIFEXITED returned true.
+当 WIFEXITED() 返回非零值时，可以用 WEXITSTATUS() 来提取子进程的返回值。 如果子进程调用 exit(5) 退出，WEXITSTATUS(status) 就会返回 5。
+代码示例：{demo-c}/demo-in-linux/process/waitpid_macros.c
+僵尸进程 DESCRIPTION In the case of a terminated child, performing a wait allows the system to release the resources associated with the child; if a wait is not performed, then the terminated child remains in a &ldquo;zombie&rdquo; state (see NOTES below).
+在子进程终止的情况下，调用进程执行等待可以让操作系统释放与子进程相关的资源。 如果调用进程不执行等待，那么被终止的子进程就会处于&quot;僵尸&quot;状态，也就是僵尸进程。 当父进程也结束的时候，操作系统会把父进程和回收僵尸进程一起回收。
+代码示例：{demo-c}/demo-in-linux/process/for_zombie.c
+这里运行一下，下面的是输出到终端上的内容。
+&gt; ./for_zombie.elf [debug]:parent, getpid()=3592 [debug]:parent, getpid()=3592, forkResult=3593 [debug]:child, getpid()=3593, forkResult=0 然后通过 ps 命令看一下 for_zombie 的运行情况。进程 3593 后面那个 &ldquo;Z+&rdquo; 就表示，它已经是一个僵尸进程了。
+qqq 3592 0.0 0.0 2772 944 pts/0 S+ 20:14 0:00 ./for_zombie.elf qqq 3593 0.0 0.0 0 0 pts/0 Z+ 20:14 0:00 [for_zombie.elf] &lt;defunct&gt; 当进程变成僵尸进程时，它的内存数据还驻留在内存中，/proc 目录下的相关文件也不会移除，这些东西依然在占用系统资源。 如果僵尸进程过多，会导致系统资源紧张，会影响操作系统的运行。所以必须要回收退出的子进程。
+参考 Linux进程控制]]></content></entry><entry><title>Golang 实现简单的 Web 框架 -- middleware(中间件)</title><url>/post/computer-science/programming-language/framework/web/golang/middleware_v2/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"><![CDATA[前言 实践的环境：
 CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64 资料 {demo-golang}/demo/web/middleware/ web.drawio.html 前置笔记：Golang 实现简单的 Web 框架 &ndash; router(路由)正文 前置（后置）工作成对出现 承接上一篇的问题，在前一篇里讨论前置（后置）工作的时候，都是以 &ldquo;前置（后置）工作是可以独立执行的整体&rdquo; 为前提讨论的。如果它们之间有合作关系，也就是需要相互传递数据，那么怎么办呢？这里可以使用封装的思路，设计一个全链路通用的数据结构。然后所有的前置（后置）工作和最终的处理方法都接收这个数据结构作为参数。
 在最外层 ServeHTTP 方法最开始的地方创建一个这样的数据结构，先封装 ServeHTTP 方法的两个参数，然后在后面调用到的所有方法那里一层一层传下去。如果后面的工作需要前面的工作的数据，就可以借助这个数据结构进行传递。
 type 全链路通用的数据结构 struct { // ServeHTTP 方法的两个参数 http.ResponseWriter *http.Request // 其他参数 } 这里沿用上一篇中，访问 &ldquo;/user/id&rdquo; 的时候的结果。结合上面说的全链路通用的数据结构，最终地执行逻辑可以总结成下面这样。注意一定是引用传递，值传递进去的是一个副本，方法里面修改副本是不会影响外面的这个本体的。这里画个代码块的示意图，见图：web.drawio.html 6-6-2，下面要用。
@@ -702,31 +1169,31 @@ func handleGet(){ if Request.URL like &#34;/user/%&#34; { // 前置工作 user i
 普通结点里用于标记它是路由中的哪一个部分的那个参数，在这三种结点里面是没啥用的。路径参数路由和正则匹配路由需要一个额外的参数存储参数的名字，正则匹配路由还需要一个参数存储正则表达式。
 所以，上面的代码结构需要增加点东西，目前应该差不多像下面这样。
 // routingNode 路由结点 type routingNode struct { // nodeType 结点类型 nodeType int // part 这个路由结点代表的那段路径 part string // path 从根路由到这个路由结点的全路径 path string // handler 命中路由之后的处理逻辑 handler HTTPHandleFunc // routingTree 路由子树，子结点的 path =&gt; 子树根结点 routingTree map[string]*routingNode // paramChild 路径参数结点 paramChild *routingNode // paramName 路径参数路由和正则表达式路由，都会提取路由参数的名字 paramName string // regexpChild 正则表达式结点 regexpChild *routingNode // regexp 正则表达式 regexp *regexp.Regexp // anyChild 通配符结点 anyChild *routingNode } 测试用例设计 三种特殊结点的测试用例设计就稍微复杂一点了。而且因为结点类型变多了，还需要考虑注册结点的时候的顺序的问题。三种特殊结点有可能会干扰注册普通结点时的结点查询逻辑。
-用例编号 测试用例 测试目标 - 普通结点 + 参数路由结点 - 2 /user + /user/:id user 结点（空结点） -&gt; user 结点有 1 个参数路由子结点（:id） 4 /user + /user/info + /user/:id user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个参数路由子结点（:id） 6 /user + /user/:id + /user/info user 结点有 1 个参数路由子结点（:id） -&gt; user 结点有 1 个子结点（info）和 1 个参数路由子结点（:id） 8 /user + /user/:id + /user/:id/info 参数路由结点（:id）（空结点） -&gt; 参数路由结点（:id） 有 1 个子结点（info）注意用例 8 和用例 6 的区别。 10 /user + /user/:id + /user/:name user 结点有两个参数路由子结点，报错 12 /user + /user/:id + /user/:id/:name 参数路由结点（:id）（空结点） -&gt; 参数路由结点（:id）有 1 个参数路由子结点（:name） - 普通结点 + 正则表达式结点 - 42 /user + /user/:id(/\d/) user 结点（空结点） -&gt; user 结点有 1 个正则表达式子结点（:id） 44 /user + /user/info + /user/:id(/\d/) user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个正则表达式子结点（:id） 46 /user + /user/:id(/\d/) + /user/info user 结点有 1 个正则表达式子结点（:id） -&gt; user 结点有 1 个子结点（info）和 1 个正则表达式子结点（:id） 48 /user + /user/:id(/\d/) + /user/:id(/\d/)/info 正则表达式结点（:id）（空结点） -&gt; 正则表达式结点（:id） 有 1 个子结点（info）注意用例 48 和用例 46 的区别。 50 /user + /user/:id(/\d/) + /user/:name(/^[A-Za-z0-9]+$/) user 结点有两个正则表达式子结点，报错 52 /user + /user/:id(/\d/) + /user/:id(/\d/)/:name(/^[A-Za-z0-9]+$/) 正则表达式结点（:id）（空结点） -&gt; 正则表达式结点（:id）有 1 个正则表达式子结点（:name） - 普通结点 + 通配符结点 - 82 /user + /user/* user 结点（空结点） -&gt; user 结点有 1 个通配符子结点 84 /user + /user/info + /user/* user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个通配符子结点 86 /user + /user/* + /user/info user 结点有 1 个通配符子结点 -&gt; user 结点有 1 个子结点（info）和 1 个通配符结点子结点 88 /user + /user/* + /user/*/info 通配符结点后面不能有子结点，报错 - 4 种结点混合，这里就不一个一个写了，场景太多了 - 前置（后置）工作成对出现 上面讨论前置（后置）工作的时候，都是以 &ldquo;前置（后置）工作是可以独立执行的整体&rdquo; 为前提讨论的。如果它们之间有合作关系，也就是需要相互传递数据，那么怎么办呢？这个放到下一篇里说：Golang 实现简单的 Web 框架 &ndash; middleware(中间件)]]></content></entry><entry><title>并发问题</title><url>/post/computer-science/concurrency_issues/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>concurrent(并发)</tag></tags><content type="html"><![CDATA[正文 并行和并发 用概念解释 在操作系统中，并行（parallel）是指，一个时间段中，一组程序各自独立的异步的执行，每个程序都有自己的处理机。任意一个时刻，这组程序都是正在执行的，无论从宏观还是微观。
-在操作系统中，并发（concurrent）是指，一个时间段中，一组程序各自独立的异步的执行，这一组程序共用同一个处理机。任意一个时刻，只有一个程序在正在执行，宏观上是同时执行，微观上是顺序执行。
-用比喻解释 首先，假设有一个&quot;用手拿起桌子上的杯子&quot;的动作。这个动作的内部被分成了&quot;伸手-&gt;抓住杯子-&gt;拿起来&quot;这样有先后关系的多个子动作，每一个子动作可以单独被执行。现在，假设有一个人，就叫他慧，他有两个手（如果是触手怪的话就可以有好多手了）。慧的面前有一张桌子，桌子上有两个杯子（多个杯子）。
-并行是什么呢，慧的左右手同时做&quot;用手拿起桌子上的杯子&quot;的动作，两个手同时进行，各做各的互不干扰。左手做&quot;伸手&quot;子动作的同时，右手也可以做&quot;伸手&quot;子动作。并行强调，两个或以上的动作，从外面看上去是同时进行的，从内部看，每个时刻可以有多个子动作在进行。
-并发是什么呢，慧的左右手同时做&quot;用手拿起桌子上的杯子&quot;的动作，两个手同时进行，但是每次只能完成一个子动作。左手做&quot;伸手&quot;子动作的时候，右手是不能动的。并发强调，两个或以上的动作，从外面看上去是同时进行的，但是从内部看，每个时刻只能有一个子动作在进行。
-并发问题 用比喻解释 在上面的假设中，假设了两个手和两个杯子。两个手做动作的时候，各自拿一个杯子。这是没有问题的，两个动作都可以独立完成。但是如果假设的时候，是两个手和一个杯子。两个手做动作的时候，拿的是同一个杯子。这就有问题了，两个动作会冲突。
-并行场景下，左右手都完成了抓住了杯子子动作，那么左手进行拿起来子动作的时候，右手怎么办。并发场景下，左手完成了拿起来子动作，右手完成了伸手子动作，那么右手进行抓住杯子子动作的时候，抓什么。这个场景中的冲突就是并发问题出现的原因。
-用代码解释 用最典型的 i++ 再来解释一下并发问题。把上面的名词换一下就行了：动作相当于程序代码；子动作相当于 CPU 指令；慧相当于 CPU；杯子相当于临界资源。
-i++ 看上去是一条语句，但是在指令层面，它至少分为三步：1、从变量 i 的内存地址上读取数据；2、对数据做 +1 运算；3、把运算结果放到变量 i 的内存地址上去。
-假设 i 是个全局变量，内存地址是 0x10，值是 0。现在有两个线程：线程 a 和线程 b 同时执行 i++。这里预期的结果应该是 i=2，但是实际执行过程中会发生下面这种情况。
-时间流逝方向 线程 a 线程 b ↓ 等待 CPU 调度 等待 CPU 调度 ↓ 被给予 CPU 资源 等待 CPU 调度 ↓ 从 0x10 上读取数据（0） 等待 CPU 调度 ↓ 对数据做 +1 运算 等待 CPU 调度 ↓ 被剥夺 CPU 资源 被给予 CPU 资源 ↓ 等待 CPU 调度 从 0x10 上读取数据（0） ↓ 等待 CPU 调度 对数据做 +1 运算 ↓ 等待 CPU 调度 把运算结果（1）放到 0x10 上去 ↓ 被给予 CPU 资源 运行结束，归还 CPU 资源 ↓ 把运算结果（1）放到 0x10 上去 - ↓ 运行结束，归还 CPU 资源 - 因为线程 a 还没有把运算结果放到内存 0x10 上去，所以线程 b 从内存 0x10 上拿到的依然是 0。假设线程 b 没有被剥夺 CPU 资源，完整地跑完了三条指令，那么 i 应该是 1。线程 b 结束运行，归还 CPU 资源。
-线程 a 得到 CPU 资源，继续执行。这个时候线程 a 执行的是最后一步，把运算结果（1）放到内存 0x10 上去。这样就出问题了，实际的结果是 i=1，和期望的结果 i=2 不一致。
+用例编号 测试用例 测试目标 - 普通结点 + 参数路由结点 - 2 /user + /user/:id user 结点（空结点） -&gt; user 结点有 1 个参数路由子结点（:id） 4 /user + /user/info + /user/:id user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个参数路由子结点（:id） 6 /user + /user/:id + /user/info user 结点有 1 个参数路由子结点（:id） -&gt; user 结点有 1 个子结点（info）和 1 个参数路由子结点（:id） 8 /user + /user/:id + /user/:id/info 参数路由结点（:id）（空结点） -&gt; 参数路由结点（:id） 有 1 个子结点（info）注意用例 8 和用例 6 的区别。 10 /user + /user/:id + /user/:name user 结点有两个参数路由子结点，报错 12 /user + /user/:id + /user/:id/:name 参数路由结点（:id）（空结点） -&gt; 参数路由结点（:id）有 1 个参数路由子结点（:name） - 普通结点 + 正则表达式结点 - 42 /user + /user/:id(/\d/) user 结点（空结点） -&gt; user 结点有 1 个正则表达式子结点（:id） 44 /user + /user/info + /user/:id(/\d/) user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个正则表达式子结点（:id） 46 /user + /user/:id(/\d/) + /user/info user 结点有 1 个正则表达式子结点（:id） -&gt; user 结点有 1 个子结点（info）和 1 个正则表达式子结点（:id） 48 /user + /user/:id(/\d/) + /user/:id(/\d/)/info 正则表达式结点（:id）（空结点） -&gt; 正则表达式结点（:id） 有 1 个子结点（info）注意用例 48 和用例 46 的区别。 50 /user + /user/:id(/\d/) + /user/:name(/^[A-Za-z0-9]+$/) user 结点有两个正则表达式子结点，报错 52 /user + /user/:id(/\d/) + /user/:id(/\d/)/:name(/^[A-Za-z0-9]+$/) 正则表达式结点（:id）（空结点） -&gt; 正则表达式结点（:id）有 1 个正则表达式子结点（:name） - 普通结点 + 通配符结点 - 82 /user + /user/* user 结点（空结点） -&gt; user 结点有 1 个通配符子结点 84 /user + /user/info + /user/* user 结点有 1 个子结点（info） -&gt; user 结点有 1 个子结点（info）和 1 个通配符子结点 86 /user + /user/* + /user/info user 结点有 1 个通配符子结点 -&gt; user 结点有 1 个子结点（info）和 1 个通配符结点子结点 88 /user + /user/* + /user/*/info 通配符结点后面不能有子结点，报错 - 4 种结点混合，这里就不一个一个写了，场景太多了 - 前置（后置）工作成对出现 上面讨论前置（后置）工作的时候，都是以 &ldquo;前置（后置）工作是可以独立执行的整体&rdquo; 为前提讨论的。如果它们之间有合作关系，也就是需要相互传递数据，那么怎么办呢？这个放到下一篇里说：Golang 实现简单的 Web 框架 &ndash; middleware(中间件)]]></content></entry><entry><title>并发问题</title><url>/post/computer-science/concurrency_issues/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>concurrent(并发)</tag></tags><content type="html"><![CDATA[正文 并行和并发 用概念解释 在操作系统中，并行（parallel）是指，一个时间段中，一组程序各自独立的异步的执行，每个程序都有自己的处理机。 任意一个时刻，这组程序都是正在执行的，无论从宏观还是微观。
+在操作系统中，并发（concurrent）是指，一个时间段中，一组程序各自独立的异步的执行，这一组程序共用同一个处理机。 任意一个时刻，只有一个程序在正在执行，宏观上是同时执行，微观上是顺序执行。
+用比喻解释 首先，假设有一个&quot;用手拿起桌子上的杯子&quot;的动作。 这个动作的内部被分成了 &ldquo;伸手-&gt;抓住杯子-&gt;拿起来&rdquo; 这样有先后关系的多个子动作，每一个子动作可以单独被执行。 现在，假设有一个人，就叫他慧，他有两个手（如果是触手怪的话就可以有好多手了）慧的面前有一张桌子，桌子上有两个杯子（多个杯子）。
+并行是什么呢，慧的左右手同时做&quot;用手拿起桌子上的杯子&quot;的动作，两个手同时进行，各做各的互不干扰。 左手做 &ldquo;伸手&rdquo; 子动作的同时，右手也可以做 &ldquo;伸手&rdquo; 子动作。 并行强调，两个或以上的动作，从外面看上去是同时进行的，从内部看，每个时刻可以有多个子动作在进行。
+并发是什么呢，慧的左右手同时做&quot;用手拿起桌子上的杯子&quot;的动作，两个手同时进行，但是每次只能完成一个子动作。 左手做 &ldquo;伸手&rdquo; 子动作的时候，右手是不能动的。 并发强调，两个或以上的动作，从外面看上去是同时进行的，但是从内部看，每个时刻只能有一个子动作在进行。
+并发问题 用比喻解释 在上面的假设中，假设了两个手和两个杯子。两个手做动作的时候，各自拿一个杯子。 这是没有问题的，两个动作都可以独立完成。但是如果假设的时候，是两个手和一个杯子。 两个手做动作的时候，拿的是同一个杯子。这就有问题了，两个动作会冲突。
+并行场景下，左右手都完成了抓住了杯子子动作，那么左手进行拿起来子动作的时候，右手怎么办。 并发场景下，左手完成了拿起来子动作，右手完成了伸手子动作，那么右手进行抓住杯子子动作的时候，抓什么。 这个场景中的冲突就是并发问题出现的原因。
+用代码解释 用最典型的 i++ 再来解释一下并发问题。把上面的名词换一下就行了： 动作相当于程序代码；子动作相当于 CPU 指令；慧相当于 CPU；杯子相当于临界资源。
+i++ 看上去是一条语句，但是在指令层面，它至少分为三步： 1、从变量 i 的内存地址上读取数据；2、对数据做 +1 运算；3、把运算结果放到变量 i 的内存地址上去。
+假设 i 是个全局变量，内存地址是 0x10，值是 0。现在有两个线程：线程 a 和线程 b 同时执行 i++。 这里预期的结果应该是 i=2，但是实际执行过程中会发生下面这种情况。
+时间流逝方向 线程 a 线程 b ↓ 等待 CPU 调度 等待 CPU 调度 ↓ 被给予 CPU 资源 等待 CPU 调度 ↓ 从 0x10 上读取数据（0） 等待 CPU 调度 ↓ 对数据做 +1 运算 等待 CPU 调度 ↓ 被剥夺 CPU 资源 被给予 CPU 资源 ↓ 等待 CPU 调度 从 0x10 上读取数据（0） ↓ 等待 CPU 调度 对数据做 +1 运算 ↓ 等待 CPU 调度 把运算结果（1）放到 0x10 上去 ↓ 被给予 CPU 资源 运行结束，归还 CPU 资源 ↓ 把运算结果（1）放到 0x10 上去 - ↓ 运行结束，归还 CPU 资源 - 因为线程 a 还没有把运算结果放到内存 0x10 上去，所以线程 b 从内存 0x10 上拿到的依然是 0。 假设线程 b 没有被剥夺 CPU 资源，完整地跑完了三条指令，那么 i 应该是 1。线程 b 结束运行，归还 CPU 资源。
+线程 a 得到 CPU 资源，继续执行。这个时候线程 a 执行的是最后一步，把运算结果（1）放到内存 0x10 上去。 这样就出问题了，实际的结果是 i=1，和期望的结果 i=2 不一致。
 所以并发问题一定要从指令层面保证不会出问题，而不是语句层面。
-解决方案 并发问题的解决方案的基本思路都是保证临界资源在同一时刻只能被一个对象操作。这个对象可以是多线程环境中的一个线程，分布式系统中的一个客户端（其实也可以认为是线程）。
-加锁或者 CAS，都是一样的思路。加锁就是多线程抢同一把锁，CAS 就是多线程抢同一个标志位。只有抢到锁或者标志位的线程，才能操作临界资源。这个时候临界资源就相当于是独享的，就不会出现并发问题。
+解决方案 并发问题的解决方案的基本思路都是保证临界资源在同一时刻只能被一个对象操作。 这个对象可以是多线程环境中的一个线程，分布式系统中的一个客户端（其实也可以认为是线程）。
+加锁或者 CAS，都是一样的思路。加锁就是多线程抢同一把锁，CAS 就是多线程抢同一个标志位。 只有抢到锁或者标志位的线程，才能操作临界资源。这个时候临界资源就相当于是独享的，就不会出现并发问题。
 锁机制 常用的锁机制有两种：悲观锁、乐观锁。
-悲观锁假定会发生并发冲突，在操作数据之前，需要保证只有自己能操作数据。如果有其他想要操作数据的，它们会被挡住。悲观锁大多依靠底层提供的锁机制。
-乐观锁假定不会发生并发冲突，先假定只有自己在操作数据，需要提交的时候，再检查是不是真的只有自己在操作数据。如果有其他在操作数据的，自己会被挡住。乐观锁大多是基于数据版本记录机制实现。
-CAS CAS（Compare And Swap）操作是原子操作，包含三个操作数：内存中的值（内存位置 V）、原值（预期原值 A）、新值（新值 B）。如果内存中的值与原值相等，那么处理器会将内存中的值更新为新值。如果内存中的值与原值不相等，处理器不做任何操作。
+悲观锁假定会发生并发冲突，在操作数据之前，需要保证只有自己能操作数据。 如果有其他想要操作数据的，它们会被挡住。悲观锁大多依靠底层提供的锁机制。
+乐观锁假定不会发生并发冲突，先假定只有自己在操作数据，需要提交的时候，再检查是不是真的只有自己在操作数据。 如果有其他在操作数据的，自己会被挡住。乐观锁大多是基于数据版本记录机制实现。
+CAS CAS（Compare And Swap）操作是原子操作，包含三个操作数：内存中的值（内存位置 V）、原值（预期原值 A）、新值（新值 B）。 如果内存中的值与原值相等，那么处理器会将内存中的值更新为新值。如果内存中的值与原值不相等，处理器不做任何操作。
 锁和 CAS+自旋 单纯地看一次操作的效率的话，CAS 的效率肯定是比锁高的。但是并发场景中，不能只看一次操作的效率，而是要看整体操作的效率。
 如果并发量很少，也就是冲突不明显的时候。比如锁和 CAS 都是一次就成功。那么整体的效率，CAS 是比锁要高的。
-如果并发量很大，也就是冲突明显的时候。锁一次不成功，就会阻塞，然后进入通知队列等着被唤醒了，CPU 就可以空出来干别的事情。但是 CAS 一次不成功，会不停的重试，直到成功。
-这个时候问题就来了，假设并发数量是 10000，那么 1 个成功了，那么剩下来的 9999 个，一定是不可能成功的。但是它们依然在不停的重试，一直消耗 CPU 的资源。
+如果并发量很大，也就是冲突明显的时候。锁一次不成功，就会阻塞，然后进入通知队列等着被唤醒了，CPU 就可以空出来干别的事情。 但是 CAS 一次不成功，会不停的重试，直到成功。
+这个时候问题就来了，假设并发数量是 10000，那么 1 个成功了，那么剩下来的 9999 个，一定是不可能成功的。 但是它们依然在不停的重试，一直消耗 CPU 的资源。
 并发安全 不会出现并发问题，那就可以说是并发安全的。
-参考（reference） 极客时间Go实战训练营 并发等待队列实现 ]]></content></entry><entry><title>队列（Golang 实现）</title><url>/post/computer-science/programming-language/golang/queue/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag><tag>queue(队列)</tag><tag>concurrent(并发)</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+参考 {极客时间}/Go 实战训练营并发等待队列实现 ]]></content></entry><entry><title>队列（Golang 实现）</title><url>/post/computer-science/programming-language/golang/queue/</url><categories><category>golang</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>golang</tag><tag>queue(队列)</tag><tag>concurrent(并发)</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 资料 {demo-golang}/demo/queue/ queue.drawio.html 并发安全队列 并发安全队列就是不会出现并发问题的队列。
 关于并发问题的一些东西在这篇里：并发问题阻塞队列和非阻塞队列 个人认为，一个队列是阻塞队列还是非阻塞队列，应该根据队列本身的设计判断。队列需不需要阻塞，是设计上决定的，和用锁还是用 CAS 是没关系的，这两个结构是为了解决并发问题的。
 如果设计队列的时候，队列有最大容量。而且队列本身的设计中有阻塞的逻辑。这样的队列就是阻塞队列。比如，在入队阶段，判断队列容量已满的时候，不是直接返回入队失败，而是等待队列空出位置后在入队，那么这里就需要设计阻塞的逻辑。
@@ -948,19 +1415,26 @@ JOIN SELECT 列 FROM JOIN。
 处理结果集 结果集的处理也不难，前面构造的元数据里不是已经有反方向的映射关系了嘛。先通过数据库返回的结果集里面的结果的字段名，结合元数据，把所有的变量类型先确定好。然按照变量类型构造一个接收数据库返回的结构，接收的时候注意顺序。
 成功接收到数据库的返回结果后，先通过元数据构造一个对应的空的结构体。然后通过数据库返回的字段名，结合元数据，反向去找结构体的属性。然后通过反射或者内存操作，把值塞到结构体对应的属性上去。
 全流程结束 到这里，构造元数据、生成 SELECT 语句、执行语句、处理返回值，就都处理完了。设计上的东西，看类图、流程图会更加直观。细节上的实现，直接看代码，这个靠说是说不太清楚的。
-]]></content></entry><entry><title>符号命名</title><url>/post/computer-science/programming-language/symbol_naming/</url><categories><category>programming-language(编程语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag></tags><content type="html">前言 实际开发中符号命名规则应该和团队的风格保持统一，这套符号命名规则是本人的个人喜好。如果访客您非要说不符合哪里哪里的规范，怎么怎么有问题，那么访客您说的都对。
-正文 命名 本人的符号（变量名、方法名）命名方式和主流的命名方式比起来有一些奇怪。区别主要在于各种各样标记类型的前缀。 声明的变量名和方法名、定义的类型名，都会带前缀。加前缀的目的，主要是为一些特殊的类型作标记，编码过程中引起重视。
-比如，一个 map，map 的内容是指向结构体的指针，前缀就是 m3p7s6（var m3p7s6user map[string]*User）。
-基本类型就不管了。比如，一个切片，切片的内容是 int 类型，前缀就是 s5（var s5UserId []int）。
-另外，如果是临时变量，t4 一定在最前面。
+]]></content></entry><entry><title>符号命名</title><url>/post/computer-science/programming-language/symbol_naming/</url><categories><category>programming-language(编程语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag></tags><content type="html">前言 实际开发中，符号命名规则应该和团队的风格保持统一，这套符号命名规则是我的个人喜好。 如果访客您非要说不符合哪里哪里的规范，怎么怎么有问题，那么访客您说的都对。
+正文 实际的项目中有可能有出入，因为，前后改过好几次，同时，不排除以后还会继续改。
+符号命名 我的符号（变量名、方法名）命名方式和主流的命名方式比起来有一些奇怪。区别主要在于各种各样标记类型的前缀。 声明的变量名和方法名、定义的类型名，都会带前缀。加前缀的目的，主要是为一些特殊的类型作标记，编码过程中引起重视。
+前缀都是什么意思 a5，array，数组； c7，channel，管道； c5，const，常量； d9，dimension，维度； f8，function，函数、方法； g6，global，全局； i9，interface，接口； l5，local，局部； m3，map，map； p7，pointer，指针； s5，slice，切片； s6，struct，结构体； t4，temp，临时； 前缀用法举例 var a5UserID []int，声明一个切片，切片的内容是 int。
+struct S6User {}、type S6User struct{}，声明一个结构体。
+var m3s6user map[string]S6User，声明一个 map，map 的内容是结构体。
+var m3s6p7user map[string]*S6User，声明一个 map，map 的内容是指向结构体的指针。
+int t4status，声明一个 int 临时变量。
+大写、小写、中划线、下划线 程序代码中的符号命名全部都用驼峰（camel case）。
+缓存命名、数据库命名全部都用蛇形（snake case）。
+命名目录时，两个或以上的单词用中划线连接。
 如果变量需要对外开放（声明为 public），则前缀全部为大写。
 如果变量不需要对外开放（声明为 protected、private），则前缀全部为小写。
-如果变量名是一个单词，则单词首字母用小写（var name string）。
-如果变量名是两个或以上的单词，则第一个单词首字母用小写，后面的单词首字母用大写（var s5UserId []int）。
-如果有前缀，则单词首字母可用小写也可用大写（var s5name, s5Name []string）。
-Golang 命名目录时，多单词用中划线连接。 import 引入时，多单词用下划线连接。 目录里的 hkn 后缀，用于回避关键字，比如：maphkn。 符号命名全部都用驼峰（camel case）。 数据库命名全部都用蛇形（snake case）。 符号命名前缀：
-t4，temp，临时变量； c5，const，常量； p7，pointer，指针； a5，array，数组； s5，slice，切片； m3，map，map； c7，channel，管道； s6，struct，结构体； i9，interface，接口； f8，function，方法； 版本号 版本号可能是 x.y 或者 x.y.z。大版本号从 2 开始，小版本号从 0 开始，以 2 为步长递增。
-第 1 版：v2.0.0（v2.0） 第 1 版小改一次：v2.0.2（v2.2） 第 1 版小改一次：v2.0.4（v2.4） 第 1 版大改一次：v2.2.0（v2.6） 第 1 版小改一次：v2.2.2（v2.8） 第 2 版：v4.0.0（v4.0） 通常 x.y 用的多，本人的各种 demo 代码版本一般情况下达不到需要使用 x.y.z 这样的规模。而且版本号一般不会超过 10，常见的是：v20、v22、v40、v200、v202、v220、v400。</content></entry><entry><title>使用 Docker 启动 MySQL</title><url>/post/computer-science/application/docker/mysql/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>application(应用)</tag><tag>docker</tag><tag>database(数据库)</tag><tag>mysql</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+如果变量名是一个单词，则单词首字母用小写（var username string）。
+如果变量名是一个单词而且有前缀，则单词首字母用小写（var s5username []string）。
+如果变量名是两个或以上的单词，则第一个单词首字母用小写，后面的单词首字母用大写（var userID int）。
+如果变量名是两个或以上的单词而且有前缀，则单词首字母用大写（var s5UserID []int）。
+golang 项目，目录里的 &amp;ldquo;hkn&amp;rdquo; 后缀，用于回避关键字，比如：maphkn。
+golang 项目，import 引入时，两个或以上的单词用下划线连接。
+版本号 我主要是各种原型验证项目会用到版本号，格式一般是 x.y，暂时达不到需要使用 x.y.z 这样的规模。 版本号从 0 开始，以 2 为步长递增，一般不会超过 10，常见的是：v00、v20、v22、v40、v42。</content></entry><entry><title>使用 Docker 启动 MySQL</title><url>/post/computer-science/application/docker/mysql/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>application(应用)</tag><tag>docker</tag><tag>database(数据库)</tag><tag>mysql</tag></tags><content type="html"><![CDATA[前言 实践的环境：
 CPU AMD64(x86_64) Windows 11 家庭版 Docker v20.10.17 正文 拉取镜像 先去 DockerHub 找想要的容器。直接搜索 mysql 就能找到，链接在这。
 如果不讲究，那直接用最上面提供的命令就可以了。如果想要某个版本，就点到 Tags 标签页里面去，找到想要的版本，然后用相应的命令。
 这里用的是 mysql8，输入命令后等着下载就好了。
@@ -974,22 +1448,7 @@ CPU AMD64(x86_64) Windows 11 家庭版 Docker v20.10.17 正文 拉取镜像 先�
 CPU AMD64(x86_64) Windows 11 家庭版 Docker v20.10.17 正文 拉取镜像 没啥特别的要求，这里直接拉最新的 RabbitMQ 镜像。
 &gt; docker pull rabbitmq latest: Pulling from library/rabbitmq Digest: sha256:a64d81498c47681cb797ce56c775a95aab751ebc21e90f007fdb45553e391cf9 Status: Image is up to date for rabbitmq:latest docker.io/library/rabbitmq:latest 启动容器 docker run -itd --name rabbitmq-dev -p 5672:5672 -p 15672:15672 rabbitmq &ldquo;-p 5672:5672 -p 15672:15672&rdquo;，注意这里有两个端口，5672 是服务的端口，15672 是 Web 管理界面的端口。 RabbitMQ 的 Web 管理界面 管理界面默认不是开启的，需要进入容器，使用下面的命令启用管理插件。
 &gt; rabbitmq-plugins enable rabbitmq_management Enabling plugins on node rabbit@c47a12f3024b: rabbitmq_management The following plugins have been configured: rabbitmq_delayed_message_exchange rabbitmq_management rabbitmq_management_agent rabbitmq_prometheus rabbitmq_web_dispatch Applying plugin configuration to rabbit@c47a12f3024b… The following plugins have been enabled: rabbitmq_management started 1 plugins. 插件激活后，无需重新启动节点，直接就可以通过浏览器进行访问了。默认的用户名和密码都是 &ldquo;guest&rdquo;。
-]]></content></entry><entry><title>关于帕里特档案馆和西柊慧音</title><url>/about/</url><categories/><tags/><content type="html">帕里特档案馆（重建中），是个个人档案馆。
-档案馆的内容主要是本人的学习笔记、对学到的东西的解释和思考、对实践过程的记录。
-这些玩意本质上是当时的我给以后的我的留言。它们不是教程，更不是论文。
-写它们的目的是，如果以后的我忘记了这块的内容，那么希望现在的我可以把以后的我教会。
-本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
-本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
-本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
-另外，如果访客您觉得毫无干货或者内容非常水，那么非常抱歉。
-站点基于 hugo 0.103.1 extended 版本
-搭建。
-使用的主题是 Hugo NexT
-。
-站点预计会部属在 github pages 和 gitee pages 上。
-如果有问题，欢迎批评指正。同时也欢迎建设性意见。
-和本人的交流方式，QQ：786907650；微信号：wxid_k3uqy9xeryn422。昵称和头像都是一样的。
-有意交流者，请至少备注是谁和从哪来。</content></entry><entry><title>【过期，留做对比】Golang 实现复杂的 Web 框架</title><url>/post/computer-science/programming-language/framework/web/golang/complex/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>router(路由)</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
+]]></content></entry><entry><title>【过期，留做对比】Golang 实现复杂的 Web 框架</title><url>/post/computer-science/programming-language/framework/web/golang/complex/</url><categories><category>framework(框架)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>framework(框架)</tag><tag>web</tag><tag>http</tag><tag>router(路由)</tag><tag>middleware(中间件)</tag><tag>golang</tag></tags><content type="html"><![CDATA[ CPU AMD64(x86_64) Windows 11 家庭版 go version go1.19 windows/amd64
 前言 在看这篇之前，建议先看下面这几篇：
 Golang 开启 HTTP 服务Golang 实现简单的 Web 框架 &ndash; router(路由)Golang 实现简单的 Web 框架 &ndash; middleware(中间件)路由树是 web 框架的核心。其他的功能，都是在路由树的基础上，再增加亿点点细节而已。
 资料 {web-framework-go}/v40 实现功能 主要实现： 路由树（静态、通配符、路径参数、正则表达式）、路由组 全局中间件、可路由的中间件 次要实现： 内存池（请求上下文对象复用） 服务管理（管理多个子服务） 优雅退出、退出时的回调方法 计划实现： 用户认证（中间件实现） 文件操作（上传、下载） 单元测试、集成测试、性能测试 设计文档 路由树 首先是路由树结点的设计。结点的基础数据包括：结点类型、这个路由结点代表的那段路径、命中路由之后的的处理逻辑。
@@ -1019,7 +1478,7 @@ func (p7this *ServiceManager) Shutdown() { ... log.Println(&#34;开始执行子�
 ]]></content></entry><entry><title>程序员的定位</title><url>/post/computer-science/programmer/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag></tags><content type="html">正文 程序员的自我修养 原则一： 技术、语言、框架，本质都是工具。工具的价值，在于提升使用者的效率。
 原则二: 如果一种语言或者一个框架很牛逼，那么荣耀属于创造它的人，与使用者没有半毛钱关系。 针对恰当的需求，使用恰当的技术、语言、框架，并且做到按时交付以及高质量，才是使用者的荣耀。
 原则三: 大部分人并不是天生有选择恐惧症，也不是天生的杠精。所有关于选择的迷惑或者争吵，大都因为： 1、标准不唯一，没有设定清晰的标准；2、标准之间没有优先级或者权重。
-参考（reference） 慕课网，隔壁王校长
+参考 {慕课网}/{隔壁王校长}/
 Go语言框架：Beego vs Gin</content></entry><entry><title>使用 Hugo 和 GitHub Pages 搭建站点</title><url>/post/computer-science/application/hugo/install_publish/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>application(应用)</tag><tag>Hugo</tag><tag>GitHub-Pages</tag></tags><content type="html"><![CDATA[前言 实践的环境：
 CPU AMD64(x86_64) Windows 11 家庭版 hugo 0.103.1 正文 Hugo 文档 github - gohugoio/hugo英文文档中文文档安装 Hugo 在 Hugo Releases页面下载对应操作系统的版本。这里下载的是 hugo_0.103.1_windows-amd64.zip。
 下载完成后，解压到想要的位置。这里使用的目录是 D:\hugo\bin。然后将这个目录添加到 系统变量 path 中（我的电脑 -&gt; 属性 -&gt; 高级系统设置 -&gt; 环境变量 -&gt; 系统变量 -&gt; path）。
@@ -1296,9 +1755,13 @@ context 是请求级别的，只有和请求有关系的数据才可以挂到上
 下面的测试，key 始终是 test_str_200000...test_str_400000（15 byte）。
 used_memory:763320 used_memory_human:745.43K # 添加 20w 个：max int32 used_memory:15660512 used_memory_human:14.00M used_memory:763472 used_memory_human:745.58K # 添加 20w 个：10 个 a used_memory:18860624 used_memory_human:17.00M used_memory:763624 used_memory_human:745.73K # 添加 20w 个：50 个 a used_memory:26860816 used_memory_human:25.00M used_memory:763776 used_memory_human:745.88K # 添加 20w 个：100 个 a used_memory:38060928 used_memory_human:36.00M used_memory:763928 used_memory_human:746.02K # 添加 20w 个：1000 个 a used_memory:222558232 used_memory_human:212.00M time data len per len ext len 9.3s 4b 74b 56b 9.4s 10b 90b 65b 9.2s 50b 130b 65b 9.0s 100b 186b 71b 9.4s 1000b 1108b 93b $ext len（除去有效数据的大小） = per len（用内存信息计算出来的平均大小） - data len（数据的大小） - key len（key 的大小）$
 从图表上看，value 变大时，会额外占用更多的空间。
-参考 Redis benchmark]]></content></entry><entry><title>Linux memory（Linux 内存）</title><url>/post/computer-science/operating-system/memory/linux_memory/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>memory(内存)</tag></tags><content type="html">资料 linux_memory.drawio.html 页式管理 Linux 内存主要采用的是页式内存管理，但是由于 Intel 处理器的发展史，Linux 无法避免分段管理。
+参考 Redis benchmark]]></content></entry><entry><title>linux 进程的内存布局</title><url>/post/computer-science/operating-system/memory/linux_memory/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>memory(内存)</tag></tags><content type="html"><![CDATA[资料 linux_memory.drawio.html 页式管理 Linux 内存主要采用的是页式内存管理，但是由于 Intel 处理器的发展史，Linux 无法避免分段管理。
 因为操作系统必须按照硬件结构设计，所以 Linux 的内核必须服从 CPU 的硬件结构。
-虚拟地址空间 在 Linux 中，虚拟地址空间被分为内核空间和用户空间。
+虚拟地址空间 linux 进程的虚拟内存会对内存空间进行划分，不同的区域存储不同的数据，有不同的权限。
+大概长这样：
+内核空间（kernel space） 栈（stack） 动态库的映射 堆（heap） 读写数据区，主要是程序数据，.data、.bss 等 只读数据区，主要是程序指令，.text、.init、.rodata 等 保留区 可执行文件运行的时候，代码和数据会被读取到内存中。 可执行的指令存储在代码区（&quot;.text&quot;）、全局变量和静态变量存储在数据区（&quot;.data&quot;）。
+静态分配（statically allocated）的内存在栈区，比如，函数里面的局部变量。 动态分配（dynamically allocated）的内存在堆区，比如，给指针申请一块内存。
+在 Linux 中，虚拟地址空间被分为内核空间和用户空间。
 32 位系统，内核空间占用 1G，位于最高处，剩下的 3G 是用户空间。 （见图：linux_memory.drawio.html 2-2） 64 位系统，内核空间和用户空间都是 128T，分别占据整个内存空间的最高和最低处，剩下的中间部分是未定义的。 （见图：linux_memory.drawio.html 2-4） 进程在用户态时，只能访问用户空间内存。只有进入内核态后，才可以访问内核空间的内存。
 虽然每个进程都各自有独立的虚拟内存，但是虚拟内存中的内核地址，关联的是相同的物理内存。
 这样，进程切换到内核态后，就可以很方便地访问内核空间内存。
@@ -1327,13 +1790,7 @@ malloc 在分配内存的时候，并不是按用户预期申请的字节数来�
 图片：linux-memory.drawio/6-2、内存块头信息 free 如果 malloc 通过 brk 方式申请的内存，free 内存后，堆内存还存在。这是因为内存会被放入 malloc 的内存池里，当进程再次申请内存时就可以直接复用。当进程退出后，操作系统就会回收进程的所有资源。
 如果 malloc 通过 mmap 方式申请的内存，free 释放内存后就会立刻归还给操作系统。也就是，如果是通过 brk 方式申请的内存，free 后，依然可以在 /proc/{pid}/maps 文件里看到，因为内存还没有被归还给操作系统。如果是通过 mmap 方式申请的内存，free 后，就看不到了。
 free 函数使用的时候只传入一个内存地址，没有传入内存大小。内存大小被存在了这个指针指向的内存块的内存块的头信息里。
-reference（参考） Crash Course Computer Science（计算机科学速成课） bilibili
-CrashCourse 字幕组
-Youtube 原视频
-19、内存&amp;amp;储存介质-Memory &amp;amp; Storage Linux 文档
-malloc(3) - allocate and free dynamic memory
-proc(5) - process information pseudo-filesystem
-《Linux\Unix 系统编程手册》 第 7 章</content></entry><entry><title>在 Windows 11 中，安装和配置 Visual Studio Code</title><url>/post/computer-science/application/visual-studio-code/windows/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>application(应用)</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+reference（参考） Crash Course Computer Science（计算机科学速成课） bilibiliCrashCourse 字幕组Youtube 原视频19、内存&amp;储存介质-Memory &amp; Storage Linux 文档malloc(3) - allocate and free dynamic memoryproc(5) - process information pseudo-filesystem《Linux\Unix 系统编程手册》 第 7 章 ]]></content></entry><entry><title>在 Windows 11 中，安装和配置 Visual Studio Code</title><url>/post/computer-science/application/visual-studio-code/windows/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>application(应用)</tag></tags><content type="html"><![CDATA[前言 实践的环境：
 CPU AMD64(x86_64) Windows 11 家庭版 Visual Studio Code 1.77.1 正文 Visual Studio Code 在笔记中，会简写为 VSCode。
 安装 VSCode 去 VSCode 官网下个安装包，然后装一下就好了。可能需要使用管理员权限运行安装包。
 工作区配置 建议 VSCode 按工作区去配置，这样不同项目互不影响。
@@ -1475,10 +1932,125 @@ If you don’t know what version to install and you’re getting started with Ru
 &gt; bundle add webrick Fetching gem metadata from https://rubygems.org/.......... Resolving dependencies... Fetching gem metadata from https://rubygems.org/.......... Resolving dependencies... 等待安装完成，应该就可以使用 jekyll serve 命令了。
 推送项目到 GitHub Pages GitHub Pages 官方文档：https://pages.github.com/按照要求建一个名字叫 {username}.github.io 仓库，然后把项目推上去就行了。
 然后就可以通过 https://{username}.github.io 访问了。
-]]></content></entry><entry><title>hosts 文件</title><url>/post/computer-science/operating-system/windows/hosts/</url><categories><category>windows</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>windows</tag></tags><content type="html">hosts 文件所在的目录：C:\Windows\System32\drivers\etc。
+]]></content></entry><entry><title>信号</title><url>/post/computer-science/operating-system/linux/signal/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>signal(信号)</tag></tags><content type="html"><![CDATA[前言 前置笔记： 进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收实践的环境：同 程序资料 {demo-c}/demo-in-linux/signal/ 正文 硬件中断 硬件中断（hardware interrupt）是一个由硬件设备产生的信号，它需要 CPU 关注。 硬件中断用于允许硬件设备与 CPU 进行通信，而不需要一直轮询或者等待 CPU 关注。
+当一个硬件设备产生一个中断时，它向中断控制器发送一个信号。 然后，中断控制器（interrupt controller）向 CPU 发送一个信号，中断其当前任务并处理该设备的请求。 然后，CPU 将停止执行其当前任务并处理中断，这包括暂时保存 CPU 的状态和执行中断处理例程（interrupt handler routine）。
+中断处理例程是一段由 CPU 响应中断而执行的代码。 它负责确定是哪个设备产生了中断，处理来自该设备的请求，并恢复 CPU 的状态，以便它能够恢复其先前的任务。
+硬件中断对于计算机系统的正常运行至关重要，因为它们允许硬件设备与 CPU 进行交互，而不会垄断 CPU 的资源。 产生中断的硬件设备的常见例子包括键盘、鼠标、网卡和硬盘。
+硬件中断可以大概分为下面几部分：中断请求，中断响应，保护现场，中断处理，恢复现场，中断返回。
+比如，CPU 正在跑一个程序。这时，按一下键盘（产生中断请求）。这个中断请求被发给 CPU 之后，CPU 会做出反应（中断响应）。
+这时，CPU 会先停下正在跑的程序，把程序现在的状态记下来（保护现场）。 然后，过来处理这个中断请求（中断处理）。这个时候 CPU 里跑的是另外一个程序（中断处理例程）。
+中断处理例程执行结束之后，需要把状态恢复到刚才停下的那个时候（恢复现场）。 这次中断就完事了，从中断处理例程中退出来（中断返回）。然后，就可以继续执行程序了。
+软件中断 软件中断（software interrupt）也被称为陷阱（trap）或异常（exception），是一个由程序产生的信号。 它使 CPU 中断其当前任务并执行一个特定的例程（routine）来处理中断。 与由外部硬件设备产生的硬件中断不同，软件中断是由 CPU 上运行的程序产生的。
+有两种主要的软件中断类型：同步（synchronous）和异步（asynchronous）。 同步中断是由 CPU 响应程序中的指令而产生的，比如，除以 0 或无效的内存访问。 异步中断是由外部事件产生的，比如，一个定时器或来自另一个进程的信号。
+当一个软件中断产生时，CPU 会保存程序的当前状态，包括指令指针和寄存器值，并跳转到一个特定的例程，称为中断处理程序或异常处理程序。 中断处理程序负责处理中断，其中可能涉及错误处理、内存管理或 I/O 操作等任务。
+中断处理完毕后，CPU 恢复程序的保存状态，并在被中断的地方恢复执行。 软件中断是程序与操作系统进行通信和执行需要特权访问的任务的重要机制，比如，系统调用或中断另一个进程。
+中断处理例程和中断处理程序的区别 中断处理例程（interrupt handler routine）和中断处理程序（interrupt handler）的关键区别在于， 中断处理例程是响应硬件设备的中断信号而执行的代码，而中断处理程序是管理中断信号并调用适当的中断处理例程的代码。
+信号对进程的影响 signal(7) Linux supports both POSIX reliable signals (hereinafter &ldquo;standard signals&rdquo;) and POSIX real-time signals. Signal dispositions Each signal has a current disposition, which determines how the process behaves when it is delivered the signal. The entries in the &ldquo;Action&rdquo; column of the table below specify the default disposition for each signal, as follows: &ndash; Term:Default action is to terminate the process. &ndash; Ign:Default action is to ignore the signal. &ndash; Core:Default action is to terminate the process and dump core (see core(5)). &ndash; Stop:Default action is to stop the process. &ndash; Cont:Default action is to continue the process if it is currently stopped. A process can change the disposition of a signal using sigaction(2) or signal(2). (The latter is less portable when establishing a signal handler; see signal(2) for details.)
+Using these system calls, a process can elect one of the following behaviors to occur on delivery of the signal: perform the default action; ignore the signal; or catch the signal with a signal handler, a programmer-defined function that is automatically invoked when the signal is delivered.
+每个信号都有一个当前处置，它决定了进程在收到信号时如何进程在收到信号时的行为。 下面是每种信号的默认处理方式：Term：进程终止；Ign：进程忽略； Core：进程终止并产生 &ldquo;core dump&rdquo; 文件；Stop：进程停止；Cont：进程继续执行
+进程可以更改信号的设置，信号发生时可以选择下面三种行为。 执行默认动作（default action，SIG_DFL）；忽略信号（ignore，SIG_IGN）；使用信号处理程序捕捉信号（signal hanlder）
+信号的产生 终端按下 Ctrl+C，产生 SIGINT 信号；终端按下 Ctrl+\ 产生 SIGQUIT 信号；终端按下 Ctrl+Z 产生 SIGSTOP 信号。 进程访问一些不存在的内存或是非法内存，会产生 SIGSEGV 中断信号 在终端中，使用 kill 命令发送 在进程中，使用 raise()、kill()、alarm() 等发送中断信号 子进程退出时会产生中断信号 Linux 中的信号 在 Linux 中，中断信号有64个，分位标准信号和实时信号。 可以通过 &ldquo;kill -l&rdquo; 命令可以查看 Linux 中的 64 个中断信号。其中，带 RT（real time）的就是实时信号。
+1) SIGHUP 2) SIGINT 3) SIGQUIT 4) SIGILL 5) SIGTRAP 6) SIGABRT 7) SIGBUS 8) SIGFPE 9) SIGKILL 10) SIGUSR1 11) SIGSEGV 12) SIGUSR2 13) SIGPIPE 14) SIGALRM 15) SIGTERM 16) SIGSTKFLT 17) SIGCHLD 18) SIGCONT 19) SIGSTOP 20) SIGTSTP 21) SIGTTIN 22) SIGTTOU 23) SIGURG 24) SIGXCPU 25) SIGXFSZ 26) SIGVTALRM 27) SIGPROF 28) SIGWINCH 29) SIGIO 30) SIGPWR 31) SIGSYS 34) SIGRTMIN 35) SIGRTMIN+1 36) SIGRTMIN+2 37) SIGRTMIN+3 38) SIGRTMIN+4 39) SIGRTMIN+5 40) SIGRTMIN+6 41) SIGRTMIN+7 42) SIGRTMIN+8 43) SIGRTMIN+9 44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13 48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12 53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9 56) SIGRTMAX-8 57) SIGRTMAX-7 58) SIGRTMAX-6 59) SIGRTMAX-5 60) SIGRTMAX-4 61) SIGRTMAX-3 62) SIGRTMAX-2 63) SIGRTMAX-1 64) SIGRTMAX 信号的使用 进程可以更改信号的设置。进程在收到信号后，如果编写了信号处理函数就执行信号处理函数，如果没有编写信号处理函数就会执行默认动作。
+代码示例：{demo-c}/demo-in-linux/signal/signal_handler.c
+程序运行起来之后，我们通过 &ldquo;kill -s&rdquo; 命令向进程发送信号。
+如果向程序发送 SIGUSR1，进程会执行默认动作，输出 &ldquo;User defined signal 1&rdquo;，然后停止。 如果向程序发送 SIGUSR2，进程会忽略信号，什么反应都没有。 如果向程序发送 SIGINT，进程会执行处理函数，输出 &ldquo;[info]:signal_no=2&rdquo;，然后继续执行。 测试信号处理函数时，当测试的是信号是 SIGSTOP 时，并不会像预期的那样输出 SIGSTOP 信号的值。 因为进程收到 SIGSTOP 后已经停止作业（并没有退出）。 如果这时再向进程发送 SIGCONT 信号。这时进程会恢复作业，并输出signal no=18，也就是收到的 SIGCONT 信号的值。
+通过 strace 命令追踪，可以得到下面的内容。进程确实收到了 SIGSTOP 信号和 SIGCONT 信号。
+--- SIGSTOP {si_signo=SIGSTOP, si_code=SI_USER, si_pid=84, si_uid=0} --- --- stopped by SIGSTOP --- --- SIGCONT {si_signo=SIGCONT, si_code=SI_USER, si_pid=84, si_uid=0} --- write(1, &#34;signal no=18\r\n&#34;, 14) = 14 信号和 waitpid() 父进程调用 waitpid() 的时候可以获得子进程推出的状态码。
+把状态码传给宏函数 WIFSIGNALED()，可以判断子进程是不是被信号终止的。 如果子进程是被信号终止的，WIFSIGNALED() 会返回一个非零值。
+当 WIFSIGNALED() 返回非零值时，可以用宏函数 WTERMSIG() 宏来提取信号的编号。
+代码示例：{demo-c}/demo-in-linux/signal/signal_and_waitpid.c
+信号和系统调用 signal(7) Interruption of system calls and library functions by signal handlers If a signal handler is invoked while a system call or library function call is blocked, then either: &ndash; the call is automatically restarted after the signal handler returns; or &ndash; the call fails with the error EINTR. &hellip; If a blocked call to one of the following interfaces is interrupted by a signal handler, then the call is automatically restarted after the signal handler returns if the SA_RESTART flag was used; otherwise the call fails with the error EINTR:
+如果进程正在执行一些系统调用，此时进程收到了一个信号，则该系统调用将会停止并返回错误， 错误码（errno）一般是 -1，错误（error）一般是 EINTR。
+如果进程正在执行系统调用，而且这个系统调用被阻塞。这时来了一个信号，结果会有两种。 第一种，进程的信号处理函数已经执行返回，但是系统调用返回错误，错误码为 EINTR。 第二种，进程的信号处理函数已经执行返回，这时系统调用会重新开始。
+系统调用返回错误 代码示例：{demo-c}/demo-in-linux/signal/sigaction_default.c
+[debug]:getpid()=4475 [info]:signal_no=2 [debug]:byte=-1,errno=4,error=Interrupted system call 这是终端的输出，我们可以看到，先执行了处理函数，然后 read() 系统调用输出了错误，然后进程就终止了。 我们用 strace 再观察一下。
+[00007febcad14992] read(0, 这是没有发送信号的时候。进程阻塞在 read() 系统调用这里。
+[00007febcad14992] read(0, 0x7ffd2b0b9ed0, 128) = ? ERESTARTSYS (To be restarted if SA_RESTART is set) &lt;5.907470&gt; [00007febcad14992] --- SIGINT {si_signo=SIGINT, si_code=SI_USER, si_pid=2304, si_uid=1000} --- [00007febcad14a37] write(1, &#34;[info]:signal_no=2\n&#34;, 19) = 19 &lt;0.000019&gt; [00007febcac42529] rt_sigreturn({mask=[]}) = -1 EINTR (Interrupted system call) &lt;0.000005&gt; [00007febcad14a37] write(1, &#34;[debug]:byte=-1,errno=4,error=Interrupted system call\n&#34;, 54) = 54 &lt;0.000006&gt; [00007febcaceaca1] exit_group(0) = ? [????????????????] +++ exited with 0 +++ 这是发送信号之后。进程收到信号之后，先执行了处理函数。 处理函数返回时，是 EINTR 错误。然后 read() 系统调用拿到了这个 EINTR 错误。
+系统调用重新开始 代码示例：{demo-c}/demo-in-linux/signal/sigaction_restart.c
+[debug]:getpid()=4491 [info]:signal_no=2 这是终端的输出，可以看到，先执行了处理函数，然后 read() 系统调用并没有和上面一样输出错误，而是继续执行。 我们用 strace 再观察一下。
+[00007f08c8714992] read(0, 这是没有发送信号的时候。进程阻塞在 read() 系统调用这里。
+[00007f08c8714992] read(0, 0x7ffcdcb49bd0, 128) = ? ERESTARTSYS (To be restarted if SA_RESTART is set) &lt;4.457116&gt; [00007f08c8714992] --- SIGINT {si_signo=SIGINT, si_code=SI_USER, si_pid=2304, si_uid=1000} --- [00007f08c8714a37] write(1, &#34;[info]:signal_no=2\n&#34;, 19) = 19 &lt;0.000077&gt; [00007f08c8642529] rt_sigreturn({mask=[]}) = 0 &lt;0.000074&gt; [00007f08c8714992] read(0, 这是发送信号之后。进程收到信号之后，先执行了处理函数。处理函数返回时，没有错误。然后 read() 系统调用重新执行了。
+信号屏蔽和未决信号 signal(7) A signal may be blocked, which means that it will not be delivered until it is later unblocked. Between the time when it is generated and when it is delivered a signal is said to be pending.
+信号可以被阻塞，这时信号不会交付（执行默认动作或者被交给信号处理函数），直到它不被阻塞。 信号处于生成和交付之间的状态，被称为未决。
+代码示例：{demo-c}/demo-in-linux/signal/signal_block.c
+程序大体的逻辑是，在 10 秒之内阻塞 SIGINT 信号，第 10 秒的时候解开 SIGINT 信号的阻塞。 然后，分别在 10 秒之内和 10 秒以后向进程发送 SIGINT 信号。
+[debug]:getpid()=4774 [info]:pendingSet:0000000000000000000000000000000 [info]:pendingSet:0000000000000000000000000000000 [info]:pendingSet:0000000000000000000000000000000 [info]:pendingSet:0000000000000000000000000000000 [info]:pendingSet:0100000000000000000000000000000 [info]:pendingSet:0100000000000000000000000000000 [info]:pendingSet:0100000000000000000000000000000 [info]:pendingSet:0100000000000000000000000000000 [info]:pendingSet:0100000000000000000000000000000 [info]:pendingSet:0100000000000000000000000000000 [info]:signal_no=2 [info]:pendingSet:0000000000000000000000000000000 [info]:pendingSet:0000000000000000000000000000000 [info]:signal_no=2 [info]:pendingSet:0000000000000000000000000000000 [info]:pendingSet:0000000000000000000000000000000 可以看到，在 10 秒之内和向进程发送 SIGINT 信号的时候，信号处理函数并没有输出。 未决信号里面从没有数据变成有数据，说明 SIGINT 信号被阻塞了。
+第 10 秒的时候，因为 SIGINT 信号的阻塞被解开，所以，信号处理函数开始工作了。处理完之后，未决信号里面就变成空的了。
+10 秒以后向进程发送 SIGINT 信号的时候，信号不会被阻塞，信号处理函数直接开始工作，未决信号里面不会有数据。
+小的知识点 SIGKILL、SIGSTOP signal(7) The signals SIGKILL and SIGSTOP cannot be caught, blocked, or ignored.
+SIGKILL 和 SIGSTOP 这两个信号不能被捕捉、阻止、忽略。
+SIGALRM 用 alarm() 定时触发 SIGALRM 信号，可以实现类似定时任务的结构。
+观察进程数据 signal(7) The /proc/[pid]/task/[tid]/status file contains various fields that show the signals that a thread is blocking (SigBlk), catching (SigCgt), or ignoring (SigIgn). (The set of signals that are caught or ignored will be the same across all threads in a process.) Other fields show the set of pending signals that are directed to the thread (SigPnd) as well as the set of pending signals that are directed to the process as a whole (ShdPnd). The corresponding fields in /proc/[pid]/status show the information for the main thread.
+和信号有关系的进程数据，可以通过 &ldquo;/proc/{pid}/status&rdquo; 文件观察。 SigQ：当前进程待处理信号数。SigPnd；线程的未决信号。ShnPnd；线程组的未决信号。 SigBlk；阻塞的信号。SigIgn；忽略的信号。SigCgt；捕捉的信号。
+这里观察一下上面的 {demo-c}/demo-in-linux/signal/signal_block.c 的运行情况。 为了观察方便可以拉长 signal_block.c 中的等待时间，方便进行操作。
+刚开始运行的时候是这样的。
+SigQ:	0/15243 SigPnd:	0000000000000000 ShdPnd:	0000000000000000 SigBlk:	0000000000000002 SigIgn:	0000000000000000 SigCgt:	0000000000000002 向进程发送 SIGINT 信号之后，变成了这样。
+SigQ:	1/15243 SigPnd:	0000000000000000 ShdPnd:	0000000000000002 SigBlk:	0000000000000002 SigIgn:	0000000000000000 SigCgt:	0000000000000002 解开 SIGINT 信号的阻塞之后，变成了这样。
+SigQ:	0/15243 SigPnd:	0000000000000000 ShdPnd:	0000000000000000 SigBlk:	0000000000000000 SigIgn:	0000000000000000 SigCgt:	0000000000000002 ]]></content></entry><entry><title>hosts 文件</title><url>/post/computer-science/operating-system/windows/hosts/</url><categories><category>windows</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>windows</tag></tags><content type="html">hosts 文件所在的目录：C:\Windows\System32\drivers\etc。
 hosts 文件是一个没有扩展名的系统文件，用于储存计算机网络中各节点信息，负责将主机名称映射到相应的 IP 地址。简单地说它的作用就是用来存储一些常用的网络域名和与其对应的 IP 地址。
 hosts 文件通常用于补充或取代网络中 DNS 的功能。和 DNS 不同的是，计算机的用户可以直接对 hosts 文件进行控制。
-当用户输入一个需要登录的网址时，系统就会先去 hosts 文件中查找。如果找到了就立即打开该网址，如果找不到就去 DNS 域名解析服务器中查找。</content></entry><entry><title>win10 升级 win11</title><url>/post/computer-science/operating-system/windows/win10-to-win11/</url><categories><category>windows</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>windows</tag></tags><content type="html"><![CDATA[1、首先，win10 需要是已经激活的。
+当用户输入一个需要登录的网址时，系统就会先去 hosts 文件中查找。如果找到了就立即打开该网址，如果找不到就去 DNS 域名解析服务器中查找。</content></entry><entry><title>进程间通信（IPC）</title><url>/post/computer-science/operating-system/linux/ipc/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>ipc(进程间通信)</tag></tags><content type="html"><![CDATA[前言 前置笔记：运行 ELF 文件实践的环境：同 程序正文 进程间通信 进程间通信（Inter Process Communication，IPC）指的是在同一台机器上的不同进程之间传播或交换信息。
+ipc 的方法主要包括 pipe（管道）和 ipc 对象（消息队列、信号量、共享内存）。管道包括匿名管道和命名管道。
+ipc 对象有两个标准，一个是比较老的 &ldquo;SYSTEM V&rdquo; 标准的消息队列、信号量、共享内存， 另一个是比较新的 POSIX 标准的消息队列、信号量、共享内存。
+管道 pipe(7) Pipes and FIFOs (also known as named pipes) provide a unidirectional interprocess communication channel. A pipe has a read end and a write end. Data written to the write end of a pipe can be read from the read end of the pipe.
+管道提供了一个单向的进程间通信通道。一个管道有一个读取端和一个写入端。 写入管道写入端的数据的数据可以从该管道的读取端读出。数据只能单向流动，数据从写入端流向读取端。
+管道依赖 linux 内核实现，管道的本质是在内核中的一块内存（也叫内核缓冲区）， 这块缓冲区中的数据存储在一个环形队列中，由于管道在内核区，我们不能直接对其操作。
+本质上是文件 I/O 操作。内核中管道两端分别对应两个文件描述符， 通过写端的文件描述符把数据写入管道中，通过读端的文件描述符将数据从管道中读出来， 读写管道的函数就是 linux 中的文件 I/O 函数。
+管道分为匿名管道和命名管道。匿名管道，没有可以提供给外部的标识，所以，一般用于父子进程之间。 命名管道，有可以提供给外部的标识，所以，可以用于非父子进程之间。
+匿名管道 pipe(7) A pipe is created using pipe(2), which creates a new pipe and returns two file descriptors, one referring to the read end of the pipe, the other referring to the write end. Pipes can be used to create a communication channel between related processes; see pipe(2) for an example.
+示例代码：{demo-c}/demo-in-linux/ipc/unnamed_pipe/unnamed_pipe.c
+命名管道 示例代码：
+父子进程：{demo-c}/demo-in-linux/ipc/named_pipes/parent_child.c 非父子进程读取：{demo-c}/demo-in-linux/ipc/named_pipes/pipe_read.c 非父子进程写入：{demo-c}/demo-in-linux/ipc/named_pipes/pipe_write.c &gt; file fifo fifo: fifo (named pipe) 可以使用 file 命令查看 fifo 的文件类型，可以看到这是个命名管道。
+在 win10 环境的 docker 环境的 linux 环境中创建 fifo 文件时会出现 &ldquo;Input/output error&rdquo; 报错。 这是因为 docker 目录是 win10 目录映射来的，创建不了 fifo 文件。 解决办是用 linux 环境中的目录，测试的时候可以先用 &ldquo;/tmp&rdquo; 目录。
+IPC 对象 ipc(2) ipc() is a common kernel entry point for the System V IPC calls for messages, semaphores, and shared memory. call determines which IPC function to invoke; the other arguments are passed through to the appropriate call.
+ipc 对象包括消息队列、信号量、共享内存。创建 ipc 对象时需要指定一个 key（键，标识符）。 key 是指 ipc 对象在操作系统内部的唯一标识，在多个进程通信时用作关联。
+ipc 相关的 linux 命令：ipcs、ipcrm。
+消息队列 消息队列的实现依赖 linux 内核，并且它的数据存储在内核中。
+示例代码：
+创建：demo_c/demo_linux_c/ipc/message_queue/msgget.c 发送：demo_c/demo_linux_c/ipc/message_queue/msgsnd.c 接收：demo_c/demo_linux_c/ipc/message_queue/msgrcv.c 控制：demo_c/demo_linux_c/ipc/message_queue/msgctl.c 创建一个消息队列。
+&gt; ./msgget.elf [debug]:mqId=0, errno=0, error=Success 消息队列创建完成后，可以通过 ipcs 命令查看，通过 key 字段可以找到创建的消息队列。 向消息队列发送消息后，used-bytes 字段会显示消息队列使用的大小，messages 字段会显示未处理消息的条数。
+&gt; ipcs ------ Message Queues -------- key msqid owner perms used-bytes messages 0x00001000 0 qqq 666 1024 0 发送一条消息。
+&gt; ./msgsnd.elf [debug]:msgsndResult=0 查看消息队列的情况，可以看到，里面有一条消息。
+&gt; ./msgctl.elf [debug]:msgctlResult=0, buf.msg_qnum=1 通过 ipcs 命令查看，可以看到，未处理消息的条数变成 1 了。
+&gt; ipcs ------ Message Queues -------- key msqid owner perms used-bytes messages 0x00001000 0 qqq 666 1024 1 接收一条消息。
+&gt; ./msgrcv.elf [debug]:msgrcvResult=1024, msg.mtext=hello, msg.mtype=1 查看消息队列的情况，可以看到消息已经被取走了。
+&gt; ./msgctl.elf [debug]:msgctlResult=0, buf.msg_qnum=0 通过 ipcs 命令查看，可以看到，未处理消息的条数变成 0 了。
+&gt; ipcs ------ Message Queues -------- key msqid owner perms used-bytes messages 0x00001000 0 qqq 666 0 0 信号量 信号量本质上是个计数器，linux 内核有相应的数据结构来维护。
+注意，这里操作的是信号量集合，信号量集合里面可以由一个或多个信号量。
+示例代码：
+创建：demo_c/demo_linux_c/ipc/semaphores/semget.c 控制：demo_c/demo_linux_c/ipc/semaphores/semctl.c 操作：demo_c/demo_linux_c/ipc/semaphores/semop.c 创建有一个信号量的信号量集合：
+&gt; ./semget.elf [debug]:semId=0, errno=0, error=Success 信号量创建完成后，可以通过 ipcs 命令查看，通过 key 字段可以找到创建的信号量。 设置信号量后，nsems 字段对应信号量集中信号量的个数。
+&gt; ipcs ------ Semaphore Arrays -------- key semid owner perms nsems 0x00001000 0 qqq 666 1 设置和读取信号量集合里的信号量：
+&gt; ./semctl.elf [debug]:SETVAL, semctlResult=0 [debug]:GETVAL, semctlResult=3 和消息队列的 msgctl 一样，信号量的 semctl 也有 IPC_STAT 、IPC_RMID 这两个参数，这里就不演示了。
+操作信号量集合里的信号量：
+&gt; ./semop.elf [debug]:SETVAL, semctlResult=0 [debug]:GETVAL, semctlResult=10 [debug]:semopResult=0 [debug]:GETVAL, semctlResult=8 一般最常用的信号量是二值信号量（0 和 1），用于进程间同步或是互斥操作。 二值信号量主要特点就是集合里只有一个信号量，并且信号量的值只有 0 和 1 这两个。
+对信号量进行加 1 叫做 V（vrijgeven），对它进行减 1 操作叫做 P（passeren）。 和操作系统信号量的 pv 操作是一样的。二值信号量主要用于进程间同步，保证数据的一致性，对关键核心代码做临界，控制共享内存。
+示例代码：demo_c/demo-in-linux/ipc/semaphores/passeren_vrijgeven.c
+共享内存 申请一块内存，进程间通过关联这块内存从而达到进程间通信的目的，它是 IPC 进程间通信中最快的。
+示例代码：
+创建：demo_c/demo_linux_c/ipc/shared_memory/shmget.c 连接、写入：demo_c/demo_linux_c/ipc/shared_memory/shmat.c 连接、读取、断开连接：demo_c/demo_linux_c/ipc/shared_memory/shmdt.c 创建共享内存：
+&gt; ./shmget.elf [debug]:shmId=2, errno=0, error=Success 共享内存创建完成后，可以通过 ipcs 命令查看，通过 key 字段可以找到创建的共享内存。
+&gt; ipcs ------ Shared Memory Segments -------- key shmid owner perms bytes nattch status 0x00001000 2 qqq 666 1024 0 连接共享内存、写入数据：
+&gt; ./shmat.elf [debug]:shmId=2, errno=0, error=Success 连接共享内存、读取数据、断开连接：
+&gt; ./shmdt.elf [debug]:shmId=2, errno=0, error=Success [info]:msg=hello [debug]:shmdtResult=0 参考 {CSDN}/{富贵的编程日记}/Linux快速入门之 管道（11）]]></content></entry><entry><title>命令行参数和环境参数</title><url>/post/computer-science/operating-system/cmd_env_param/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>c-programming-language</tag></tags><content type="html">前言 实践的环境：
+amd64（x86_64） windows 11 vmware workstation pro 16 ubuntu 22.04 linux version 5.19.0-41-generic gcc version 11.3.0 前置笔记：
+运行 ELF 文件
+资料 {demo-c}
+/demo-in-linux/cmd-env-param/ 正文 命令行参数和环境参数这两个东西不止 linux 系统里有，windows 系统里也有。这里在 linux 系统里进行演示。
+命令行参数就是在终端输入命令的时候，跟在后面的那一串东西，经常要用的。 环境参数这个一般是安装环境的时候直接配置好的，比如：windows 系统和 linux 系统里的 path 环境变量。
+命令行参数 ./cmd_param.elf aaa bbb ccc argc=4 argc=./cmd_param.elf argc=aaa argc=bbb argc=ccc main() 的 argc 参数的值就是命令行参数，包括执行命令和跟在后面的三个参数。
+环境参数 ./env_param.elf argc=1 envp=SHELL=/bin/bash envp=SESSION_MANAGER=local/qqq-virtual-machine:@/tmp/.ICE-unix/1155,unix/qqq-virtual-machine:/tmp/.ICE-unix/1155 envp=QT_ACCESSIBILITY=1 envp=COLORTERM=truecolor envp=XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg envp=SSH_AGENT_LAUNCHER=gnome-keyring envp=XDG_MENU_PREFIX=gnome- envp=GNOME_DESKTOP_SESSION_ID=this-is-deprecated envp=LANGUAGE=en_US: envp=LC_ADDRESS=zh_CN.UTF-8 envp=GNOME_SHELL_SESSION_MODE=ubuntu envp=LC_NAME=zh_CN.UTF-8 envp=SSH_AUTH_SOCK=/run/user/1000/keyring/ssh envp=XMODIFIERS=@im=ibus envp=DESKTOP_SESSION=ubuntu envp=LC_MONETARY=zh_CN.UTF-8 envp=GTK_MODULES=gail:atk-bridge envp=PWD=/mnt/hgfs/demo-c/demo-in-linux/cmd-env-param envp=LOGNAME=qqq envp=XDG_SESSION_DESKTOP=ubuntu envp=XDG_SESSION_TYPE=wayland envp=SYSTEMD_EXEC_PID=1192 envp=XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.AJ0Q61 envp=HOME=/home/qqq envp=USERNAME=qqq envp=IM_CONFIG_PHASE=1 envp=LC_PAPER=zh_CN.UTF-8 envp=LANG=en_US.UTF-8 envp=LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36: envp=XDG_CURRENT_DESKTOP=ubuntu:GNOME envp=VTE_VERSION=6800 envp=WAYLAND_DISPLAY=wayland-0 envp=GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/0895c5d6_5be1_4421_80fb_ba99d979e290 envp=GNOME_SETUP_DISPLAY=:1 envp=LESSCLOSE=/usr/bin/lesspipe %s %s envp=XDG_SESSION_CLASS=user envp=TERM=xterm-256color envp=LC_IDENTIFICATION=zh_CN.UTF-8 envp=LESSOPEN=| /usr/bin/lesspipe %s envp=USER=qqq envp=GNOME_TERMINAL_SERVICE=:1.115 envp=DISPLAY=:0 envp=SHLVL=1 envp=LC_TELEPHONE=zh_CN.UTF-8 envp=QT_IM_MODULE=ibus envp=LC_MEASUREMENT=zh_CN.UTF-8 envp=XDG_RUNTIME_DIR=/run/user/1000 envp=LC_TIME=zh_CN.UTF-8 envp=XDG_DATA_DIRS=/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop envp=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin envp=GDMSESSION=ubuntu envp=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus envp=LC_NUMERIC=zh_CN.UTF-8 envp=OLDPWD=/mnt/hgfs/demo-c/demo-in-linux envp=_=./env_param.elf main() 的 envp 参数的值就是环境参数，环境参数也可以通过 env 命令输出。</content></entry><entry><title>系统调用</title><url>/post/computer-science/operating-system/system_call/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>linux</tag><tag>c-programming-language</tag></tags><content type="html"><![CDATA[前言 前置笔记：运行 ELF 文件实践的环境：同 运行 ELF 文件正文 什么是系统调用 对于应用软件的开发人员来说，一般都是基于操作系统进行开发的。 一般来说，开发人员开发的应用程序是不能直接操作操作系统的，使用的是操作系统提供的系统接口。 开发人员通过操作系统提供的系统接口实现应用程序的功能。
+系统调用为用户级程序访问特权服务和资源提供了一种受控的安全方式，同时保持了操作系统的完整性和安全性。 它们在用户模式和内核模式的执行之间建立了一个界限，使用户程序能够以一种受控的方式与底层操作系统进行交互。
+用户进程通过系统调用才能去调用系统资源，当调用系统调用时，用户空间运行的程序会切换到内核空间中去运行。 当启动一个程序之后，程序必须借助操作系统提供的系统接口（系统调用、syscall）才能使用系统的相关资源（一般是硬件资源）。 通常需要系统调用的任务包括文件操作、网络通信、进程管理、内存分配和设备输入输出。
+进行系统调用的过程包括以下几个步骤：
+用户级程序在程序在用户模式下执行其代码，该模式下的权限受到限制，对系统资源的访问也受到限制。 当程序需要执行一个特权操作或访问一个系统资源时，就会触发一个系统调用。这通常是通过调用一个特定的系统调用来实现的。 系统调用触发了从用户模式到内核模式的过渡。在内核模式下，程序获得了对操作系统的全部权限和资源的访问权。 操作系统内核收到系统调用请求并验证其有效性。然后，内核会执行程序所要求的特定操作或服务。 一旦系统调用完成，操作系统将控制权返回给用户级程序，过渡到用户模式。 用户级程序从一个指定的位置（比如：特定的寄存器或内存位置），检索系统调用的结果或状态，然后，继续其执行自己的代码。 linux 中的系统调用 系统调用是在 linux 内核的源代码中定义的，而不是专门针对 Ubuntu 的。 linux 内核的源代码，包括系统调用的定义，可以在 &ldquo;/usr/src/linux&rdquo; 目录下找到。
+c 库的系统调用通常位于 &ldquo;/usr/include/unistd.h&rdquo; 文件中。 这个头文件包含了系统调用的函数原型和定义。它会根据系统的架构，加载不同的头文件。
+汇编语言、高级语言（c/c++、java、golang）、脚本语言（php、python、nodejs）在运行的时候最终都是调用的系统调用。 这些系统调用看上去是 c 语言风格的定义，但是，程序最终变成汇编代码、机器码的时候是一样的。 这点反过来想比较好理解，芯片是固定的，不可能应付各式各样的编程语言，所以，只能是各式各样的编程语言最终都变成一样的机器语言。
+下面是从头文件中节选的一部分部分，就是 read() 和 write() 的定义，和在线文档上是一样的。
+/* Read NBYTES into BUF from FD. Return the number read, -1 for errors or 0 for EOF. This function is a cancellation point and therefore not marked with __THROW. */ extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur __fortified_attr_access (__write_only__, 2, 3); /* Write N bytes of BUF to FD. Return the number written, or -1. This function is a cancellation point and therefore not marked with __THROW. */ extern ssize_t write (int __fd, const void *__buf, size_t __n) __wur __attr_access ((__read_only__, 2, 3)); 我这里把在线文档上的内容也放到这里，可以对比起来看一下。
+read(2) read - read from a file descriptor #include &lt;unistd.h&gt; ssize_t read(int fd, void *buf, size_t count);
+write(2) write - write to a file descriptor #include &lt;unistd.h&gt; ssize_t write(int fd, const void *buf, size_t count);
+]]></content></entry><entry><title>win10 升级 win11</title><url>/post/computer-science/operating-system/windows/win10-to-win11/</url><categories><category>windows</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>windows</tag></tags><content type="html"><![CDATA[1、首先，win10 需要是已经激活的。
 2、然后，需要把 win10 升级到最新版本。位置在：开始菜单=&gt;设置=&gt;更新和安全=&gt;Windows 更新=&gt;检查更新。一直升级到提示可以更新 win11 为止，这个页面上会提示电脑已满足升级的要求。
 3、去 microsoft（微软）官网的 win11 下载页面下一个 &ldquo;Windows 11 安装助手&rdquo;（Windows11InstallationAssistant.exe）。
 4、双击 &ldquo;Windows 11 安装助手&rdquo;（Windows11InstallationAssistant.exe），按照提示一路安装就行。大概流程是：下载=&gt;安装=&gt;重启。下载和安装两个步骤都很花时间，最后会重启好几次。
@@ -1662,7 +2234,9 @@ MESI 是 4 个单词的缩写：Modified（已修改）、Exclusive（独占）�
 独占和共享状态都代表缓存块里的数据是干净的，和内存里面的数据是一致性的。
 独占状态的时候，数据只存储在一个 CPU 核心的缓存里，而其他 CPU 核心的缓存没有该数据。这个时候，不存在缓存一致性的问题。所以可以直接自由地写入，而且不需要通知其他 CPU 核心。
 在独占状态下的数据，如果有其他核心从内存读取了相同的数据到各自的缓存，那么这个时候，独占状态下的数据就会变成共享状态。
-共享状态代表着相同的数据在多个 CPU 核心的缓存里都有，所以当要更新缓存里面的数据的时候，不能直接修改，而是要先向所有的其他 CPU 核心广播一个请求，要求先把其他核心的缓存中对应的缓存块标记为已失效状态，然后再更新当前缓存里面的数据。</content></entry><entry><title/><url>/post/computer-science/programming-language/framework/web/golang/beego/</url><categories/><tags/><content type="html"><![CDATA[beego框架 2021-11-17 go-1.17 bee-v1.12.3 beego-v1.12.3 安装bee工具 bee工具是一个为了协助快速开发beego项目而创建的项目。
+共享状态代表着相同的数据在多个 CPU 核心的缓存里都有，所以当要更新缓存里面的数据的时候，不能直接修改，而是要先向所有的其他 CPU 核心广播一个请求，要求先把其他核心的缓存中对应的缓存块标记为已失效状态，然后再更新当前缓存里面的数据。</content></entry><entry><title/><url>/post/computer-science/operating-system/memory/ptrace/</url><categories/><tags/><content type="html">在用ptrace跟踪另外一个进程，寻找目标数据时，可能会在目标进程内存中多个位置找到目标数据，可能会有3个地方
+变量本体，就是变量所在的位置； 堆栈框架，比如当这个变量定义在main函数里面的时候，main函数的堆栈框架里也可能会出现； 寄存器，在执行过程中，数据可能会暂时存储在cpu的寄存器中
+当使用ptrace读取和修改目标进程的内存时，需要注意，读取和写入数据的单位是一个long 读取的时候想要读的是一个int，但是返回的时候会带着这个int后面的四个字节 修改的时候也需要注意，先把目标位置上的8个字节读出来，然后修改需要修改的部分，然后把八个字节完整的放回去，要不然会出错</content></entry><entry><title/><url>/post/computer-science/programming-language/framework/web/golang/beego/</url><categories/><tags/><content type="html"><![CDATA[beego框架 2021-11-17 go-1.17 bee-v1.12.3 beego-v1.12.3 安装bee工具 bee工具是一个为了协助快速开发beego项目而创建的项目。
 通过bee，可以很容易的进行beego项目的创建、热编译、开发、测试、和部署。
 &gt; go get github.com/beego/bee go: downloading github.com/beego/bee v1.12.3 go: downloading gopkg.in/yaml.v2 v2.3.0 go: downloading github.com/fsnotify/fsnotify v1.4.9 go: downloading github.com/gadelkareem/delve v1.4.2-0.20200619175259-dcd01330766f go: downloading github.com/gorilla/websocket v1.4.2 go: downloading github.com/lib/pq v1.7.0 go: downloading github.com/davecgh/go-spew v1.1.1 go: downloading github.com/flosch/pongo2 v0.0.0-20200529170236-5abacdfa4915 go: downloading github.com/pelletier/go-toml v1.7.0 go: downloading github.com/smartwalle/pongo2render v1.0.1 go: downloading github.com/spf13/viper v1.7.0 go: downloading github.com/astaxie/beego v1.12.1 go: downloading golang.org/x/sys v0.0.0-20191005200804-aed5e4c7ecf9 go: downloading github.com/hashicorp/hcl v1.0.0 go: downloading github.com/magiconair/properties v1.8.1 go: downloading github.com/mitchellh/mapstructure v1.1.2 go: downloading github.com/spf13/afero v1.1.2 go: downloading github.com/spf13/cast v1.3.0 go: downloading github.com/spf13/jwalterweatherman v1.0.0 go: downloading github.com/spf13/pflag v1.0.3 go: downloading github.com/subosito/gotenv v1.2.0 go: downloading gopkg.in/ini.v1 v1.51.0 go: downloading go.starlark.net v0.0.0-20190702223751-32f345186213 go get: installing executables with &#39;go get&#39; in module mode is deprecated. To adjust and download dependencies of the current module, use &#39;go get -d&#39;. To install using requirements of the current module, use &#39;go install&#39;. To install ignoring the current module, use &#39;go install&#39; with a version, like &#39;go install example.com/cmd@latest&#39;. For more information, see https://golang.org/doc/go-get-install-deprecation or run &#39;go help get&#39; or &#39;go help install&#39;. go get: added github.com/beego/bee v1.12.3 安装beego &gt; go get github.com/astaxie/beego go: downloading github.com/astaxie/beego v1.12.3 go: downloading golang.org/x/net v0.0.0-20190620200207-3b0461eec859 go: downloading github.com/prometheus/procfs v0.1.3 go: downloading golang.org/x/sys v0.0.0-20200615200032-f1bc736245b1 go: downloading github.com/cespare/xxhash v1.1.0 go: downloading github.com/peterh/liner v1.0.1-0.20171122030339-3681c2a91233 go get: upgraded github.com/astaxie/beego v1.12.1 =&gt; v1.12.3 ]]></content></entry><entry><title/><url>/post/computer-science/programming-language/golang/module/</url><categories/><tags/><content type="html"><![CDATA[使用 go module 2021-07-16 go-1.15 go module是官方自带的go依赖管理库，在1.13版本正式推荐使用。
 go1.13+的版本，判断module开不开启的依据是，根目录下有没有go.mod文件。
