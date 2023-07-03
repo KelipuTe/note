@@ -22,6 +22,8 @@ tags:
 
 笔记里的代码都在 [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/memory/ 目录下。
 
+图在 <a href="/drawio/computer-science/operating-system/memory/memory.drawio.html">memory.drawio.html</a> 里面。
+
 ## 正文
 
 ### 内存地址
@@ -168,7 +170,7 @@ $3 = (int *) 0x555555558010 <globalI>
 
 如果在代码块里直接返回全局变量会怎么样呢。
 
-代码：return_global_var.c
+代码：return_global.c
 
 从 `readelf -s` 的结果里，找到代码块（methodA）和数据（globalI）的信息。
 
@@ -195,6 +197,8 @@ globalI 是全局变量，methodA 的代码里直接返回了全局变量，这�
 
 ### 栈
 
+代码：stack.c
+
 静态分配的内存在栈区，比如，函数里面的局部变量，每次执行的时候都不一样。
 
 ```text
@@ -214,6 +218,8 @@ $1 = (int *) 0x7fffffffdeb4
 
 ### 堆
 
+代码：heap.c
+
 动态分配的内存在堆区，比如，给指针申请一块内存。
 
 ```text
@@ -232,6 +238,8 @@ $1 = (int *) 0x5555555596b0
 0x555555559000（堆首地址） < 0x5555555596b0（变量地址） < 0x55555557a000（堆尾地址）
 
 ### 指针
+
+代码：pointer.c
 
 首先定义一个变量，比如，定义一个 int 类型的。
 
@@ -266,7 +274,11 @@ $6 = (int ***) 0x7fffffffdeb0
 0x7fffffffdeb0:	0xa8	0xde	0xff	0xff	0xff	0x7f	0x00	0x00
 ```
 
+我画了个图，**memory.drawio.html 2-2、代码的运行结果在内存里的结构，以及得到结果的过程**
+
 ### 字符串
+
+代码：string.c
 
 ```text
 &strA=0x7fffffffdea0,strA=stringA
@@ -342,6 +354,8 @@ malloc_usable_size() 返回由 malloc() 或其他内存分配函数分配的内�
 
 ### 数组
 
+代码：array.c
+
 一维数组或者多维数组的变量都指向数组所占内存单元的起始地址。
 
 ```text
@@ -401,6 +415,8 @@ $5 = (int (*)[2][2]) 0x5555555596d0
 当指针声明为 `(int *)` 的时候，指针 +1，移动的是 4 个字节，也就是一个 int 的长度。
 
 ### 结构体
+
+代码：struct.c
 
 ```text
 555555559000-55555557a000 rw-p 00000000 00:00 0                          [heap]
