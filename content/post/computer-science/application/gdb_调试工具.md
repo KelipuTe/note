@@ -2,7 +2,7 @@
 draft: false
 date: 2023-07-06 08:00:00 +0800
 title: "GDB 调试工具"
-summary: "GDB 调试工具"
+summary: "GDB 调试工具（笔记片段）"
 toc: true
 
 categories:
@@ -106,7 +106,7 @@ step 默认只会进入程序员编写的函数，不会进入 printf() 这样�
 ### 调试函数
 
 - info functions，输出所有函数。
-- info functions {模糊函数名str}，输出所有含有 str 的函数。
+- info functions {模糊函数名 str}，输出所有含有 str 的函数。
 - whatis {函数名}，打印函数的定义。
 
 - where，输出函数的调用栈。
@@ -133,6 +133,7 @@ frame {栈帧编号 n}，选择栈帧。
 
 - break {行号 n}，简写 b，在第 n 行代码上打一个断点。
 - break {*(内存地址)}，在地址上打断点。
+- break {*(函数名)}，在函数名上打断点，函数名会指向内存地址。
 - tbreak {行号 n}，打一个临时断点。
 
 info breakpoints，简写 info b 或者 i b，显示断点信息。
@@ -171,11 +172,11 @@ ptype {变量名}，打印变量的类型。
 - set print array-indexes on/off，打印数组的时候带不带下标。
 - set print pretty on/off，打印结构体的时候有没有格式。
 
-============
-display 变量名，打印变量，只要变量在当前运行的函数栈里面，就会一直打印
-info display，查看处于 display 的变量，会输出变量编号
-undisplay {变量编号}，取消变量
-============
+display {变量名}，打印变量。只要变量在当前运行的函数栈里面，每执行一条指令，就会打印一次所有在 display 里面的变量。
+
+info display，查看所有在 display 里面的变量，会输出变量编号。
+
+undisplay {变量编号}，取消打印变量。
 
 ### 输出内存地址上的数据
 
@@ -193,7 +194,28 @@ FTM 的格式可以理解成，{输出次数 n}{显示格式 f}{数据长度 s}�
 
 这个格式 print 也可以用。
 
-============
+### 汇编
+
+disassemble，简写 disas，输出程序的汇编代码。
+disassemble {函数名|内存地址}，也可以这么用。
+
+- "-m"，输出汇编和对应的源码
+- "-r"，输出汇编和对应的 16 进制机器码
+
+- {show|set} disassembly-flavor {风格}，{查看|设置}输出汇编代码的风格。风格有 att 和 intel。
+- {show|set} disassemble-next-line {on|off|auto}，反汇编下一行代码。
+
+si，执行汇编一条指令。
+
+- info registers，简写 i r，查看寄存器的值，这里一般显示的是部分的。
+- info all-registers，查看所有寄存器的值。
+- info registers {寄存器名字}，输出寄存器的值
+- p {寄存器名字}，输出寄存器的值
+
+- layout {asm|regs|split|src}，显示汇编调试窗口，{汇编代码|寄存器+汇编代码|源码+汇编代码|源码}。
+- tui {reg all|float}，显示{所有的|浮点数}寄存器组。
+
+============没整理
 
 ### 调试多进程
 
@@ -221,27 +243,5 @@ show/set schedule-locking on/off/step 调试一个线程的时候，其他的线
 thread apply all bt full 显示所有线程的局部变量
 
 thread apply 线程编号 命令，可以让命令单独作用于某个线程
-
-### 汇编
-
-disassemble，简写 disas，输出程序的汇编代码。
-disassemble {函数名|内存地址}，也可以这么用。
-
-- "-m"，输出汇编和对应的源码
-- "-r"，输出汇编和对应的 16 进制机器码
-
-- {show|set} disassembly-flavor {风格}，{查看|设置}输出汇编代码的风格。风格有 att 和 intel。
-- {show|set} disassemble-next-line {on|off|auto}，反汇编下一行代码。
-
-si，执行汇编一条指令
-
-- info registers，简写 i r，查看寄存器的值，这里一般显示的是部分的。
-- info all-registers，查看所有寄存器的值。
-
-- info registers {寄存器名字}，输出寄存器的值
-- p {寄存器名字}，输出寄存器的值
-
-- layout {asm|regs|split|src}，显示汇编调试窗口，{汇编|寄存器+汇编|源码+汇编|源码}。
-- tui {reg all|float}，显示{所有的|浮点数}寄存器组。
 
 ============
