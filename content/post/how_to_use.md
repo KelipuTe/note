@@ -17,8 +17,16 @@ toc: true
 如果涉及具体的操作，那前言会说明实践的环境。如果笔记是一个系列的，那前言会说明需要那些前置知识。
 
 如果笔记里面涉及到了代码或者图，通常在文本的最前面会有一个标题为 **资料** 的部分。
+
 如果是类似 "{xxx}/xxx/xxx/" 这种格式的，就是个人项目中的程序代码，需要去 github 上查看。
-如果是类似 "xxx.drawio.html" 这种格式的，就是图，直接打开就可以预览。
+仓库地址我统一放在这里了，笔记里面只会写仓库名字，不会再写仓库地址。
+
+- [KelipuTe](https://github.com/KelipuTe)
+- [{demo-c}](https://github.com/KelipuTe/demo-c)
+- [{demo-assembly}](https://github.com/KelipuTe/demo-assembly)
+- [{demo-golang}](https://github.com/KelipuTe/demo-golang)
+
+如果是类似 "xxx.drawio.html" 这种格式的，就是示意图，直接打开就可以预览。
 
 关于我的个人项目中的符号命名，详见 [符号命名](/post/computer-science/programming-language/symbol_naming) 这一篇。
 
