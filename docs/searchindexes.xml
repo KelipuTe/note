@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>访客如何使用档案馆</title><url>/post/how_to_use/</url><categories/><tags/><content type="html"><![CDATA[关于访客如何使用档案馆 笔记内容分为三个部分：文本；程序代码（借助 github）；图（借助 draw.io）。
 如果笔记涉及到具体的操作或者笔记是一个系列的，通常在文本的最前面会有一个标题为 前言 的部分。 如果涉及具体的操作，那前言会说明实践的环境。如果笔记是一个系列的，那前言会说明需要那些前置知识。
-如果笔记里面涉及到了代码或者图，通常在文本的最前面会有一个标题为 资料 的部分。 如果是类似 &ldquo;{xxx}/xxx/xxx/&rdquo; 这种格式的，就是个人项目中的程序代码，需要去 github 上查看。 如果是类似 &ldquo;xxx.drawio.html&rdquo; 这种格式的，就是图，直接打开就可以预览。
+如果笔记里面涉及到了代码或者图，通常在文本的最前面会有一个标题为 资料 的部分。
+如果是类似 &ldquo;{xxx}/xxx/xxx/&rdquo; 这种格式的，就是个人项目中的程序代码，需要去 github 上查看。 仓库地址我统一放在这里了，笔记里面只会写仓库名字，不会再写仓库地址。
+KelipuTe{demo-c}{demo-assembly}{demo-golang}如果是类似 &ldquo;xxx.drawio.html&rdquo; 这种格式的，就是示意图，直接打开就可以预览。
 关于我的个人项目中的符号命名，详见 符号命名这一篇。
 如果参考了外部资料，通常在笔记的最后面会有一个标题为 参考 的部分。
 ]]></content></entry><entry><title>计算机科学相关笔记的导航</title><url>/post/computer-science/computer_science/</url><categories><category>computer-science(计算机科学)</category></categories><tags><tag>computer-science(计算机科学)</tag></tags><content type="html">正文 本篇是计算机科学相关笔记的导航。
@@ -36,13 +38,320 @@ Golang核心高级
 {51CTO学堂}/{可用行师}/
 内存与数据精讲
 {51CTO学堂}/{可用行师}/
-内存与数据二</content></entry><entry><title>关于</title><url>/about/</url><categories/><tags/><content type="html">帕里特档案馆（重建中），是个个人档案馆。 档案馆的内容主要是本人的学习笔记、对学到的东西的解释和思考、对实践过程的记录。
-这些玩意本质上是当时的我给以后的我的留言。它们不是教程，更不是论文。 写它们的目的是，如果以后的我忘记了这块的内容，那么希望现在的我可以把以后的我教会。 如果访客您觉得毫无干货或者内容非常水，那么非常抱歉。
+内存与数据二</content></entry><entry><title>浮点数（笔记片段）</title><url>/post/computer-science/programming-language/assembly/%E6%B5%AE%E7%82%B9%E6%95%B0/</url><categories><category>assembly-language(汇编语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>assembly-language(汇编语言)</tag></tags><content type="html">前言 实践的环境：同 x86-64_架构
+资料 示意图：
+assembly.drawio.html 正文 x87 浮点数 基本架构手册第 8 章
+这里主要看的是 x87 浮点数相关的内容。
+基本架构手册 8.1.2 节
+这里主要看的是 x87 浮点数的寄存器栈相关的内容。
+移动数据 fld、fild 把数据压入 fpu 栈。浮点数用 fld，整数用 fild。
+每次入栈后，st(0) 都会指向新入栈的元素。
+示意图：assembly.drawio.html 4-2
+fldz、fld1、fldpi 入栈 0.0；入栈 1.0；入栈 pi；
+fst、fstp、fist、fistp 把 st(0) 中的数据移动到目标操作数上去。
+浮点数用 fld、fstp，整数用 fist、fistp。
+fstp、fistp 附带弹栈操作。
+fcomvcc 测试 eflags 的标志位，如果为真，则将源操作数移至目标操作数 源操作数始终是 st(i) 之一，目标操作数始终是 st(0)
+finit 将 fpu 的控制寄存器、状态寄存器、标记寄存器、指令指针寄存器、数据指针寄存器设置为默认状态。 fpu 控制寄存器设置为 037fh（四舍五入，屏蔽所有异常，64 位精度）。状态寄存器清零（未设置异常标志，top 设置为 0） 寄存器堆栈中的数据寄存器保持不变，但全部标记为空（11b）。指令指针寄存器和数据指针寄存器都被清空。
+四则运算 fadd、faddp、fiadd 浮点数加法
+无操作数形式：将 st(1) 加上 st(0)，结果放在 st(1)，然后弹栈。 单操作数形式：将 st(0) 加上源操作数，结果放在 st(0)。 双操作数形式：将 st(i) 加上 st(0)，结果放在 st(i)；或者将 st(0) 加上 st(i)，结果放在 st(0)。 浮点数用 fadd、faddp；整数用 fiadd。
+faddp 附带弹栈操作；
+fsub、fisub、fsubp 浮点数减法
+无操作数形式：将 st(1) 减去 st(0)，结果放在 st(1)，然后弹栈。 单操作数形式：将 st(0) 减去源操作数，结果放在 st(0)。 双操作数形式：将 st(i) 减去 st(0)，结果放在 st(i)；或者将 st(0) 减去 st(i)，结果放在 st(0)。 浮点数用 fsub、fsubp；整数用 fisub。
+fsubp 附带弹栈操作；
+fimul、fimul、fmulp 浮点数乘法
+无操作数形式：将 st(1) 乘上 st(0)，结果放在 st(1)，然后弹栈。 单操作数形式：将 st(1) 乘上源操作数，结果放在 st(0)。 双操作数形式：将 st(i) 乘上 st(0)，结果放在 st(i)；或者将 st(0) 乘上 st(i)，结果放在 st(0)。 浮点数用 fimul、fmulp；整数用 fimul。
+fmulp 附带弹栈操作；
+fdiv、fidiv、fdivp 浮点数除法
+无操作数形式：将 st(1) 除以 st(0)，结果放在 st(1)，然后弹栈。 单操作数形式：将 st(1) 除以源操作数，结果放在 st(0)。 双操作数形式：将 st(i) 除以 st(0)，结果放在 st(i)；或者将 st(0) 除以 st(i)，结果放在 st(0)。 浮点数用 fdiv、fdivp；整数用 fidiv。
+fdivp 附带弹栈操作；
+浮点数比较 fcom、fcomp、fcomi、fcomip 比较两个操作数。
+fcom、fcomp 指令有两种形式。
+无操作数形式，将 st(0) 和 st(1) 进行比较。 单操作数形式，将源操作数和 st(0) 进行比较。 根据比较结果设置 fpu 中的 c0、c2、c3 标志位。一般和 fstsw、sahf 一起用。
+fcomi、fcomip 进行比较之后，会根据比较结果设置 eflags 中的 zf、pf、cf 标志位
+fcomp、fcomip 附带弹栈操作
+fstsw、sahf fstsw，将 fpu 中的标志位存储到目标操作数。目标操作数一般是 ax。
+sahf，用 ah 的值（ax 的高 8 位）设置 eflags 中的 sf、zf、af、pf、cf 标志位。
+其他操作 frndint 根据当前的舍入模式，将 st(0) 舍入为最接近的整数值，结果存入 st(0)。
+fabs、fchs fabs，对 st(0) 取绝对值。
+fchs，把 st(0) 的符号反转。
+fsqrt 计算 st(0) 的平方根，结果存入 st(0)。
+fsin、fcos fsin，计算 st(0) 的正弦近似值，结果存入 st(0)。
+fcos，计算 st(0) 的余弦近似值，结果存入 st(0)。
+源操作数的单位必须是弧度，范围是 [-2^63, +2^63]。</content></entry><entry><title>函数和库（笔记片段）</title><url>/post/computer-science/programming-language/assembly/%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%93/</url><categories><category>assembly-language(汇编语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>assembly-language(汇编语言)</tag></tags><content type="html"><![CDATA[前言 实践的环境：同 x86-64_架构资料 笔记里的代码在：
+{demo-assembly}/demo-in-linux/function/ {demo-assembly}/demo-in-linux/library/ 示例代码：
+打印命令行参数和环境变量。 打印全局变量的数组。 打印全局变量的结构体。 示意图：
+assembly.drawio.html 正文 函数 函数和代码块是不一样的。函数用的是 call 指令，而代码块用的是 jmp 指令。 使用 jmp 指令的时候，除了跳转不会有别的动作。使用 call 指令的时候，除了跳转，还有一些别的动作。
+函数这里还有个堆栈的概念。堆栈是操作系统分配给进程或线程的一块连续的内存空间。 它的主要功能有两个，一个是用于函数内部临时存储数据，另一个是用于函数间传递参数。
+和堆栈有关系的指令就两个 push（入栈） 和 pop（出栈）。 每 push 或者 pop 一次，rsp 寄存器的值就会变一次。在 64 位的系统上，一次移动 8 个字节。 push 的时候 rsp 的值变小（栈顶往上移动，反映在内存上就是内存地址变小），pop 就是 push 反过来。
+当调用 call 进入一个函数的时候，会把 call 的下一行指令的地址 push 到堆栈。 然后，把 rip 修改成函数第一行指令的地址。下面执行的时候，就是函数的指令了。
+当函数执行完毕，执行 ret 指令的时候。会从堆栈中把下一行指令的地址 pop 出来，然后，赋值给 rip。 这样 rip 就回到 call 的下一行指令上去了。就可以继续往下执行代码了。
+示意图：assembly.drawio.html 8-2
+函数的参数 函数的参数可以用寄存器、全局变量、堆栈进行传递。
+用寄存器的问题在于，谁都能对寄存器上的数据进行修改。 用全局变量的问题在于，谁都能对全局变量进行修改。 这两个很类似，都用全局变量的概念来理解就好。
+用堆栈也可以，但是，需要知道数据的大小和在内存上的具体位置。
+函数的约定 X86_calling_conventions在页面里找到 System_V_AMD64_ABI 这一条，这个是 64 位 linux 系统的函数约定。
+64 位整数用 rdi、rsi、rdx、rcx、r8、r9 传递，32 位的用 32 位对应的寄存器，以此类推。 浮点数用 xmm0 ~ xmm7 传递。如果参数很多，寄存器不够用的话，那就用堆栈传递。
+64 位以下的整数返回值用 rad 传递，128 位以下的整数返回值用 rad 和 rdx 传递。 浮点数返回值用 xmm0 和 xmm1 传递。
+linux 系统提供的系统函数的参数数量都是 6 个及以内的，寄存器是够用的。
+示意图：assembly.drawio.html 8-4
+一般函数代码的最前面会有这几条指令。
+push %rbp mov %rsp, %rbp sub $xxx, %rsp 先用堆栈保存 rbp 的值，这个时候 rsp 会上移。然后，把 rsp 当前的值给 rbp。 然后，rsp 减去一个数值，这个操作相当于在内存上开辟了一块空间。这个位置一般用于存储函数的局部变量
+进入函数之后，一般会申请一块堆栈空间，把寄存器里的参数都存下来，因为不知道后续的操作会不会影响寄存器。 申请的堆栈空间可以大一点，我发现有的时候申请正好够用的空间，调用 c 库函数的时候会 core dump，申请的大一点又不会 core dump。
+一般函数代码的最后面会有这两条指令。
+mov %rbp, %rsp pop %rbp 这两条指令适用于恢复栈指针的，也可以用 leave 指令代替。 leave 的作用：&ldquo;Set RSP to RBP, then pop RBP&rdquo;。
+系统调用 调用 c 库的 printf 想调用 printf，那按照函数的约定传参数就好了。
+这里需要注意的是，因为需要用到 c 库里的函数了，所以，链接的时候，需要加上动态库。
+可以用 c 先写一个 hello world 看一下。
+&gt; ldd hello_world.elf linux-vdso.so.1 (0x00007ffd309b0000) libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f177ea00000) /lib64/ld-linux-x86-64.so.2 (0x00007f177edd7000) libc.so.6 就是需要的 c 动态库，&quot;/lib64/ld-linux-x86-64.so.2&quot; 是链接器。
+链接命令是这样写的：ld -lc -I /lib64/ld-linux-x86-64.so.2 xxx.o -o xxx.elf。 &ldquo;-lc&rdquo; 表示链接 c 动态库，&quot;-I /lib64/ld-linux-x86-64.so.2&quot; 指定动态链接器。
+命令行参数和环境变量 示意图：assembly.drawio.html 8-6
+多文件编译 如果一个汇编程序由多个文件组成，编译的时候分别编译，链接的时候一起链接。
+as xxx.asm -o xxx.o -g as yyy.asm -o yyy.o -g ld xxx.o yyy.o -o xxxyyy.elf 还需要注意函数的作用域，如果要给别的文件用，那么定义的时候，需要加一个 &ldquo;.global&rdquo;。
+.section .text .type functionName, @function .global functionName functionName: push %rbp mov %rsp, %rbp sub $16, %rsp leave ret 静态库和动态库 实例在这里：{demo-assembly}/demo-in-linux/library/
+主要关注这几个文件 caller.asm、part1.asm、part2.asm。
+静态库 静态库说白了就是将多个文件组合在一起。 主要的用处就是，编译或者链接的时候，可以少写一堆文件名。 比如，把 part1 和 part2 组合。
+# ar r lib{名字}.a {xxx}.o ... ar r libpart.a part1.o part2.o 然后，编译或者链接的时候，写静态库就行，不用写那两个文件了。
+ld caller.o libpart.a -o caller_ld.elf # gcc xxx.c lib{名字}.a -o xxx.elf 最终生成的 elf 里面，会包括静态库的所有代码。所以，静态库的缺点也就出来了。 如果多个应用程序都用了同一个静态库，那么磁盘里就会存在重复的代码。 如果修改了静态库，那么所有用到这个静态库的应用程序都需要重新编译。
+动态库 动态库和静态库思路差不多，也是将多个文件组合在一起。
+# gcc -shared -o lib{名字}.so {xxx}.o ... gcc -shared -o libpart.so part1.o part2.o 然后，编译或者链接的时候，写动态库就行。
+# gcc xxx.c lib{名字}.so -o xxx.elf ld caller.o libpart.so -o caller_so.elf 和静态库不一样的地方，最终生成的 elf 里面，不会包括动态库的代码。 程序运行的时候，需要依靠动态库加载器（ld.so）加载动态库。
+用 ldd 命令可以看到程序依赖的动态库的名字，还有动态库的地址。
+&gt; ldd caller_so.elf linux-vdso.so.1 (0x00007ffc90745000) libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f6c97200000) /lib64/ld-linux-x86-64.so.2 (0x00007f6c975b2000) libpart.so =&gt; not found 如果显示 not found，就执行一下 export LD_LIBRARY_PATH=&quot;$LD_LIBRARY_PATH:.&quot; 然后再看看。
+动态库可以解决静态库的两个问题。 如果多个应用程序都用了同一个动态库，那么磁盘里只需要存储一份代码。 如果修改了动态库，程序运行的时候，动态库加载器就会加载新的动态库。
+]]></content></entry><entry><title>字符串（笔记片段）</title><url>/post/computer-science/programming-language/assembly/%E5%AD%97%E7%AC%A6%E4%B8%B2/</url><categories><category>assembly-language(汇编语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>assembly-language(汇编语言)</tag></tags><content type="html">前言 实践的环境：同 x86-64_架构
+资料 笔记里的代码在 {demo-assembly}/demo-in-linux/string/
+示例代码：
+字符串大小写转换。 判断两个字符串是否相等。 计算字符串长度。 在字符串中寻找指定字符，并返回找到的第一个指定字符的下标。 正文 movs movs，用于传输字符串。
+指令的源操作数和目标操作数都是内存操作数。 源操作数的地址从 rsi 寄存器读取。目的操作数地址从 rdi 寄存器读取。 指令执行之前，必须正确加载这两个寄存器。
+每执行一次指令，就会按照指令设置的字节、字、双字、四字传输一次。 然后，rsi 和 rdi 上存储的地址都会自动增加或者减少对应的位数。
+rsi 和 rdi 上存储的地址是增加或者减少，这个由 eflags 寄存器的 df 标志决定。 df = 0 的时候增加，可以通过 cld 指令设置；df = 1 的时候减少，可以通过 std 指令设置。默认 df = 0。 需要从头开始处理字符串的时候用 cld，需要从尾开始处理字符串的时候用 std。
+想要传输完整的字符串，可以使用循环结构来处理，也可以用 rep 指令。 rep，按 rcx 寄存器中指定的次数重复字符串指令，或者重复到不再满足 eflags 的 zf 标志的指定条件。 rep 可以加载字符串指令前面作为前缀，像这样 rep movs。
+和 rep 相似的有 5 个指令。rep、repe、repz、repne、repnz。 rep 的结束条件是 rcx 寄存器为 0。 repe、repz 的结束条件是 rcx 寄存器为 0 或者 zf 标志为 0。 repne、repnz 的结束条件是 rcx 寄存器为 0 或者 zf 标志为 1。
+lods、stos lods，将一个字节、字、双字、四字从源操作数加载到 al、ax、eax、rax 寄存器。
+源操作数是内存操作数，源操作数的地址从 rsi 寄存器读取。 指令执行之前，必须正确加载这个寄存器。
+stos，将 al、ax、eax、rax 寄存器中的字节、字、双字、四字存储到目标操作数中。
+目标操作数是内存操作数，目标操作数的地址从 rdi 寄存器读取 指令执行之前，必须正确加载这个寄存器。
+数据传输完成后，rsi 和 rdi 上存储的地址都会自动增加或者减少对应的位数。
+cmps cmps，用于比较字符。
+源操作数和目标操作数是内存操作数。 源操作数的地址从 rsi 寄存器读取。目的操作数的地址从 rdi 寄存器读取。 指令执行之前，必须正确加载这两个寄存器。
+指令将源操作数指定的字节、字、双字、四字与目标操作数指定的字节、字、双字、四字进行比较。 相等的话，就设置 eflags 的 zf 标志为 1。不相等的话，就设置 eflags 的 zf 标志为 0。
+每执行一次指令，就会按照指令设置的字节、字、双字、四字比较一次，并设置结果。 然后，rsi 和 rdi 上存储的地址都会自动增加或者减少对应的位数。
+使用循环结构或者 rep，就可以实现比较两个字符串是否相等。
+scas scas，用于比较字符。该指令有 2 种形式，取决于操作数的数量。
+无操作数形式，scas。内存操作数地址从 rdi 寄存器中读取。
+单操作数形式，scas {内存操作数}。
+指令将内存操作数指定的字节、字、双字、四字与 al、ax、eax、rax 中的值进行比较。 相等的话，就设置 eflags 的 zf 标志为 1。不相等的话，就设置 eflags 的 zf 标志为 0。
+每执行一次指令，就会按照指令设置的字节、字、双字、四字比较一次，并设置结果。 然后，rdi 上存储的地址会自动增加或者减少对应的位数。
+使用循环结构或者 rep，就可以实现从字符串里找某个字符。</content></entry><entry><title>整数的运算（笔记片段）</title><url>/post/computer-science/programming-language/assembly/%E6%95%B4%E6%95%B0/</url><categories><category>assembly-language(汇编语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>assembly-language(汇编语言)</tag></tags><content type="html">前言 实践的环境：同 x86-64_架构
+资料 正文 四则运算 add add，实现整数的加法运算。
+add 会自动分析操作数是有符号还是无符号。 有符号运算结果溢出（正数太大）时 of=1，无符号运算结果产生进位时 cf=1。
+adc adc，实现整数的加法运算。用法和 add 一样。
+adc 除了用目标操作数加源操作数，还会再额外加一个当前的 cf 标志位（1 或者 0）。
+sub sub，实现整数的减法运算。用目标操作数减源操作数。
+sub 会自动分析操作数是有符号还是无符号。 有符号运算结果溢出（负数太小）时 of=1，无符号运算结果产生借位时 cf=1。
+sbb sbb，实现整数的减法运算。用法和 sub 一样。
+sbb 除了用目标操作数减源操作数，还会再额外减一个当前的 cf 标志位（1 或者 0）。
+mul mul，实现无符号整数的乘法运算。
+目标操作数要先放到 rax、eax、ax、al 里面去。
+如果运算结果过大，目标操作数寄存器放不下的话，会把运算结果拆成两部分。 如果是 64 位的运算结果过大，高 64 位放到 rdx，低 64 位放到 rax。
+比如，无符号的 0xffff,ffff 已经把 eax 塞满了。这个时候再 x2，其结果 0x1,ffff,fffe 需要 33 位的空间。 eax 不够放了，这个时候就会把数据拆成两部分。高 32 位（0x1）放在 edx，低 32 位（0xffff,fffe）放在 eax。
+imul imul，实现有符号整数的乘法运算。该指令有 3 种形式，取决于操作数的数量。
+单操作数形式，imul {源操作数}。用法与 mul 指令相同。
+双操作数形式，imul {目的操作数}, {源操作数}。 执行源操作数和目的操作数的有符号乘法运算。结果会被截断，并存储在目的操作数。
+三操作数形式，imul {立即数}, {源操作数}, {目的操作数}。 执行立即数和源操作数的有符号乘法运算。结果会被截断，并存储在目的操作数。
+div div 可以实现无符号整数的除法运算。
+idiv idiv 可以实现有符号整数的除法运算。
+自增自减 inc，在目标操作数上加 1，同时保留 cf 标志的状态。 dec，从目标操作数中减去 1，同时保留 cf 标志的状态。 这两条指令允许在不影响 cf 标志的情况下更新循环计数器。
+逻辑运算 and，与运算。 or，或运算。 not，非运算。 xor，异或运算。 移位运算 左移 sal，算术左移。shl，逻辑左移。sal {计数操作数}, {目的操作数}。
+它们执行相同的操作。将目标操作数中的位向左移动计数操作数中指定的位数。 移位后，超出目标操作数左边界的位，会先移入 cf 标志。
+最低有效位（the least significant bit）被清零。
+右移 sar，算术右移。shr，逻辑右移。sar {计数操作数}, {目的操作数}。
+它们执行相同的操作。将目标操作数中的位向右移动计数操作数中指定的位数。 移位后，超出目的操作数右边界的位，会先移入 cf 标志。
+最高有效位（the most significant bit）根据指令类型被置位或清零。
+计数操作数 计数操作数可以是立即数或者 cl 寄存器。
+计数操作数，在 32 位模式下，被屏蔽为 5 位，在 64 位模式下，被屏蔽为 6 位。 也就是说，计数的范围，在 32 位模式下，限制为 0 至 31，在 64 位模式下，限制为 0 至 63。</content></entry><entry><title>移动数据和流程控制（笔记片段）</title><url>/post/computer-science/programming-language/assembly/%E7%A7%BB%E5%8A%A8%E6%95%B0%E6%8D%AE%E5%92%8C%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</url><categories><category>programming-language(编程语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>assembly-language(汇编语言)</tag></tags><content type="html"><![CDATA[前言 实践的环境：同 x86-64_架构资料 示意图：
+assembly.drawio.html 正文 移动数据 bswap bswap，用于翻转寄存器上的数据的字节序。 主要用于小端字节序和大端字节序相互转换。
+lea lea，用于获取内存地址。 主要用于把变量的内存地址传输到寄存器中。
+mov mov，用于移动数据，把源操作数复制到目标操作数。 使用的时候需要注意，两个操作数的大小必须相同。
+mov 变量名, 寄存器，表示移动变量上存储的值到寄存器。我的理解，这个时候是内存操作数的逻辑。 mov $变量名, 寄存器，表示移动变量的起始地址到寄存器。我的理解，这个时候是立即数的逻辑。
+如果传输的数据是数组或者结构体这样的。那么就需要使用内存操作数，也就是间接寻址。 内存操作数的格式是 displacement(base, index, scale)。
+displacement，常量或者内存操作数； base，地址寄存器（可选参数），内存操作数； index，索引寄存器（可选参数）。比如，数组下标； scale，缩放因子，可以是 1,2,4,8； 获取的数据的起始地址就位于 displacement + base + index * size。 常用的用法有两种，下面用数组举例。
+.section .data array1: .int 1,2,3,4,5 第一种用法。
+movl $2, %r8d movl array1(,%r8,4), %r10d displacement 是 array1，array1 对应的是一个内存操作数，也就是数组的起始地址。 base 不填；index 下标是 2；scale 缩放因子是 4，对应 int 的长度。 获取的数据的起始地址就位于 &ldquo;array1 + 2 * 4&rdquo;，数组的起始地址向后偏移 8，也就是下标为 2 的第 3 个元素。 写成 c 语言就相当于这样。
+array1 int[5] = {1,2,3,4,5} r9d = *(array1+2) 第二种用法。
+movq $array1, %r8 movl 4(%r8), %r10d displacement 是 4，常量。 base 地址是 array1，array1 对应的是一个内存操作数，也就是数组的起始地址。index 不填；scale 不填。 获取的数据的起始地址就位于 &ldquo;4 + array1 + 0 * 0&rdquo;，数组的起始地址向后偏移 4，也就是下标为 1 的第 2 个元素。 movsx movsx，带符号扩展数据。
+8 位的 -1（1111,1111），带符号扩展到 16 位，依然是 -1（1111,1111,1111,1111）。
+movzx movsx，扩展数据后填充 0。
+8 位的 -1（1111,1111），扩展到 16 位后填充 0，就不是 -1 了，而是 255（0000,0000,1111,1111）。
+xchg xchg，用于交换数据。
+流程控制 jmp jmp，无条件跳转到另一处继续执行程序。和 c 语言里的 goto 一个意思。
+jmp 指令的标签有两种写法，有名字的标签和纯数字标签。
+有名字的标签。
+_start: mov $1, %rax jmp jmpPoint mov $2, %rax jmpPoint: mov $3, %rax 看编译后的代码比较好理解，jmpPoint 标签就像变量一样，对应某个内存地址，jmp 就是跳到 jmpPoint 指向的地址上去了。
+0000000000401000 &lt;_start&gt;: 401000:	48 c7 c0 01 00 00 00 mov $0x1,%rax 401007:	eb 07 jmp 401010 &lt;jmpPoint&gt; 401009:	48 c7 c0 02 00 00 00 mov $0x2,%rax 0000000000401010 &lt;jmpPoint&gt;: 401010:	48 c7 c0 03 00 00 00 mov $0x3,%rax 示意图：assembly.drawio.html 2-4
+纯数字标签。
+_start: mov $1, %rax jmp 1f 0: mov $2, %rax 1: mov $3, %rax jmp 0b 和有名字的标签一样，纯数字标签也对应某个内存地址。
+纯数字标签和有名字的标签用法不太一样，用数字的时候需要指定方向。 比如，上面这段代码里的。1f 表示，往下找 1 标签，然后，跳过去。0b 表示，往上找 0 标签，然后，跳过去。
+不写 f 和 b，在编译的时候不会报错，但是，运行的时候会报错。 因为，jmp 会认为是跳到内存地址 1 上去。然后，rip 寄存器的值就变成 1 了，这显然是不对的。
+这两个结合起来用是可以实现循环结构的，上面的代码就是个死循环。
+loop loop，用于实现循环结构。
+先往 rcx、ecx、cx 寄存器（取决于系统是 64 位、32 位、16 位）中传输循环需要执行的次数。 然后，设置跳转的标签。每一次运行到 loop 指令处时。先检测计数寄存器的值。 如果计数寄存器大于 0，则跳转到标签处，计数寄存器自动减 1，然后，继续执行。
+mov $5, %rcx loopPoint: mov %rcx, %rdx loop loopPoint 有条件的指令 cmp cmp，用于比较两个操作数，并根据结果设置 eflags 寄存器中的标志位。
+标志位一般是给 jcc、loopcc、cmovcc、fcmovcc 这种带条件的指令用的。
+带条件的指令，每条指令都有一个条件代码（cc），用于指示测试的条件。 测试的条件是 eflags 寄存器中的状态标志（cf、of、pf、sf、zf）。 如果处于指定状态，则执行相应的操作。如果不处于指定状态，则不执行操作。
+cmovcc cmov，带条件的 mov。
+cmp %rbx, %rcx cmovl $2, %rax cmovg（great），如果 rcx &gt; rbx 则执行 rax = 2。
+jcc jcc，带条件的 jmp。
+mov $1, %rax cmp %rbx, %rcx jg jmpPoint mov $2, %rax jmpPoint: mov $3, %rax jg（great），如果 rcx &gt; rbx 则跳转到 jmpPoint 继续执行。
+]]></content></entry><entry><title>intel x86-64 架构（笔记片段）</title><url>/post/computer-science/programming-language/assembly/x86-64_%E6%9E%B6%E6%9E%84/</url><categories><category>assembly-language(汇编语言)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>programming-language(编程语言)</tag><tag>assembly-language(汇编语言)</tag></tags><content type="html"><![CDATA[前言 实践的环境：
+amd64（x86_64） windows 11 vmware workstation pro 16 ubuntu 22.04 linux version 5.19.0-41-generic gcc version 11.3.0 我是在虚拟机里跑的汇编程序，有的时候会遇到一些离谱的问题。 比如，同样一段汇编代码，重复执行的时候，结果不一样，有的时候成功，有的时候 core dump。 但是，gdb 调试的时候，寄存器和内存里的数据是对的，调用系统调用或者 c 库会 core dump。
+笔记顺序：
+x86-64 架构（本篇就是） 移动数据和流程控制整数浮点数字符串函数和库内联汇编（整理中） simd（整理中） 资料 示意图：
+assembly.drawio.html 正文 intel cpu 架构文档 英特尔 64 和 32 架构软件开发人员手册在页面里找到 &ldquo;Intel® 64 and IA-32 Architectures Software Developer&rsquo;s Manual Volume 1: Basic Architecture&rdquo;。
+这个手册下面简称为 &ldquo;基本架构手册&rdquo;，介绍了处理器的架构和编程环境。 这里主要看的是 64 位架构的寄存器、内存、指令相关的内容，写汇编程序最主要的就是这三个东西。
+intel x86-64 架构 x86 泛指基于 intel 8086 并且向后兼容的 cpu 指令级架构。 最早的 intel 8086 是 16 位的微处理器（1978 年），后面还有 80816、80826、80836、80846 等。 现在，提到 x86，一般是指 32 位的架构（1985 年）。提到 x86-64（或者 x64），一般是指 64 位的架构（2003 年）。
+基本架构手册 3.2.1 节这里主要看的是 64 位架构的内存地址空间、寄存器相关的内容。
+基本架构手册 3.3.7 节这里主要看的是指令指针寄存器（rip）相关的内容。
+指令指针寄存器（instruction pointer register），又叫程序计数器（program counter）。 指令指针寄存器上面存储的是下一条要执行的指令的地址。
+示意图：assembly.drawio.html 2-2
+注意指令指针寄存器和指令寄存器（instruction register）的区别。 指令寄存器上面存储的是正在被执行的指令。
+分支（branch）指令，比如 jmp，就是通过修改 rip 的值，实现选择结构和循环结构的。
+寄存器 基本架构手册 3.4.1.1 节这里主要看的是 64 位架构的通用寄存器相关的内容。
+8 位：al、bl、cl、dl、dil、sil、bpl、spl、r8l ~ r15l 16 位：ax、bx、cx、dx、di、si、bp、sp、r8w ~ r15w 32 位：eax、ebx、ecx、edx、edi、esi、ebp、esp、r8d ~ r15d 64 位：rax、rbx、rcx、rdx、rdi、rsi、rbp、rsp、r8 ~ r15 还有 ah 寄存器，在 al 前面的 8 位上。bh、ch 以此类推。
+示意图：assembly.drawio.html 2-6
+rsp 就是栈指针，永远指向进程堆栈空间的栈顶。 函数的调用堆栈那里就需要用到 rbp、rsp 这两个寄存器。
+基本架构手册 3.4.1.1 节这里主要看的是 64 位架构的通用寄存器相关的内容。
+基本架构手册 3.4.3 节这里主要看的是 eflags 寄存器相关的内容。
+cf，进位标志。最高位产生进位或者借位，则 cf=1，否则 cf=0。无符号整数运算结果溢出 cf=1。
+zf，零标志。运算结果是 0，则 zf=1，否则 zf=0。
+sf，符号标志位。就等于运算结果的最高位。有符号整数的符号位。
+of，溢出标志。运算结果正数太大或者负数太小（不包括符号位），则 of=1,，否则 of=0。
+基本架构手册 3.7.3.1 节这里主要看的是 64 位架构的内存操作数关的内容。
+基本架构手册 8.1.2 节这里主要看的是浮点数（fpu）寄存器相关的内容。 fpu 寄存器是栈结构的，有 8 个 80 位的寄存器 st(0) ~ st(7)。 需要注意的是，入栈的时候，新数据始终在 st(0) 位置，老数据依次往上移动。
+基本架构手册 10.2.2 节这里主要看的是 xxm 寄存器相关的内容。 有 8 个 128 位的寄存器 xmm0 ~ xmm7。
+数据类型 基本架构手册 4 章，这里主要看的是数据类型。
+&ldquo;.byte&rdquo;，定长 1 字节整型。 &ldquo;.short&rdquo;、&quot;.word&quot;，定长 2 字节整型。 &ldquo;.int&rdquo;、&quot;.long&quot;，定长 4 字节整型。 &ldquo;.quad&rdquo;，定长 8 字节整型。 &ldquo;.float&rdquo;，定长单精度浮点数，4 字节。 &ldquo;.double&rdquo;，定长双精度浮点数，8 字节。 &ldquo;.string&rdquo;，以 &ldquo;\0&rdquo; 结束的字符串。 声明经过初始化的变量。
+.section .data {变量名1}: {数据类型} {数据} {变量名2}: {数据类型} {数据} 声明经过初始化的数组。
+.section .data {变量名1}: {数据类型} {元素}, {元素}, {元素}... 声明经过初始化的结构体。
+.section .data {变量名1}: {属性名1}: {数据类型} {数据} {属性名2}: {数据类型} {数据} 这里一定要空一行，要不然后面声明的变量，就会被当成结构体的属性 声明没有初始化的变量。
+.section .bss .lcomm {变量名1}, {数据长度} .lcomm {变量名2}, {数据长度} 声明常量。
+.equ {变量名1}, {值} .equ {变量名2}, {值} 原码、反码、补码 在计算机中，数据都是以补码的形式存储的。
+对于有符号整数。 正整数的源码 = 反码 = 补码。 负整数的反码 = 除了源码的符号位，源码的其他位全部取反。 负整数的补码 = 负整数的反码 + 1。
+这里的例子都是 1 字节的。 +000；源码 = 0000,0000；反码 = 0000,0000；补码 = 0000,0000； +001；源码 = 0000,0001；反码 = 0000,0001；补码 = 0000,0001； +127；源码 = 0111,1111；反码 = 0111,1111；补码 = 0111,1111； -001；源码 = 1000,0001；反码 = 1111,1110；补码 = 1111,1111； -002；源码 = 1000,0010；反码 = 1111,1101；补码 = 1111,1110； -126；源码 = 1111,1110；反码 = 1000,0001；补码 = 1000,0002； -127；源码 = 1111,1111；反码 = 1000,0000；补码 = 1000,0001； -128；补码 = 1000,0000； 10000000 应该是 -000 的位置，被用来存储 -128 了。
+-127 + -001 = 1000,0001 + 11111111 = 1,1000,0000 +001 + -001 = 0000,0001 + 11111111 = 1,0000,0000 这两种情况，计算的时候，理论上都是溢出的。但是，如果把溢出的部分去掉，结果又是对的。
+数据的范围 整数 1 字节，8 位，可以表示 2^8 = 256 个数字。
+有符号整形，0xff ~ 0x7f，-128 ~ 127。
+2 字节，16 位，可以表示 2^16 = 65,535 个数字。
+有符号整形，0xffff ~ 0x7fff，-32,768 ~ 32,767。
+4 字节，32 位，可以表示 2^32 = 4,294,967,295 个数字。
+有符号整形，0xffff,ffff ~ 0x7fff,ffff，-2,147,483,648 ~ 2,147,483,647。
+8 字节，64 位，可以表示 2^64= 18,446,744,073,709,551,616 个数字。
+有符号整形，0xffff,ffff,ffff,ffff ~ 0x7fff,ffff,ffff,ffff，9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807。
+浮点数 float，单精度，4 字节，1 位符号，8 位指数，23 位尾数。 1.175494351 E–38 ~ 3.402823466 E+38，6 ~ 7 个有效数字。
+double，双精度，8 字节，1 位符号，11 位指数，52 位尾数。 2.2250738585072014 E–308 ~ 1.7976931348623158 E+308，15 ~ 16 个有效数字
+数据扩展 整数 无符号整数和有符号正整数，在前面补 0。有符号负整数，在前面补 1。
+1 字节的 -1 补码是 1111,1111，扩展到 2 字节，补码是 1111,1111,1111,1111。
+至于为什么，看上面 原码、反码、补码那里 -1 和 -2 的补码就知道了。
+指令 开发手册第 5 章，这里主要看的是指令相关的内容。
+指令由操作码和操作数组成。 操作码，opcode，operation code，告诉 cpu 要做什么。 操作数，operand，有源操作数和目标（目的）操作数两种。 操作数的值有三种：立即数（写死的值）、寄存器、内存操作数。
+也可以看这个页面 x86 and amd64 instruction reference这个网页里的指令是 intel 格式的，intel 格式的汇编和 att 格式的汇编，源操作数和目标操作数位置是反的。 imm{数字}，这种表示立即数；r 开头的表示寄存器；m 开头的表示内存操作数。还需要注意指令在 64 位操作系统上支不支持。
+有的指令后面可以加后缀，后缀一般和操作的数据大小有关系。
+b 对应 char，1 字节。 w（word，字）对应 short，2 字节。 l（double word，双字）对应 int、unsigned int，4 字节。 q（quad word，四字）对应 long、unsigned long、pointer，8 字节。 s 对应 float，4 字节。 d 对应 double，8 字节。 hello world 代码示例：{demo-assembly}/demo-in-linux/hello_world.asm
+这个程序主要涉及汇编程序结构、移动数据、系统调用的内容，这里不展开说。
+汇编代码的编译、链接、调试 编译生成可重定位文件。 as xxx.asm -o xxx.o -g。 &ldquo;-g&rdquo; 表示添加调试信息。
+链接生成可执行文件。 ld xxx.o -o xxx.elf。
+汇编程序可以使用 gdb 进行调试，方便观察寄存器和内存中的数据。 进入 gdb 调试后，使用命令 b *_start，在汇编程序入口打断点。 然后，使用命令 r，运行到断点处。然后，就是常规的 gdb 调试流程。
+]]></content></entry><entry><title>GDB 调试工具</title><url>/post/computer-science/application/gdb_%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/</url><categories><category>application(应用)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>application(应用)</tag><tag>gdb</tag></tags><content type="html"><![CDATA[正文 官方文档 官方手册：Debugging with GDB所有的命令：Command, Variable, and Function Indexgcc 编译 使用 gcc 编译源代码的时候，使用 -g 参数就可以让程序携带调试信息。
+&gt; gcc -g hello.c -o hello.elf 进入和退出调试 进入调试的时候有两种情况，程序未运行和程序正在运行。
+程序未运行的话，可以用这两种。
+gdb {文件名} gdb &ndash;silent {文件名} 程序正在运行的话，可以用这两种。
+gdb -p {pid} gdb &ndash;silent，先进 gdb，然后 attach {pid} 退出的话，如果是调试状态，直接在命令行里用 quit 就可以退出了。但是，如果是生产环境，这样是不行的。 生产环境退出的时候，先在命令行 detach，这样就不会影响被调试的进程，然后 quit。
+gdb 也可以调试 go 程序和汇编程序，操作是一样的。
+tab tab 键可以补全命令，如果有多个的话，会列出全部符合的。
+help help {command}，输出 command 命令怎么用。
+set、show set 用于设置参数或者配置，show 用于查看当前的参数或者配置。 这两个命令放到具体的场景中说，就不在这里细说了。
+启动调试 有两个命令可以启动程序，start 和 run。这两个的区别在于： start 会执行到程序的第一行代码停住。比如，main() 的第一行代码。 run，简写 r，除非有断点，否则就会一直执行到程序结束。
+start 还可以输入命令行参数。比如，start {args1} {args2}。 在 start 或者 run 之前，用 set args 也可以给程序输入命令行参数。比如，set args {args1} {args2}。
+info info，简写 i，输出信息。info 后面可以跟很多东西。
+info os，输出系统信息。 info proc，输出当前进程信息。 info proc {pid}，输出当前进程信息。 info proc mappings，输出进程内存信息。和 /proc/{pid}/maps 内容一样的。 info args，输出命令行参数。 list list，简写 l，输出代码，默认 10 行。输入一次后，继续按回车可以继续输出。 默认 10 行的这个值可以设置可以通过 set listsize {行数 n|unlimited} 修改为 {n|无限}。
+list {行号 n}，输出从第 n 行开始的代码。 list {行号 n, 行号 m}，输出从第 n 行到第 m 行的代码。 list {函数名}，输出函数的代码。 info line，输出当前调试在第几行。
+执行代码 有两个命令可以执行代码，next 和 step。这两个的区别在于： next，简写 n，逐行执行，会跳过函数。step，简写 s，逐行执行，会进入函数。
+{next|step} {行数 n}，执行 n 行代码。
+step 默认只会进入程序员编写的函数，不会进入 printf() 这样的底层函数。 因为 gcc -g 只会给程序员编写的代码添加调试信息，printf() 是不带调试信息的。 需要设置 set step-mode on 才可以进入 printf() 这样的底层函数。
+调试函数 info functions，输出所有函数。
+info functions {模糊函数名 str}，输出所有含有 str 的函数。
+whatis {函数名}，打印函数的定义。
+where，输出函数的调用栈。
+backtrace，简写 bt，输出函数的调用栈。
+输出顺序是从内到外，也就是从现在调试停住的位置，往上追溯一直到 main()。 输出的内容里包括，栈帧编号、内层是从哪个函数的哪一行代码进来的。
+info frame，简写 i f，输出栈帧的信息。可以看到寄存器、上一层和下一层的栈帧、函数的参数。
+frame {栈帧编号 n}，选择栈帧。 这个命令可以回到栈帧编号 n 对应的那个方法里面。然后，就可以看那个位置的相应的信息。 想回来的话 frame 0 就可以。
+{up|down} {栈帧数量 n}，可以往上 n 层移动（往 main() 方向移动），或者往下 n 层移动（往调试停住的位置移动），默认一层。
+call {函数名(变量)}，执行一下函数，打印结果。
+print {函数名(变量)}，执行一下函数，打印结果。
+finish，继续执行直到退出函数。
+return {返回值}，不执行完，直接退出函数。可以设置返回值。
+断点 break {行号 n}，简写 b，在第 n 行代码上打一个断点。 break {*(内存地址)}，在地址上打断点。 break {*(函数名)}，在函数名上打断点，函数名会指向内存地址。 tbreak {行号 n}，打一个临时断点。 info breakpoints，简写 info b 或者 i b，显示断点信息。
+输出的内容里，最前面的 Num 是断点编号，Enb 表示断点是否启用，后面还有断点地址和在哪个方法里面。
+continue，简写 c，运行到下一个断点。
+ignore {断点编号} {次数 n}，忽略断点编号为 1 的断点 n 次。
+catch {}，捕获断点。比如，catch syscall write，捕获系统调用 write。
+condition {断点编号} {条件}，条件断点。比如 condition 1 x==5，x 等于 5 的时候停在断点编号为 1 的断点上。
+condition {断点编号}，移除条件
+{disable|enable} {断点编号}，{禁用|启用} 断点。
+delete {断点编号}，删除断点。
+watch {变量名}，添加观察断点，只要变量发生变化，就打印变化前后的值。
+rwatch {变量名}，添加观察断点，只要对变量执行读操作就打印变量的数据。
+awatch {变量名}，添加观察断点，只要对变量执行读写操作就打印变量的数据。
+打印数据 print {expr}，简写 p，打印表达式的值，可以是变量，也可以是函数。
+print {变量名}，打印变量。 print *(int *){内存地址}，把内存地址转换成 int * 类型，然后输出内存地址上的值。 print sizeof(变量)，打印变量的大小。 print {数组变量名}[{n}]@{m}，从数组下标 n 开始，打印 m 个元素。 ptype {变量名}，打印变量的类型。
+set print address on/off，打不打印地址。 set print array on/off，打印数组的时候是不是竖着打。 set print array-indexes on/off，打印数组的时候带不带下标。 set print pretty on/off，打印结构体的时候有没有格式。 display {变量名}，打印变量。只要变量在当前运行的函数栈里面，每执行一条指令，就会打印一次所有在 display 里面的变量。
+info display，查看所有在 display 里面的变量，会输出变量编号。
+undisplay {变量编号}，取消打印变量。
+输出内存地址上的数据 x/FMT address，格式化输出内存地址上的数据。
+FTM 的格式可以理解成，{输出次数 n}{显示格式 f}{数据长度 s}。
+输出次数，1 次输出 s 长度的数据，输出 n 次。
+显示格式：x，16 进制；d，10 进制；t，2 进制；f，浮点数；a，地址；c，字符；s，字符串；
+数据长度：b，字节；h(halfword)，半字，2 字节；w(word)，字，4 字节；g(giant)，双字，8 字节；
+x/1xb 内存地址，从地址开始，以 16 进制打印 1 个字节。
+x/1xb &amp;(变量名)，从变量的起始地址开始，以 16 进制打印 1 个字节。
+x/s 字符串变量名，打印字符串。
+FMT 的格式 print 和 display 也可以用。
+汇编 disassemble，简写 disas，输出程序的汇编代码。 disassemble {函数名|内存地址}，也可以这么用。
+&ldquo;-m&rdquo;，输出汇编和对应的源码
+&ldquo;-r&rdquo;，输出汇编和对应的 16 进制机器码
+{show|set} disassembly-flavor {风格}，{查看|设置}输出汇编代码的风格。风格有 att 和 intel。
+{show|set} disassemble-next-line {on|off|auto}，反汇编下一行代码。
+si，执行汇编一条指令。
+info registers，简写 i r，查看寄存器的值，这里一般显示的是部分的。
+info all-registers，查看所有寄存器的值。
+info registers {寄存器名字}，输出寄存器的值
+p {寄存器名字}，输出寄存器的值
+layout {asm|regs|split|src}，显示汇编调试窗口，{汇编代码|寄存器+汇编代码|源码+汇编代码|源码}。
+tui {reg all|float}，显示{所有的|浮点数}寄存器组。
+============没整理
+调试多进程 info inferiors 显示进程信息，还有编号，目前调试的进程，在编号前面会有个 * inferior 编号，切换进程
+set follow-fork-mode parent/child 设置 fork 执行的时候跟踪父进程还是子进程，默认parent
+这里需要注意的是，父子进程是同时执行的，调试父进程或者子进程的时候子进程或者父进程也在跑
+set detach-on-fork on/off 调试一个进程的时候，其他的进程运不运行，默认是运行的
+show/set schedule-multiple 这个也可以控制多进程是并发还是不并发
+detach inferior 编号，分离进程 kill inferior 编号，kill 进程
+多线程 info threads 显示线程信息，还有编号，目前调试的线程，在编号前面会有个 * thread 编号，切换线程
+show/set schedule-locking on/off/step 调试一个线程的时候，其他的线程运不运行，默认是step暂停的，但是有特殊情况，这个可以看文档
+thread apply all bt full 显示所有线程的局部变量
+thread apply 线程编号 命令，可以让命令单独作用于某个线程
+============
+]]></content></entry><entry><title>关于</title><url>/about/</url><categories/><tags/><content type="html">帕里特档案馆（重建中），是个个人档案馆。
+档案馆的内容主要是本人的学习笔记、对学到的东西的解释和思考、对实践过程的记录。 这些玩意本质上是当时的我给以后的我的留言。它们不是教程，更不是论文。
+写它们的目的是，如果以后的我忘记了这块的内容，那么希望现在的我可以把以后的我教会。 如果访客您觉得毫无干货或者内容非常水，那么非常抱歉。
+有一小部分笔记是整理过的可读性比较好的，一般是连贯完整的单独一篇或者连续几篇。 大部分笔记属于东一块西一块的，里面的内容有可能是断断续读的文本或者干脆就是关键词。
+整理笔记很费事，为了说清楚内容，需要大量的时间梳理逻辑，梳理完之后还需要写文本。 如果某一块的内容需要的朋友比较多的话，我可能会抽时间整理出来。
 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。 本人能力有限，因此不能保证所有的内容的时效性和正确性。还请各位到访的访客务必小心。
 站点基于 hugo 0.103.1 extended
 搭建。 使用的主题是 Hugo NexT
 。 部属在 github pages 上。
-如果访客您发现我的内容有明显的问题或者错误，欢迎批评指正。同时也欢迎建设性意见。 我的交流方式，QQ：786907650；微信号：wxid_k3uqy9xeryn422。昵称和头像都是一样的，很好辨认。 有意交流者，请至少备注是谁和从哪来。</content></entry><entry><title>内存中的指令和数据</title><url>/post/computer-science/operating-system/memory/instruction_and_data/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>memory(内存)</tag></tags><content type="html"><![CDATA[前言 这篇笔记属于需要 elf、linux 进程的内存布局、gdb 调试相关的知识。
+如果访客您发现我的内容有明显的问题或者错误，欢迎批评指正。同时也欢迎建设性意见。 我的交流方式，QQ：786907650；微信号：wxid_k3uqy9xeryn422。昵称和头像都是一样的，很好辨认。 有意交流者，请至少备注是谁和从哪来。</content></entry><entry><title>内存中的指令和数据</title><url>/post/computer-science/operating-system/memory/instruction_and_data/</url><categories><category>operating-system(操作系统)</category></categories><tags><tag>computer-science(计算机科学)</tag><tag>operating-system(操作系统)</tag><tag>memory(内存)</tag></tags><content type="html"><![CDATA[前言 这篇笔记需要 elf、linux 进程的内存布局、gdb 调试相关的知识。
 资料 笔记里的代码都在 {demo-c}/demo-in-linux/memory/ 目录下。
 图在 memory.drawio.html 里面。
 正文 内存地址 内存的存储单元会根据 CPU 的位宽以 16 进制从 0 开始顺序编号。 每个存储单元只对应一个编号，且只可以存储一个 byte 的数据。
@@ -2236,7 +2545,7 @@ MESI 是 4 个单词的缩写：Modified（已修改）、Exclusive（独占）�
 在独占状态下的数据，如果有其他核心从内存读取了相同的数据到各自的缓存，那么这个时候，独占状态下的数据就会变成共享状态。
 共享状态代表着相同的数据在多个 CPU 核心的缓存里都有，所以当要更新缓存里面的数据的时候，不能直接修改，而是要先向所有的其他 CPU 核心广播一个请求，要求先把其他核心的缓存中对应的缓存块标记为已失效状态，然后再更新当前缓存里面的数据。</content></entry><entry><title/><url>/post/computer-science/operating-system/memory/ptrace/</url><categories/><tags/><content type="html">在用ptrace跟踪另外一个进程，寻找目标数据时，可能会在目标进程内存中多个位置找到目标数据，可能会有3个地方
 变量本体，就是变量所在的位置； 堆栈框架，比如当这个变量定义在main函数里面的时候，main函数的堆栈框架里也可能会出现； 寄存器，在执行过程中，数据可能会暂时存储在cpu的寄存器中
-当使用ptrace读取和修改目标进程的内存时，需要注意，读取和写入数据的单位是一个long 读取的时候想要读的是一个int，但是返回的时候会带着这个int后面的四个字节 修改的时候也需要注意，先把目标位置上的8个字节读出来，然后修改需要修改的部分，然后把八个字节完整的放回去，要不然会出错</content></entry><entry><title/><url>/post/computer-science/programming-language/framework/web/golang/beego/</url><categories/><tags/><content type="html"><![CDATA[beego框架 2021-11-17 go-1.17 bee-v1.12.3 beego-v1.12.3 安装bee工具 bee工具是一个为了协助快速开发beego项目而创建的项目。
+当使用ptrace读取和修改目标进程的内存时，需要注意，读取和写入数据的单位是一个long 读取的时候想要读的是一个int，但是返回的时候会带着这个int后面的四个字节 修改的时候也需要注意，先把目标位置上的8个字节读出来，然后修改需要修改的部分，然后把八个字节完整的放回去，要不然会出错</content></entry><entry><title/><url>/post/computer-science/programming-language/assembly/%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96/</url><categories/><tags/><content type="html"></content></entry><entry><title/><url>/post/computer-science/programming-language/framework/web/golang/beego/</url><categories/><tags/><content type="html"><![CDATA[beego框架 2021-11-17 go-1.17 bee-v1.12.3 beego-v1.12.3 安装bee工具 bee工具是一个为了协助快速开发beego项目而创建的项目。
 通过bee，可以很容易的进行beego项目的创建、热编译、开发、测试、和部署。
 &gt; go get github.com/beego/bee go: downloading github.com/beego/bee v1.12.3 go: downloading gopkg.in/yaml.v2 v2.3.0 go: downloading github.com/fsnotify/fsnotify v1.4.9 go: downloading github.com/gadelkareem/delve v1.4.2-0.20200619175259-dcd01330766f go: downloading github.com/gorilla/websocket v1.4.2 go: downloading github.com/lib/pq v1.7.0 go: downloading github.com/davecgh/go-spew v1.1.1 go: downloading github.com/flosch/pongo2 v0.0.0-20200529170236-5abacdfa4915 go: downloading github.com/pelletier/go-toml v1.7.0 go: downloading github.com/smartwalle/pongo2render v1.0.1 go: downloading github.com/spf13/viper v1.7.0 go: downloading github.com/astaxie/beego v1.12.1 go: downloading golang.org/x/sys v0.0.0-20191005200804-aed5e4c7ecf9 go: downloading github.com/hashicorp/hcl v1.0.0 go: downloading github.com/magiconair/properties v1.8.1 go: downloading github.com/mitchellh/mapstructure v1.1.2 go: downloading github.com/spf13/afero v1.1.2 go: downloading github.com/spf13/cast v1.3.0 go: downloading github.com/spf13/jwalterweatherman v1.0.0 go: downloading github.com/spf13/pflag v1.0.3 go: downloading github.com/subosito/gotenv v1.2.0 go: downloading gopkg.in/ini.v1 v1.51.0 go: downloading go.starlark.net v0.0.0-20190702223751-32f345186213 go get: installing executables with &#39;go get&#39; in module mode is deprecated. To adjust and download dependencies of the current module, use &#39;go get -d&#39;. To install using requirements of the current module, use &#39;go install&#39;. To install ignoring the current module, use &#39;go install&#39; with a version, like &#39;go install example.com/cmd@latest&#39;. For more information, see https://golang.org/doc/go-get-install-deprecation or run &#39;go help get&#39; or &#39;go help install&#39;. go get: added github.com/beego/bee v1.12.3 安装beego &gt; go get github.com/astaxie/beego go: downloading github.com/astaxie/beego v1.12.3 go: downloading golang.org/x/net v0.0.0-20190620200207-3b0461eec859 go: downloading github.com/prometheus/procfs v0.1.3 go: downloading golang.org/x/sys v0.0.0-20200615200032-f1bc736245b1 go: downloading github.com/cespare/xxhash v1.1.0 go: downloading github.com/peterh/liner v1.0.1-0.20171122030339-3681c2a91233 go get: upgraded github.com/astaxie/beego v1.12.1 =&gt; v1.12.3 ]]></content></entry><entry><title/><url>/post/computer-science/programming-language/golang/module/</url><categories/><tags/><content type="html"><![CDATA[使用 go module 2021-07-16 go-1.15 go module是官方自带的go依赖管理库，在1.13版本正式推荐使用。
 go1.13+的版本，判断module开不开启的依据是，根目录下有没有go.mod文件。
@@ -2248,7 +2557,7 @@ go mod init {module_name} 导入本地包 目录结构
 module hello go 1.15 main.go
 package main import ( &#34;go0yang4li4/hello1&#34; &#34;go0yang4li4/hello2&#34; ) func main() { hello1.FHelloWorld() hello2.FHelloWorld() } helloworld1.go
 package hello1 import &#34;fmt&#34; func FHelloWorld() { fmt.Println(&#34;hello world1&#34;) } helloworld2.go
-package hello2 import &#34;fmt&#34; func FHelloWorld() { fmt.Println(&#34;hello world2&#34;) } ]]></content></entry><entry><title/><url>/post/philosophy/english_vocabulary/</url><categories/><tags/><content type="html">画质 masterpiece(杰作)、ultra-detailed(超详细的)、quality(品质)、
+package hello2 import &#34;fmt&#34; func FHelloWorld() { fmt.Println(&#34;hello world2&#34;) } ]]></content></entry><entry><title/><url>/post/philosophy/about_shop/</url><categories/><tags/><content type="html"></content></entry><entry><title/><url>/post/philosophy/english_vocabulary/</url><categories/><tags/><content type="html">画质 masterpiece(杰作)、ultra-detailed(超详细的)、quality(品质)、
 highres(高分辨率)、4k、8k、details(细节)、features(特征)、
 contrast(对比度)、illumination(照明)、shadow(阴影)、
 可选形容词：
