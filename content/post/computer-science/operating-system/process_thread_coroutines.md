@@ -24,3 +24,13 @@ tags:
 程序是存储在磁盘上的静态代码文件或已经编译好的可执行文件。
 
 程序启动就变成进程，直到其运行结束。程序是静态的，进程是动态的。
+
+### 协程
+
+https://zhuanlan.zhihu.com/p/446993465
+
+https://www.chiark.greenend.org.uk/~sgtatham/coroutines.html
+
+https://blog.codingnow.com/2012/07/c_coroutine.html
+
+https://github.com/cloudwu/coroutine/
