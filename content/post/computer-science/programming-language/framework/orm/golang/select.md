@@ -1,58 +1,10 @@
----
-draft: false
-date: 2022-11-11 08:00:00 +0800
-lastmod: 2022-11-11 08:00:00 +0800
-title: "Golang 实现简单的 ORM 框架 -- SELECT"
-summary: "使用 Builder 设计模式构建 MySQL 的 SELECT 语句的过程、元数据的构造、结果集的处理。"
-toc: true
-
-categories:
-- framework(框架)
-
-tags:
-- computer-science(计算机科学)
-- programming-language(编程语言)
-- framework(框架)
-- orm
-- mysql
-- golang
----
-
-> CPU AMD64(x86_64)<br/>
-> Windows 11 家庭版<br/>
-> go version go1.19 windows/amd64
-
 ### 资料
 
 - [{orm-go}](https://github.com/KelipuTe/orm-go)/v20/
 - <a href="/drawio/computer-science/programming-language/framework/orm/orm.drawio.html">orm.drawio.html</a>
 - 注意：orm.drawio.html 里面的这个类图和流程图都是和 v20 版本的代码对应的最终形态。
 
-### 前言
-
-注意，这里实现的是一个简单的 ORM 框架，并不是一个完备的 ORM 框架，主要目的是研究原理和设计。
-
-ORM 框架的核心功能主要有两个：1、把数据结构转换成 SQL 语句。2、处理 SQL 语句的执行结果。其他的功能，都是在这两个功能的基础上，再增加亿点点细节而已。
-
-数据结构转换成 SQL 语句这没啥好说的，在这个简单的 ORM 框架里面就是把 Golang 的结构体转换成对应的 SQL 语句。处理 SQL 语句的执行结果主要指的是，简化手动操作，自动把 SELECT 语句执行的结果装到对应的结构体里去。
-
-另外，这两个功能的实现过程都会用到反射操作和内存操作，需要先有这两个方面的知识。
-
-本篇主要涉及：SELECT 语句的分析和抽象、SELECT 语句的构造过程、元数据的构造、结果集的处理。
-
 ### 分析 SELECT 语句的使用场景
-
-这里实现的是一个简单的 ORM，SELECT 的部分就先处理下面这几种。
-
-- SELECT ... FROM ...
-- SELECT ... FROM ... WHERE ...
-- SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ...
-- SELECT ... FROM ... WHERE ... ORDER BY ...
-- SELECT ... FROM ... WHERE ... LIMIT ... OFFSET ...
-- SELECT ... AS ... FROM ... AS ... WHERE ...
-- SELECT ... FROM JOIN
-- SELECT ... FROM 子查询
-- SELECT ... FROM ... WHERE ... IN ...
 
 从上面的 SELECT 语句结构可以看出，SELECT 语句大致可以分成几个部分。
 
