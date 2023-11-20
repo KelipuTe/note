@@ -1,13 +1,11 @@
-# Jet Brains 全家桶的配置
+# Jet Brains
 .idea/
 
-# Visual Studio Code 的配置
+# Visual Studio Code
 .vscode/
 
-Obsidian 的配置
+# Obsidian
 *.obsidian/
 
-# draw.io 的备份文件
+# Draw.io
 *.bkp
-
-*.dtmp

@@ -1,3 +1,54 @@
+2.Love is a dangerous disadvantage.
+
+爱是种危险的劣势。
+
+3.Jack Sparrow：You've seen it all, done it all. You survived. This is the trick, isn't it? To survive?
+
+Cap'n Teague：It's not just about living forever, Jackie, the trick is living with yourself forever.
+
+杰克船长：你什么都见过了，什么都做过了，你活下来了，一定有要诀吧？为了生存？
+
+蒂格船长：目的不在永远活着，杰克，要诀是永远活出自己
+
+4.Our destinies have been entwined, Elizabeth, but never joint.
+
+我们的命运纠缠在一起，但无缘结连理。
+
+5.Who am I for you?-Treasure.
+
+-对于你来说，我是什么？-宝贝（最喜欢这句呜呜呜）
+动图封面
+
+6.If you choose to lock your heart away, you will lose her for certain.
+
+If I might lend a machete to you intellectual thicket
+
+change the facts.
+
+Avoid the choice altogether.
+
+如果你满腔投入，一定会全盘皆输
+
+让我给你指点指点
+
+换个角度
+
+置身事外
+
+7.They know they face extinction.
+
+All that remains is where they make their final stand.
+
+他们知道自己即将被消灭，所以他们要放手一搏。
+
+8.Up is down.
+
+黑白颠倒。
+
+9.Genuine tragedies in the world are not conflicts between right and wrong. They are conflicts between two rights.
+
+世界上真正的悲剧不是正确和错误间的冲突而是两种正确间的冲突。
+
 网路传递具有不确定性。
 
 良好的超时策略，可以尽可能让服务不堆积请求，尽快清空高延迟的请求。
@@ -90,3 +141,28 @@ go build -gcflags "-m -l"
 比如脚本语言更上层，你只知道怎么CRUD
 比如你用的nginx redis mq ....你只知道会用，换了个东西你又重新去
 卖命的学，核心技术你还是没有掌握，更谈不上你能更好的更深入的去理解和使用上层应用。
+
+
+
+大概是18年的时候，我收集了几万本电子书，epub、mobi、azw3、pdf、txt各种格式，专业知识、通俗小说、心灵鸡汤、历史经典，大杂烩啥都有。用Calibre软件管理，编标签，搞分类，搞各种冷备份，折腾局域网书籍网站共享给手机，甚至动过买NAS的念头。为了看PDF，为此我还专门买了当时很热门的墨水屏阅读器，索尼13英寸的DPT-RP1，专门看A4篇幅的的PDF，并且将各种格式的电子书都转换为PDF格式然后用墨水屏阅读。过了一年多吧，也没看多少书，墨水屏也坏了（墨水屏也被我拆了，还拍了个视频发出来了）。平时打开Calibre书库就是来回的翻着目录，没有看的欲望。后来我就把库给删了，当时删库都删了好几个小时（二三十G的库，小文件太多了，机械盘处理小文件的通病，没有格式化分区是因为分区里还有其它大量小文件）。
+现在看来，删库是完全正确的选择（作为个人的话是这样的，如果你是卖书的那就另说）。在我看来，任何没有阅读过的书籍都是负担而不是知识，过多的负担只会增加自己的管理成本，而不会让自己成长。
+
+很认同，就像游戏机被破解了，里面都是游戏，结果一个也不想玩了。当下的好奇心和渴求感是无比珍贵的。
+
+盖伦出轻语 沉默又破防
+
+
+形式主义派生于官僚主义，官僚主义派生于私有制，为的就是权力寻租，然后获取超额暴利
+
+
+重试间隔是为了绕开失败的原因
+重试次数是为了绕开偶发性问题，如果已经得到了明确的失败，就不需要重试了
+重试也要考虑会不会把下游打垮
+
+限流，通过压力测试获得，通过统计近几天的峰值
+
+降级，削峰，转异步，如果不能转异步，就返回一个特定的失败，让上游想办法
+
+转异步可以存消息中间件比如kafka，如果存数据库而且数据库撑不住并发，则可以结合缓存从单体插入转批量插入
+
+原设计 -> 加监控 -> 新设计1 -> 新问题1 -> 新监控2 -> 新设计2 如此循环
