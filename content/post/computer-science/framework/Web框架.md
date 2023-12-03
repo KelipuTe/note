@@ -2,7 +2,7 @@
 draft: false
 date: 2023-11-16 08:00:00 +0800
 title: "Web 框架"
-summary: "Web 框架导航；Web 框架是什么；"
+summary: "Web 框架相关笔记的导航；Web 框架是什么；"
 toc: true
 
 categories:

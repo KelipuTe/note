@@ -369,4 +369,4 @@ type routingNode struct {
 
 ### 前置（后置）工作成对出现
 
-上面讨论前置（后置）工作的时候，都是以 "前置（后置）工作是可以独立执行的整体" 为前提讨论的。如果它们之间有合作关系，也就是需要相互传递数据，那么怎么办呢？这个放到下一篇里说：[Golang 实现简单的 Web 框架 -- middleware(中间件)](/post/computer-science/programming-language/framework/web/golang/middleware_v2)
+上面讨论前置（后置）工作的时候，都是以 "前置（后置）工作是可以独立执行的整体" 为前提讨论的。如果它们之间有合作关系，也就是需要相互传递数据，那么怎么办呢？这个放到下一篇里说：[Golang 实现简单的 Web 框架 -- middleware(中间件)]()

@@ -2,7 +2,7 @@
 draft: false
 date: 2023-09-06 08:00:00 +0800
 title: "ORM 框架"
-summary: "ORM 框架导航；"
+summary: "ORM 框架相关笔记的导航；"
 toc: true
 
 categories:
