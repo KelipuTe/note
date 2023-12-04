@@ -33,50 +33,52 @@ Ubuntu 22.04 的 Linux 版本是 linux version 5.19.0-41-generic。这个可以�
 #### 在线文档
 
 在线文档可以从 [man7.org](https://man7.org/index.html) 进去。
-
 在 man7.org 页面，点击 "Online manual pages"。
-
 可以进到 [Linux man pages online](https://man7.org/linux/man-pages/index.html) 页面。
 
-在 "Linux man pages online" 页面，点击 "by section" 链接，可以进到一个列表页面。在这个列表页面，有所有的条目。
-
+在 "Linux man pages online" 页面。
+点击 "by section" 链接，可以进到一个列表页面。在这个列表页面，有所有的条目。
 虽然东西多，但是可以用浏览器进行全文搜索，找起来比较容易，不需要知道要找的条目到底在哪个 page。
 
 #### man 命令
 
-在 Linux 操作系统中，可以使用 man 命令查看文档。但是，用 man 命令的时候，需要知道要找的条目到底在哪个 page。
+在 Linux 操作系统中，可以使用 man 命令查看文档。
+但是，用 man 命令的时候，需要知道要找的条目到底在哪个 page。
 
-比如：在线文档 by section 页面上的 "execve(2) - execute program"，用 man 命令就是 `man 2 execve`；
+比如，在线文档 by section 页面上的 "execve(2) - execute program"。
+用 man 命令就是 `man 2 execve`；
 
-在线文档 by section 页面上的 "exec(3) - execute a file" 用 man 命令就是 `man 3 exec`。
+比如，在线文档 by section 页面上的 "exec(3) - execute a file"。
+用 man 命令就是 `man 3 exec`。
 
 #### 在 Docker 的 CentOS 容器中无法使用 man 命令
 
 因为，Docker 的 CentOS 容器，它把一些东西精简了，所以，有一些命令不能使用。
 
-需要修改 "/etc/yum.conf" 配置文件。注释掉 `tsflags=nodocs` 这一行。这个配置禁用了一些软件包。
+需要修改 "/etc/yum.conf" 配置文件。
+注释掉 `tsflags=nodocs` 这一行。这个配置禁用了一些软件包。
 
-修改配置文件后，使用 `yum -y install man` 和 `yum -y install man-pages` 命令，重新安装 man 命令，即可使用。
+修改配置文件后，使用命令，重新安装 man 命令，即可使用。
+`yum -y install man` 和 `yum -y install man-pages`
 
 ### 注意代码运行的目标环境
 
 编程的时候，要注意代码运行的目标环境。
-
-同一段代码，在 Ubuntu 和 CentOS 上运行的时候，整体的系统调用过程应该是差不多的，但是细节可能不一样。
+同一段代码，在 Ubuntu 和 CentOS 上运行的时候，
+整体的系统调用过程应该是差不多的，但是细节可能不一样。
 
 举个例子，在 Ubuntu 22.04 和 CentOS 7 上分别跑 hello world 程序。
-
 加载 libc.so.6 文件的这个步骤。
-
 在 Ubuntu 22.04 上加载的是 "/lib/x86_64-linux-gnu/libc.so.6"。
-
 而在 CentOS 7 上加载的是 "/lib64/libc.so.6"。
 
 ### 笔记中出现的文档
 
-笔记中出现的 Linux 文档，都会统一写在这里。直接在在线文档 by section 页面搜就可以。每一篇笔记都贴链接，太麻烦了。
+笔记中出现的 Linux 文档，都会统一写在这里。
+直接在在线文档 by section 页面搜就可以。每一篇笔记都贴链接，太麻烦了。
 
-笔记中出现的是从文档中节选的关键的部分，或者和实践过程有关的部分。有可能是整段的，有可能是节选的，看的时候稍微注意一点。
+笔记中出现的是从文档中节选的关键的部分，或者和实践过程有关的部分。
+有可能是整段的，有可能是节选的，看的时候稍微注意一点。
 
 #### 进程
 
