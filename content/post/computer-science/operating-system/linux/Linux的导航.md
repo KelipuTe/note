@@ -21,3 +21,7 @@ tags:
 ## 正向链接
 
 [init进程](/post/computer-science/operating-system/linux/init进程)；
+[ELF](/post/computer-science/operating-system/linux/ELF)；
+[进程](/post/computer-science/operating-system/linux/进程)；
+[程序的运行过程](/post/computer-science/operating-system/linux/程序的运行过程)；
+[文件权限](/post/computer-science/operating-system/linux/文件权限)；

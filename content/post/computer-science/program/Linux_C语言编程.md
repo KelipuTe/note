@@ -1,8 +1,8 @@
 ---
 draft: false
 date: 2023-05-16 08:00:00 +0800
-title: "Linux C 语言编程"
-summary: "实践的环境；学会看 linux 文档；注意代码运行的目标环境；笔记中出现的文档；"
+title: "Linux C语言编程"
+summary: "实践的环境；学会看 Linux 文档；注意代码运行的目标环境；笔记中出现的文档；"
 toc: true
 
 categories:
