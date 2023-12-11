@@ -1,11 +1,16 @@
-# Jet Brains
+#Jet Brains
 .idea/
 
-# Visual Studio Code
+#Visual Studio Code
 .vscode/
 
-# Obsidian
+#Obsidian
 *.obsidian/
 
-# Draw.io
+#Draw.io
 *.bkp
+
+#图片
+*.jpg
+*.jpeg
+*.png
