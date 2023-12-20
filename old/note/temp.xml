@@ -1,24 +1,505 @@
-<Booking id="114196872" type="Book" createDateTime="2023-10-31T15:13:00Z" source="Expedia Affiliate Network"
-         status="pending">
-    <Hotel id="36496189"/>
-    <RoomStay roomTypeID="216642144" ratePlanID="264268533">
-        <StayDate arrival="2023-11-12" departure="2023-11-17"/>
-        <GuestCount adult="4" child="0"/>
-        <PerDayRates currency="JPY">
-            <PerDayRate stayDate="2023-11-12" baseRate="18143.00"/>
-            <PerDayRate stayDate="2023-11-13" baseRate="17064.00"/>
-            <PerDayRate stayDate="2023-11-14" baseRate="16200.00"/>
-            <PerDayRate stayDate="2023-11-15" baseRate="16740.00"/>
-            <PerDayRate stayDate="2023-11-16" baseRate="16200.00"/>
-        </PerDayRates>
-        <Total amountAfterTaxes="88346.00" currency="JPY"/>
-    </RoomStay>
-    <PrimaryGuest>
-        <Name givenName="CHI HIN" surname="WONG"/>
-        <Phone countryCode="44" cityAreaCode="20" number="39293737"/>
-        <Email>vc9pmgvoi0@m.expediapartnercentral.com</Email>
-    </PrimaryGuest>
-    <SpecialRequest code="1.133">2 Double Beds and 2 Large Twin Sofa Beds</SpecialRequest>
-    <SpecialRequest code="2.1">Non-Smoking</SpecialRequest>
-    <SpecialRequest code="5">Remittance amount: 75,695</SpecialRequest>
-</Booking>
+<ProductAvailRateRetrievalRS xmlns="http://www.expediaconnect.com/EQC/PAR/2013/07">
+    <ProductList>
+        <Hotel id="8771643" name="Inn Cube Ximen" city="Taipei"/>
+        <RoomType id="200750900" code="Double Room, Shared Bathroom" name="Double Room, Shared Bathroom" status="Active"
+                  smokingPref="NonSmoking" maxOccupants="2">
+            <BedType id="1.13" name="1 double bed"/>
+            <OccupancyByAge ageCategory="Adult" minAge="18" maxOccupants="2"/>
+            <RateThreshold type="NetRate" minAmount="264.09" maxAmount="39613.71" source="RecentReservations"/>
+            <RateThreshold type="SellRate" minAmount="357.62" maxAmount="17881.20" source="RecentReservations"/>
+            <RatePlan id="208217505A" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="2" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208217505" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="208217505A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="2" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208264608" code="PKG" name="Package" status="Active" type="Package"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="LowestAvailableRate"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="2" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:13:23Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641835A" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="2" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:28:06Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641835" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641835A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="2" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:28:06Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641877A" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:27:49Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641877" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641877A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:27:49Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+        </RoomType>
+        <RoomType id="200750901" code="RoomOnly" name="Room, Shared Bathroom (Bunk Bed)" status="Active"
+                  smokingPref="NonSmoking" maxOccupants="2">
+            <BedType id="1.50" name="1 bunk bed"/>
+            <OccupancyByAge ageCategory="Adult" minAge="18" maxOccupants="2"/>
+            <RateThreshold type="NetRate" minAmount="264.51" maxAmount="39675.75" source="RecentReservations"/>
+            <RateThreshold type="SellRate" minAmount="354.29" maxAmount="17714.30" source="RecentReservations"/>
+            <RatePlan id="207142620" code="PKG RO" name="Package" status="Active" type="Package"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="LowestAvailableRate"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="2" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:13:23Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208217507A" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="2" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208217507" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="208217507A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="2" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641831A" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="2" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:30:57Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641831" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641831A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="2" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:30:57Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641873A" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="2" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:42:51Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641873" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641873A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="2" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:42:51Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+        </RoomType>
+        <RoomType id="200764812" code="Single Room, Shared Bathroom" name="Single Room, Shared Bathroom" status="Active"
+                  smokingPref="NonSmoking" maxOccupants="1">
+            <BedType id="1.18" name="1 twin bed"/>
+            <OccupancyByAge ageCategory="Adult" minAge="18" maxOccupants="1"/>
+            <RateThreshold type="NetRate" minAmount="100.00" maxAmount="8000.00" source="Manual"/>
+            <RateThreshold type="SellRate" minAmount="199.37" maxAmount="29905.74" source="RecentReservations"/>
+            <RatePlan id="208217508A" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208217508" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="208217508A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208264641" code="PKG" name="Package" status="Active" type="Package"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="LowestAvailableRate"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:13:23Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641838A" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641838" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641838A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641874A" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:27:49Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641874" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641874A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:27:49Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+        </RoomType>
+        <RoomType id="200764815" code="Triple Room, Shared Bathroom" name="Triple Room, Shared Bathroom" status="Active"
+                  smokingPref="NonSmoking" maxOccupants="3">
+            <BedType id="1.75" name="1 double and 1 twin bed"/>
+            <OccupancyByAge ageCategory="Adult" minAge="18" maxOccupants="3"/>
+            <RateThreshold type="NetRate" minAmount="300.56" maxAmount="45083.97" source="RecentReservations"/>
+            <RateThreshold type="SellRate" minAmount="319.49" maxAmount="47923.56" source="RecentReservations"/>
+            <RatePlan id="207142635" code="PKG RO" name="Package" status="Active" type="Package"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="LowestAvailableRate"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="3" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:13:23Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208217509A" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="3" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208217509" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="208217509A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="3" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641836A" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="3" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:21:28Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641836" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641836A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="3" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:21:28Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641875A" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="3" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:30:02Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641875" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641875A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="3" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:30:02Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="393203775A" code="RoomOnly" name="Atest" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2023-12-15T06:40:29Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="393203775" code="RoomOnly" name="Atest" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="393203775A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2023-12-15T06:40:29Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+        </RoomType>
+        <RoomType id="200764816" code="Quadruple Room, Shared Bathroom" name="Quadruple Room, Shared Bathroom"
+                  status="Active" smokingPref="NonSmoking" maxOccupants="4">
+            <BedType id="1.21" name="2 double beds"/>
+            <OccupancyByAge ageCategory="Adult" minAge="18" maxOccupants="4"/>
+            <RateThreshold type="NetRate" minAmount="363.18" maxAmount="54477.12" source="RecentReservations"/>
+            <RateThreshold type="SellRate" minAmount="459.30" maxAmount="68894.28" source="RecentReservations"/>
+            <RatePlan id="207142647" code="PKG RO" name="Package" status="Active" type="Package"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="LowestAvailableRate"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="4" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:13:23Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208217506A" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="4" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208217506" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="208217506A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="4" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641837A" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="4" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:23:48Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641837" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641837A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="4" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:23:48Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641872A" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="4" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:29:20Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641872" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641872A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="4" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:29:20Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+        </RoomType>
+        <RoomType id="201739046" code="Room" name="Room, Shared Bathroom (Selected by hotel)" status="Active"
+                  smokingPref="NonSmoking" maxOccupants="1">
+            <BedType id="1.18" name="1 twin bed"/>
+            <OccupancyByAge ageCategory="Adult" minAge="18" maxOccupants="1"/>
+            <RateThreshold type="NetRate" minAmount="100.00" maxAmount="100000.00" source="Manual"/>
+            <RateThreshold type="SellRate" minAmount="100.00" maxAmount="100000.00" source="Manual"/>
+            <RatePlan id="208644155" code="PKG RO" name="Package" status="Active" type="Package"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="LowestAvailableRate"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:13:23Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208644156A" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="208644156" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="208644156A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641832A" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641832" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641832A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641876A" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:27:49Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641876" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641876A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:27:49Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+        </RoomType>
+        <RoomType id="218117167" code="Basic Room, Shared Bathroom"
+                  name="Economical and eco-friendly (No amenity, no room cleaning, sheet changing, and bed making) "
+                  status="Active" smokingPref="NonSmoking" maxOccupants="1">
+            <BedType id="1.18" name="1 twin bed"/>
+            <OccupancyByAge ageCategory="Adult" minAge="18" maxOccupants="1"/>
+            <RateThreshold type="NetRate" minAmount="0.00" maxAmount="0.00" source="RecentReservations"/>
+            <RateThreshold type="SellRate" minAmount="0.00" maxAmount="0.00" source="RecentReservations"/>
+            <RatePlan id="274050053A" code="RoomOnly " name="Room Only-3D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="2" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2023-12-05T09:41:51Z">
+                <Compensation default="true" percent="15.00"/>
+                <CancelPolicy default="true" cancelWindow="72" createDateTime="1900-01-01T08:00:00Z"
+                              updateDateTime="2014-07-22T12:27:59Z">
+                    <Penalty insideWindow="true" perStayFee="1stNightRoomAndTax"/>
+                    <Penalty insideWindow="false" perStayFee="None"/>
+                </CancelPolicy>
+            </RatePlan>
+            <RatePlan id="274050053" code="RoomOnly " name="Room Only-3D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="274050053A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="2" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2023-12-05T09:41:51Z">
+                <Compensation default="true" percent="15.00"/>
+                <CancelPolicy default="true" cancelWindow="72" createDateTime="1900-01-01T08:00:00Z"
+                              updateDateTime="2014-07-22T12:27:59Z">
+                    <Penalty insideWindow="true" perStayFee="1stNightRoomAndTax"/>
+                    <Penalty insideWindow="false" perStayFee="None"/>
+                </CancelPolicy>
+            </RatePlan>
+            <RatePlan id="274050054A" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="Linked" parentId="274050053A"
+                      rateLinkStart="2023-04-21" isAvailStatusLinked="false" areMinMaxLOSLinked="true"
+                      isCTALinked="true" isCTDLinked="true" rateLinkExceptions="false" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="2" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <RatePlanLinkDefinition linkType="Percent" linkValue="-5.0"/>
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="274050054" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="274050054A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="2" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="274050055" code="PKG" name="Package" status="Active" type="Package"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Linked" parentId="274050053A"
+                      rateLinkStart="2018-06-28" isAvailStatusLinked="false" areMinMaxLOSLinked="true"
+                      isCTALinked="true" isCTDLinked="true" rateLinkExceptions="true" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" minLOSDefault="2" maxLOSDefault="28" minAdvBookDays="0"
+                      maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:13:23Z">
+                <RatePlanLinkDefinition linkType="Percent" linkValue="-7.0"/>
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641834A" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="Linked" parentId="274050053A"
+                      rateLinkStart="2022-09-28" isAvailStatusLinked="false" areMinMaxLOSLinked="true"
+                      isCTALinked="true" isCTDLinked="true" rateLinkExceptions="false" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:20:30Z">
+                <RatePlanLinkDefinition linkType="Percent" linkValue="0.0"/>
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641834" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641834A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641871A" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="Linked" parentId="274050053A"
+                      rateLinkStart="2022-09-28" isAvailStatusLinked="false" areMinMaxLOSLinked="true"
+                      isCTALinked="true" isCTDLinked="true" rateLinkExceptions="false" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="1" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:27:49Z">
+                <RatePlanLinkDefinition linkType="Percent" linkValue="0.0"/>
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641871" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641871A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="1" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:27:49Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+        </RoomType>
+        <RoomType id="218127272" code="Double Room, Shared Bathroom"
+                  name="Double Room, Shared Bathroom (Room Selected By Hotel)" status="Active" smokingPref="NonSmoking"
+                  maxOccupants="2">
+            <BedType id="1.50" name="1 bunk bed"/>
+            <OccupancyByAge ageCategory="Adult" minAge="18" maxOccupants="2"/>
+            <RateThreshold type="NetRate" minAmount="217.96" maxAmount="32694.36" source="RecentReservations"/>
+            <RateThreshold type="SellRate" minAmount="435.00" maxAmount="14500.00" source="RecentReservations"/>
+            <RatePlan id="274087618A" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="2" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="274087618" code="RO-NR" name="Non Refundable" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="274087618A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="2" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2020-05-23T04:20:30Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="274087629" code="PKG RO" name="Package" status="Active" type="Package"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="LowestAvailableRate"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="2" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:13:23Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641833A" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="2" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:23:09Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641833" code="RoomOnly" name="Room Only-14D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641833A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="2" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:23:09Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641870A" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="HotelCollect" rateAcquisitionType="SellRate" pricingModel="PerDayPricing"
+                      occupantsForBaseRate="2" depositRequired="false" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:30:48Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+            <RatePlan id="387641870" code="RoomOnly" name="Room Only-7D CXL" status="Active" type="Standalone"
+                      distributionModel="ExpediaCollect" rateAcquisitionType="Derived" parentId="387641870A"
+                      pricingModel="PerDayPricing" occupantsForBaseRate="2" minLOSDefault="1" maxLOSDefault="28"
+                      minAdvBookDays="0" maxAdvBookDays="500" mobileOnly="false" createDateTime="1900-01-01T00:00:00Z"
+                      updateDateTime="2022-09-28T07:30:48Z">
+                <Compensation default="true" percent="15.00"/>
+            </RatePlan>
+        </RoomType>
+    </ProductList>
+</ProductAvailRateRetrievalRS>

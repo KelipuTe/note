@@ -70,6 +70,8 @@ All that remains is where they make their final stand.
 6 支持友好停止服务
 7 支持主从复制
 
+女生总想找一个各方面都比自己优秀的男生，但是又要求这个男生事事都要顺着自己，还要给自己提供一些情绪价值，这个时候就会出现很多人性的问题，一个强的人怎么会向弱的人低头？一个弱的人怎么去管理一个强者？用什么样的筹码去平衡这段关系？
+
 Safari 标签，TODO Reading
 Bookmark，收藏
 OneNote 分类存储链接
