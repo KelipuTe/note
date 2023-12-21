@@ -2,26 +2,31 @@
 draft: false
 date: 2023-06-10 08:00:00 +0800
 title: "Linux 进程"
-summary: "进程是什么；怎么观察进程；"
+summary: "进程是什么；init进程；进程树；进程组；控制进程；"
 toc: true
 
 categories:
-  - Linux
+  - 操作系统
 
 tags:
   - 计算机
   - 操作系统
   - Linux
+  - 进程
 ---
 
 ## 反向链接
 
 [进程](/计算机/操作系统/进程)；
 [ELF](/计算机/操作系统/linux/ELF)；
+[终端](/计算机/终端)；
 
 ## 资料
 
-代码：{demo-c}/demo-in-linux/process/
+代码：
+
+- {demo-c}/demo-in-linux/process/
+- {demo-c}/demo-in-linux/program/
 
 ## 正文
 
@@ -41,46 +46,97 @@ tags:
 简单的理解，程序是静态的，进程是动态的。
 程序需要变成进程，才能够真正的运行起来，程序启动起来就变成进程，直到程序运行结束。
 
-### 怎么观察进程
+### init 进程
 
-可以通过 strace 命令可以跟踪进程执行时的系统调用和进程接收的信号。
-关于 strace 命令具体怎么用，可以看 "strace(1) - trace system calls and signals"。
+init 程序是 Linux 操作系统中不可缺少的程序之一，它是一个由内核启动的用户级进程。
 
-这里会用到 "-f"、"-i"、"-t"、"-T"、"-p"、"-s"、"-o" 这几个参数。
-"-f" 跟踪子进程；"-i" 打印系统调用的地址；"-t" 每一行打印时间；
-"-T" 显示系统调用花费的时间；"-p {pid}"指定跟踪的进程号；
-"-s {length}" 每一行的长度，默认 32，一般设置 65535；"-o {file name}" 输出到文件；
+内核会在过去曾使用过 init 程序的几个地方查找它，它的位置（对 Linux 系统来说）是 "/sbin/init"。
+如果内核找不到 init，它就会试着运行 "/bin/sh"。如果这两个都运行失败了，操作系统的启动也会失败。
 
-这里观察一下 hello_world.elf 可执行文件运行的过程。
-命令的输出我放在 {demo-c}/demo-in-linux/program/ 目录的 hello_world_objdump.md 文件内。
+Linux 操作系统的启动首先从 BIOS 开始，接下来进入 boot loader，由 boot loader 载入内核，进行内核初始化。
+内核启动之后（被载入内存，开始运行，初始化所有的设备驱动程序和数据结构之后），就会通过启动一个用户级程序 init 的方式，完成引导进程。
 
-#### 在 centos 的 docker 容器中使用 strace 命令报错
+内核初始化的最后一步就是启动 init 进程，这个进程是系统的第一个进程，它负责产生其他所有的用户进程。
+所以，init 进程始终是第一个进程，其进程编号始终为 1。
+其他所有的用户进程每个进程都有父进程，一直上溯的话，所有的进程会形成一个以 init 进程为根结点的树状结构。
 
-使用 `strace -p` 命令跟踪进程时报错：
+### 进程树
 
-```text
-attach: ptrace(PTRACE_SEIZE): Operation not permitted
+这里简单的验证一下。先打开一个终端，使用 "echo $$" 命令，打印当前进程的 pid。
+再打开一个终端，使用 "echo $$" 命令，打印当前进程的 pid。然后使用 "pstree -p" 命令，观察一下进程树。
+
+```
+> echo $$
+1963
 ```
 
-参考官方文档：
-[The solution for enabling of ptrace and PTRACE_ATTACH in Docker Containers](https://bitworks.software/en/2017-07-24-docker-ptrace-attach.html)。
-
-启动容器的时候使用 "–-privileged" 参数，让容器内的 root 用户拥有真正的 root 权限。
-
-```shell
-docker run -it -p 127.0.0.1:9501:9501 -v {local path}:{docker path} --name={container name} --privileged centos:centos7
+```
+> echo $$
+2166
+> pstree -p
+systemd(1)─┬...
+           ├─systemd(1074)─┬─...
+           │               ├─gnome-terminal-(1945)─┬─bash(1963)
+           │               │                       ├─bash(2166)───pstree(2173)
 ```
 
-进入容器，然后使用命令：`echo 0 > /proc/sys/kernel/yama/ptrace_scope`。
-将 "/proc/sys/kernel/yama/ptrace_scope" 文件中的值修改成 0。然后就可以使用 `strace -p` 命令跟踪进程了。
+这里从进程树里截取了有关的片段。
+可以看到，打开的两个终端，bash(1963) 和 bash(2166) 的父进程都是 gnome-terminal-(1945)。
+终端 bash(2166) 执行 pstree 命令的时候，又创建了一个子进程 pstree(2173)。
+
+### 进程组
+
+进程组（process group）是一个或者多个进程的集合。
+每个进程必须而且只能属于一个进程组。集合里的这些进程并不是孤立的，它们之间会存在父子或者兄弟的关系。
+
+进程有自己的唯一标识，称为进程 id（process id、pid）。
+进程组也有自己的唯一标识，称为进程组 id（process group id、pgid）。
+
+每个进程组都有一个组长进程，组长进程的 pid 与其 pgid 相同。
+组长进程可以创建一个进程组，一般是进程变成组长进程的时候。
+
+进程组的生命周期从被创建开始，直到进程组内所有进程终止或离开该组。
+无论组长进程是否终止，只要进程组中存在未终止的进程，这个进程组就不会消失。
+组长进程终止后，进程组中便不存在组长进程，剩下的进程也不会自动推选新的组长进程。
+
+进程组的作用是为了方便对进程进行管理。
+假设有一个任务需要好多进程一起协作完成，现在出于某种原因需要终止这个任务。
+如果没有进程组，就需要用 pid 一个一个杀掉这些进程，而且还要考虑顺序，先杀子进程再杀父进程。
+如果有进程组的话，就可以搞一个杀进程组的操作。
+
+通过 getpgid() 或者 getpgrp() 可以获取进程所属的进程组 id。
+通过 setpgid() 可以设置进程的进程组 id。
+
+进程通过 setpgid() 只能设置它自己和它的子进程的 ppid。
+如果它的子进程调用了 exec 家族的函数，那么它也无法更改这个子进程的 ppid 了。
+
+创建出来的子进程一开始是和父进程是一组的，会继承父进程的 pgid。
+可以通过把子进程的 pgid 设置成子进程的 pid，来创建以子进程为组长进程的新进程组。
+
+### 控制进程
+
+控制进程就是关联了终端的进程。比如，控制台黑窗口。可以通过 `ps -l` 命令看一下。
+
+```
+> ps -l
+  UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000    2643    2625  0  80   0 -  3557 do_wai pts/0    00:00:00 bash
+0 R  1000    2650    2643  0  80   0 -  3939 -      pts/0    00:00:00 psF S 
+```
+
+进程（PID）2643，是由 bash（/bin/bash）文件启动的，同时该进程关联了终端设备（TTY），这个终端设备是 pts/0（伪终端）。
 
 ## 参考
 
-<<进程树>>、<<进程组>>、<<作业>>、<<会话>> 这几篇笔记的参考都在这里。
+<<Linux 进程>>、<<会话>>、<<作业>> 这几篇笔记的参考都在这里。
 
-- 百度百科：Linux Shell、Linux进程管理及作业控制
+- 百度百科：init进程、Linux Shell、Linux进程管理及作业控制
 - [Linux初始化init系统](https://zhuanlan.zhihu.com/p/573503461)
 - [Linux-进程、进程组、作业、会话、控制终端详解](https://www.cnblogs.com/JohnABC/p/4079669.html)
 - [APUE 2 - 进程组（process group） 会话（session） job](https://www.cnblogs.com/Sven7/p/7442791.html)
 - [Linux会话、终端与进程组](https://zhuanlan.zhihu.com/p/563471531)
 - [Linux进程控制](https://www.cnblogs.com/cpsmile/p/4382106.html)
+
+## 正向链接
+
+[程序的运行过程](/计算机/操作系统/linux/程序的运行过程)；

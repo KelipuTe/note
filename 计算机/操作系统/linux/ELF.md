@@ -6,7 +6,7 @@ summary: "ELF 文件是什么；ELF 文件的内容是什么；"
 toc: true
 
 categories:
-  - Linux
+  - 操作系统
 
 tags:
   - 计算机
@@ -26,37 +26,29 @@ tags:
 
 ### ELF 文件是什么
 
-在笔记 <<程序>> 中提到过，C 源码文件通过 gcc 编译器编译可以得到可执行文件。
-这里的可执行文件就是 ELF 文件的一种。
+C 源码文件通过 gcc 编译器编译可以得到可执行文件。这里的可执行文件就是 ELF 文件的一种。
 
-关于 elf 具体的细节可以看 "elf(5) - format of Executable and Linking Format (ELF) files"
+关于 elf 具体的细节可以看文档 elf(5)。
 
 > elf(5)<br/>
 > Amongst these files are normal executable files, relocatable object files, core files, and shared objects.
 
-elf 文件格式有四种：
-普通可执行文件（normal executable files）；
-可重定位文件（relocatable object files）；
-核心文件（core files）；
-共享目标文件、共享库、动态库（shared objects）。
-
-我在 {demo-c}/demo-in-linux/elf/ 目录下，准备了三个程序：
-symbol.c、0b_0_10_0x.c、address.c。分别用于讨论不同的问题。
+elf 文件格式有四种。
+普通可执行文件（normal executable files）；可重定位文件（relocatable object files）；
+核心文件（core files）；共享目标文件、共享库、动态库（shared objects）。
 
 ### ELF 文件的内容
 
 这里主要围绕 symbol.c 编译得到的 symbol.elf 文件。
 
-先用 objdump 命令观察一下。
-命令具体的输出放在 {demo-c}/demo-in-linux/elf/symbol_elf_objdump.md 里面。
+需要用到 readelf 和 objdump 命令。具体用法看文档 objdump(1) 和 readelf(1)。
 
-然后，用 readelf 命令观察一下 symbol.elf。
-关于 readelf 命令具体怎么用可以看 "readelf(1) - display information about ELF files"。
+objdump 主要会用到 "-s"、"-d"、"-M" 几个参数。
+"-s" 表示以二进制的形式输出文件内容；"-d" 表示输出汇编代码；
 
-这里会用到 "-h"、"-l"、"-S"、"-s" 几个参数。
+readelf 主要会用到 "-h"、"-l"、"-S"、"-s" 几个参数。
 "-h" 表示输出 elf 文件头（elf header）；"-l" 表示输出 program headers；
-"-S" 表示输出段表（section headers）；"-s" 表示输出符号表。
-命令具体的输出放在 {demo-c}/demo-in-linux/elf/symbol_elf_readelf.md 里面。
+"-S" 表示输出段表（section headers）；"-s" 表示输出符号表；
 
 > elf(5)<br/>
 > The ELF header is always at offset zero of the file.
@@ -77,7 +69,7 @@ elf 文件头总是在文件的最前面，其他的数据都在后面。
 ```
 
 - Data：数据存储方式，这里是小端字节序（little endian）。
-- Type：elf 文件的类型，这里是可执行文件（Executable）。
+- Type：elf 文件的类型，这里是可执行文件（Executable file）。
 - Machine：机器架构，这里是 X86-64。
 - Entry point address：程序的入口地址。
   操作系统在加载完可执行文件后，会把控制权转移给该程序，然后找到入口地址（这里就是 "0x1060"）开始运行程序。
@@ -133,9 +125,7 @@ elf 文件头总是在文件的最前面，其他的数据都在后面。
 
 ### 数据是怎么存储的
 
-- 小端字节序、little endian；大端字节序、big endian；
-
-数据存储方式有两种：小端字节序和大端字节序。
+数据存储方式有两种：小端字节序（little endian）和大端字节序（big endian）。
 小端字节序又叫主机字节序，大端字节序又叫网络字节序。
 
 上面 `readelf -h` 命令的结果里面，在 Data 字段里可以看见 "little endian"。
@@ -166,15 +156,13 @@ c 语言的 int 变量由 4 个字节组成，每个字节由 8 个 bit 位组�
 小端字节序的存储格式是把数据的低位放在内存低位上，而内存的排布是从低位到高位的。
 所以，就变成了 "00101100 00000001 00000000 00000000"，转换成 16 进制就是 "2c 01 00 00"。
 
-关于进制的问题，我放了一个示例代码，0b_0_10_0x.c。
-
 通过 size 命令可以查看文件中各段及其总和的大小，单位是字节。
-关于 size 命令具体怎么用可以看 "size(1) - list section sizes and total size of binary files"。
+关于 size 命令具体怎么用可以看文档 "size(1)"。
 
 这里观察一下 symbol.elf 文件。
 
 ```
-> size demo02
+> size symbol.elf
    text	   data	    bss	    dec	    hex	filename
    1786	    608	     16	   2410	    96a	symbol.elf
 ```
@@ -186,7 +174,7 @@ c 语言的 int 变量由 4 个字节组成，每个字节由 8 个 bit 位组�
 
 ### 程序的入口在哪里
 
-从 `objdump -s` 命令输出的结果里可以知道 symbol.elf 程序的入口地址是 0x1060。
+从 `readelf -h` 命令输出的结果里可以知道 symbol.elf 程序的入口地址是 0x1060。
 然后在 `objdump -s` 命令输出的结果里面。找到 ".text" 段，然后找到地址 0x1060 对应的数据。
 这里截取了 ".text" 段前三行的内容。
 
@@ -226,7 +214,7 @@ Contents of section .text:
 它在调用 main 函数之前，会做一些前期的准备工作。编程语言的 main 函数一般不是程序的入口函数。
 大部分入口函数都是类似 "_start" 函数这样的，而且不同的语言在初始化阶段会有各自的处理逻辑。
 
-这里最右边的汇编代码是 ATT 格式的汇编语法，汇编语法有 intel 格式和 ATT 格式，ATT 格式主要用于 unix/linux 系统。
+这里最右边的汇编代码是 ATT 格式的汇编语法，汇编语法有很多种，ATT 格式主要用于 unix/linux 系统。
 使用命令 `objdump -d -M intel symbol.elf` 就可以输出 intel 格式的汇编代码。
 
 ### 符号表
@@ -258,17 +246,17 @@ Contents of section .text:
 这里结合 ".data" 段的数据。
 globalIntB 的数据保存在地址从 0x4010 开始往后的 4 个字节上，也就是上面的 "2c010000"，值就是 300。
 
-命令 nm 也可以输出符号表。关于 gcc 命令具体怎么用可以看 "nm(1) - list symbols from object files"。
-nm 命令输出的内容在文件 {demo-c}/demo-in-linux/elf/symbol_elf_nm.md 中。
+nm 命令也可以输出符号表。具体怎么用可以看文档 nm(1)。
 
 ### 使用符号表的地址直接访问数据
 
 在程序中可以直接使用符号表中的 Value 值去访问对应的内存数据。
-同样的源文件，每次编译得到的符号表的地址是一样的。
-如果只是修改了某个变量的值，没有大规模的修改代码的话，重新编译的时候，变量的地址一般也是不会变得。
-可以通过这种方式验证这个结论。
 
-示例代码：address.c。不过，在 ubuntu 22.04 中，这种方式无效。
+同样的源文件，每次编译得到的符号表的地址是一样的。
+如果只是修改了某个变量的值，没有大规模的修改代码的话。
+重新编译的时候，变量的地址一般也是不会变的。可以通过这种方式去验证。
+
+在 CentOS 7 中，可以直接访问。在 Ubuntu 22.04 中，无法直接访问。不知道什么原因，我也没深究。
 
 ### 进程虚拟地址空间映射
 

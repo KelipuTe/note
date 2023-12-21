@@ -6,12 +6,11 @@ summary: "实践的环境；学会看 Linux 文档；注意代码运行的目标
 toc: true
 
 categories:
-  - 操作系统
+  - 程序
 
 tags:
-  - 计算机科学
-  - 操作系统
-  - Linux
+  - 计算机
+  - 程序
 ---
 
 ## 正文
@@ -26,7 +25,7 @@ Ubuntu 22.04 的 Linux 版本是 linux version 5.19.0-41-generic。这个可以�
 
 然后，在 Linux 中安装 GCC 编译器，版本是 gcc version 11.3.0 (ubuntu 11.3.0-1ubuntu1~22.04)。
 
-### 学会看 linux 文档
+### 学会看 Linux 文档
 
 想在 Linux 系统中使用 C 语言进行编程，一定要学会看 Linux 的文档。
 
@@ -80,10 +79,37 @@ Ubuntu 22.04 的 Linux 版本是 linux version 5.19.0-41-generic。这个可以�
 笔记中出现的是从文档中节选的关键的部分，或者和实践过程有关的部分。
 有可能是整段的，有可能是节选的，看的时候稍微注意一点。
 
+#### 命令和工具
+
+| 标题                                                          | 描述       |
+|-------------------------------------------------------------|----------|
+| nm(1) - list symbols from object files                      | 符号表      |
+| objdump(1) - display information from object files          | 文件信息     |
+| readelf(1) - display information about ELF files            | elf 信息   |
+| strace(1) - trace system calls and signals                  | 跟踪系统调用   |
+| man(1) - an interface to the system reference manuals       | 文档       |
+| gcc(1) - GNU project C and C++ compiler                     | 编译       |
+| file(1) - determine file type                               | 文件类型     |
+| size(1) - list section sizes and total size of binary files | 段大小      |
+| ldd(1) - print shared object dependencies                   | 文件依赖的动态库 |
+
+
+
+
 #### 进程
 
-| 标题                                                        | 描述         |
-|-----------------------------------------------------------|------------|
+| 标题                                                     | 描述      |
+|--------------------------------------------------------|---------|
+| clone(2) - create a child process                      | 创建子进程   |
+| fork(2) - create a child process                       | 创建子进程   |
+| vfork(2) - create a child process and block parent     | 创建子进程   |
+| wait4(2) - wait for process to change state, BSD style | 回收子进程   |
+| execve(2) - execute program                            | 让进程执行程序 |
+| exit_group(2) - exit all threads in a process          | 退出进程中所有的线程 |
+
+
+
+
 | **进程的标识**                                                 | ---        |
 | getuid(2) - get user identity                             | ---        |
 | geteuid(2) - get user identity                            | ---        |
@@ -91,22 +117,17 @@ Ubuntu 22.04 的 Linux 版本是 linux version 5.19.0-41-generic。这个可以�
 | getppid(2) - get process identification                   | ---        |
 | getpgid(2) - set/get process group                        | ---        |
 | **进程的创建**                                                 | ---        |
-| fork(2) - create a child process                          | 创建子进程      |
-| vfork(2) - create a child process and block parent        | 创建子进程      |
-| clone(2) - create a child process                         | 创建子进程      |
+
 | **进程的运行**                                                 | ---        |
-| execve(2) - execute program                               | 执行程序       |
 | exec(3) - execute a file                                  | ---        |
 | **进程的退出**                                                 | ---        |
 | exit(2) - terminate the calling process                   | ---        |
 | _Exit(2) - terminate the calling process                  | ---        |
 | _exit(2) - terminate the calling process                  | ---        |
 | exit(3) - cause normal process termination                | ---        |
-| exit_group(2) - exit all threads in a process             | 退出进程中所有的线程 |
 | **进程的回收**                                                 | ---        |
 | wait(2) - wait for process to change state                | ---        |
 | waitpid(2) - wait for process to change state             | ---        |
-| wait4(2) - wait for process to change state, BSD style    | 等待回收进程     |
 | **进程的运行顺序**                                               | ---        |
 | nice(1) - run a program with modified scheduling priority | ---        |
 | nice(2) - change process priority                         | ---        |
@@ -216,13 +237,14 @@ Ubuntu 22.04 的 Linux 版本是 linux version 5.19.0-41-generic。这个可以�
 
 | 标题                                                           | 描述         |
 |--------------------------------------------------------------|------------|
+| read(2) - read from a file descriptor         | 从文件描述符里读取 |
+| write(2) - write to a file descriptor         | 往文件描述符里写入 |
+| openat(2) - open and possibly create a file                  | 打开或者创建一个文件 |
+
 | access(2) - check user's permissions for a file              | ---        |
 | open(2) - open and possibly create a file                    | ---        |
-| read(2) - read from a file descriptor                        | 从文件描述符读取数据 |
-| write(2) - write to a file descriptor                        | 向文件描述符写入数据 |
 | fcntl(2) - manipulate file descriptor                        | 操作文件描述符    |
-| elf(5) - format of Executable and Linking Format (ELF) files | elf 相关     |
-| openat(2) - open and possibly create a file                  | 打开或者创建一个文件 |
+| elf(5) - format of Executable and Linking Format (ELF) files | elf 文件     |
 | ---                                                          | ---        |
 
 #### 终端
@@ -236,21 +258,6 @@ Ubuntu 22.04 的 Linux 版本是 linux version 5.19.0-41-generic。这个可以�
 | ptmx(4) - pseudoterminal master and slave                                | --- |
 | posix_openpt(3) - open a pseudoterminal device                           | --- |
 | ---                                                                      | --- |
-
-#### linux 命令
-
-| 标题                                                          | 描述          |
-|-------------------------------------------------------------|-------------|
-| man(1) - an interface to the system reference manuals       | 查看文档        |
-| gcc(1) - GNU project C and C++ compiler                     | 用于编译        |
-| file(1) - determine file type                               | 查文件类型       |
-| objdump(1) - display information from object files          | 查看文件信息      |
-| strace(1) - trace system calls and signals                  | 跟踪系统调用      |
-| readelf(1) - display information about ELF files            | 查看 elf 文件内容 |
-| size(1) - list section sizes and total size of binary files | 查看段大小       |
-| nm(1) - list symbols from object files                      | 查看符号表       |
-| ldd(1) - print shared object dependencies                   | 查看文件依赖的动态库  |
-| ---                                                         | ---         |
 
 #### 其他
 
