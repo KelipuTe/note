@@ -14,23 +14,9 @@ tags:
   - thread(线程)
 ---
 
-## 前言
-
-实践的环境：
-
-- amd64（x86_64）
-- windows 11
-- vmware workstation pro 16
-- ubuntu 22.04
-- linux version 5.19.0-41-generic
-- gcc version 11.3.0
-
-前置笔记：
-[进程的创建、进程的运行、进程的内存资源、进程的退出、进程的回收](/计算机/operating-system/linux/process)
-
 ## 资料
 
-- [{demo-c}](https://github.com/KelipuTe/demo-c)/demo-in-linux/thread/
+代码：{demo-c}/demo-in-linux/thread/
 
 ## 正文
 
