@@ -1,0 +1,204 @@
+<rooms>
+    <room id="35976801" hotel_id="359768" hotel_name="Yangshuo Moondance Hotel" max_children="1"
+          room_name="Superior Twin Room with Balcony">
+        <rates>
+            <rate id="1251247" max_persons="2" policy="General" policy_id="81116089" rate_name="Standard Rate">
+                <meal_plan meal_plan_code="19"/>
+                <policies>
+                    <booking_rules/>
+                    <cancel_policy>
+                        <cancel_penalty policy_code="55"/>
+                    </cancel_policy>
+                    <guarantee_payment_policy>
+                        <guarantee_payment policy_code="168" effective_from="after_reservation_is_made" required="1"/>
+                    </guarantee_payment_policy>
+                </policies>
+                <pricing type="Standard" price1="1"/>
+            </rate>
+        </rates>
+    </room>
+    <room id="35976803" hotel_id="359768" hotel_name="Yangshuo Moondance Hotel" max_children="1"
+          room_name="Two-Bedroom Suite">
+        <rates>
+            <rate id="1251247" max_persons="4" policy="General" policy_id="81116089" rate_name="Standard Rate">
+                <meal_plan meal_plan_code="19"/>
+                <policies>
+                    <booking_rules/>
+                    <cancel_policy>
+                        <cancel_penalty policy_code="55"/>
+                    </cancel_policy>
+                    <guarantee_payment_policy>
+                        <guarantee_payment policy_code="168" effective_from="after_reservation_is_made" required="1"/>
+                    </guarantee_payment_policy>
+                </policies>
+                <pricing type="Standard" price1="1"/>
+            </rate>
+        </rates>
+    </room>
+    <room id="35976823" hotel_id="359768" hotel_name="Yangshuo Moondance Hotel" max_children="1"
+          room_name="Double Room with Balcony">
+        <rates>
+            <rate id="1251247" max_persons="2" policy="General" policy_id="81116089" rate_name="Standard Rate">
+                <meal_plan meal_plan_code="19"/>
+                <policies>
+                    <booking_rules/>
+                    <cancel_policy>
+                        <cancel_penalty policy_code="55"/>
+                    </cancel_policy>
+                    <guarantee_payment_policy>
+                        <guarantee_payment policy_code="168" effective_from="after_reservation_is_made" required="1"/>
+                    </guarantee_payment_policy>
+                </policies>
+                <pricing type="Standard" price1="1"/>
+            </rate>
+        </rates>
+    </room>
+    <room id="35976808" hotel_id="359768" hotel_name="Yangshuo Moondance Hotel" max_children="2"
+          room_name="Family Room with Balcony">
+        <rates>
+            <rate id="1251247" max_persons="4" policy="General" policy_id="81116089" rate_name="Standard Rate">
+                <meal_plan meal_plan_code="19"/>
+                <policies>
+                    <booking_rules/>
+                    <cancel_policy>
+                        <cancel_penalty policy_code="55"/>
+                    </cancel_policy>
+                    <guarantee_payment_policy>
+                        <guarantee_payment policy_code="168" effective_from="after_reservation_is_made" required="1"/>
+                    </guarantee_payment_policy>
+                </policies>
+                <pricing type="Standard" price1="1"/>
+            </rate>
+        </rates>
+    </room>
+    <room id="35976810" hotel_id="359768" hotel_name="Yangshuo Moondance Hotel" max_children="1"
+          room_name="Classic Twin Room">
+        <rates>
+            <rate id="1251247" max_persons="2" policy="General" policy_id="81116089" rate_name="Standard Rate">
+                <meal_plan meal_plan_code="19"/>
+                <policies>
+                    <booking_rules/>
+                    <cancel_policy>
+                        <cancel_penalty policy_code="55"/>
+                    </cancel_policy>
+                    <guarantee_payment_policy>
+                        <guarantee_payment policy_code="168" effective_from="after_reservation_is_made" required="1"/>
+                    </guarantee_payment_policy>
+                </policies>
+                <pricing type="Standard" price1="1"/>
+            </rate>
+        </rates>
+    </room>
+    <room id="35976825" hotel_id="359768" hotel_name="Yangshuo Moondance Hotel" max_children="2"
+          room_name="Suite with River View">
+        <rates>
+            <rate id="1251247" max_persons="4" policy="General" policy_id="81116089" rate_name="Standard Rate">
+                <meal_plan meal_plan_code="19"/>
+                <policies>
+                    <booking_rules/>
+                    <cancel_policy>
+                        <cancel_penalty policy_code="55"/>
+                    </cancel_policy>
+                    <guarantee_payment_policy>
+                        <guarantee_payment policy_code="168" effective_from="after_reservation_is_made" required="1"/>
+                    </guarantee_payment_policy>
+                </policies>
+                <pricing type="Standard" price1="1"/>
+            </rate>
+        </rates>
+    </room>
+    <room id="35976809" hotel_id="359768" hotel_name="Yangshuo Moondance Hotel" max_children="1"
+          room_name="Deluxe King Room with Balcony">
+        <rates>
+            <rate id="1251247" max_persons="2" policy="General" policy_id="81116089" rate_name="Standard Rate">
+                <meal_plan meal_plan_code="19"/>
+                <policies>
+                    <booking_rules/>
+                    <cancel_policy>
+                        <cancel_penalty policy_code="55"/>
+                    </cancel_policy>
+                    <guarantee_payment_policy>
+                        <guarantee_payment policy_code="168" effective_from="after_reservation_is_made" required="1"/>
+                    </guarantee_payment_policy>
+                </policies>
+                <pricing type="Standard" price1="1"/>
+            </rate>
+        </rates>
+    </room>
+    <room id="35976822" hotel_id="359768" hotel_name="Yangshuo Moondance Hotel" max_children="1"
+          room_name="Twin Room with Balcony">
+        <rates>
+            <rate id="1251247" max_persons="2" policy="General" policy_id="81116089" rate_name="Standard Rate">
+                <meal_plan meal_plan_code="19"/>
+                <policies>
+                    <booking_rules/>
+                    <cancel_policy>
+                        <cancel_penalty policy_code="55"/>
+                    </cancel_policy>
+                    <guarantee_payment_policy>
+                        <guarantee_payment policy_code="168" effective_from="after_reservation_is_made" required="1"/>
+                    </guarantee_payment_policy>
+                </policies>
+                <pricing type="Standard" price1="1"/>
+            </rate>
+        </rates>
+    </room>
+    <room id="35976824" hotel_id="359768" hotel_name="Yangshuo Moondance Hotel" max_children="1"
+          room_name="Superior Queen Room">
+        <rates>
+            <rate id="1251247" max_persons="2" policy="General" policy_id="81116089" rate_name="Standard Rate">
+                <meal_plan meal_plan_code="19"/>
+                <policies>
+                    <booking_rules/>
+                    <cancel_policy>
+                        <cancel_penalty policy_code="55"/>
+                    </cancel_policy>
+                    <guarantee_payment_policy>
+                        <guarantee_payment policy_code="168" effective_from="after_reservation_is_made" required="1"/>
+                    </guarantee_payment_policy>
+                </policies>
+                <pricing type="Standard" price1="0"/>
+            </rate>
+        </rates>
+    </room>
+    <room id="35976826" hotel_id="359768" hotel_name="Yangshuo Moondance Hotel" max_children="1"
+          room_name="Deluxe Queen Room">
+        <rates>
+            <rate id="1251247" max_persons="2" policy="General" policy_id="81116089" rate_name="Standard Rate">
+                <meal_plan meal_plan_code="19"/>
+                <policies>
+                    <booking_rules/>
+                    <cancel_policy>
+                        <cancel_penalty policy_code="55"/>
+                    </cancel_policy>
+                    <guarantee_payment_policy>
+                        <guarantee_payment policy_code="168" effective_from="after_reservation_is_made" required="1"/>
+                    </guarantee_payment_policy>
+                </policies>
+                <pricing type="Standard" price1="1"/>
+            </rate>
+        </rates>
+    </room>
+    <room id="35976802" hotel_id="359768" hotel_name="Yangshuo Moondance Hotel" max_children="2"
+          room_name="Deluxe Family Suite with Balcony">
+        <rates>
+            <rate id="1251247" max_persons="4" policy="General" policy_id="81116089" rate_name="Standard Rate">
+                <meal_plan meal_plan_code="19"/>
+                <policies>
+                    <booking_rules/>
+                    <cancel_policy>
+                        <cancel_penalty policy_code="55"/>
+                    </cancel_policy>
+                    <guarantee_payment_policy>
+                        <guarantee_payment policy_code="168" effective_from="after_reservation_is_made" required="1"/>
+                    </guarantee_payment_policy>
+                </policies>
+                <pricing type="Standard" price1="1"/>
+            </rate>
+        </rates>
+    </room>
+    <warnings>
+        <warning
+                message="The current version 1.0 of this API is going to be deprecated as of December 5th. Please test and start migrating to version 1.1. Details: https://connect.booking.com/user_guide/site/en-US/migration-guides/migrating-to-new-versions/#changes-to-the-roomrates-endpoint"/>
+    </warnings>
+</rooms> <!-- RUID: [UmFuZG9tSVYkc2RlIyh9YRK3MM1NBFgBGEVxJxvh6R6lKiVaI0IQI7OM2IxNUEXjUGUa+cMjf1T5caD9w1nR6XH2YjeRtHxW] -->
