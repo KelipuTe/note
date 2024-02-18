@@ -1,39 +1,50 @@
 ---
 draft: true
 date: 2022-05-04 08:00:00 +0800
-lastmod: 2022-05-04 08:00:00 +0800
-title: "IP 协议"
-summary: "IP 协议；"
+title: "IP"
+summary: "IP；"
 toc: true
 
 categories:
-- protocol(协议)
+- 协议
 
 tags:
-- computer-science(计算机科学)
-- network(网络)
-- protocol(协议)
+- 计算机
+- 协议
 - ip
 ---
 
+## 反向链接
+
+[协议](/计算机/协议/协议)；
+
+## 资料
+
+## 正文
+
 ### IP
 
-IP（Internet Protocol、网际互连协议）根据端到端的设计原则，为主机提供一种无连接、不可靠的、尽力而为的数据包传输服务。
+IP、Internet Protocol、网际互连协议
+
+IP 根据端到端的设计原则，
+为主机提供一种无连接的、不可靠的、尽力而为的数据包传输服务。
 
 ### 网络层
 
 网络层的主要作用是实现主机与主机之间点对点的通信。网络层的通信只有两个主体，即两个主机。
 
-网络层负责在没有实现直连的两个网络之间进行通信，数据链路层负责在实现直连的两个设备之间进行通信。即两个主机之间通过多个网络基础设施节点实现互联，数据链路层负责这些网络基础设施节点两两之间的通信。
+网络层负责在没有实现直连的两个网络之间进行通信，数据链路层负责在实现直连的两个设备之间进行通信。
+即两个主机之间通过多个网络基础设施节点实现互联，数据链路层负责这些网络基础设施节点两两之间的通信。
 
 在传输过程中源 IP 地址和目标 IP 地址在是不会变化的但是 MAC 地址，每经过一个基础设施节点就会变一次。
 
 ### IPv4
 
-IPv4（Internet Protocol version 4、互联网通信协议第四版）由 IETF（The Internet Engineering Task Force、国际互联网工程任务组） 的 RFC 791 定义。
+IPv4（Internet Protocol version 4、互联网通信协议第四版）
+是由 IETF（The Internet Engineering Task Force、国际互联网工程任务组） 的 RFC 791 定义的。
 
-- [https://www.rfc-editor.org/rfc/rfc791](https://www.rfc-editor.org/rfc/rfc791)
-- [https://datatracker.ietf.org/doc/html/rfc791](https://datatracker.ietf.org/doc/html/rfc791)
+[RFC 791](https://www.rfc-editor.org/rfc/rfc791)；
+[RFC 791](https://datatracker.ietf.org/doc/html/rfc791)；
 
 #### IPv4 地址
 
@@ -259,9 +270,3 @@ $Payload Length = 报头后的数据长度 + 扩展头部数据长度$
 - IPv6 不需要 DHCP 服务器也可以实现自动分配 IP 地址。
 - IPv6 有应对伪造 IP 地址的网络安全功能以及防止线路窃听的功能，提高了安全性。
 - ...
-
-### 参考
-
-- [https://www.rfc-editor.org/rfc/rfc791](https://www.rfc-editor.org/rfc/rfc791)
-- [小林coding](https://xiaolincoding.com/)
-  - [图解网络](https://xiaolincoding.com/network/)

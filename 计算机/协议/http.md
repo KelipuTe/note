@@ -17,6 +17,12 @@ tags:
 
 ### HTTP
 
+HTTP（Hyper Text Transfer Protocol，超文本传输协议），是一个简单的 "请求-响应" 协议，它通常运行在 TCP 之上。
+
+在 TCP 的基础之上，对连接上来的客户端响应符合 HTTP 协议格式的数据，就可以实现简单的 HTTP 响应。
+
+### HTTP
+
 HTTP（HyperText Transfer Protocol，超文本传输协议）是基于 TCP、IP 协议的应用层网络通讯协议。它主要规定了发送端和接收端之间的通信格式（通信规范），不涉及数据包（packet）的传输。
 
 HTTP 是基于 TCP 的，TCP 是基于字节流的，所以 HTTP 报文被接收后，在内存中就是一堆字节。

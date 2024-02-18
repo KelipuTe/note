@@ -6,18 +6,27 @@ summary: "TCP 可靠性"
 toc: true
 
 categories:
-  - protocol(协议)
+  - 协议
 
 tags:
-  - computer-science(计算机科学)
-  - protocol(协议)
+  - 计算机
+  - 协议
   - tcp
 ---
+
+## 反向链接
+
+[TCP](/计算机/协议/TCP)；
+
+## 资料
+
+## 正文
 
 ### 重传机制
 
 #### 超时重传
 
+IP 没有超时重传机制，超时重传机制由 TCP 负责。
 在发送报⽂时，设置⼀个定时器。当超过指定的时间后，没有收到对方的应答报⽂，就会重发该报文。
 
 超时重传时间以 RTO（Retransmission Timeout、超时重传时间）表示。RTO 应该设置为略大于 RTT。
