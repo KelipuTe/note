@@ -1,30 +1,28 @@
-<result timestamp="1706432657467">
-    <property id="36925001" name="PAPER BOX" currency="TWD" language="CN" live_status="1" occupancy_model="Full Rate">
-        <rooms>
-            <room room_id="610360555" room_name="标准房" num_rooms="6" num_persons="2" num_children="1"
-                  total_persons="2" num_extrabed="0" num_baby_cots="0" min_rate="1000000.0" max_rate="2000000.0"/>
-            <room room_id="636728768" room_name="四人房-带浴室" num_rooms="1" num_persons="4" num_children="1"
-                  total_persons="4" num_extrabed="0" num_baby_cots="0" min_rate="1000000.0" max_rate="3000000.0"/>
-            <room room_id="636729144" room_name="六人房" num_rooms="1" num_persons="6" num_children="1"
-                  total_persons="6" num_extrabed="0" num_baby_cots="0" min_rate="1000000.0" max_rate="3000000.0"/>
-        </rooms>
-        <rateplans>
-            <rateplan rateplan_id="13810559" rateplan_name="Room Only" master_rate="0" sell_start="2022-12-25T00:00:00"
-                      sell_end="2099-12-29T23:59:59" stay_start="2022-12-25" stay_end="2099-12-29" tax_included="1"
-                      rate_type="SELL" min_los="1" cxl_code="1D100P_100P" offertype_id="22" offertype_name="Room Only">
-                <benefits>
-
-                </benefits>
-
-            </rateplan>
-        </rateplans>
-        <products>
-            <product room_id="610360555" rateplan_id="13810559"/>
-            <product room_id="636728768" rateplan_id="13810559"/>
-            <product room_id="636729144" rateplan_id="13810559"/>
-        </products>
-        <channels>
-            <channel channel_id="1" channel_name="Retail"/>
-        </channels>
-    </property>
-</result>
+<?xml version="1.0" encoding="UTF-8"?>
+<OTA_InventoryCheckRS TimeStamp="2024-03-04 13:41:29" Version="1.000" EchoToken="487ef6b0-3526-45e3-81e7-0eac31754c10">
+    <HotelResult>
+        <HotelID>15138959682</HotelID>
+        <HotelProducts>
+            <HotelProduct>
+                <RoomTypes>
+                    <RoomType RoomTypeCode="1"/>
+                </RoomTypes>
+                <RatePlans>
+                    <RatePlan RatePlanCode="1"/>
+                </RatePlans>
+                <Prices>
+                    <Price>
+                        <Base EffectDate="2024-03-26" SalePrice="800.00" BasePrice="800.00" Allotment="3"
+                              DcOverSaleAllotment="3" DcAddAllotment="-1" DcContractAllotment="-1"
+                              DcBuyOutAllotment="-1"/>
+                    </Price>
+                    <Price>
+                        <Base EffectDate="2024-03-27" SalePrice="800.00" BasePrice="800.00" Allotment="3"
+                              DcOverSaleAllotment="3" DcAddAllotment="-1" DcContractAllotment="-1"
+                              DcBuyOutAllotment="-1"/>
+                    </Price>
+                </Prices>
+            </HotelProduct>
+        </HotelProducts>
+    </HotelResult>
+</OTA_InventoryCheckRS>
