@@ -9,7 +9,7 @@ categories:
   - Golang
 
 tags:
-  - 计算机科学
+  - 计算机
   - 编程语言
   - Golang
   - HTTP

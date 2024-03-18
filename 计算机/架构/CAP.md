@@ -1,12 +1,20 @@
 ---
-title: "CAP"
-create_date: 2022-05-05 08:00:00 +0800
-date: 2022-05-05 08:00:00 +0800
-tags: computer-science architecture-design distributed-system
-comment: false
-show_author_profile: true
-show_subscribe: false
+draft: false
+title: "分布式系统 CAP 问题"
+summary: "分布式系统 CAP 问题；"
+toc: true
+
+categories:
+  - 架构
+
+tags:
+  - 计算机
+  - 架构
+
+date: 2024-03-19 08:00:00 +0800
 ---
+
+## 正文
 
 ### CAP
 
