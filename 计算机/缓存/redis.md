@@ -1,19 +1,22 @@
 ---
-draft: true
-date: 2022-06-01 08:00:00 +0800
-lastmod: 2022-06-01 08:00:00 +0800
+draft: false
 title: "Redis"
-summary: "Redis"
-toc: true
+summary: "Redis；"
 
 categories:
-- cache(缓存)
+  - 缓存
 
 tags:
-- computer-science(计算机科学)
-- cache(缓存)
-- redis
+  - 计算机
+  - 缓存
+  - redis
+
+date: 2022-06-01 08:00:00 +0800
 ---
+
+| Redis            | https://redis.io/                         | 内存数据库 |
+| Redis（Windows 版） | https://github.com/microsoftarchive/redis | 内存数据库 |
+
 
 ### Redis
 
@@ -36,7 +39,8 @@ tags:
 
 ### Slot
 
-Redis Cluster 采用数据分片机制，定义了 16384 个 Slot（槽），集群中的每个 Redis 实例负责维护一部分槽以及槽所映射的键值数据。使用时，先计算数据的 key 应该映射到哪个槽上，再根据槽找到对应的节点。
+Redis Cluster 采用数据分片机制，定义了 16384 个 Slot（槽），集群中的每个 Redis 实例负责维护一部分槽以及槽所映射的键值数据。使用时，先计算数据的
+key 应该映射到哪个槽上，再根据槽找到对应的节点。
 
 当进行扩容、缩容时，每个节点都会提供、托管一部分槽。这样在数据迁移时，压力不会集中在某个节点上。
 
@@ -50,17 +54,15 @@ redis 底层有 shared_object 缓存，比如如果多个 key 的 value 都是 1
 - bitset、bitmap（位图）
 - 增量更新一致性
 
-比如 zadd 一个新的 id 到 set 中时，如果本来这个 set 有 100 个 id 的，正好过期了，还没来得及刷新，这时 zadd 就会变成新建一个 set 然后只有 1 个 id 了。
+比如 zadd 一个新的 id 到 set 中时，如果本来这个 set 有 100 个 id 的，正好过期了，还没来得及刷新，这时 zadd 就会变成新建一个
+set 然后只有 1 个 id 了。
 
 这种情况可以先尝试续期这个 set，如果续期成功，就添加 id；如果续期不成功，就触发回填。
 
 - list
 
-比如秒杀场景。预先把奖池进行切割，打散后放到几个 list 里面去。用户的请求进来时，先通过概率直接筛掉一部分请求，通过的请求随机选一个 list，然后 pop 一个奖品出来。这样就不用去访问数据库了，可以等活动结束之后在更新数据库。
+比如秒杀场景。预先把奖池进行切割，打散后放到几个 list 里面去。用户的请求进来时，先通过概率直接筛掉一部分请求，通过的请求随机选一个
+list，然后 pop 一个奖品出来。这样就不用去访问数据库了，可以等活动结束之后在更新数据库。
 
 - 避免各种类型的大 value，不只是大 string，元素数量很多的 set 等也是大 value。
 - setnx 可用于分布式锁。
-
-### reference（参考）
-
-- 极客时间：Go 进阶训练营
