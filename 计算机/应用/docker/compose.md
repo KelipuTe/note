@@ -1,29 +1,31 @@
 ---
 draft: false
-create_date: 2023-01-08 08:00:00 +0800
-date: 2023-01-08 08:00:00 +0800
-title: "Docker Compose 怎么用"
-summary: "编辑 docker-compose.yaml；启动 Docker Compose；"
+title: "Docker 怎么用"
+summary: "Docker 怎么用；Docker Compose 怎么用；"
 toc: true
 
 categories:
-- application(应用)
+  - 应用
 
 tags:
-- computer-science(计算机科学)
-- application(应用)
-- docker
-- docker-compose
+  - 计算机
+  - 应用
+  - docker
+
+date: 2023-01-08 08:00:00 +0800
 ---
+
 ## 前言
 
-实践的环境：
+环境参数：
 
 - CPU AMD64(x86_64)
 - Windows 11 家庭版
 - Docker v20.10.17
 
 ## 正文
+
+### Docker
 
 ### Docker Compose 是什么
 

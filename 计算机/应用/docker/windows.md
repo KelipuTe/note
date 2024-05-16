@@ -1,19 +1,20 @@
 ---
 draft: false
-create_date: 2021-06-29 08:00:00 +0800
-date: 2023-05-09 08:00:00 +0800
 title: "Windows 10 环境使用 Docker"
 summary: "安装；镜像加速；异常处理；如何使用；"
 toc: true
 
 categories:
-- application(应用)
+  - application(应用)
 
 tags:
-- computer-science(计算机科学)
-- application(应用)
-- docker
+  - computer-science(计算机科学)
+  - application(应用)
+  - docker
+
+date: 2023-05-09 08:00:00 +0800
 ---
+
 ## 前言
 
 实践的环境：
@@ -74,9 +75,13 @@ Client:
 
 国内从 [DockerHub](https://hub.docker.com) 拉取镜像有时会遇到困难，此时可以配置镜像加速器。
 
-打开 docker 的界面；点击右上角的 "设置按钮"（图标是个齿轮），打开 "设置界面"；点击左侧的 "Docker Engine 标签"，就可以看见 json 格式的配置参数。
+打开 docker 的界面；点击右上角的 "设置按钮"（图标是个齿轮），打开 "设置界面"；
+点击左侧的 "Docker Engine 标签"，就可以看见 json
+格式的配置参数。
 
-在 registry-mirrors 参数中添加镜像加速的地址，这里用的是七牛云的加速器 "https://reg-mirror.qiniu.com"。如果没有 registry-mirrors 参数的话，就加一个。
+在 registry-mirrors 参数中添加镜像加速的地址，这里用的是七牛云的加速器 "https://reg-mirror.qiniu.com"。
+如果没有
+registry-mirrors 参数的话，就加一个。
 
 修改好之后，点击右下角的 "Apply & Restart 按钮"，等 docker 转完圈应该就可以了。如果不行的话，重启 docker 试试。
 
@@ -152,3 +157,11 @@ Error response from daemon: status code not OK but 500
 - ">" 操作符和 "-o" 参数，都表示导出到文件。
 
 建议用第二个命令，在 powershell 中第一个可能有 bug。
+
+docker run 参数
+`--name {容器名字}` 自定义容器名字
+`-p {本机端口}:{容器端口}` 映射端口
+`-d` 后台运行
+--restart always 每次都重启
+-e TZ="Asia/Shanghai" 指定时区
+-v {D:\tmp\docker\zookeeper-single}:{/root/docket/zookeeper} 映射目录
