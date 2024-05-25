@@ -1,7 +1,7 @@
 ---
 draft: false
 title: "ZooKeeper 怎么用"
-summary: "怎么在 docker 里面启动；怎么在 docker 里面启动；怎么在 golang 里面使用；"
+summary: "怎么在 docker 里面启动；怎么在 docker 里面启动；zookeeper 命令；怎么在 golang 里面使用；"
 toc: true
 
 categories:
@@ -14,6 +14,10 @@ tags:
 
 date: 2024-05-15 08:00:00 +0800
 ---
+
+## 反向链接
+
+[docker](/计算机/应用/docker/windows.md)；
 
 ## 资料
 
@@ -73,14 +77,7 @@ zookeeper              3.9       68f009cf243c   12 days ago     314MB
 然后就可以用 docker run 命令启动容器了。
 
 ```
-> docker run \
--d \
--e TZ="Asia/Shanghai" \
--p 2181:2181 \
--v D:\tmp\docker\zookeeper-single:/root/docket/zookeeper \
---name zookeeper-single \
---restart always \
-zookeeper:3.9
+> docker run -d -e TZ="Asia/Shanghai" -p 2181:2181 -v D:\tmp\docker\zookeeper-single:/root/docket/zookeeper --name zookeeper-single zookeeper:3.9
 ```
 
 ### 怎么在 docker 里面使用
@@ -177,3 +174,9 @@ go: added github.com/go-zookeeper/zk v1.0.3
 ```
 
 **详细示例见：{demo-golang}/demo/zookeeper/**
+
+需要注意的是，`GetW()` 方法返回的管道，在接收一次数据变化事件之后，就会被关闭。
+如果不注意检查管道的状态，就会遇到管道疯狂返回 `Unknown StateDisconnected` 的问题。
+
+github 的 issues 里面也有关于这个问题的 issue。
+[链接](https://github.com/samuel/go-zookeeper/issues/80)。

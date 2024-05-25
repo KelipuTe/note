@@ -5,19 +5,19 @@ summary: "安装；镜像加速；异常处理；如何使用；"
 toc: true
 
 categories:
-  - application(应用)
+  - 应用
 
 tags:
-  - computer-science(计算机科学)
-  - application(应用)
+  - 计算机
+  - 应用
   - docker
 
 date: 2023-05-09 08:00:00 +0800
 ---
 
-## 前言
+## 资料
 
-实践的环境：
+环境参数：
 
 - CPU AMD64(x86_64)
 - Windows 11 家庭版
@@ -158,10 +158,11 @@ Error response from daemon: status code not OK but 500
 
 建议用第二个命令，在 powershell 中第一个可能有 bug。
 
-docker run 参数
-`--name {容器名字}` 自定义容器名字
-`-p {本机端口}:{容器端口}` 映射端口
-`-d` 后台运行
---restart always 每次都重启
--e TZ="Asia/Shanghai" 指定时区
--v {D:\tmp\docker\zookeeper-single}:{/root/docket/zookeeper} 映射目录
+docker run 参数：
+
+- `-d` 后台运行。
+- `-e TZ="Asia/Shanghai"` 指定时区。
+- `-p {本机端口}:{容器端口}` 映射端口。
+- `-v {本机目录}:{容器目录}`。映射目录。
+- `--name {容器名字}` 自定义容器名字。
+- `--restart always`。docker启动时一并启动容器。
