@@ -1,7 +1,6 @@
 ---
 draft: false
-date: 2022-09-03 08:00:00 +0800
-title: "Go -- HTTP"
+title: "HTTP"
 summary: "HTTP 的使用方式；"
 toc: true
 
@@ -12,7 +11,8 @@ tags:
   - 计算机
   - 编程语言
   - Golang
-  - HTTP
+
+date: 2022-09-03 08:00:00 +0800
 ---
 
 ## 正文

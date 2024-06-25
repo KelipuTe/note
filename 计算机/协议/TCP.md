@@ -1,6 +1,5 @@
 ---
 draft: false
-date: 2022-05-02 08:00:00 +0800
 title: "TCP 协议"
 summary: "TCP 协议；连接；三次握手四次挥手；可靠性；"
 toc: true
@@ -9,9 +8,10 @@ categories:
   - 协议
 
 tags:
-  - 算机
+  - 计算机
   - 协议
-  - tcp
+
+date: 2022-05-02 08:00:00 +0800
 ---
 
 ## 反向链接
@@ -23,13 +23,18 @@ tags:
 
 ## 正文
 
+- TCP：Transmission Control Protocol、传输控制协议
+- IETF：The Internet Engineering Task Force、国际互联网工程任务组
+- RFC：Request For Comments，是由 IETF 发布的一系列备忘录
+- ISN：Initial Sequence Number、初始序列号
+- SYN：Synchronize Sequence Numbers、同步序列号
+
 ### TCP
 
 IP 是在网络层工作的不可靠的协议。它不能保证数据交付、不能保证数据按序交付、不能保证数据完整性。
 TCP 是在传输层工作的协议，建立在 IP 之上，有一套机制负责保障数据的可靠性（可达、按序、完整）。
 
-TCP（Transmission Control Protocol、传输控制协议）
-是由 IETF（The Internet Engineering Task Force、国际互联网工程任务组） 的 RFC 793 定义的。
+TCP 的定义在 RFC 793 里面。
 
 [RFC 793](https://www.rfc-editor.org/rfc/rfc793)；
 [RFC 793](https://datatracker.ietf.org/doc/html/rfc793)；
@@ -46,25 +51,25 @@ TCP 传输的时候可能会将一个完整的报文分成一堆数据包进行�
 ### 报文格式
 
 ```
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |          Source Port          |       Destination Port        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                        Sequence Number                        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                    Acknowledgment Number                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |  Data |           |U|A|P|R|S|F|                               |
-   | Offset| Reserved  |R|C|S|S|Y|I|            Window             |
-   |       |           |G|K|H|T|N|N|                               |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           Checksum            |         Urgent Pointer        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                    Options                    |    Padding    |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                             data                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|          Source Port          |       Destination Port        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                        Sequence Number                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Acknowledgment Number                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Data |           |U|A|P|R|S|F|                               |
+| Offset| Reserved  |R|C|S|S|Y|I|            Window             |
+|       |           |G|K|H|T|N|N|                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |         Urgent Pointer        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Options                    |    Padding    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                             data                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ```
 
 整个 TCP 报文分为三个部分：
@@ -76,7 +81,7 @@ TCP 传输的时候可能会将一个完整的报文分成一堆数据包进行�
   - Acknowledgment Number：确认应答号，32 bit；
   - Data Offset：数据偏移，4 bit；
   - Reserved：保留位，6 bit；
-  - URG、ACK、PSH、RST、SYN、FIN：控制位，1*6 bit；
+  - URG、ACK、PSH、RST、SYN、FIN：控制位，(1 bit)*6；
   - Window：窗口大小，16 bit；
   - Checksum ：校验和，16 bit；
   - Urgent Pointer：紧急指针，16 bit；
@@ -99,10 +104,11 @@ TCP 传输的时候可能会将一个完整的报文分成一堆数据包进行�
 一方面，序列号可以判断报文的时效性，防止旧连接的历史报文被新连接接收了。
 另一方面，因为序列号是随机生成的，不容易伪造，可以一定程度上保证安全性。
 
-ISN（Initial Sequence Number、初始序列号）是由随机产生算法算出来的。
+ISN 是由随机产生算法算出来的。
 一开始的 ISN ⽣成算法是基于时钟的，每 4 毫秒 + 1，转一圈 4.55 个小时。
 
 RFC 1948 中提出了⼀个更好的 ISN 随机⽣成算法：
+
 $ISN = M + F (localhost, localport, remotehost, remoteport)$
 
 - M 是⼀个计时器，这个计时器每隔 4 毫秒 +1。
@@ -127,15 +133,15 @@ $ISN = M + F (localhost, localport, remotehost, remoteport)$
 - ACK：ACK 为 1 时，确认应答号字段变为有效。
   TCP 规定，除了最初建立连接时的 SYN 包之外，该值必须为 1。
 - RST：RST 为 1 时，表示 TCP 连接出现异常，必须强制断开连接。
-- SYN（Synchronize Sequence Numbers、同步序列号）：
-  SYN 为 1 时，表示希望建立连接，同时序列号字段会设置初始值。
+- SYN：SYN 为 1 时，表示希望建立连接，同时序列号字段会设置初始值。
 - FIN：FIN 为 1 时，表示希望断开连接。
 
 ### 数据长度
 
 $TCP 数据长度 = IP 数据包总长度 - IP 头部长度 - TCP 头部长度$
 
-TCP 报文的数据段过大时，按 MSS（TCP 最大报文长度）分成 TCP Segment（TCP 块）。MSS 的值，在建立连接时，由双方协商得出。
+TCP 报文的数据段过大时，按 MSS（TCP 最大报文长度）分成 TCP Segment（TCP 块）。
+MSS 的值，在建立连接时，由双方协商得出。
 
 让 TCP 处理分块，避免 IP 层分片，可以提高传输性能。
 如果让 IP 来分片，那么其中任意一个 IP 分片有问题，都要重传整个 IP 报文。

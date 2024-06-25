@@ -14,11 +14,12 @@ tags:
 - protocol(协议)
 - rpc(远程过程调用)
 ---
-## 前言
 
-## 资料
+## 反向链接
 
-- <a href="/drawio/computer-science/protocol/rpc.drawio.html">rpc.drawio.html</a>
+[TCP](/计算机/协议/TCP)；
+[反射](/计算机/编程语言/Golang/反射)；
+
 
 ## 正文
 
